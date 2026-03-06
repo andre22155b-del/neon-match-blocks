@@ -2,6 +2,23 @@
 
 This setup assumes Unity URP + TextMeshPro + DOTween imported.
 
+## Fastest path (one click)
+Run this Unity menu item:
+
+- `Tools > Neon Match Blocks > Auto Setup Complete Scene`
+
+What it does automatically:
+- Creates scene: `Assets/Scenes/NeonMatchBlocks.unity`
+- Creates Neon cube prefab + material
+- Creates placeholder sports face sprites
+- Creates particle prefabs
+- Builds Canvas/HUD/reflex panel/result panel
+- Adds and wires `GameManagerCompetitive`, `UIManager`, `SoundManager`, `ParticleManager`
+
+After running:
+- Press Play for a full placeholder playable loop.
+- Replace placeholder sprites, particles, and audio clips with your final assets.
+
 ## 1) Package prerequisites
 - Import DOTween (`Tools > Demigiant > DOTween Utility Panel > Setup DOTween...`).
 - Ensure TextMeshPro essentials are imported.
