@@ -2,7 +2,11 @@ using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem.UI;
+#endif
 
 /// <summary>
 /// UI handler for Neon Match Blocks.
@@ -66,8 +70,53 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        EnsureCompatibleInputModule();
         ShowReflexPanel(false);
         HideLevelResult();
+    }
+
+    private static void EnsureCompatibleInputModule()
+    {
+        EventSystem eventSystem = EventSystem.current;
+        if (eventSystem == null)
+        {
+            eventSystem = FindFirstObjectByType<EventSystem>();
+        }
+
+        if (eventSystem == null)
+        {
+            return;
+        }
+
+#if ENABLE_INPUT_SYSTEM
+        StandaloneInputModule legacyModule = eventSystem.GetComponent<StandaloneInputModule>();
+        if (legacyModule != null)
+        {
+            legacyModule.enabled = false;
+        }
+
+        TouchInputModule touchModule = eventSystem.GetComponent<TouchInputModule>();
+        if (touchModule != null)
+        {
+            touchModule.enabled = false;
+        }
+
+        InputSystemUIInputModule inputSystemModule = eventSystem.GetComponent<InputSystemUIInputModule>();
+        if (inputSystemModule == null)
+        {
+            inputSystemModule = eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
+        }
+
+        inputSystemModule.enabled = true;
+#elif ENABLE_LEGACY_INPUT_MANAGER
+        StandaloneInputModule legacyModule = eventSystem.GetComponent<StandaloneInputModule>();
+        if (legacyModule == null)
+        {
+            legacyModule = eventSystem.gameObject.AddComponent<StandaloneInputModule>();
+        }
+
+        legacyModule.enabled = true;
+#endif
     }
 
     public void UpdateScores(int p1, int p2)

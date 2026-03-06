@@ -9,6 +9,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem.UI;
+#endif
 
 public static class NeonMatchBlocksAutoSetupEditor
 {
@@ -30,6 +33,15 @@ public static class NeonMatchBlocksAutoSetupEditor
         AutoSetupCore(showDialog: true);
     }
 
+    [MenuItem("Tools/Neon Match Blocks/Import TMP Essentials (Silent)")]
+    public static void ImportTmpEssentialsSilent()
+    {
+        TMP_PackageResourceImporter.ImportResources(importEssentials: true, importExamples: false, interactive: false);
+        AssetDatabase.Refresh();
+        CloseTmpImporterWindows();
+        Debug.Log("TMP Essential Resources imported silently.");
+    }
+
     // Batch-mode entry point (use with -executeMethod).
     public static void AutoSetupCompleteSceneBatch()
     {
@@ -45,6 +57,7 @@ public static class NeonMatchBlocksAutoSetupEditor
         EnsureFolder(ArtFolder);
         EnsureFolder(MaterialsFolder);
         AssetDatabase.Refresh();
+        ImportTmpEssentialsSilent();
 
         Scene scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
         SetupCamera();
@@ -131,14 +144,69 @@ public static class NeonMatchBlocksAutoSetupEditor
     private static void EnsureEventSystem()
     {
         EventSystem existing = Object.FindObjectOfType<EventSystem>();
-        if (existing != null)
+        if (existing == null)
+        {
+            GameObject es = new GameObject("EventSystem");
+            existing = es.AddComponent<EventSystem>();
+        }
+
+        ConfigureInputModule(existing);
+    }
+
+    private static void ConfigureInputModule(EventSystem eventSystem)
+    {
+        if (eventSystem == null)
         {
             return;
         }
 
-        GameObject es = new GameObject("EventSystem");
-        es.AddComponent<EventSystem>();
-        es.AddComponent<StandaloneInputModule>();
+#if ENABLE_INPUT_SYSTEM
+        StandaloneInputModule legacy = eventSystem.GetComponent<StandaloneInputModule>();
+        if (legacy != null)
+        {
+            legacy.enabled = false;
+        }
+
+        TouchInputModule touch = eventSystem.GetComponent<TouchInputModule>();
+        if (touch != null)
+        {
+            touch.enabled = false;
+        }
+
+        InputSystemUIInputModule inputSystemModule = eventSystem.GetComponent<InputSystemUIInputModule>();
+        if (inputSystemModule == null)
+        {
+            inputSystemModule = eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
+        }
+
+        inputSystemModule.enabled = true;
+#else
+        StandaloneInputModule legacy = eventSystem.GetComponent<StandaloneInputModule>();
+        if (legacy == null)
+        {
+            legacy = eventSystem.gameObject.AddComponent<StandaloneInputModule>();
+        }
+
+        legacy.enabled = true;
+#endif
+    }
+
+    private static void CloseTmpImporterWindows()
+    {
+        EditorWindow[] windows = Resources.FindObjectsOfTypeAll<EditorWindow>();
+        for (int i = 0; i < windows.Length; i++)
+        {
+            EditorWindow win = windows[i];
+            if (win == null || win.titleContent == null)
+            {
+                continue;
+            }
+
+            if (win.titleContent.text == "TMP Importer")
+            {
+                win.Close();
+            }
+        }
     }
 
     private static UiRefs BuildUi()
