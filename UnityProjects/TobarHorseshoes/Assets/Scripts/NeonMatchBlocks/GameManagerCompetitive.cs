@@ -76,6 +76,7 @@ public class GameManagerCompetitive : MonoBehaviour
 
     private readonly Dictionary<int, List<Block>> aiMemory = new Dictionary<int, List<Block>>();
     private readonly List<Block> activeBlocks = new List<Block>();
+    private readonly List<Texture2D> runtimeGeneratedFaceTextures = new List<Texture2D>();
 
     private int currentLevel = 1;
     private int currentPlayer; // 0 = P1, 1 = P2/AI
@@ -231,6 +232,7 @@ public class GameManagerCompetitive : MonoBehaviour
     {
         ClearBoard();
         ResetLevelState();
+        EnsureSportsFaces();
 
         BuildBoard(level);
 
@@ -447,19 +449,127 @@ public class GameManagerCompetitive : MonoBehaviour
     private bool WasPlayer1TapPressed()
     {
 #if ENABLE_INPUT_SYSTEM
-        return Keyboard.current != null && Keyboard.current.aKey.wasPressedThisFrame;
-#else
+        if (Keyboard.current != null && Keyboard.current.aKey.wasPressedThisFrame) return true;
+#endif
+#if ENABLE_LEGACY_INPUT_MANAGER
         return Input.GetKeyDown(KeyCode.A);
+#else
+        return false;
 #endif
     }
 
     private bool WasPlayer2TapPressed()
     {
 #if ENABLE_INPUT_SYSTEM
-        return Keyboard.current != null && Keyboard.current.lKey.wasPressedThisFrame;
-#else
-        return Input.GetKeyDown(KeyCode.L);
+        if (Keyboard.current != null && Keyboard.current.lKey.wasPressedThisFrame) return true;
 #endif
+#if ENABLE_LEGACY_INPUT_MANAGER
+        return Input.GetKeyDown(KeyCode.L);
+#else
+        return false;
+#endif
+    }
+
+    private void EnsureSportsFaces()
+    {
+        if (sportsFaces == null)
+        {
+            sportsFaces = new List<Sprite>();
+        }
+
+        sportsFaces.RemoveAll(s => s == null);
+        if (sportsFaces.Count >= 2)
+        {
+            return;
+        }
+
+        Color[] baseColors =
+        {
+            new Color(0.95f, 0.95f, 0.95f), // soccer
+            new Color(0.95f, 0.45f, 0.15f), // basketball
+            new Color(0.55f, 0.26f, 0.12f), // football
+            new Color(0.98f, 0.98f, 0.98f), // baseball
+            new Color(0.86f, 0.08f, 0.18f), // boxing
+            new Color(0.66f, 0.94f, 0.20f), // tennis
+            new Color(0.12f, 0.12f, 0.15f), // hockey
+            new Color(0.18f, 0.48f, 0.20f)  // rugby
+        };
+
+        Color[] accents =
+        {
+            new Color(0.1f, 0.1f, 0.12f),
+            new Color(0.22f, 0.12f, 0.05f),
+            new Color(0.92f, 0.92f, 0.92f),
+            new Color(0.9f, 0.16f, 0.16f),
+            new Color(0.96f, 0.82f, 0.10f),
+            new Color(0.06f, 0.25f, 0.08f),
+            new Color(0.6f, 0.94f, 1.0f),
+            new Color(0.98f, 0.98f, 0.98f)
+        };
+
+        for (int i = sportsFaces.Count; i < baseColors.Length; i++)
+        {
+            Sprite generated = CreateRuntimeFaceSprite(baseColors[i], accents[i], i);
+            if (generated != null)
+            {
+                sportsFaces.Add(generated);
+            }
+        }
+    }
+
+    private Sprite CreateRuntimeFaceSprite(Color baseColor, Color accentColor, int index)
+    {
+        const int size = 128;
+        Texture2D texture = new Texture2D(size, size, TextureFormat.RGBA32, false);
+        texture.name = "RuntimeFace_" + index;
+        texture.filterMode = FilterMode.Bilinear;
+        texture.wrapMode = TextureWrapMode.Clamp;
+
+        Color bg = new Color(0.03f, 0.06f, 0.1f, 1f);
+        Vector2 center = new Vector2(size * 0.5f, size * 0.5f);
+        float radius = size * 0.42f;
+        float innerRadius = radius * 0.78f;
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                float d = Vector2.Distance(new Vector2(x, y), center);
+                Color c = bg;
+
+                if (d <= radius)
+                {
+                    c = baseColor;
+                    if (d <= innerRadius)
+                    {
+                        float t = Mathf.InverseLerp(innerRadius, 0f, d);
+                        c = Color.Lerp(baseColor, Color.white, t * 0.15f);
+                    }
+                }
+
+                bool diagLine = Mathf.Abs(x - y) < 2 || Mathf.Abs((x + y) - size) < 2;
+                if (diagLine && d <= radius * 0.95f)
+                {
+                    c = Color.Lerp(c, accentColor, 0.85f);
+                }
+
+                if (x < 3 || y < 3 || x > size - 4 || y > size - 4)
+                {
+                    c = new Color(0f, 0.95f, 1f, 1f);
+                }
+
+                texture.SetPixel(x, y, c);
+            }
+        }
+
+        texture.Apply();
+        runtimeGeneratedFaceTextures.Add(texture);
+
+        return Sprite.Create(
+            texture,
+            new Rect(0f, 0f, texture.width, texture.height),
+            new Vector2(0.5f, 0.5f),
+            100f);
     }
 
     private void SelectBlockInternal(Block block)
