@@ -1,23 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using NeonConnectWords.Simulation;
 
-public enum PowerUpType { Wildcard, Bomb, Swap }
+public enum PowerUpType
+{
+    Wildcard,
+    Bomb,
+    Swap
+}
 
 /// <summary>
-/// PowerUpManager: Tracks power-up inventory, handles activation logic,
-/// and manages progressive unlock thresholds.
-/// Each power-up type has its own activation flow.
+/// Power-up UI now reflects simulator inventory and forwards actions to the
+/// simulator-backed board/game flow.
 /// </summary>
 public class PowerUpManager : MonoBehaviour
 {
     public static PowerUpManager Instance { get; private set; }
 
-    // -----------------------------------------------------------------------
-    // Inspector Config
-    // -----------------------------------------------------------------------
     [Header("Unlock Thresholds (points)")]
     public int wildcardUnlockAt = 20;
     public int bombUnlockAt = 50;
@@ -37,40 +38,23 @@ public class PowerUpManager : MonoBehaviour
     public TextMeshProUGUI swapCountText;
 
     [Header("Swap UI")]
-    public GameObject swapSelectionPanel;   // shown during swap targeting
+    public GameObject swapSelectionPanel;
     public TextMeshProUGUI swapInstructionText;
 
     [Header("References")]
     public BoardManager boardManager;
     public AudioManager audioManager;
     public UIManager uiManager;
+    public SimulationService simulationService;
 
-    // -----------------------------------------------------------------------
-    // State
-    // -----------------------------------------------------------------------
-    private int wildcardCharges = 0;
-    private int bombCharges = 0;
-    private int swapCharges = 0;
-
-    private bool wildcardUnlocked = false;
-    private bool bombUnlocked = false;
-    private bool swapUnlocked = false;
-
-    private int pointsAtLastWildcard = 0;
-    private int pointsAtLastBomb = 0;
-    private int pointsAtLastSwap = 0;
-
-    // Swap selection state
-    private bool selectingSwap = false;
-    private Vector2Int swapFirst = new Vector2Int(-1, -1);
-    private bool swapFirstSelected = false;
-
-    // -----------------------------------------------------------------------
-    // Unity Lifecycle
-    // -----------------------------------------------------------------------
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
@@ -83,84 +67,47 @@ public class PowerUpManager : MonoBehaviour
         if (swapButton) swapButton.onClick.AddListener(BeginSwap);
     }
 
-    // -----------------------------------------------------------------------
-    // Unlock & Charge Logic
-    // -----------------------------------------------------------------------
     public void OnPointsEarned(int totalPoints)
     {
-        // Unlock checks
-        if (!wildcardUnlocked && totalPoints >= wildcardUnlockAt)
-        {
-            wildcardUnlocked = true;
-            wildcardCharges = 1;
-            uiManager.ShowMessage("Wildcard power-up unlocked! ★");
-            pointsAtLastWildcard = totalPoints;
-        }
-        if (!bombUnlocked && totalPoints >= bombUnlockAt)
-        {
-            bombUnlocked = true;
-            bombCharges = 1;
-            uiManager.ShowMessage("Bomb power-up unlocked! 💣");
-            pointsAtLastBomb = totalPoints;
-        }
-        if (!swapUnlocked && totalPoints >= swapUnlockAt)
-        {
-            swapUnlocked = true;
-            swapCharges = 1;
-            uiManager.ShowMessage("Swap power-up unlocked! ⇄");
-            pointsAtLastSwap = totalPoints;
-        }
-
-        // Recharge after unlock
-        if (wildcardUnlocked && totalPoints - pointsAtLastWildcard >= wildcardEvery)
-        {
-            wildcardCharges++;
-            pointsAtLastWildcard = totalPoints;
-        }
-        if (bombUnlocked && totalPoints - pointsAtLastBomb >= bombEvery)
-        {
-            bombCharges++;
-            pointsAtLastBomb = totalPoints;
-        }
-        if (swapUnlocked && totalPoints - pointsAtLastSwap >= swapEvery)
-        {
-            swapCharges++;
-            pointsAtLastSwap = totalPoints;
-        }
-
         RefreshButtonStates();
     }
 
-    // -----------------------------------------------------------------------
-    // Wildcard Activation
-    // -----------------------------------------------------------------------
+    public void RefreshFromSimulation()
+    {
+        RefreshButtonStates();
+    }
+
     private void ActivateWildcard()
     {
-        if (wildcardCharges <= 0) return;
-        wildcardCharges--;
+        if (simulationService == null || !simulationService.ArmWildcard())
+        {
+            return;
+        }
+
         RefreshButtonStates();
-        audioManager.PlayPowerUp(PowerUpType.Wildcard);
-        uiManager.ShowMessage("Wildcard! Drop as any letter.");
-        GameManager.Instance.SetCurrentLetter('*');
+        audioManager?.PlayPowerUp(PowerUpType.Wildcard);
+        uiManager?.ShowMessage("Wildcard armed. Your next drop can match any letter.");
+        GameManager.Instance?.RefreshPresentation();
     }
 
-    // -----------------------------------------------------------------------
-    // Bomb Activation
-    // -----------------------------------------------------------------------
     private void ActivateBomb()
     {
-        if (bombCharges <= 0) return;
+        if (!HasBombCharge())
+        {
+            return;
+        }
+
         StartCoroutine(SelectBombTarget());
     }
 
     private IEnumerator SelectBombTarget()
     {
-        uiManager.ShowMessage("Click a tile to bomb its row or column!");
+        uiManager?.ShowMessage("Click a tile to bomb its row.");
         bool selected = false;
 
         while (!selected)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Camera.main != null)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
@@ -168,33 +115,29 @@ public class PowerUpManager : MonoBehaviour
                     LetterTile tile = hit.collider.GetComponentInParent<LetterTile>();
                     if (tile != null)
                     {
-                        selected = true;
-                        // Find position on board
                         Vector2Int pos = FindTilePosition(tile);
                         if (pos.x >= 0)
                         {
-                            bombCharges--;
+                            selected = true;
+                            boardManager?.ClearRow(pos.y);
                             RefreshButtonStates();
-                            audioManager.PlayPowerUp(PowerUpType.Bomb);
-                            // Bomb clears the row
-                            boardManager.ClearRow(pos.y);
-                            uiManager.ShowMessage($"BOOM! Row {pos.y + 1} cleared!");
+                            uiManager?.ShowMessage("Bomb detonated.");
                         }
                     }
                 }
             }
+
             yield return null;
         }
     }
 
-    // -----------------------------------------------------------------------
-    // Swap Activation
-    // -----------------------------------------------------------------------
     private void BeginSwap()
     {
-        if (swapCharges <= 0) return;
-        selectingSwap = true;
-        swapFirstSelected = false;
+        if (!HasSwapCharge())
+        {
+            return;
+        }
+
         if (swapSelectionPanel) swapSelectionPanel.SetActive(true);
         if (swapInstructionText) swapInstructionText.text = "Select FIRST tile to swap";
         StartCoroutine(SwapSelectionRoutine());
@@ -208,7 +151,7 @@ public class PowerUpManager : MonoBehaviour
 
         while (step < 2)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Camera.main != null)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
@@ -226,7 +169,7 @@ public class PowerUpManager : MonoBehaviour
                                 if (swapInstructionText) swapInstructionText.text = "Select SECOND tile to swap";
                                 step++;
                             }
-                            else if (step == 1 && pos != first)
+                            else if (pos != first)
                             {
                                 second = pos;
                                 step++;
@@ -235,47 +178,72 @@ public class PowerUpManager : MonoBehaviour
                     }
                 }
             }
+
             yield return null;
         }
 
         if (swapSelectionPanel) swapSelectionPanel.SetActive(false);
-        selectingSwap = false;
 
-        if (boardManager.SwapTiles(first, second))
+        if (boardManager != null && boardManager.SwapTiles(first, second))
         {
-            swapCharges--;
             RefreshButtonStates();
-            audioManager.PlayPowerUp(PowerUpType.Swap);
-            uiManager.ShowMessage("Tiles swapped!");
+            audioManager?.PlayPowerUp(PowerUpType.Swap);
+            uiManager?.ShowMessage("Tiles swapped.");
         }
     }
 
-    // -----------------------------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------------------------
     private Vector2Int FindTilePosition(LetterTile tile)
     {
         for (int c = 0; c < boardManager.columns; c++)
+        {
             for (int r = 0; r < boardManager.rows; r++)
+            {
                 if (boardManager.GetTile(c, r) == tile)
+                {
                     return new Vector2Int(c, r);
+                }
+            }
+        }
+
         return new Vector2Int(-1, -1);
     }
 
     private void RefreshButtonStates()
     {
-        SetButtonState(wildcardButton, wildcardCountText, wildcardUnlocked, wildcardCharges);
-        SetButtonState(bombButton, bombCountText, bombUnlocked, bombCharges);
-        SetButtonState(swapButton, swapCountText, swapUnlocked, swapCharges);
+        SimulationPowerUpInventory inventory = simulationService != null && simulationService.State != null
+            ? simulationService.State.PowerUps
+            : null;
+
+        if (inventory == null)
+        {
+            SetButtonState(wildcardButton, wildcardCountText, false, 0);
+            SetButtonState(bombButton, bombCountText, false, 0);
+            SetButtonState(swapButton, swapCountText, false, 0);
+            return;
+        }
+
+        SetButtonState(wildcardButton, wildcardCountText, inventory.WildcardUnlocked, inventory.WildcardCharges);
+        SetButtonState(bombButton, bombCountText, inventory.BombUnlocked, inventory.BombCharges);
+        SetButtonState(swapButton, swapCountText, inventory.SwapUnlocked, inventory.SwapCharges);
     }
 
-    private void SetButtonState(Button btn, TextMeshProUGUI countTxt, bool unlocked, int charges)
+    private void SetButtonState(Button button, TextMeshProUGUI countText, bool unlocked, int charges)
     {
-        if (btn) btn.interactable = unlocked && charges > 0;
-        if (countTxt)
+        if (button) button.interactable = unlocked && charges > 0;
+        if (countText)
         {
-            countTxt.text = unlocked ? charges.ToString() : "🔒";
-            countTxt.color = charges > 0 ? Color.white : Color.gray;
+            countText.text = unlocked ? charges.ToString() : "LOCK";
+            countText.color = charges > 0 ? Color.white : Color.gray;
         }
+    }
+
+    private bool HasBombCharge()
+    {
+        return simulationService != null && simulationService.State != null && simulationService.State.PowerUps.BombCharges > 0;
+    }
+
+    private bool HasSwapCharge()
+    {
+        return simulationService != null && simulationService.State != null && simulationService.State.PowerUps.SwapCharges > 0;
     }
 }

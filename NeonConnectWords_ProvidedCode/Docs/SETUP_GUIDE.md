@@ -7,12 +7,14 @@
 
 1. Create a new **Unity 3D** project (Unity 2022 LTS or later recommended).
 2. Install **TextMeshPro** via Package Manager (Window → Package Manager → Unity Registry).
-3. Copy all scripts from `Scripts/` into `Assets/Scripts/` maintaining the folder structure:
+3. Open `/Users/drewtobar/Documents/NeonConnectWords_ProvidedCode` as the Unity project root, or copy its `Assets/`, `Packages/`, and `ProjectSettings/` folders into a new Unity project.
+4. Copy all scripts from `Scripts/` into `Assets/Scripts/` maintaining the folder structure:
    - `Assets/Scripts/Core/` → BoardManager, GameManager, WordChecker, LetterTile, CameraAndParticles, PuzzleManager
    - `Assets/Scripts/UI/` → UIManager
    - `Assets/Scripts/Audio/` → AudioManager
    - `Assets/Scripts/PowerUps/` → PowerUpManager
    - `Assets/Scripts/Tutorials/` → TutorialManager
+   - `Assets/Scripts/Simulation/` → simulator-first rules layer and Unity wrapper
 
 ---
 
@@ -30,6 +32,7 @@ Scene: MainGame
 │   ├── PowerUpManager       (PowerUpManager.cs)
 │   ├── TutorialManager      (TutorialManager.cs)
 │   ├── PuzzleManager        (PuzzleManager.cs)
+│   ├── SimulationService    (SimulationService.cs)
 │   └── ParticleManager      (ParticleManager.cs — on same GO as CameraController)
 │
 ├── [CAMERA]
@@ -181,6 +184,7 @@ FloatingScore (empty root)
 - [ ] audioManager → AudioManager GO
 - [ ] tutorialManager → TutorialManager GO
 - [ ] powerUpManager → PowerUpManager GO
+- [ ] simulationService → SimulationService GO
 - [ ] classicTargetScore = 100
 - [ ] timedDuration = 120
 - [ ] letterPool = "EEEEEEEEEEEEAAAAAAAAAIIIIIIOOOOOOUUUU..." (full string in script)
@@ -193,6 +197,7 @@ FloatingScore (empty root)
 - [ ] audioManager → AudioManager GO
 - [ ] powerUpManager → PowerUpManager GO
 - [ ] particleManager → ParticleManager GO
+- [ ] simulationService → SimulationService GO
 - [ ] playerMaterials[0] → NeonLetter_P1
 - [ ] playerMaterials[1] → NeonLetter_P2
 - [ ] boardLayerMask → "BoardLayer" (assign column colliders to this layer)
@@ -208,6 +213,11 @@ FloatingScore (empty root)
 
 ### PowerUpManager
 - [ ] boardManager, audioManager, uiManager references
+- [ ] simulationService → SimulationService GO
+
+### SimulationService
+- [ ] wordListAsset → `Assets/Data/NeonDictionary.txt`
+- [ ] Match `columns`, `rows`, `playerCount`, score rules, combo rules, and power-up thresholds to GameManager / BoardManager / PowerUpManager
 
 ### TutorialManager
 - [ ] Configure TutorialStep array (3 entries minimum):

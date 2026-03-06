@@ -5,16 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// PuzzleManager: Manages pre-configured puzzle boards with specific objectives.
-/// Loads puzzle definitions, validates objectives, and handles puzzle progression.
+/// PuzzleManager seeds puzzle boards through the simulator-backed BoardManager.
 /// </summary>
 public class PuzzleManager : MonoBehaviour
 {
     public static PuzzleManager Instance { get; private set; }
 
-    // -----------------------------------------------------------------------
-    // Inspector
-    // -----------------------------------------------------------------------
     [Header("Puzzles")]
     public PuzzleDefinition[] puzzles;
     public int currentPuzzleIndex = 0;
@@ -28,35 +24,41 @@ public class PuzzleManager : MonoBehaviour
     public Button nextPuzzleButton;
     public Button retryButton;
 
-    // -----------------------------------------------------------------------
-    // State
-    // -----------------------------------------------------------------------
     private PuzzleDefinition activePuzzle;
-    private int movesUsed = 0;
-    private int wordsFoundThisPuzzle = 0;
+    private int movesUsed;
+    private int wordsFoundThisPuzzle;
     private int targetWordsRequired;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
     private void Start()
     {
-        BoardManager.Instance.OnWordsFound += HandleWordsFound;
-        BoardManager.Instance.OnTilePlaced += HandleTilePlaced;
+        if (BoardManager.Instance != null)
+        {
+            BoardManager.Instance.OnWordsFound += HandleWordsFound;
+            BoardManager.Instance.OnTilePlaced += HandleTilePlaced;
+        }
 
         if (nextPuzzleButton) nextPuzzleButton.onClick.AddListener(LoadNextPuzzle);
         if (retryButton) retryButton.onClick.AddListener(RetryPuzzle);
     }
 
-    // -----------------------------------------------------------------------
-    // Puzzle Loading
-    // -----------------------------------------------------------------------
     public void LoadPuzzle(int index)
     {
-        if (index >= puzzles.Length) { Debug.Log("[PuzzleManager] All puzzles complete!"); return; }
+        if (index >= puzzles.Length)
+        {
+            Debug.Log("[PuzzleManager] All puzzles complete.");
+            return;
+        }
 
         currentPuzzleIndex = index;
         activePuzzle = puzzles[index];
@@ -64,11 +66,10 @@ public class PuzzleManager : MonoBehaviour
         wordsFoundThisPuzzle = 0;
         targetWordsRequired = activePuzzle.wordsRequired;
 
-        // Place pre-set tiles on board
         BoardManager.Instance.InitBoard();
-        foreach (PresetTile pt in activePuzzle.presetTiles)
+        foreach (PresetTile tile in activePuzzle.presetTiles)
         {
-            BoardManager.Instance.DropLetter(pt.column, pt.letter, 2);   // player 2 = neutral color
+            BoardManager.Instance.DropLetter(tile.column, tile.letter, 1);
         }
 
         RefreshUI();
@@ -78,30 +79,41 @@ public class PuzzleManager : MonoBehaviour
 
     private void RefreshUI()
     {
+        if (activePuzzle == null)
+        {
+            return;
+        }
+
         if (objectiveText)
             objectiveText.text = $"Find {targetWordsRequired - wordsFoundThisPuzzle} more word(s). {activePuzzle.movesAllowed - movesUsed} moves left.";
         if (movesRemainingText)
             movesRemainingText.text = $"Moves: {activePuzzle.movesAllowed - movesUsed}";
     }
 
-    // -----------------------------------------------------------------------
-    // Event Handlers
-    // -----------------------------------------------------------------------
     private void HandleTilePlaced(int col, int row, char letter, int player)
     {
-        if (GameManager.Instance.ActiveMode != GameMode.Puzzle) return;
+        if (GameManager.Instance.ActiveMode != GameMode.Puzzle)
+        {
+            return;
+        }
+
         movesUsed++;
 
         if (movesUsed >= activePuzzle.movesAllowed && wordsFoundThisPuzzle < targetWordsRequired)
         {
             StartCoroutine(ShowResult(false));
         }
+
         RefreshUI();
     }
 
     private void HandleWordsFound(List<WordResult> words)
     {
-        if (GameManager.Instance.ActiveMode != GameMode.Puzzle) return;
+        if (GameManager.Instance.ActiveMode != GameMode.Puzzle)
+        {
+            return;
+        }
+
         wordsFoundThisPuzzle += words.Count;
 
         if (wordsFoundThisPuzzle >= targetWordsRequired)
@@ -119,7 +131,7 @@ public class PuzzleManager : MonoBehaviour
         {
             if (puzzleCompletePanel) puzzleCompletePanel.SetActive(true);
             if (puzzleCompleteText) puzzleCompleteText.text = $"Puzzle {currentPuzzleIndex + 1} Complete!";
-            AudioManager.Instance.PlayWordComplete(6, 3);
+            AudioManager.Instance?.PlayWordComplete(6, 3);
         }
         else
         {
@@ -127,16 +139,16 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    // -----------------------------------------------------------------------
-    // Navigation
-    // -----------------------------------------------------------------------
-    private void LoadNextPuzzle() => LoadPuzzle(currentPuzzleIndex + 1);
-    private void RetryPuzzle() => LoadPuzzle(currentPuzzleIndex);
-}
+    private void LoadNextPuzzle()
+    {
+        LoadPuzzle(currentPuzzleIndex + 1);
+    }
 
-// -----------------------------------------------------------------------
-// Data Classes
-// -----------------------------------------------------------------------
+    private void RetryPuzzle()
+    {
+        LoadPuzzle(currentPuzzleIndex);
+    }
+}
 
 [System.Serializable]
 public class PuzzleDefinition

@@ -373,7 +373,7 @@ public class UIManager : MonoBehaviour
     public void OnPlayPuzzle() => GameManager.Instance.StartGame(GameMode.Puzzle);
     public void OnPlayTutorial() => GameManager.Instance.StartGame(GameMode.Tutorial);
     public void OnPlayAgain() => GameManager.Instance.StartGame(GameManager.Instance.ActiveMode);
-    public void OnMainMenu() => ShowMainMenu();
+    public void OnMainMenu() => GameManager.Instance.ReturnToMainMenu();
     public void OnOpenSettings() => ToggleSettings(true);
     public void OnCloseSettings() => ToggleSettings(false);
 }

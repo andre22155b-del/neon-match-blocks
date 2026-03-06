@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using NeonConnectWords.Simulation;
 
 /// <summary>
-/// GameManager: Orchestrates game flow — modes, turns, scoring, streaks, win conditions.
-/// Acts as the central state machine for the game.
+/// GameManager now treats the simulator as the source of truth and updates the
+/// scene/HUD from simulator state snapshots.
 /// </summary>
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    // -----------------------------------------------------------------------
-    // Inspector Config
-    // -----------------------------------------------------------------------
     [Header("Game Settings")]
     public GameMode currentMode = GameMode.Classic;
     public int classicTargetScore = 100;
@@ -20,7 +16,7 @@ public class GameManager : MonoBehaviour
     public int playerCount = 2;
 
     [Header("Letter Pool")]
-    [Tooltip("Weighted letter distribution (26 entries). Adjust frequency to taste.")]
+    [Tooltip("Weighted letter distribution for the simulator.")]
     public string letterPool = "EEEEEEEEEEEEAAAAAAAAAIIIIIIOOOOOOUUUURRRRRRTTTTTTNNNNNNSSSSSSLLLLCCCCPPPPMMMMDDDDGGGGBBBBFFVVWWYYKKJJXXZZQQ";
 
     [Header("Scoring")]
@@ -34,192 +30,235 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public TutorialManager tutorialManager;
     public PowerUpManager powerUpManager;
+    public SimulationService simulationService;
 
-    // -----------------------------------------------------------------------
-    // Runtime State
-    // -----------------------------------------------------------------------
-    public int CurrentPlayerIndex { get; private set; } = 0;
     public GameMode ActiveMode { get; private set; }
+    public int CurrentPlayerIndex => GetState() != null ? GetState().CurrentPlayerIndex : 0;
 
-    private int[] scores;
-    private char[] playerCurrentLetters;
-    private int consecutiveWordTurns = 0;    // streak counter
-    private float comboMultiplier = 1f;
-    private bool gameOver = false;
-    private float timedRemaining;
+    private bool gameOver;
 
-    // -----------------------------------------------------------------------
-    // Unity Lifecycle
-    // -----------------------------------------------------------------------
     private void Awake()
     {
-        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
     }
 
     private void Start()
     {
-        // Subscribe to board events
-        boardManager.OnWordsFound += HandleWordsFound;
-        boardManager.OnBoardFull += HandleBoardFull;
+        if (uiManager != null)
+        {
+            uiManager.ShowMainMenu();
+        }
     }
 
     private void Update()
     {
-        if (ActiveMode == GameMode.Timed && !gameOver)
+        if (ActiveMode != GameMode.Timed || gameOver || simulationService == null)
         {
-            timedRemaining -= Time.deltaTime;
-            uiManager.UpdateTimerDisplay(timedRemaining);
-            if (timedRemaining <= 0f) EndGame("Time's up!");
-        }
-    }
-
-    // -----------------------------------------------------------------------
-    // Game Lifecycle
-    // -----------------------------------------------------------------------
-    public void StartGame(GameMode mode)
-    {
-        ActiveMode = mode;
-        gameOver = false;
-        scores = new int[playerCount];
-        playerCurrentLetters = new char[playerCount];
-        consecutiveWordTurns = 0;
-        comboMultiplier = 1f;
-        CurrentPlayerIndex = 0;
-        timedRemaining = timedDuration;
-
-        for (int i = 0; i < playerCount; i++)
-            playerCurrentLetters[i] = DrawLetter();
-
-        boardManager.StartGame();
-        uiManager.RefreshAll(scores, CurrentPlayerIndex, comboMultiplier);
-        uiManager.SetCurrentLetter(playerCurrentLetters[CurrentPlayerIndex], CurrentPlayerIndex);
-
-        if (mode == GameMode.Tutorial)
-            tutorialManager.BeginTutorial();
-
-        audioManager.PlayMusic(mode == GameMode.Timed);
-        Debug.Log($"[GameManager] Game started. Mode: {mode}");
-    }
-
-    public void EndTurn()
-    {
-        if (gameOver) return;
-
-        // Draw new letter for current player
-        playerCurrentLetters[CurrentPlayerIndex] = DrawLetter();
-
-        // Advance turn
-        CurrentPlayerIndex = (CurrentPlayerIndex + 1) % playerCount;
-
-        uiManager.ShowTurnIndicator(CurrentPlayerIndex);
-        uiManager.SetCurrentLetter(playerCurrentLetters[CurrentPlayerIndex], CurrentPlayerIndex);
-
-        // Reset per-turn combo if no words formed
-        // (combo resets are handled inside HandleWordsFound / EndTurn based on streaks)
-        if (consecutiveWordTurns == 0)
-        {
-            comboMultiplier = 1f;
-            uiManager.UpdateComboMultiplier(comboMultiplier);
-            audioManager.ResetTempo();
-        }
-    }
-
-    // -----------------------------------------------------------------------
-    // Scoring
-    // -----------------------------------------------------------------------
-    private void HandleWordsFound(List<WordResult> words)
-    {
-        if (words == null || words.Count == 0)
-        {
-            consecutiveWordTurns = 0;
             return;
         }
 
-        consecutiveWordTurns++;
-
-        // Update multiplier based on streak
-        if (consecutiveWordTurns >= streakThreshold)
+        bool ended = simulationService.TickTimedMode(Time.deltaTime);
+        SimulationState state = GetState();
+        if (state != null && uiManager != null)
         {
-            comboMultiplier = Mathf.Min(comboMultiplier + comboMultiplierStep, maxComboMultiplier);
-            audioManager.RaiseTempo(consecutiveWordTurns);
+            uiManager.UpdateTimerDisplay(state.TimedRemaining);
         }
 
-        int totalPoints = 0;
-        foreach (WordResult wr in words)
+        if (ended && state != null)
         {
-            int wordPoints = Mathf.RoundToInt(wr.points * comboMultiplier);
-            totalPoints += wordPoints;
-            uiManager.ShowFloatingScore(wordPoints, GetWordCenterWorld(wr));
+            EndGame(state.GameOverMessage);
         }
-
-        // Multi-word bonus
-        if (words.Count > 1)
-        {
-            int bonus = Mathf.RoundToInt(words.Count * 10 * comboMultiplier);
-            totalPoints += bonus;
-            uiManager.ShowFloatingScore(bonus, Vector3.zero, "COMBO!");
-        }
-
-        scores[CurrentPlayerIndex] += totalPoints;
-        uiManager.UpdateScore(CurrentPlayerIndex, scores[CurrentPlayerIndex]);
-        uiManager.UpdateComboMultiplier(comboMultiplier);
-        uiManager.UpdateStreakBar(consecutiveWordTurns, streakThreshold);
-
-        // Unlock power-ups progressively
-        powerUpManager.OnPointsEarned(scores[CurrentPlayerIndex]);
-
-        // Win check
-        if (ActiveMode == GameMode.Classic && scores[CurrentPlayerIndex] >= classicTargetScore)
-            EndGame($"Player {CurrentPlayerIndex + 1} wins!");
     }
 
-    private Vector3 GetWordCenterWorld(WordResult wr)
+    public void StartGame(GameMode mode)
     {
-        // Approximate centre of word (UIManager will convert to screen space)
-        return Vector3.zero;
+        if (simulationService == null)
+        {
+            Debug.LogError("[GameManager] SimulationService is required.");
+            return;
+        }
+
+        SyncSimulationConfig();
+        simulationService.RebuildSimulator();
+        simulationService.StartSimulation(mode);
+
+        ActiveMode = mode;
+        gameOver = false;
+
+        if (boardManager != null)
+        {
+            boardManager.StartGame();
+        }
+
+        if (uiManager != null)
+        {
+            uiManager.ShowHUD();
+        }
+
+        RefreshPresentation();
+
+        if (mode == GameMode.Tutorial && tutorialManager != null)
+        {
+            tutorialManager.BeginTutorial();
+        }
+
+        if (mode == GameMode.Puzzle && PuzzleManager.Instance != null)
+        {
+            PuzzleManager.Instance.LoadPuzzle(PuzzleManager.Instance.currentPuzzleIndex);
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlayMusic(mode == GameMode.Timed);
+        }
     }
 
-    // -----------------------------------------------------------------------
-    // Win / Loss
-    // -----------------------------------------------------------------------
-    private void HandleBoardFull()
+    public void HandleSimulationTurnResult(SimulationTurnResult result)
     {
-        int winner = 0;
-        for (int i = 1; i < playerCount; i++)
-            if (scores[i] > scores[winner]) winner = i;
+        if (result == null)
+        {
+            return;
+        }
 
-        EndGame($"Board full! Player {winner + 1} wins with {scores[winner]} pts!");
+        if (!result.Success)
+        {
+            uiManager?.ShowMessage(result.FailureReason);
+            return;
+        }
+
+        SimulationState state = GetState();
+        if (state != null && audioManager != null)
+        {
+            if (result.PointsAwarded > 0 && state.ConsecutiveWordTurns >= streakThreshold)
+            {
+                audioManager.RaiseTempo(state.ConsecutiveWordTurns);
+            }
+            else if (result.PointsAwarded == 0)
+            {
+                audioManager.ResetTempo();
+            }
+        }
+
+        RefreshPresentation();
+
+        if (result.PointsAwarded > 0)
+        {
+            uiManager?.ShowMessage($"+{result.PointsAwarded} points");
+        }
+
+        if (result.GameOver)
+        {
+            EndGame(result.GameOverMessage);
+        }
     }
 
     public void EndGame(string message)
     {
+        if (gameOver)
+        {
+            return;
+        }
+
         gameOver = true;
-        boardManager.StopGame();
-        audioManager.StopMusic();
-        uiManager.ShowGameOver(scores, message);
-        Debug.Log($"[GameManager] {message}");
+        boardManager?.StopGame();
+        audioManager?.StopMusic();
+
+        SimulationState state = GetState();
+        uiManager?.ShowGameOver(state != null ? state.Scores : new int[playerCount], message);
+        Debug.Log("[GameManager] " + message);
     }
 
-    // -----------------------------------------------------------------------
-    // Letter Management
-    // -----------------------------------------------------------------------
+    public void ReturnToMainMenu()
+    {
+        gameOver = true;
+        boardManager?.StopGame();
+        audioManager?.StopMusic();
+        uiManager?.ShowMainMenu();
+    }
+
     public char GetCurrentPlayerLetter()
     {
-        return playerCurrentLetters[CurrentPlayerIndex];
+        SimulationState state = GetState();
+        if (state == null || state.CurrentLetters == null || state.CurrentLetters.Length == 0)
+        {
+            return 'A';
+        }
+
+        return state.CurrentLetters[state.CurrentPlayerIndex];
     }
 
-    private char DrawLetter()
-    {
-        return letterPool[Random.Range(0, letterPool.Length)];
-    }
-
-    // Called by PowerUpManager when Wildcard is activated
     public void SetCurrentLetter(char c)
     {
-        playerCurrentLetters[CurrentPlayerIndex] = c;
-        uiManager.SetCurrentLetter(c, CurrentPlayerIndex);
+        if (c == '*' && simulationService != null && simulationService.ArmWildcard())
+        {
+            RefreshPresentation();
+        }
+    }
+
+    public void RefreshPresentation()
+    {
+        SimulationState state = GetState();
+        if (state == null || uiManager == null)
+        {
+            return;
+        }
+
+        uiManager.RefreshAll(state.Scores, state.CurrentPlayerIndex, state.ComboMultiplier);
+        uiManager.SetCurrentLetter(state.CurrentLetters[state.CurrentPlayerIndex], state.CurrentPlayerIndex);
+        uiManager.UpdateStreakBar(state.ConsecutiveWordTurns, streakThreshold);
+
+        if (ActiveMode == GameMode.Timed)
+        {
+            uiManager.UpdateTimerDisplay(state.TimedRemaining);
+        }
+
+        powerUpManager?.RefreshFromSimulation();
+    }
+
+    private SimulationState GetState()
+    {
+        return simulationService != null ? simulationService.State : null;
+    }
+
+    private void SyncSimulationConfig()
+    {
+        if (simulationService == null)
+        {
+            return;
+        }
+
+        simulationService.columns = boardManager != null ? boardManager.columns : simulationService.columns;
+        simulationService.rows = boardManager != null ? boardManager.rows : simulationService.rows;
+        simulationService.playerCount = playerCount;
+        simulationService.classicTargetScore = classicTargetScore;
+        simulationService.timedDuration = timedDuration;
+        simulationService.letterPool = letterPool;
+        simulationService.comboMultiplierStep = comboMultiplierStep;
+        simulationService.maxComboMultiplier = maxComboMultiplier;
+        simulationService.streakThreshold = streakThreshold;
+
+        if (powerUpManager != null)
+        {
+            simulationService.wildcardUnlockAt = powerUpManager.wildcardUnlockAt;
+            simulationService.bombUnlockAt = powerUpManager.bombUnlockAt;
+            simulationService.swapUnlockAt = powerUpManager.swapUnlockAt;
+            simulationService.wildcardEvery = powerUpManager.wildcardEvery;
+            simulationService.bombEvery = powerUpManager.bombEvery;
+            simulationService.swapEvery = powerUpManager.swapEvery;
+        }
     }
 }
 
-public enum GameMode { Classic, Timed, Puzzle, Tutorial }
+public enum GameMode
+{
+    Classic,
+    Timed,
+    Puzzle,
+    Tutorial
+}

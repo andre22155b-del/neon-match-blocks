@@ -44,6 +44,7 @@ namespace NeonConnectWords.Simulation
         public int swapEvery = 90;
 
         public NeonConnectSimulator Simulator { get; private set; }
+        public SimulationState State => Simulator != null ? Simulator.State : null;
 
         private void Awake()
         {
@@ -121,6 +122,18 @@ namespace NeonConnectWords.Simulation
         {
             EnsureSimulator();
             return Simulator.AdvanceTime(deltaSeconds);
+        }
+
+        public void ResetBoardOnly()
+        {
+            EnsureSimulator();
+            Simulator.ResetBoardOnly();
+        }
+
+        public bool SeedTileInColumn(int column, char letter, int ownerIndex, bool wildcard)
+        {
+            EnsureSimulator();
+            return Simulator.SeedTileInColumn(column, letter, ownerIndex, wildcard);
         }
 
         private void EnsureSimulator()

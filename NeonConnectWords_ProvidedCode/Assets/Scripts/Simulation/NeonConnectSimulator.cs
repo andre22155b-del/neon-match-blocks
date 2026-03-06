@@ -65,6 +65,32 @@ namespace NeonConnectWords.Simulation
             return true;
         }
 
+        public void ResetBoardOnly()
+        {
+            State.Board = new SimulationTile[config.Columns, config.Rows];
+            State.ColumnHeights = new int[config.Columns];
+            State.ConsecutiveWordTurns = 0;
+            State.ComboMultiplier = 1f;
+        }
+
+        public bool SeedTileInColumn(int column, char letter, int ownerIndex, bool wildcard)
+        {
+            if (State.GameOver || column < 0 || column >= config.Columns || State.ColumnHeights[column] >= config.Rows)
+            {
+                return false;
+            }
+
+            int row = State.ColumnHeights[column];
+            State.Board[column, row] = new SimulationTile
+            {
+                Letter = char.ToUpperInvariant(letter),
+                OwnerIndex = ownerIndex,
+                IsWildcard = wildcard
+            };
+            State.ColumnHeights[column]++;
+            return true;
+        }
+
         public SimulationTurnResult DropCurrentLetter(int column)
         {
             if (!CanDrop(column))
