@@ -288,7 +288,7 @@ public class UIManager : MonoBehaviour
     private void ApplyLetterSize(float scale)
     {
         // Scale all letter prefab instances (broadcast to BoardManager)
-        foreach (LetterTile tile in FindObjectsOfType<LetterTile>())
+        foreach (LetterTile tile in FindObjectsByType<LetterTile>(FindObjectsSortMode.None))
             tile.transform.localScale = Vector3.one * scale;
     }
 
