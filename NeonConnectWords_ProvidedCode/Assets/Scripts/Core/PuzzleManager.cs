@@ -28,6 +28,9 @@ public class PuzzleManager : MonoBehaviour
     private int movesUsed;
     private int wordsFoundThisPuzzle;
     private int targetWordsRequired;
+    private bool resultQueued;
+    private Coroutine completionCheckRoutine;
+    private Coroutine resultRoutine;
 
     private void Awake()
     {
@@ -54,7 +57,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void LoadPuzzle(int index)
     {
-        if (index >= puzzles.Length)
+        if (puzzles == null || index < 0 || index >= puzzles.Length)
         {
             Debug.Log("[PuzzleManager] All puzzles complete.");
             return;
@@ -65,6 +68,19 @@ public class PuzzleManager : MonoBehaviour
         movesUsed = 0;
         wordsFoundThisPuzzle = 0;
         targetWordsRequired = activePuzzle.wordsRequired;
+        resultQueued = false;
+
+        if (completionCheckRoutine != null)
+        {
+            StopCoroutine(completionCheckRoutine);
+            completionCheckRoutine = null;
+        }
+
+        if (resultRoutine != null)
+        {
+            StopCoroutine(resultRoutine);
+            resultRoutine = null;
+        }
 
         BoardManager.Instance.InitBoard();
         foreach (PresetTile tile in activePuzzle.presetTiles)
@@ -92,34 +108,26 @@ public class PuzzleManager : MonoBehaviour
 
     private void HandleTilePlaced(int col, int row, char letter, int player)
     {
-        if (GameManager.Instance.ActiveMode != GameMode.Puzzle)
+        if (GameManager.Instance.ActiveMode != GameMode.Puzzle || activePuzzle == null || resultQueued)
         {
             return;
         }
 
         movesUsed++;
-
-        if (movesUsed >= activePuzzle.movesAllowed && wordsFoundThisPuzzle < targetWordsRequired)
-        {
-            StartCoroutine(ShowResult(false));
-        }
-
         RefreshUI();
+        ScheduleCompletionCheck();
     }
 
     private void HandleWordsFound(List<WordResult> words)
     {
-        if (GameManager.Instance.ActiveMode != GameMode.Puzzle)
+        if (GameManager.Instance.ActiveMode != GameMode.Puzzle || activePuzzle == null || resultQueued)
         {
             return;
         }
 
         wordsFoundThisPuzzle += words.Count;
-
-        if (wordsFoundThisPuzzle >= targetWordsRequired)
-            StartCoroutine(ShowResult(true));
-
         RefreshUI();
+        ScheduleCompletionCheck();
     }
 
     private IEnumerator ShowResult(bool success)
@@ -137,16 +145,71 @@ public class PuzzleManager : MonoBehaviour
         {
             if (puzzleFailPanel) puzzleFailPanel.SetActive(true);
         }
+
+        resultRoutine = null;
     }
 
     private void LoadNextPuzzle()
     {
-        LoadPuzzle(currentPuzzleIndex + 1);
+        RestartPuzzle(currentPuzzleIndex + 1);
     }
 
     private void RetryPuzzle()
     {
-        LoadPuzzle(currentPuzzleIndex);
+        RestartPuzzle(currentPuzzleIndex);
+    }
+
+    private void RestartPuzzle(int index)
+    {
+        if (puzzles == null || index < 0 || index >= puzzles.Length)
+        {
+            Debug.Log("[PuzzleManager] All puzzles complete.");
+            return;
+        }
+
+        currentPuzzleIndex = index;
+        GameManager.Instance.StartGame(GameMode.Puzzle);
+    }
+
+    private void ScheduleCompletionCheck()
+    {
+        if (completionCheckRoutine != null)
+        {
+            StopCoroutine(completionCheckRoutine);
+        }
+
+        completionCheckRoutine = StartCoroutine(CompletionCheckRoutine());
+    }
+
+    private IEnumerator CompletionCheckRoutine()
+    {
+        yield return null;
+        completionCheckRoutine = null;
+
+        if (resultQueued || activePuzzle == null || GameManager.Instance.ActiveMode != GameMode.Puzzle)
+        {
+            yield break;
+        }
+
+        if (wordsFoundThisPuzzle >= targetWordsRequired)
+        {
+            QueueResult(true);
+        }
+        else if (movesUsed >= activePuzzle.movesAllowed)
+        {
+            QueueResult(false);
+        }
+    }
+
+    private void QueueResult(bool success)
+    {
+        if (resultQueued)
+        {
+            return;
+        }
+
+        resultQueued = true;
+        resultRoutine = StartCoroutine(ShowResult(success));
     }
 }
 

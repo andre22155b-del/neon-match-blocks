@@ -118,10 +118,12 @@ public class PowerUpManager : MonoBehaviour
                         Vector2Int pos = FindTilePosition(tile);
                         if (pos.x >= 0)
                         {
-                            selected = true;
-                            boardManager?.ClearRow(pos.y);
-                            RefreshButtonStates();
-                            uiManager?.ShowMessage("Bomb detonated.");
+                            if (boardManager != null && boardManager.ClearRow(pos.y))
+                            {
+                                selected = true;
+                                RefreshButtonStates();
+                                uiManager?.ShowMessage("Bomb detonated.");
+                            }
                         }
                     }
                 }
@@ -182,10 +184,9 @@ public class PowerUpManager : MonoBehaviour
             yield return null;
         }
 
-        if (swapSelectionPanel) swapSelectionPanel.SetActive(false);
-
         if (boardManager != null && boardManager.SwapTiles(first, second))
         {
+            if (swapSelectionPanel) swapSelectionPanel.SetActive(false);
             RefreshButtonStates();
             audioManager?.PlayPowerUp(PowerUpType.Swap);
             uiManager?.ShowMessage("Tiles swapped.");

@@ -256,44 +256,81 @@ public class BoardManager : MonoBehaviour
         return GetColumnHeight(col) >= rows;
     }
 
-    public void ClearRow(int row)
+    public bool ClearRow(int row)
     {
+        if (!gameActive)
+        {
+            return false;
+        }
+
+        if (isAnimating)
+        {
+            uiManager?.ShowMessage("Wait for the current action to finish.");
+            return false;
+        }
+
         if (simulationService == null)
         {
-            return;
+            return false;
         }
 
         SimulationTurnResult result = simulationService.BombRow(row);
         if (result.Success)
         {
             StartCoroutine(PresentTurnResult(result));
+            return true;
         }
         else
         {
             uiManager?.ShowMessage(result.FailureReason);
+            return false;
         }
     }
 
-    public void ClearColumn(int col)
+    public bool ClearColumn(int col)
     {
+        if (!gameActive)
+        {
+            return false;
+        }
+
+        if (isAnimating)
+        {
+            uiManager?.ShowMessage("Wait for the current action to finish.");
+            return false;
+        }
+
         if (simulationService == null)
         {
-            return;
+            return false;
         }
 
         SimulationTurnResult result = simulationService.BombColumn(col);
         if (result.Success)
         {
             StartCoroutine(PresentTurnResult(result));
+            return true;
         }
         else
         {
             uiManager?.ShowMessage(result.FailureReason);
+            return false;
         }
     }
 
     public bool SwapTiles(Vector2Int posA, Vector2Int posB)
     {
+        if (!gameActive)
+        {
+            return false;
+        }
+
+        if (isAnimating)
+        {
+            uiManager?.ShowMessage("Wait for the current action to finish.");
+            return false;
+        }
+
         if (simulationService == null)
         {
             return false;
