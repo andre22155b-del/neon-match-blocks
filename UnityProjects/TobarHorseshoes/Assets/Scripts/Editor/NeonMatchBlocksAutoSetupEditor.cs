@@ -26,11 +26,18 @@ public static class NeonMatchBlocksAutoSetupEditor
     [MenuItem("Tools/Neon Match Blocks/Auto Setup Complete Scene")]
     public static void AutoSetupCompleteScene()
     {
-        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-        {
-            return;
-        }
+        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
+        AutoSetupCore(showDialog: true);
+    }
 
+    // Batch-mode entry point (use with -executeMethod).
+    public static void AutoSetupCompleteSceneBatch()
+    {
+        AutoSetupCore(showDialog: false);
+    }
+
+    private static void AutoSetupCore(bool showDialog)
+    {
         EnsureFolder(ScenesFolder);
         EnsureFolder(RootFolder);
         EnsureFolder(PrefabsFolder);
@@ -41,7 +48,7 @@ public static class NeonMatchBlocksAutoSetupEditor
 
         Scene scene = EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
         SetupCamera();
-
+        
         GameObject boardRoot = new GameObject("BoardRoot");
         GameObject managers = new GameObject("Managers");
         GameObject gameManagerGo = new GameObject("GameManagerCompetitive");
@@ -91,10 +98,17 @@ public static class NeonMatchBlocksAutoSetupEditor
         Selection.activeObject = sceneAsset;
         EditorGUIUtility.PingObject(sceneAsset);
 
-        EditorUtility.DisplayDialog(
-            "Neon Match Blocks",
-            "Auto setup complete.\n\nScene created: Assets/Scenes/NeonMatchBlocks.unity\nYou can press Play now (with placeholder art/audio), then swap in your final assets.",
-            "OK");
+        if (showDialog)
+        {
+            EditorUtility.DisplayDialog(
+                "Neon Match Blocks",
+                "Auto setup complete.\n\nScene created: Assets/Scenes/NeonMatchBlocks.unity\nYou can press Play now (with placeholder art/audio), then swap in your final assets.",
+                "OK");
+        }
+        else
+        {
+            Debug.Log("Neon Match Blocks auto setup complete (batch mode).");
+        }
     }
 
     private static void SetupCamera()
