@@ -2,6 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
 /// <summary>
 /// Neon Match Blocks - Competitive game flow manager.
@@ -392,12 +395,12 @@ public class GameManagerCompetitive : MonoBehaviour
 
         while (Time.time - tapStartTime < tapWindowDuration)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (WasPlayer1TapPressed())
             {
                 onP1Tap();
             }
 
-            if (!playVsAI && Input.GetKeyDown(KeyCode.L))
+            if (!playVsAI && WasPlayer2TapPressed())
             {
                 onP2Tap();
             }
@@ -439,6 +442,24 @@ public class GameManagerCompetitive : MonoBehaviour
 
         yield return new WaitForSeconds(0.8f);
         UIManager.Instance.ShowReflexPanel(false);
+    }
+
+    private bool WasPlayer1TapPressed()
+    {
+#if ENABLE_INPUT_SYSTEM
+        return Keyboard.current != null && Keyboard.current.aKey.wasPressedThisFrame;
+#else
+        return Input.GetKeyDown(KeyCode.A);
+#endif
+    }
+
+    private bool WasPlayer2TapPressed()
+    {
+#if ENABLE_INPUT_SYSTEM
+        return Keyboard.current != null && Keyboard.current.lKey.wasPressedThisFrame;
+#else
+        return Input.GetKeyDown(KeyCode.L);
+#endif
     }
 
     private void SelectBlockInternal(Block block)
