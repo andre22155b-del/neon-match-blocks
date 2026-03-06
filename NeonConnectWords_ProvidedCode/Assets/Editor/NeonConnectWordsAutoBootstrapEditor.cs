@@ -4,6 +4,8 @@ using UnityEditor;
 using UnityEditor.Events;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,6 +18,10 @@ public static class NeonConnectWordsAutoBootstrapEditor
     private const string PlayerTwoMaterialPath = "Assets/Materials/PlayerTwoNeon.mat";
     private const string BoardMaterialPath = "Assets/Materials/BoardSurface.mat";
     private const string AccentMaterialPath = "Assets/Materials/AccentNeon.mat";
+    private const string GlassMaterialPath = "Assets/Materials/DarkGlass.mat";
+    private const string CyanBeamMaterialPath = "Assets/Materials/CyanBeam.mat";
+    private const string MagentaBeamMaterialPath = "Assets/Materials/MagentaBeam.mat";
+    private const string VolumeProfilePath = "Assets/Settings/NeonArenaVolumeProfile.asset";
     private const string DictionaryPath = "Assets/Data/NeonDictionary.txt";
     private const string TmpSettingsSourcePath = "Packages/com.unity.render-pipelines.core/Samples~/Common/TextMesh Pro/Resources/TMP Settings.asset";
     private const string TmpFontSourcePath = "Packages/com.unity.render-pipelines.core/Samples~/Common/TextMesh Pro/Resources/Fonts & Materials/Inter-Regular SDF.asset";
@@ -75,17 +81,22 @@ public static class NeonConnectWordsAutoBootstrapEditor
         EnsureFolder("Assets/Scenes");
         EnsureFolder("Assets/Prefabs");
         EnsureFolder("Assets/Materials");
+        EnsureFolder("Assets/Settings");
         EnsureTmpResources();
 
         Material playerOneMaterial = CreateNeonMaterial(PlayerOneMaterialPath, new Color(0.05f, 0.95f, 1f), new Color(0.05f, 1f, 1f) * 3f);
         Material playerTwoMaterial = CreateNeonMaterial(PlayerTwoMaterialPath, new Color(1f, 0.2f, 0.7f), new Color(1f, 0.1f, 0.8f) * 3f);
-        Material boardMaterial = CreateBoardMaterial(BoardMaterialPath, new Color(0.02f, 0.05f, 0.08f, 0.95f));
-        Material accentMaterial = CreateNeonMaterial(AccentMaterialPath, new Color(0.1f, 0.3f, 0.9f), new Color(0.1f, 0.4f, 1f) * 2f);
+        Material boardMaterial = CreateBoardMaterial(BoardMaterialPath, new Color(0.03f, 0.05f, 0.09f, 0.98f));
+        Material accentMaterial = CreateNeonMaterial(AccentMaterialPath, new Color(0.08f, 0.18f, 0.75f), new Color(0.12f, 0.45f, 1f) * 2.4f);
+        Material glassMaterial = CreateGlassMaterial(GlassMaterialPath, new Color(0.04f, 0.08f, 0.15f, 0.82f), new Color(0.06f, 0.16f, 0.3f) * 1.5f);
+        Material cyanBeamMaterial = CreateNeonMaterial(CyanBeamMaterialPath, new Color(0.04f, 0.85f, 1f), new Color(0.04f, 0.95f, 1f) * 4f);
+        Material magentaBeamMaterial = CreateNeonMaterial(MagentaBeamMaterialPath, new Color(1f, 0.18f, 0.78f), new Color(1f, 0.18f, 0.78f) * 4f);
+        VolumeProfile volumeProfile = CreateVolumeProfile(VolumeProfilePath);
         GameObject letterPrefab = CreateLetterPrefab(LetterPrefabPath, playerOneMaterial);
 
         Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
-        SetupWorld(boardMaterial, accentMaterial);
+        SetupWorld(boardMaterial, accentMaterial, glassMaterial, cyanBeamMaterial, magentaBeamMaterial, volumeProfile);
         SceneRefs refs = BuildUiAndSystems(letterPrefab, playerOneMaterial, playerTwoMaterial);
         WireScene(refs, playerOneMaterial, playerTwoMaterial, letterPrefab);
 
@@ -101,66 +112,133 @@ public static class NeonConnectWordsAutoBootstrapEditor
         Debug.Log("[NeonConnectWords] Playable scene generated at " + ScenePath);
     }
 
-    private static void SetupWorld(Material boardMaterial, Material accentMaterial)
+    private static void SetupWorld(
+        Material boardMaterial,
+        Material accentMaterial,
+        Material glassMaterial,
+        Material cyanBeamMaterial,
+        Material magentaBeamMaterial,
+        VolumeProfile volumeProfile)
     {
-        GameObject cameraGo = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener), typeof(CameraController));
+        GameObject cameraGo = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener), typeof(CameraController), typeof(UniversalAdditionalCameraData));
         cameraGo.tag = "MainCamera";
-        cameraGo.transform.position = new Vector3(0f, 3.3f, 13.5f);
-        cameraGo.transform.rotation = Quaternion.Euler(12f, 180f, 0f);
+        cameraGo.transform.position = new Vector3(0f, 4.4f, 12.3f);
+        cameraGo.transform.rotation = Quaternion.Euler(16f, 180f, 0f);
         Camera camera = cameraGo.GetComponent<Camera>();
         camera.clearFlags = CameraClearFlags.SolidColor;
-        camera.backgroundColor = new Color(0.01f, 0.01f, 0.03f);
+        camera.backgroundColor = new Color(0.01f, 0.015f, 0.045f);
         camera.nearClipPlane = 0.1f;
         camera.farClipPlane = 100f;
-        camera.fieldOfView = 52f;
+        camera.fieldOfView = 46f;
+        UniversalAdditionalCameraData cameraData = cameraGo.GetComponent<UniversalAdditionalCameraData>();
+        cameraData.renderPostProcessing = true;
 
         GameObject directionalLightGo = new GameObject("Directional Light", typeof(Light));
-        directionalLightGo.transform.rotation = Quaternion.Euler(45f, -35f, 0f);
+        directionalLightGo.transform.rotation = Quaternion.Euler(35f, -28f, 0f);
         Light directionalLight = directionalLightGo.GetComponent<Light>();
         directionalLight.type = LightType.Directional;
-        directionalLight.intensity = 0.55f;
-        directionalLight.color = new Color(0.65f, 0.75f, 1f);
+        directionalLight.intensity = 0.38f;
+        directionalLight.color = new Color(0.58f, 0.68f, 1f);
 
         GameObject pulseLightGo = new GameObject("Board Pulse Light", typeof(Light));
-        pulseLightGo.transform.position = new Vector3(0f, 4.5f, 4f);
+        pulseLightGo.transform.position = new Vector3(0f, 4.7f, 2.2f);
         Light pulseLight = pulseLightGo.GetComponent<Light>();
         pulseLight.type = LightType.Point;
-        pulseLight.range = 20f;
-        pulseLight.intensity = 1.15f;
+        pulseLight.range = 24f;
+        pulseLight.intensity = 1.45f;
         pulseLight.color = new Color(0.1f, 0.9f, 1f);
+
+        GameObject leftSpotGo = new GameObject("Left Rim Light", typeof(Light));
+        leftSpotGo.transform.position = new Vector3(-6.8f, 5.1f, 5.3f);
+        leftSpotGo.transform.rotation = Quaternion.Euler(30f, 122f, 0f);
+        Light leftSpot = leftSpotGo.GetComponent<Light>();
+        leftSpot.type = LightType.Spot;
+        leftSpot.range = 24f;
+        leftSpot.spotAngle = 42f;
+        leftSpot.intensity = 6f;
+        leftSpot.color = new Color(0.05f, 0.95f, 1f);
+
+        GameObject rightSpotGo = new GameObject("Right Rim Light", typeof(Light));
+        rightSpotGo.transform.position = new Vector3(6.8f, 5.1f, 5.3f);
+        rightSpotGo.transform.rotation = Quaternion.Euler(30f, -122f, 0f);
+        Light rightSpot = rightSpotGo.GetComponent<Light>();
+        rightSpot.type = LightType.Spot;
+        rightSpot.range = 24f;
+        rightSpot.spotAngle = 42f;
+        rightSpot.intensity = 6f;
+        rightSpot.color = new Color(1f, 0.2f, 0.78f);
+
+        GameObject volumeGo = new GameObject("Global Volume", typeof(Volume));
+        Volume volume = volumeGo.GetComponent<Volume>();
+        volume.isGlobal = true;
+        volume.priority = 1f;
+        volume.sharedProfile = volumeProfile;
 
         GameObject boardOrigin = new GameObject("BoardOrigin");
         boardOrigin.transform.position = Vector3.zero;
 
-        GameObject inputPlane = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        inputPlane.name = "BoardInputPlane";
-        inputPlane.transform.SetParent(boardOrigin.transform);
-        inputPlane.transform.position = new Vector3(0f, 3f, -0.5f);
-        inputPlane.transform.localScale = new Vector3(8.7f, 7.6f, 0.15f);
-        ApplyMaterial(inputPlane, boardMaterial);
+        GameObject backdrop = CreateWorldPrimitive("SkyBackdrop", PrimitiveType.Cube, null, new Vector3(0f, 5f, -18f), new Vector3(34f, 18f, 0.3f), glassMaterial);
+        RemoveCollider(backdrop);
+        GameObject halo = CreateWorldPrimitive("NeonHalo", PrimitiveType.Cylinder, null, new Vector3(0f, 4.2f, -8.6f), new Vector3(8.8f, 0.06f, 8.8f), cyanBeamMaterial);
+        halo.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        RemoveCollider(halo);
+        GameObject haloInner = CreateWorldPrimitive("NeonHaloInner", PrimitiveType.Cylinder, null, new Vector3(0f, 3.5f, -6.5f), new Vector3(5.8f, 0.04f, 5.8f), magentaBeamMaterial);
+        haloInner.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        RemoveCollider(haloInner);
 
-        GameObject frame = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        frame.name = "BoardBackdrop";
-        frame.transform.SetParent(boardOrigin.transform);
-        frame.transform.position = new Vector3(0f, 3f, -1f);
-        frame.transform.localScale = new Vector3(10f, 8.9f, 0.35f);
-        ApplyMaterial(frame, accentMaterial);
+        GameObject stage = CreateWorldPrimitive("StageBase", PrimitiveType.Cube, null, new Vector3(0f, -0.95f, -0.9f), new Vector3(12.5f, 0.7f, 4.4f), boardMaterial);
+        GameObject stageLip = CreateWorldPrimitive("StageLip", PrimitiveType.Cube, null, new Vector3(0f, -0.58f, 1.1f), new Vector3(10.2f, 0.16f, 0.42f), cyanBeamMaterial);
+        RemoveCollider(stageLip);
+        CreateWorldPrimitive("BoardBackdrop", PrimitiveType.Cube, boardOrigin.transform, new Vector3(0f, 3f, -1f), new Vector3(10.4f, 8.9f, 0.5f), glassMaterial);
+        CreateWorldPrimitive("BoardCrown", PrimitiveType.Cube, boardOrigin.transform, new Vector3(0f, 7.15f, -0.66f), new Vector3(9.6f, 0.22f, 0.28f), cyanBeamMaterial);
+        CreateWorldPrimitive("BoardBase", PrimitiveType.Cube, boardOrigin.transform, new Vector3(0f, -0.15f, -0.66f), new Vector3(9.6f, 0.24f, 0.28f), magentaBeamMaterial);
+        CreateWorldPrimitive("BoardLeftRail", PrimitiveType.Cube, boardOrigin.transform, new Vector3(-4.92f, 3f, -0.66f), new Vector3(0.22f, 7.2f, 0.28f), cyanBeamMaterial);
+        CreateWorldPrimitive("BoardRightRail", PrimitiveType.Cube, boardOrigin.transform, new Vector3(4.92f, 3f, -0.66f), new Vector3(0.22f, 7.2f, 0.28f), magentaBeamMaterial);
 
-        GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        floor.name = "NeonFloor";
-        floor.transform.position = new Vector3(0f, -1f, -2.2f);
-        floor.transform.localScale = new Vector3(22f, 0.25f, 8f);
-        ApplyMaterial(floor, boardMaterial);
+        GameObject inputPlane = CreateWorldPrimitive("BoardInputPlane", PrimitiveType.Cube, boardOrigin.transform, new Vector3(0f, 3f, -0.4f), new Vector3(8.55f, 7.35f, 0.18f), boardMaterial);
+        Collider inputCollider = inputPlane.GetComponent<Collider>();
+        if (inputCollider != null)
+        {
+            inputCollider.isTrigger = false;
+        }
 
         for (int i = 0; i < 8; i++)
         {
-            GameObject line = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            line.name = "ColumnDivider_" + i;
-            line.transform.SetParent(boardOrigin.transform);
-            line.transform.position = new Vector3(-4.2f + (i * 1.2f), 3f, -0.4f);
-            line.transform.localScale = new Vector3(0.04f, 7.2f, 0.18f);
-            ApplyMaterial(line, accentMaterial);
+            Material dividerMaterial = i % 2 == 0 ? cyanBeamMaterial : magentaBeamMaterial;
+            GameObject line = CreateWorldPrimitive(
+                "ColumnDivider_" + i,
+                PrimitiveType.Cube,
+                boardOrigin.transform,
+                new Vector3(-4.2f + (i * 1.2f), 3f, -0.28f),
+                new Vector3(0.05f, 7.1f, 0.12f),
+                dividerMaterial);
+            RemoveCollider(line);
         }
+
+        for (int row = 0; row <= 6; row++)
+        {
+            Material rowMaterial = row % 2 == 0 ? accentMaterial : glassMaterial;
+            GameObject rowBar = CreateWorldPrimitive(
+                "RowDivider_" + row,
+                PrimitiveType.Cube,
+                boardOrigin.transform,
+                new Vector3(0f, row * 1.2f, -0.26f),
+                new Vector3(8.4f, 0.04f, 0.12f),
+                rowMaterial);
+            RemoveCollider(rowBar);
+        }
+
+        GameObject leftTower = CreateWorldPrimitive("LeftTower", PrimitiveType.Cube, null, new Vector3(-8.8f, 3.2f, -1.4f), new Vector3(1.1f, 8.6f, 1.1f), glassMaterial);
+        CreateWorldPrimitive("LeftTowerBeam", PrimitiveType.Cube, leftTower.transform, new Vector3(0f, 0f, 0.62f), new Vector3(0.26f, 8.1f, 0.18f), cyanBeamMaterial);
+        GameObject rightTower = CreateWorldPrimitive("RightTower", PrimitiveType.Cube, null, new Vector3(8.8f, 3.2f, -1.4f), new Vector3(1.1f, 8.6f, 1.1f), glassMaterial);
+        CreateWorldPrimitive("RightTowerBeam", PrimitiveType.Cube, rightTower.transform, new Vector3(0f, 0f, 0.62f), new Vector3(0.26f, 8.1f, 0.18f), magentaBeamMaterial);
+
+        GameObject floor = CreateWorldPrimitive("NeonFloor", PrimitiveType.Cube, null, new Vector3(0f, -1.35f, -2.4f), new Vector3(24f, 0.2f, 10f), boardMaterial);
+        RemoveCollider(floor);
+        GameObject floorStripLeft = CreateWorldPrimitive("FloorStripLeft", PrimitiveType.Cube, null, new Vector3(-4.8f, -1.22f, 1.75f), new Vector3(4.6f, 0.06f, 0.18f), cyanBeamMaterial);
+        RemoveCollider(floorStripLeft);
+        GameObject floorStripRight = CreateWorldPrimitive("FloorStripRight", PrimitiveType.Cube, null, new Vector3(4.8f, -1.22f, 1.75f), new Vector3(4.6f, 0.06f, 0.18f), magentaBeamMaterial);
+        RemoveCollider(floorStripRight);
     }
 
     private static SceneRefs BuildUiAndSystems(GameObject letterPrefab, Material playerOneMaterial, Material playerTwoMaterial)
@@ -191,6 +269,8 @@ public static class NeonConnectWordsAutoBootstrapEditor
             new Color(1f, 0.75f, 0.15f)
         };
 
+        new GameObject("MobileRuntimeSettings", typeof(MobileRuntimeSettings));
+
         GameObject wordCheckerGo = new GameObject("WordChecker", typeof(WordChecker));
         refs.wordChecker = wordCheckerGo.GetComponent<WordChecker>();
         refs.wordChecker.wordListAsset = dictionaryAsset;
@@ -220,7 +300,7 @@ public static class NeonConnectWordsAutoBootstrapEditor
             new TutorialStep
             {
                 title = "Drop A Letter",
-                body = "Move over the board and click a column to drop the current neon letter.",
+                body = "Move over the board and tap or click a column to drop the current neon letter.",
                 requiresPlayerAction = true,
                 highlightColumns = new[] { 3 },
                 arrowTargetColumn = 3
@@ -343,6 +423,11 @@ public static class NeonConnectWordsAutoBootstrapEditor
     private static void BuildUi(RectTransform canvas, SceneRefs refs)
     {
         TMP_FontAsset font = FindAnyFontAsset();
+        GameObject safeAreaRoot = CreatePanel(canvas, "SafeAreaRoot", new Color(0f, 0f, 0f, 0f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        Image safeAreaImage = safeAreaRoot.GetComponent<Image>();
+        safeAreaImage.raycastTarget = false;
+        safeAreaRoot.AddComponent<MobileSafeArea>();
+        canvas = safeAreaRoot.transform as RectTransform;
 
         refs.mainMenuPanel = CreatePanel(canvas, "MainMenuPanel", new Color(0f, 0f, 0f, 0.72f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
         CreateText(refs.mainMenuPanel.transform as RectTransform, "Title", font, "NEON CONNECT WORDS", 62, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.82f), new Vector2(0.5f, 0.82f), new Vector2(0f, -20f), new Vector2(900f, 100f));
@@ -450,7 +535,7 @@ public static class NeonConnectWordsAutoBootstrapEditor
         CanvasScaler scaler = canvasGo.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920f, 1080f);
-        scaler.matchWidthOrHeight = 0.5f;
+        scaler.matchWidthOrHeight = 0.7f;
         return canvasGo;
     }
 
@@ -594,9 +679,39 @@ public static class NeonConnectWordsAutoBootstrapEditor
     private static Material CreateBoardMaterial(string path, Color color)
     {
         Material material = CreateNeonMaterial(path, color, new Color(0.08f, 0.18f, 0.35f));
+        if (material.HasProperty("_Metallic"))
+        {
+            material.SetFloat("_Metallic", 0.15f);
+        }
+        if (material.HasProperty("_Smoothness"))
+        {
+            material.SetFloat("_Smoothness", 0.82f);
+        }
+        return material;
+    }
+
+    private static Material CreateGlassMaterial(string path, Color baseColor, Color emissionColor)
+    {
+        Material material = CreateNeonMaterial(path, baseColor, emissionColor);
         if (material.HasProperty("_Surface"))
         {
             material.SetFloat("_Surface", 1f);
+        }
+        if (material.HasProperty("_Blend"))
+        {
+            material.SetFloat("_Blend", 0f);
+        }
+        if (material.HasProperty("_Cull"))
+        {
+            material.SetFloat("_Cull", 2f);
+        }
+        if (material.HasProperty("_Smoothness"))
+        {
+            material.SetFloat("_Smoothness", 0.95f);
+        }
+        if (material.HasProperty("_Metallic"))
+        {
+            material.SetFloat("_Metallic", 0.05f);
         }
         return material;
     }
@@ -646,6 +761,34 @@ public static class NeonConnectWordsAutoBootstrapEditor
         if (renderer != null)
         {
             renderer.sharedMaterial = material;
+        }
+    }
+
+    private static GameObject CreateWorldPrimitive(string name, PrimitiveType type, Transform parent, Vector3 position, Vector3 scale, Material material)
+    {
+        GameObject go = GameObject.CreatePrimitive(type);
+        go.name = name;
+        if (parent != null)
+        {
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = position;
+            go.transform.localScale = scale;
+        }
+        else
+        {
+            go.transform.position = position;
+            go.transform.localScale = scale;
+        }
+        ApplyMaterial(go, material);
+        return go;
+    }
+
+    private static void RemoveCollider(GameObject target)
+    {
+        Collider collider = target.GetComponent<Collider>();
+        if (collider != null)
+        {
+            Object.DestroyImmediate(collider);
         }
     }
 
@@ -701,5 +844,56 @@ public static class NeonConnectWordsAutoBootstrapEditor
         {
             AssetDatabase.CopyAsset(TmpFontSourcePath, TmpFontTargetPath);
         }
+    }
+
+    private static VolumeProfile CreateVolumeProfile(string path)
+    {
+        VolumeProfile profile = AssetDatabase.LoadAssetAtPath<VolumeProfile>(path);
+        if (profile == null)
+        {
+            profile = ScriptableObject.CreateInstance<VolumeProfile>();
+            AssetDatabase.CreateAsset(profile, path);
+        }
+
+        profile.name = "NeonArenaVolumeProfile";
+        EnsurePostProcess(profile);
+        EditorUtility.SetDirty(profile);
+        return profile;
+    }
+
+    private static void EnsurePostProcess(VolumeProfile profile)
+    {
+        if (!profile.TryGet(out Bloom bloom))
+        {
+            bloom = profile.Add<Bloom>(true);
+        }
+        bloom.active = true;
+        bloom.threshold.Override(0.72f);
+        bloom.intensity.Override(1.65f);
+        bloom.scatter.Override(0.78f);
+
+        if (!profile.TryGet(out Tonemapping tonemapping))
+        {
+            tonemapping = profile.Add<Tonemapping>(true);
+        }
+        tonemapping.active = true;
+        tonemapping.mode.Override(TonemappingMode.ACES);
+
+        if (!profile.TryGet(out ColorAdjustments colorAdjustments))
+        {
+            colorAdjustments = profile.Add<ColorAdjustments>(true);
+        }
+        colorAdjustments.active = true;
+        colorAdjustments.postExposure.Override(0.15f);
+        colorAdjustments.contrast.Override(18f);
+        colorAdjustments.saturation.Override(10f);
+
+        if (!profile.TryGet(out Vignette vignette))
+        {
+            vignette = profile.Add<Vignette>(true);
+        }
+        vignette.active = true;
+        vignette.intensity.Override(0.24f);
+        vignette.smoothness.Override(0.72f);
     }
 }

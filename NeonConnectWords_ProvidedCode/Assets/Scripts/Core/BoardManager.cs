@@ -62,7 +62,7 @@ public class BoardManager : MonoBehaviour
             return;
         }
 
-        HandleMouseInput();
+        HandlePointerInput();
     }
 
     public void InitBoard()
@@ -106,30 +106,72 @@ public class BoardManager : MonoBehaviour
         board = new LetterTile[columns, rows];
     }
 
-    private void HandleMouseInput()
+    private void HandlePointerInput()
     {
         if (Camera.main == null)
         {
             return;
         }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100f, boardLayerMask))
+        if (PointerInputUtility.TryGetPreviewPointer(out Vector2 previewScreenPos, out int previewPointerId))
         {
-            int column = WorldToColumn(hit.point.x);
-            if (column >= 0 && column < columns)
+            if (PointerInputUtility.IsPointerOverUi(previewPointerId))
             {
-                UpdatePreview(column);
-                if (Input.GetMouseButtonDown(0))
-                {
-                    TryDropLetter(column);
-                }
+                DestroyPreview();
+            }
+            else
+            {
+                UpdatePreviewFromScreenPosition(previewScreenPos);
             }
         }
         else
         {
             DestroyPreview();
         }
+
+        if (PointerInputUtility.TryGetTapOrClick(out Vector2 tapScreenPos, out int tapPointerId))
+        {
+            if (PointerInputUtility.IsPointerOverUi(tapPointerId))
+            {
+                return;
+            }
+
+            int column = ScreenToColumn(tapScreenPos);
+            if (column >= 0)
+            {
+                TryDropLetter(column);
+            }
+        }
+    }
+
+    private void UpdatePreviewFromScreenPosition(Vector2 screenPosition)
+    {
+        int column = ScreenToColumn(screenPosition);
+        if (column >= 0)
+        {
+            UpdatePreview(column);
+        }
+        else
+        {
+            DestroyPreview();
+        }
+    }
+
+    private int ScreenToColumn(Vector2 screenPosition)
+    {
+        if (Camera.main == null)
+        {
+            return -1;
+        }
+
+        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+        if (!Physics.Raycast(ray, out RaycastHit hit, 100f, boardLayerMask))
+        {
+            return -1;
+        }
+
+        int column = WorldToColumn(hit.point.x);
+        return column >= 0 && column < columns ? column : -1;
     }
 
     private int WorldToColumn(float worldX)

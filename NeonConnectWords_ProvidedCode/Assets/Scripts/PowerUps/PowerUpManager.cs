@@ -102,28 +102,30 @@ public class PowerUpManager : MonoBehaviour
 
     private IEnumerator SelectBombTarget()
     {
-        uiManager?.ShowMessage("Click a tile to bomb its row.");
+        uiManager?.ShowMessage("Tap a tile to bomb its row.");
         bool selected = false;
 
         while (!selected)
         {
-            if (Input.GetMouseButtonDown(0) && Camera.main != null)
+            if (PointerInputUtility.TryGetTapOrClick(out Vector2 tapScreenPos, out int pointerId))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (PointerInputUtility.IsPointerOverUi(pointerId))
                 {
-                    LetterTile tile = hit.collider.GetComponentInParent<LetterTile>();
-                    if (tile != null)
+                    yield return null;
+                    continue;
+                }
+
+                LetterTile tile = RaycastTile(tapScreenPos);
+                if (tile != null)
+                {
+                    Vector2Int pos = FindTilePosition(tile);
+                    if (pos.x >= 0)
                     {
-                        Vector2Int pos = FindTilePosition(tile);
-                        if (pos.x >= 0)
+                        if (boardManager != null && boardManager.ClearRow(pos.y))
                         {
-                            if (boardManager != null && boardManager.ClearRow(pos.y))
-                            {
-                                selected = true;
-                                RefreshButtonStates();
-                                uiManager?.ShowMessage("Bomb detonated.");
-                            }
+                            selected = true;
+                            RefreshButtonStates();
+                            uiManager?.ShowMessage("Bomb detonated.");
                         }
                     }
                 }
@@ -153,29 +155,31 @@ public class PowerUpManager : MonoBehaviour
 
         while (step < 2)
         {
-            if (Input.GetMouseButtonDown(0) && Camera.main != null)
+            if (PointerInputUtility.TryGetTapOrClick(out Vector2 tapScreenPos, out int pointerId))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (PointerInputUtility.IsPointerOverUi(pointerId))
                 {
-                    LetterTile tile = hit.collider.GetComponentInParent<LetterTile>();
-                    if (tile != null)
+                    yield return null;
+                    continue;
+                }
+
+                LetterTile tile = RaycastTile(tapScreenPos);
+                if (tile != null)
+                {
+                    Vector2Int pos = FindTilePosition(tile);
+                    if (pos.x >= 0)
                     {
-                        Vector2Int pos = FindTilePosition(tile);
-                        if (pos.x >= 0)
+                        if (step == 0)
                         {
-                            if (step == 0)
-                            {
-                                first = pos;
-                                tile.PlayWordHighlight();
-                                if (swapInstructionText) swapInstructionText.text = "Select SECOND tile to swap";
-                                step++;
-                            }
-                            else if (pos != first)
-                            {
-                                second = pos;
-                                step++;
-                            }
+                            first = pos;
+                            tile.PlayWordHighlight();
+                            if (swapInstructionText) swapInstructionText.text = "Select SECOND tile to swap";
+                            step++;
+                        }
+                        else if (pos != first)
+                        {
+                            second = pos;
+                            step++;
                         }
                     }
                 }
@@ -207,6 +211,19 @@ public class PowerUpManager : MonoBehaviour
         }
 
         return new Vector2Int(-1, -1);
+    }
+
+    private LetterTile RaycastTile(Vector2 screenPosition)
+    {
+        if (Camera.main == null)
+        {
+            return null;
+        }
+
+        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+        return Physics.Raycast(ray, out RaycastHit hit)
+            ? hit.collider.GetComponentInParent<LetterTile>()
+            : null;
     }
 
     private void RefreshButtonStates()

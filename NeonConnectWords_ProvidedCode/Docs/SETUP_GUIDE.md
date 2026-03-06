@@ -272,20 +272,17 @@ All audio clips should be:
 
 ### Mobile (iOS / Android)
 - Platform: iOS or Android
-- Resolution: Auto (portrait or landscape, adjust board camera)
-- Quality: Medium (enable reducedFX toggle by default)
+- Resolution: Auto, landscape-first
+- Quality: Medium (reduced FX on by default at runtime)
 - Enable: PlayerSettings → Accelerometer Frequency: Disabled (touch only)
-- Add mobile touch input support:
-
-```csharp
-// In BoardManager.HandleMouseInput(), replace mouse raycast with:
-if (Input.touchCount > 0)
-{
-    Touch touch = Input.GetTouch(0);
-    Ray ray = Camera.main.ScreenPointToRay(touch.position);
-    // ... rest of logic unchanged
-}
-```
+- Included in this project:
+  - Unified mouse/touch board input via `PointerInputUtility`
+  - Safe-area UI fitting via `MobileSafeArea`
+  - Mobile runtime defaults via `MobileRuntimeSettings`
+- Recommended:
+  - Build in landscape orientation
+  - Keep bloom enabled, but use reduced particle density on lower-end devices
+  - Test on notched devices to confirm HUD spacing and right-side power-up dock fit
 
 ---
 
