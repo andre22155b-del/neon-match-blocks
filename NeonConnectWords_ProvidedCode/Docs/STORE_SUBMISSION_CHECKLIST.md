@@ -14,6 +14,11 @@
 
 ## Google Play
 
+- confirm Android signing secrets exist in GitHub:
+  - `ANDROID_KEYSTORE_BASE64`
+  - `ANDROID_KEYSTORE_PASSWORD`
+  - `ANDROID_KEYALIAS_NAME`
+  - `ANDROID_KEYALIAS_PASSWORD`
 - generate signed `.aab`
 - increment Android version code
 - complete Play Store listing

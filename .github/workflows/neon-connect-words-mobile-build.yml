@@ -28,12 +28,27 @@ jobs:
           restore-keys: |
             Library-AndroidAAB-
 
+      - name: Validate Android signing secrets
+        run: |
+          test -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
+          test -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
+          test -n "${{ secrets.ANDROID_KEYALIAS_NAME }}" || { echo "Missing ANDROID_KEYALIAS_NAME"; exit 1; }
+          test -n "${{ secrets.ANDROID_KEYALIAS_PASSWORD }}" || { echo "Missing ANDROID_KEYALIAS_PASSWORD"; exit 1; }
+
+      - name: Materialize Android keystore
+        run: |
+          printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "${{ runner.temp }}/neon-connect-words.keystore"
+
       - name: Build Android AAB
         uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          ANDROID_KEYSTORE_PATH: ${{ runner.temp }}/neon-connect-words.keystore
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEYALIAS_NAME: ${{ secrets.ANDROID_KEYALIAS_NAME }}
+          ANDROID_KEYALIAS_PASSWORD: ${{ secrets.ANDROID_KEYALIAS_PASSWORD }}
         with:
           projectPath: NeonConnectWords_ProvidedCode
           targetPlatform: Android
@@ -61,12 +76,27 @@ jobs:
           restore-keys: |
             Library-AndroidAPK-
 
+      - name: Validate Android signing secrets
+        run: |
+          test -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
+          test -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
+          test -n "${{ secrets.ANDROID_KEYALIAS_NAME }}" || { echo "Missing ANDROID_KEYALIAS_NAME"; exit 1; }
+          test -n "${{ secrets.ANDROID_KEYALIAS_PASSWORD }}" || { echo "Missing ANDROID_KEYALIAS_PASSWORD"; exit 1; }
+
+      - name: Materialize Android keystore
+        run: |
+          printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "${{ runner.temp }}/neon-connect-words.keystore"
+
       - name: Build Android APK
         uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          ANDROID_KEYSTORE_PATH: ${{ runner.temp }}/neon-connect-words.keystore
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEYALIAS_NAME: ${{ secrets.ANDROID_KEYALIAS_NAME }}
+          ANDROID_KEYALIAS_PASSWORD: ${{ secrets.ANDROID_KEYALIAS_PASSWORD }}
         with:
           projectPath: NeonConnectWords_ProvidedCode
           targetPlatform: Android

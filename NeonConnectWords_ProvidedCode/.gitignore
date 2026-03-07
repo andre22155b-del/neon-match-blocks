@@ -4,6 +4,8 @@ Temp/
 UserSettings/
 Obj/
 .DS_Store
+*.keystore
+*.jks
 Assets/.DS_Store
 Assets/Resources.meta
 Assets/Resources/

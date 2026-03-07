@@ -66,6 +66,33 @@ iOS:
 - Android version code: `1`
 - iOS build number: `1`
 
+## Android Signing Flow
+
+The GitHub Actions Android jobs now expect a real release keystore and will fail fast if the signing secrets are missing.
+
+Required GitHub secrets:
+- `ANDROID_KEYSTORE_BASE64`
+- `ANDROID_KEYSTORE_PASSWORD`
+- `ANDROID_KEYALIAS_NAME`
+- `ANDROID_KEYALIAS_PASSWORD`
+
+How to prepare the keystore secret:
+1. Create or choose your release keystore locally.
+2. Base64-encode it.
+3. Save the encoded value as `ANDROID_KEYSTORE_BASE64` in the repo secrets.
+
+Example on macOS:
+
+```bash
+base64 -i /path/to/neon-connect-words.keystore | pbcopy
+```
+
+What the workflow does:
+1. validates the Android signing secrets
+2. writes the keystore file into the runner temp directory
+3. passes the keystore path and passwords into the Unity Android build script
+4. exports a signed `.aab` or `.apk`
+
 ## Recommended Branch Strategy
 
 - `main`
