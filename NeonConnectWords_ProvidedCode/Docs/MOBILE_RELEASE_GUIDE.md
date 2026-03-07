@@ -56,6 +56,16 @@ Android:
 iOS:
 - `Builds/iOS/` exported Xcode project
 
+## Current App Defaults
+
+- product name: `Neon Connect Words`
+- company name: `Andrew Tobar`
+- Android package ID: `com.andrewtobar.neonconnectwords`
+- iOS bundle ID: `com.andrewtobar.neonconnectwords`
+- app version: `0.1.0`
+- Android version code: `1`
+- iOS build number: `1`
+
 ## Recommended Branch Strategy
 
 - `main`
