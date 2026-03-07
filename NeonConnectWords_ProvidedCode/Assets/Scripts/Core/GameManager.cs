@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public GameMode currentMode = GameMode.Classic;
     public int classicTargetScore = 100;
     public float timedDuration = 120f;
-    public int playerCount = 2;
+    public int playerCount = 1;
+    public int letterChoiceCount = 4;
 
     [Header("Letter Pool")]
     [Tooltip("Weighted letter distribution for the simulator.")]
@@ -185,17 +186,26 @@ public class GameManager : MonoBehaviour
     public char GetCurrentPlayerLetter()
     {
         SimulationState state = GetState();
-        if (state == null || state.CurrentLetters == null || state.CurrentLetters.Length == 0)
+        if (state == null || state.LetterChoices == null || state.LetterChoices.Length == 0)
         {
             return 'A';
         }
 
-        return state.CurrentLetters[state.CurrentPlayerIndex];
+        int selectedIndex = Mathf.Clamp(state.SelectedLetterIndex, 0, state.LetterChoices.Length - 1);
+        return state.LetterChoices[selectedIndex];
     }
 
     public void SetCurrentLetter(char c)
     {
         if (c == '*' && simulationService != null && simulationService.ArmWildcard())
+        {
+            RefreshPresentation();
+        }
+    }
+
+    public void SelectLetterIndex(int index)
+    {
+        if (simulationService != null && simulationService.SelectLetterIndex(index))
         {
             RefreshPresentation();
         }
@@ -210,7 +220,8 @@ public class GameManager : MonoBehaviour
         }
 
         uiManager.RefreshAll(state.Scores, state.CurrentPlayerIndex, state.ComboMultiplier);
-        uiManager.SetCurrentLetter(state.CurrentLetters[state.CurrentPlayerIndex], state.CurrentPlayerIndex);
+        uiManager.SetCurrentLetter(GetCurrentPlayerLetter(), state.CurrentPlayerIndex);
+        uiManager.RefreshLetterChoices(state.LetterChoices, state.SelectedLetterIndex);
         uiManager.UpdateStreakBar(state.ConsecutiveWordTurns, streakThreshold);
 
         if (ActiveMode == GameMode.Timed)
@@ -236,6 +247,7 @@ public class GameManager : MonoBehaviour
         simulationService.columns = boardManager != null ? boardManager.columns : simulationService.columns;
         simulationService.rows = boardManager != null ? boardManager.rows : simulationService.rows;
         simulationService.playerCount = playerCount;
+        simulationService.letterChoiceCount = letterChoiceCount;
         simulationService.classicTargetScore = classicTargetScore;
         simulationService.timedDuration = timedDuration;
         simulationService.letterPool = letterPool;

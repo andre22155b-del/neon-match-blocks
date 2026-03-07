@@ -7,8 +7,7 @@ public class MobileRuntimeSettings : MonoBehaviour
 {
     public bool mobileOnly = true;
     public int targetFrameRate = 60;
-    public bool forceLandscape = true;
-    public bool allowLandscapeRight = true;
+    public bool forcePortrait = true;
     public bool enableReducedFxOnMobile = true;
 
     private void Awake()
@@ -23,13 +22,13 @@ public class MobileRuntimeSettings : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        if (forceLandscape)
+        if (forcePortrait)
         {
             Screen.orientation = ScreenOrientation.AutoRotation;
-            Screen.autorotateToPortrait = false;
+            Screen.autorotateToPortrait = true;
             Screen.autorotateToPortraitUpsideDown = false;
-            Screen.autorotateToLandscapeLeft = true;
-            Screen.autorotateToLandscapeRight = allowLandscapeRight;
+            Screen.autorotateToLandscapeLeft = false;
+            Screen.autorotateToLandscapeRight = false;
         }
 
         if (enableReducedFxOnMobile)

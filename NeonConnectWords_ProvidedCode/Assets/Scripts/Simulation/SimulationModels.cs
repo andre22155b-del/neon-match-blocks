@@ -69,7 +69,8 @@ namespace NeonConnectWords.Simulation
     {
         public int Columns = 7;
         public int Rows = 6;
-        public int PlayerCount = 2;
+        public int PlayerCount = 1;
+        public int LetterChoiceCount = 4;
         public int ClassicTargetScore = 100;
         public float TimedDurationSeconds = 120f;
         public int MinWordLength = 3;
@@ -171,6 +172,7 @@ namespace NeonConnectWords.Simulation
             ColumnHeights = new int[config.Columns];
             Scores = new int[config.PlayerCount];
             CurrentLetters = new char[config.PlayerCount];
+            LetterChoices = new char[Math.Max(1, config.LetterChoiceCount)];
             PowerUps = new SimulationPowerUpInventory();
         }
 
@@ -179,6 +181,8 @@ namespace NeonConnectWords.Simulation
         public int[] ColumnHeights;
         public int[] Scores;
         public char[] CurrentLetters;
+        public char[] LetterChoices;
+        public int SelectedLetterIndex;
         public int CurrentPlayerIndex;
         public int ConsecutiveWordTurns;
         public float ComboMultiplier = 1f;

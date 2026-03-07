@@ -67,6 +67,8 @@ public static class NeonConnectWordsAutoBootstrapEditor
         public TextMeshProUGUI wildcardCountText;
         public TextMeshProUGUI bombCountText;
         public TextMeshProUGUI swapCountText;
+        public Button[] letterChoiceButtons;
+        public TextMeshProUGUI[] letterChoiceTexts;
     }
 
     [MenuItem("Tools/Neon Connect Words/Build Playable Scene")]
@@ -430,33 +432,29 @@ public static class NeonConnectWordsAutoBootstrapEditor
         canvas = safeAreaRoot.transform as RectTransform;
 
         refs.mainMenuPanel = CreatePanel(canvas, "MainMenuPanel", new Color(0f, 0f, 0f, 0.72f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        CreateText(refs.mainMenuPanel.transform as RectTransform, "Title", font, "NEON CONNECT WORDS", 62, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.82f), new Vector2(0.5f, 0.82f), new Vector2(0f, -20f), new Vector2(900f, 100f));
-        CreateText(refs.mainMenuPanel.transform as RectTransform, "Subtitle", font, "Drop letters. Build words. Chain neon combos.", 24, TextAlignmentOptions.Center, new Color(0.75f, 0.9f, 1f), new Vector2(0.5f, 0.74f), new Vector2(0.5f, 0.74f), Vector2.zero, new Vector2(820f, 50f));
-        refs.classicButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "ClassicButton", font, "Classic", new Vector2(0.5f, 0.55f), new Vector2(300f, 56f), new Color(0.05f, 0.55f, 0.8f, 0.95f));
-        refs.timedButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "TimedButton", font, "Timed", new Vector2(0.5f, 0.47f), new Vector2(300f, 56f), new Color(0.1f, 0.8f, 0.9f, 0.95f));
-        refs.puzzleButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "PuzzleButton", font, "Puzzle", new Vector2(0.5f, 0.39f), new Vector2(300f, 56f), new Color(0.85f, 0.2f, 0.7f, 0.95f));
-        refs.tutorialButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "TutorialButton", font, "Tutorial", new Vector2(0.5f, 0.31f), new Vector2(300f, 56f), new Color(1f, 0.55f, 0.2f, 0.95f));
+        CreateText(refs.mainMenuPanel.transform as RectTransform, "Title", font, "NEON CONNECT WORDS", 56, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.86f), new Vector2(0.5f, 0.86f), new Vector2(0f, -20f), new Vector2(820f, 100f));
+        CreateText(refs.mainMenuPanel.transform as RectTransform, "Subtitle", font, "Fast solo word combos on a gravity board.", 24, TextAlignmentOptions.Center, new Color(0.75f, 0.9f, 1f), new Vector2(0.5f, 0.78f), new Vector2(0.5f, 0.78f), Vector2.zero, new Vector2(760f, 64f));
+        refs.classicButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "ClassicButton", font, "Classic", new Vector2(0.5f, 0.56f), new Vector2(320f, 64f), new Color(0.05f, 0.55f, 0.8f, 0.95f));
+        refs.timedButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "TimedButton", font, "Timed", new Vector2(0.5f, 0.47f), new Vector2(320f, 64f), new Color(0.1f, 0.8f, 0.9f, 0.95f));
+        refs.puzzleButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "PuzzleButton", font, "Puzzle", new Vector2(0.5f, 0.38f), new Vector2(320f, 64f), new Color(0.85f, 0.2f, 0.7f, 0.95f));
+        refs.tutorialButton = CreateButton(refs.mainMenuPanel.transform as RectTransform, "TutorialButton", font, "Tutorial", new Vector2(0.5f, 0.29f), new Vector2(320f, 64f), new Color(1f, 0.55f, 0.2f, 0.95f));
 
         refs.gameHudPanel = CreatePanel(canvas, "GameHUDPanel", new Color(0f, 0f, 0f, 0f), Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        refs.uiManager.playerScoreTexts = new TextMeshProUGUI[2];
-        refs.uiManager.playerScorePanels = new Image[2];
-        for (int i = 0; i < 2; i++)
-        {
-            Color panelColor = i == 0 ? new Color(0.05f, 0.85f, 1f, 0.22f) : new Color(1f, 0.2f, 0.75f, 0.22f);
-            GameObject panel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "ScorePanel" + i, panelColor, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(20 + (i * 180), -20), new Vector2(160f, 70f));
-            refs.uiManager.playerScorePanels[i] = panel.GetComponent<Image>();
-            CreateText(panel.transform as RectTransform, "Label", font, "P" + (i + 1), 20, TextAlignmentOptions.Center, Color.white, new Vector2(0.2f, 0.6f), new Vector2(0.2f, 0.6f), Vector2.zero, new Vector2(36f, 24f));
-            refs.uiManager.playerScoreTexts[i] = CreateText(panel.transform as RectTransform, "Score", font, "0", 28, TextAlignmentOptions.Center, Color.white, new Vector2(0.65f, 0.5f), new Vector2(0.65f, 0.5f), Vector2.zero, new Vector2(72f, 32f));
-        }
+        refs.uiManager.playerScoreTexts = new TextMeshProUGUI[1];
+        refs.uiManager.playerScorePanels = new Image[1];
+        GameObject scorePanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "ScorePanel0", new Color(0.05f, 0.85f, 1f, 0.22f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -24f), new Vector2(260f, 86f));
+        refs.uiManager.playerScorePanels[0] = scorePanel.GetComponent<Image>();
+        CreateText(scorePanel.transform as RectTransform, "Label", font, "SCORE", 20, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.74f), new Vector2(0.5f, 0.74f), Vector2.zero, new Vector2(120f, 24f));
+        refs.uiManager.playerScoreTexts[0] = CreateText(scorePanel.transform as RectTransform, "Score", font, "0", 34, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.32f), new Vector2(0.5f, 0.32f), Vector2.zero, new Vector2(140f, 36f));
 
-        GameObject turnPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "TurnPanel", new Color(0.05f, 0.1f, 0.18f, 0.85f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -20f), new Vector2(340f, 56f));
+        GameObject turnPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "TurnPanel", new Color(0.05f, 0.1f, 0.18f, 0.85f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -122f), new Vector2(320f, 54f));
         refs.uiManager.turnIndicatorPanel = turnPanel.GetComponent<Image>();
-        refs.uiManager.turnIndicatorText = CreateText(turnPanel.transform as RectTransform, "TurnText", font, "Player 1's Turn", 24, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(300f, 32f));
+        refs.uiManager.turnIndicatorText = CreateText(turnPanel.transform as RectTransform, "TurnText", font, "Solo Run", 24, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(280f, 32f));
 
-        GameObject comboPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "ComboPanel", new Color(0.05f, 0.1f, 0.18f, 0.8f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -88f), new Vector2(220f, 48f));
+        GameObject comboPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "ComboPanel", new Color(0.05f, 0.1f, 0.18f, 0.8f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -182f), new Vector2(220f, 48f));
         refs.uiManager.comboMultiplierText = CreateText(comboPanel.transform as RectTransform, "ComboText", font, "x1.0", 24, TextAlignmentOptions.Center, Color.yellow, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(180f, 28f));
 
-        GameObject streakPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "StreakPanel", new Color(0.05f, 0.1f, 0.18f, 0.8f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -144f), new Vector2(300f, 58f));
+        GameObject streakPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "StreakPanel", new Color(0.05f, 0.1f, 0.18f, 0.8f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -238f), new Vector2(320f, 62f));
         refs.uiManager.streakLabel = CreateText(streakPanel.transform as RectTransform, "StreakLabel", font, "", 18, TextAlignmentOptions.Left, Color.white, new Vector2(0f, 0.75f), new Vector2(1f, 0.75f), new Vector2(10f, 0f), new Vector2(-10f, 18f));
         refs.uiManager.streakBar = CreateSlider(streakPanel.transform as RectTransform, "StreakBar", new Vector2(0.08f, 0.18f), new Vector2(0.92f, 0.44f));
         refs.uiManager.streakBar.minValue = 0f;
@@ -464,12 +462,33 @@ public static class NeonConnectWordsAutoBootstrapEditor
         refs.uiManager.streakBar.value = 0f;
         refs.uiManager.streakBar.interactable = false;
 
-        GameObject letterPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "CurrentLetterPanel", new Color(0.05f, 0.1f, 0.18f, 0.9f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-120f, -20f), new Vector2(180f, 120f));
+        GameObject letterPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "CurrentLetterPanel", new Color(0.05f, 0.1f, 0.18f, 0.9f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 220f), new Vector2(220f, 132f));
         refs.uiManager.currentLetterPanel = letterPanel.GetComponent<Image>();
-        CreateText(letterPanel.transform as RectTransform, "CurrentLabel", font, "Current", 20, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.75f), new Vector2(0.5f, 0.75f), Vector2.zero, new Vector2(120f, 24f));
-        refs.uiManager.currentLetterText = CreateText(letterPanel.transform as RectTransform, "CurrentLetterText", font, "A", 54, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.32f), new Vector2(0.5f, 0.32f), Vector2.zero, new Vector2(120f, 64f));
+        CreateText(letterPanel.transform as RectTransform, "CurrentLabel", font, "SELECTED", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.78f), new Vector2(0.5f, 0.78f), Vector2.zero, new Vector2(120f, 24f));
+        refs.uiManager.currentLetterText = CreateText(letterPanel.transform as RectTransform, "CurrentLetterText", font, "A", 64, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.34f), new Vector2(0.5f, 0.34f), Vector2.zero, new Vector2(120f, 72f));
 
-        GameObject timerGroup = CreatePanel(refs.gameHudPanel.transform as RectTransform, "TimerGroup", new Color(0.05f, 0.1f, 0.18f, 0.85f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-120f, -160f), new Vector2(180f, 74f));
+        GameObject trayPanel = CreatePanel(refs.gameHudPanel.transform as RectTransform, "LetterTrayPanel", new Color(0.05f, 0.09f, 0.18f, 0.88f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 92f), new Vector2(470f, 110f));
+        CreateText(trayPanel.transform as RectTransform, "TrayLabel", font, "LETTER TRAY", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.82f), new Vector2(0.5f, 0.82f), Vector2.zero, new Vector2(160f, 22f));
+        refs.letterChoiceButtons = new Button[4];
+        refs.letterChoiceTexts = new TextMeshProUGUI[4];
+        refs.uiManager.letterChoiceButtons = refs.letterChoiceButtons;
+        refs.uiManager.letterChoiceTexts = refs.letterChoiceTexts;
+        for (int i = 0; i < 4; i++)
+        {
+            float xOffset = -165f + (i * 110f);
+            Button choiceButton = CreateButton(trayPanel.transform as RectTransform, "LetterChoiceButton" + i, font, "A", new Vector2(0.5f, 0.34f), new Vector2(92f, 58f), new Color(0.07f, 0.12f, 0.22f, 0.92f));
+            RectTransform choiceRect = choiceButton.transform as RectTransform;
+            choiceRect.anchoredPosition = new Vector2(xOffset, -8f);
+            TextMeshProUGUI choiceLabel = choiceButton.GetComponentInChildren<TextMeshProUGUI>();
+            if (choiceLabel != null)
+            {
+                choiceLabel.fontSize = 30f;
+            }
+            refs.letterChoiceButtons[i] = choiceButton;
+            refs.letterChoiceTexts[i] = choiceLabel;
+        }
+
+        GameObject timerGroup = CreatePanel(refs.gameHudPanel.transform as RectTransform, "TimerGroup", new Color(0.05f, 0.1f, 0.18f, 0.85f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -302f), new Vector2(220f, 74f));
         refs.uiManager.timerGroup = timerGroup;
         refs.uiManager.timerText = CreateText(timerGroup.transform as RectTransform, "TimerText", font, "02:00", 28, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.7f), new Vector2(0.5f, 0.7f), Vector2.zero, new Vector2(140f, 26f));
         Image timerBackground = CreatePanel(timerGroup.transform as RectTransform, "TimerFillBackground", new Color(0f, 0f, 0f, 0.35f), new Vector2(0.1f, 0.16f), new Vector2(0.9f, 0.34f), Vector2.zero, Vector2.zero).GetComponent<Image>();
@@ -480,22 +499,22 @@ public static class NeonConnectWordsAutoBootstrapEditor
         timerFill.fillOrigin = 0;
         refs.uiManager.timerFill = timerFill;
 
-        refs.puzzleObjectiveText = CreateText(refs.gameHudPanel.transform as RectTransform, "PuzzleObjectiveText", font, "Objective", 20, TextAlignmentOptions.Left, Color.white, new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(20f, 54f), new Vector2(420f, 26f));
-        refs.puzzleMovesText = CreateText(refs.gameHudPanel.transform as RectTransform, "PuzzleMovesText", font, "Moves: 0", 18, TextAlignmentOptions.Left, new Color(0.75f, 0.85f, 1f), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(20f, 24f), new Vector2(220f, 24f));
+        refs.puzzleObjectiveText = CreateText(refs.gameHudPanel.transform as RectTransform, "PuzzleObjectiveText", font, "Objective", 20, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -360f), new Vector2(520f, 26f));
+        refs.puzzleMovesText = CreateText(refs.gameHudPanel.transform as RectTransform, "PuzzleMovesText", font, "Moves: 0", 18, TextAlignmentOptions.Center, new Color(0.75f, 0.85f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -392f), new Vector2(220f, 24f));
 
-        GameObject messageBanner = CreatePanel(refs.gameHudPanel.transform as RectTransform, "MessageBanner", new Color(0f, 0f, 0f, 0.6f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 210f), new Vector2(520f, 52f));
+        GameObject messageBanner = CreatePanel(refs.gameHudPanel.transform as RectTransform, "MessageBanner", new Color(0f, 0f, 0f, 0.6f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 120f), new Vector2(520f, 52f));
         refs.uiManager.messageBannerGroup = messageBanner.AddComponent<CanvasGroup>();
         refs.uiManager.messageBannerGroup.alpha = 0f;
         refs.uiManager.messageBannerText = CreateText(messageBanner.transform as RectTransform, "MessageText", font, "", 22, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(500f, 28f));
 
-        GameObject powerUpDock = CreatePanel(refs.gameHudPanel.transform as RectTransform, "PowerUpDock", new Color(0.04f, 0.08f, 0.16f, 0.86f), new Vector2(1f, 0.5f), new Vector2(1f, 0.5f), new Vector2(-112f, -10f), new Vector2(200f, 240f));
+        GameObject powerUpDock = CreatePanel(refs.gameHudPanel.transform as RectTransform, "PowerUpDock", new Color(0.04f, 0.08f, 0.16f, 0.86f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 352f), new Vector2(470f, 150f));
         CreateText(powerUpDock.transform as RectTransform, "PowerUpLabel", font, "POWER-UPS", 20, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.9f), new Vector2(0.5f, 0.9f), Vector2.zero, new Vector2(160f, 24f));
-        refs.wildcardButton = CreateButton(powerUpDock.transform as RectTransform, "WildcardButton", font, "Wildcard", new Vector2(0.5f, 0.66f), new Vector2(150f, 42f), new Color(0.1f, 0.85f, 1f, 0.95f));
-        refs.bombButton = CreateButton(powerUpDock.transform as RectTransform, "BombButton", font, "Bomb", new Vector2(0.5f, 0.46f), new Vector2(150f, 42f), new Color(1f, 0.35f, 0.25f, 0.95f));
-        refs.swapButton = CreateButton(powerUpDock.transform as RectTransform, "SwapButton", font, "Swap", new Vector2(0.5f, 0.26f), new Vector2(150f, 42f), new Color(1f, 0.2f, 0.75f, 0.95f));
-        refs.wildcardCountText = CreateText(powerUpDock.transform as RectTransform, "WildcardCount", font, "LOCK", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.84f, 0.66f), new Vector2(0.84f, 0.66f), Vector2.zero, new Vector2(46f, 22f));
-        refs.bombCountText = CreateText(powerUpDock.transform as RectTransform, "BombCount", font, "LOCK", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.84f, 0.46f), new Vector2(0.84f, 0.46f), Vector2.zero, new Vector2(46f, 22f));
-        refs.swapCountText = CreateText(powerUpDock.transform as RectTransform, "SwapCount", font, "LOCK", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.84f, 0.26f), new Vector2(0.84f, 0.26f), Vector2.zero, new Vector2(46f, 22f));
+        refs.wildcardButton = CreateButton(powerUpDock.transform as RectTransform, "WildcardButton", font, "Wildcard", new Vector2(0.2f, 0.42f), new Vector2(126f, 42f), new Color(0.1f, 0.85f, 1f, 0.95f));
+        refs.bombButton = CreateButton(powerUpDock.transform as RectTransform, "BombButton", font, "Bomb", new Vector2(0.5f, 0.42f), new Vector2(126f, 42f), new Color(1f, 0.35f, 0.25f, 0.95f));
+        refs.swapButton = CreateButton(powerUpDock.transform as RectTransform, "SwapButton", font, "Swap", new Vector2(0.8f, 0.42f), new Vector2(126f, 42f), new Color(1f, 0.2f, 0.75f, 0.95f));
+        refs.wildcardCountText = CreateText(powerUpDock.transform as RectTransform, "WildcardCount", font, "LOCK", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.2f, 0.16f), new Vector2(0.2f, 0.16f), Vector2.zero, new Vector2(60f, 22f));
+        refs.bombCountText = CreateText(powerUpDock.transform as RectTransform, "BombCount", font, "LOCK", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.16f), new Vector2(0.5f, 0.16f), Vector2.zero, new Vector2(60f, 22f));
+        refs.swapCountText = CreateText(powerUpDock.transform as RectTransform, "SwapCount", font, "LOCK", 18, TextAlignmentOptions.Center, Color.white, new Vector2(0.8f, 0.16f), new Vector2(0.8f, 0.16f), Vector2.zero, new Vector2(60f, 22f));
 
         refs.swapSelectionPanel = CreatePanel(canvas, "SwapSelectionPanel", new Color(0f, 0f, 0f, 0.68f), new Vector2(0f, 0f), new Vector2(1f, 1f), Vector2.zero, Vector2.zero);
         refs.swapInstructionText = CreateText(refs.swapSelectionPanel.transform as RectTransform, "SwapInstruction", font, "Select FIRST tile to swap", 28, TextAlignmentOptions.Center, Color.white, new Vector2(0.5f, 0.75f), new Vector2(0.5f, 0.75f), Vector2.zero, new Vector2(500f, 36f));
@@ -534,8 +553,8 @@ public static class NeonConnectWordsAutoBootstrapEditor
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         CanvasScaler scaler = canvasGo.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920f, 1080f);
-        scaler.matchWidthOrHeight = 0.7f;
+        scaler.referenceResolution = new Vector2(1080f, 1920f);
+        scaler.matchWidthOrHeight = 1f;
         return canvasGo;
     }
 

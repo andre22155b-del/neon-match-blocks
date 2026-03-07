@@ -29,11 +29,19 @@ namespace NeonConnectWords.Simulation
             State.Mode = mode;
             State.ComboMultiplier = 1f;
             State.TimedRemaining = config.TimedDurationSeconds;
+            State.SelectedLetterIndex = 0;
 
             for (int i = 0; i < config.PlayerCount; i++)
             {
                 State.CurrentLetters[i] = DrawLetter();
             }
+
+            for (int i = 0; i < State.LetterChoices.Length; i++)
+            {
+                State.LetterChoices[i] = DrawLetter();
+            }
+
+            SyncSelectedLetter();
         }
 
         public bool AdvanceTime(float deltaSeconds)
@@ -61,7 +69,20 @@ namespace NeonConnectWords.Simulation
             }
 
             State.PowerUps.WildcardCharges--;
-            State.CurrentLetters[State.CurrentPlayerIndex] = '*';
+            State.LetterChoices[State.SelectedLetterIndex] = '*';
+            SyncSelectedLetter();
+            return true;
+        }
+
+        public bool SetSelectedLetterIndex(int index)
+        {
+            if (State.GameOver || index < 0 || index >= State.LetterChoices.Length)
+            {
+                return false;
+            }
+
+            State.SelectedLetterIndex = index;
+            SyncSelectedLetter();
             return true;
         }
 
@@ -100,7 +121,7 @@ namespace NeonConnectWords.Simulation
 
             int actingPlayer = State.CurrentPlayerIndex;
             int row = State.ColumnHeights[column];
-            char letter = State.CurrentLetters[actingPlayer];
+            char letter = State.LetterChoices[State.SelectedLetterIndex];
             bool wildcard = letter == '*';
 
             SimulationTile tile = new SimulationTile
@@ -240,7 +261,8 @@ namespace NeonConnectWords.Simulation
 
             if (!State.GameOver)
             {
-                State.CurrentLetters[actingPlayer] = DrawLetter();
+                State.LetterChoices[State.SelectedLetterIndex] = DrawLetter();
+                SyncSelectedLetter();
                 State.CurrentPlayerIndex = (State.CurrentPlayerIndex + 1) % config.PlayerCount;
                 result.TurnAdvanced = true;
             }
@@ -437,6 +459,18 @@ namespace NeonConnectWords.Simulation
             }
 
             return true;
+        }
+
+        private void SyncSelectedLetter()
+        {
+            if (State.CurrentLetters.Length == 0 || State.LetterChoices.Length == 0)
+            {
+                return;
+            }
+
+            int index = Math.Max(0, Math.Min(State.SelectedLetterIndex, State.LetterChoices.Length - 1));
+            State.SelectedLetterIndex = index;
+            State.CurrentLetters[State.CurrentPlayerIndex] = State.LetterChoices[index];
         }
 
         private bool IsInBounds(int column, int row)

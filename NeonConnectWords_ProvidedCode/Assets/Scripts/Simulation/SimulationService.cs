@@ -18,8 +18,9 @@ namespace NeonConnectWords.Simulation
         [Header("Board")]
         public int columns = 7;
         public int rows = 6;
-        public int playerCount = 2;
+        public int playerCount = 1;
         public int minWordLength = 3;
+        public int letterChoiceCount = 4;
 
         [Header("Modes")]
         public int classicTargetScore = 100;
@@ -61,6 +62,7 @@ namespace NeonConnectWords.Simulation
             config.Columns = columns;
             config.Rows = rows;
             config.PlayerCount = playerCount;
+            config.LetterChoiceCount = letterChoiceCount;
             config.ClassicTargetScore = classicTargetScore;
             config.TimedDurationSeconds = timedDuration;
             config.MinWordLength = minWordLength;
@@ -96,6 +98,12 @@ namespace NeonConnectWords.Simulation
         {
             EnsureSimulator();
             return Simulator.ArmWildcard();
+        }
+
+        public bool SelectLetterIndex(int index)
+        {
+            EnsureSimulator();
+            return Simulator.SetSelectedLetterIndex(index);
         }
 
         public SimulationTurnResult BombRow(int row)

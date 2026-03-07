@@ -1,0 +1,113 @@
+name: Neon Connect Words Mobile Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Build target
+        required: true
+        type: choice
+        options:
+          - android-aab
+          - android-apk
+          - ios
+
+jobs:
+  android-aab:
+    if: github.event.inputs.target == 'android-aab'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: NeonConnectWords_ProvidedCode/Library
+          key: Library-AndroidAAB-${{ hashFiles('NeonConnectWords_ProvidedCode/Assets/**', 'NeonConnectWords_ProvidedCode/Packages/**', 'NeonConnectWords_ProvidedCode/ProjectSettings/**') }}
+          restore-keys: |
+            Library-AndroidAAB-
+
+      - name: Build Android AAB
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: NeonConnectWords_ProvidedCode
+          targetPlatform: Android
+          buildMethod: NeonConnectWordsAndroidBuildEditor.BuildAab
+
+      - name: Upload Android AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: neon-connect-words-android-aab
+          path: NeonConnectWords_ProvidedCode/Builds/Android/NeonConnectWords.aab
+          if-no-files-found: error
+
+  android-apk:
+    if: github.event.inputs.target == 'android-apk'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: NeonConnectWords_ProvidedCode/Library
+          key: Library-AndroidAPK-${{ hashFiles('NeonConnectWords_ProvidedCode/Assets/**', 'NeonConnectWords_ProvidedCode/Packages/**', 'NeonConnectWords_ProvidedCode/ProjectSettings/**') }}
+          restore-keys: |
+            Library-AndroidAPK-
+
+      - name: Build Android APK
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: NeonConnectWords_ProvidedCode
+          targetPlatform: Android
+          buildMethod: NeonConnectWordsAndroidBuildEditor.BuildApk
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: neon-connect-words-android-apk
+          path: NeonConnectWords_ProvidedCode/Builds/Android/NeonConnectWords.apk
+          if-no-files-found: error
+
+  ios:
+    if: github.event.inputs.target == 'ios'
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: NeonConnectWords_ProvidedCode/Library
+          key: Library-iOS-${{ hashFiles('NeonConnectWords_ProvidedCode/Assets/**', 'NeonConnectWords_ProvidedCode/Packages/**', 'NeonConnectWords_ProvidedCode/ProjectSettings/**') }}
+          restore-keys: |
+            Library-iOS-
+
+      - name: Export iOS Xcode Project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: NeonConnectWords_ProvidedCode
+          targetPlatform: iOS
+          buildMethod: NeonConnectWordsiOSBuildEditor.BuildXcodeProject
+
+      - name: Upload iOS Xcode Export
+        uses: actions/upload-artifact@v4
+        with:
+          name: neon-connect-words-ios-xcode-project
+          path: NeonConnectWords_ProvidedCode/Builds/iOS
+          if-no-files-found: error

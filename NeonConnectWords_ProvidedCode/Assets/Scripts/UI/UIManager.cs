@@ -31,6 +31,8 @@ public class UIManager : MonoBehaviour
     [Header("Letter Display")]
     public TextMeshProUGUI currentLetterText;
     public Image currentLetterPanel;
+    public Button[] letterChoiceButtons;
+    public TextMeshProUGUI[] letterChoiceTexts;
 
     [Header("Timer (Timed Mode)")]
     public GameObject timerGroup;
@@ -88,6 +90,7 @@ public class UIManager : MonoBehaviour
     {
         ShowMainMenu();
         SetupSettingsCallbacks();
+        SetupLetterChoiceCallbacks();
     }
 
     // -----------------------------------------------------------------------
@@ -121,8 +124,15 @@ public class UIManager : MonoBehaviour
         gameOverTitleText.text = message;
 
         System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        for (int i = 0; i < scores.Length; i++)
-            sb.AppendLine($"Player {i + 1}: {scores[i]} pts");
+        if (scores.Length <= 1)
+        {
+            sb.AppendLine($"Score: {scores[0]} pts");
+        }
+        else
+        {
+            for (int i = 0; i < scores.Length; i++)
+                sb.AppendLine($"Player {i + 1}: {scores[i]} pts");
+        }
         gameOverScoresText.text = sb.ToString();
 
         StartCoroutine(FadeInPanel(gameOverPanel.GetComponent<CanvasGroup>(), 0.5f));
@@ -144,7 +154,8 @@ public class UIManager : MonoBehaviour
     // -----------------------------------------------------------------------
     public void RefreshAll(int[] scores, int currentPlayer, float combo)
     {
-        for (int i = 0; i < scores.Length; i++)
+        int count = Mathf.Min(scores.Length, playerScoreTexts != null ? playerScoreTexts.Length : 0);
+        for (int i = 0; i < count; i++)
             UpdateScore(i, scores[i]);
         ShowTurnIndicator(currentPlayer);
         UpdateComboMultiplier(combo);
@@ -160,8 +171,11 @@ public class UIManager : MonoBehaviour
     {
         if (turnIndicatorText)
         {
-            turnIndicatorText.text = $"Player {playerIndex + 1}'s Turn";
-            if (playerIndex < playerTurnColors.Length)
+            bool soloRun = playerScoreTexts != null && playerScoreTexts.Length <= 1;
+            turnIndicatorText.text = soloRun
+                ? (GameManager.Instance != null && GameManager.Instance.ActiveMode == GameMode.Timed ? "Time Rush" : "Solo Run")
+                : $"Player {playerIndex + 1}'s Turn";
+            if (playerIndex < playerTurnColors.Length && turnIndicatorPanel != null)
                 turnIndicatorPanel.color = playerTurnColors[playerIndex];
 
             StartCoroutine(PunchScale(turnIndicatorPanel.transform, 0.2f));
@@ -197,6 +211,42 @@ public class UIManager : MonoBehaviour
         if (timerText) timerText.text = $"{Mathf.FloorToInt(seconds / 60f):00}:{Mathf.FloorToInt(seconds % 60f):00}";
         if (timerFill) timerFill.fillAmount = seconds / GameManager.Instance.timedDuration;
         if (timerFill) timerFill.color = Color.Lerp(Color.red, Color.cyan, seconds / GameManager.Instance.timedDuration);
+    }
+
+    public void RefreshLetterChoices(char[] letters, int selectedIndex)
+    {
+        if (letterChoiceButtons == null || letterChoiceTexts == null)
+        {
+            return;
+        }
+
+        int count = Mathf.Min(letterChoiceButtons.Length, letterChoiceTexts.Length);
+        for (int i = 0; i < count; i++)
+        {
+            bool hasLetter = letters != null && i < letters.Length;
+            if (letterChoiceButtons[i] != null)
+            {
+                letterChoiceButtons[i].gameObject.SetActive(hasLetter);
+            }
+
+            if (!hasLetter)
+            {
+                continue;
+            }
+
+            if (letterChoiceTexts[i] != null)
+            {
+                letterChoiceTexts[i].text = letters[i].ToString();
+            }
+
+            Image buttonImage = letterChoiceButtons[i] != null ? letterChoiceButtons[i].GetComponent<Image>() : null;
+            if (buttonImage != null)
+            {
+                buttonImage.color = i == selectedIndex
+                    ? new Color(0.08f, 0.9f, 1f, 0.95f)
+                    : new Color(0.07f, 0.12f, 0.22f, 0.92f);
+            }
+        }
     }
 
     // -----------------------------------------------------------------------
@@ -273,6 +323,23 @@ public class UIManager : MonoBehaviour
         if (colorBlindToggle) colorBlindToggle.onValueChanged.AddListener(v => ApplyColorBlindMode(v));
         if (reducedFXToggle) reducedFXToggle.onValueChanged.AddListener(v => ParticleManager.Instance?.SetReducedFX(v));
         if (letterSizeSlider) letterSizeSlider.onValueChanged.AddListener(v => ApplyLetterSize(v));
+    }
+
+    private void SetupLetterChoiceCallbacks()
+    {
+        if (letterChoiceButtons == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < letterChoiceButtons.Length; i++)
+        {
+            int index = i;
+            if (letterChoiceButtons[i] != null)
+            {
+                letterChoiceButtons[i].onClick.AddListener(() => GameManager.Instance?.SelectLetterIndex(index));
+            }
+        }
     }
 
     private void ApplyColorBlindMode(bool on)
