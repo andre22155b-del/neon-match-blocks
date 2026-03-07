@@ -31,5 +31,7 @@ Output folders:
 ## Release Docs
 
 - [Mobile Release Guide](Docs/MOBILE_RELEASE_GUIDE.md)
+- [First Google Play Upload Runbook](Docs/FIRST_GOOGLE_PLAY_UPLOAD.md)
 - [Store Submission Checklist](Docs/STORE_SUBMISSION_CHECKLIST.md)
+- [Versioning Policy](Docs/VERSIONING_POLICY.md)
 - [Setup Guide](Docs/SETUP_GUIDE.md)
