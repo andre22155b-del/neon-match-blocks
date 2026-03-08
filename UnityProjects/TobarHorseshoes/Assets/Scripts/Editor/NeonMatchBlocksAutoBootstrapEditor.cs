@@ -8,7 +8,8 @@ using UnityEngine;
 public static class NeonMatchBlocksAutoBootstrapEditor
 {
     private const string ScenePath = "Assets/Scenes/NeonMatchBlocks.unity";
-    private const string PrefKey = "NeonMatchBlocks.AutoBootstrapDone.v1";
+    private const string PrefKey = "NeonMatchBlocks.AutoBootstrapVersion";
+    private const string BootstrapVersion = "visual-pass-v1";
 
     static NeonMatchBlocksAutoBootstrapEditor()
     {
@@ -25,21 +26,15 @@ public static class NeonMatchBlocksAutoBootstrapEditor
             return;
         }
 
-        if (EditorPrefs.GetBool(PrefKey, false)) return;
+        if (EditorPrefs.GetString(PrefKey, string.Empty) == BootstrapVersion) return;
 
         string absoluteScenePath = Path.Combine(Directory.GetCurrentDirectory(), ScenePath);
-        if (File.Exists(absoluteScenePath))
-        {
-            EditorPrefs.SetBool(PrefKey, true);
-            return;
-        }
-
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 
         NeonMatchBlocksAutoSetupEditor.AutoSetupCompleteSceneBatch();
         AssetDatabase.Refresh();
-        EditorPrefs.SetBool(PrefKey, true);
-        Debug.Log("Neon Match Blocks bootstrap complete. Scene created at " + ScenePath);
+        EditorPrefs.SetString(PrefKey, BootstrapVersion);
+        Debug.Log("Neon Match Blocks bootstrap complete. Scene refreshed at " + ScenePath);
     }
 }
 #endif

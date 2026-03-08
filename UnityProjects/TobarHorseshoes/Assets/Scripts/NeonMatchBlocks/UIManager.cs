@@ -123,12 +123,12 @@ public class UIManager : MonoBehaviour
     {
         if (p1ScoreText != null)
         {
-            p1ScoreText.text = "P1: " + p1;
+            p1ScoreText.text = "PLAYER 1\n" + p1.ToString("N0");
         }
 
         if (p2ScoreText != null)
         {
-            p2ScoreText.text = "P2: " + p2;
+            p2ScoreText.text = "PLAYER 2\n" + p2.ToString("N0");
         }
     }
 
@@ -136,12 +136,12 @@ public class UIManager : MonoBehaviour
     {
         if (p1ComboText != null)
         {
-            p1ComboText.text = "Combo: x" + Mathf.Max(1, p1Combo);
+            p1ComboText.text = "COMBO x" + Mathf.Max(1, p1Combo);
         }
 
         if (p2ComboText != null)
         {
-            p2ComboText.text = "Combo: x" + Mathf.Max(1, p2Combo);
+            p2ComboText.text = "COMBO x" + Mathf.Max(1, p2Combo);
         }
     }
 
@@ -149,7 +149,7 @@ public class UIManager : MonoBehaviour
     {
         if (turnText != null)
         {
-            turnText.text = currentPlayer == 0 ? "Turn: PLAYER 1" : ("Turn: " + (vsAI ? "AI" : "PLAYER 2"));
+            turnText.text = currentPlayer == 0 ? "TURN: PLAYER 1" : ("TURN: " + (vsAI ? "AI" : "PLAYER 2"));
         }
 
         if (p1TurnGlow != null)

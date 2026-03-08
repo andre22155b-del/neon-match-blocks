@@ -26,8 +26,8 @@ public class GameManagerCompetitive : MonoBehaviour
     [Header("Board")]
     [SerializeField] private Block blockPrefab;
     [SerializeField] private Transform boardRoot;
-    [SerializeField] private Vector3 boardCenter = Vector3.zero;
-    [SerializeField] private float blockSpacing = 1.45f;
+    [SerializeField] private Vector3 boardCenter = new Vector3(0f, -0.3f, 0f);
+    [SerializeField] private float blockSpacing = 1.52f;
 
     [Header("Faces")]
     [SerializeField] private List<Sprite> sportsFaces = new List<Sprite>();
@@ -77,6 +77,12 @@ public class GameManagerCompetitive : MonoBehaviour
     private readonly Dictionary<int, List<Block>> aiMemory = new Dictionary<int, List<Block>>();
     private readonly List<Block> activeBlocks = new List<Block>();
     private readonly List<Texture2D> runtimeGeneratedFaceTextures = new List<Texture2D>();
+    private readonly List<GameObject> boardVisuals = new List<GameObject>();
+
+    private Material boardBaseMaterial;
+    private Material boardGlassMaterial;
+    private Material boardFrameMaterial;
+    private Material boardGridMaterial;
 
     private int currentLevel = 1;
     private int currentPlayer; // 0 = P1, 1 = P2/AI
@@ -234,6 +240,9 @@ public class GameManagerCompetitive : MonoBehaviour
         ResetLevelState();
         EnsureSportsFaces();
 
+        Vector2Int grid = GetGridForLevel(level);
+        BuildBoardPresentation(grid, level);
+        FrameCameraForGrid(grid);
         BuildBoard(level);
 
         levelTimer = GetLevelDuration(level);
@@ -311,6 +320,8 @@ public class GameManagerCompetitive : MonoBehaviour
 
         float startX = -((grid.y - 1) * blockSpacing) * 0.5f;
         float startZ = -((grid.x - 1) * blockSpacing) * 0.5f;
+        float scaleT = Mathf.InverseLerp(2f, 6f, Mathf.Max(grid.x, grid.y));
+        float blockScale = Mathf.Lerp(1.18f, 0.88f, scaleT);
 
         int index = 0;
         for (int row = 0; row < grid.x; row++)
@@ -324,6 +335,7 @@ public class GameManagerCompetitive : MonoBehaviour
 
                 Vector3 pos = boardCenter + new Vector3(startX + col * blockSpacing, 0f, startZ + row * blockSpacing);
                 Block block = Instantiate(blockPrefab, pos, Quaternion.identity, boardRoot);
+                block.transform.localScale = Vector3.one * blockScale;
 
                 SpawnData data = deck[index];
                 block.Setup(data.faceId, sportsFaces[data.faceId], data.rarity, this);
@@ -332,6 +344,179 @@ public class GameManagerCompetitive : MonoBehaviour
                 index++;
             }
         }
+    }
+
+    private void BuildBoardPresentation(Vector2Int grid, int level)
+    {
+        EnsureBoardMaterials();
+
+        float width = ((grid.y - 1) * blockSpacing) + 1.45f;
+        float depth = ((grid.x - 1) * blockSpacing) + 1.45f;
+        float outerWidth = width + 1.4f;
+        float outerDepth = depth + 1.4f;
+
+        GameObject stageRoot = new GameObject("BoardStage");
+        stageRoot.transform.SetParent(boardRoot, false);
+        stageRoot.transform.localPosition = boardCenter;
+        boardVisuals.Add(stageRoot);
+
+        CreateStageBlock("BoardBase", stageRoot.transform, new Vector3(0f, -0.42f, 0f), new Vector3(outerWidth, 0.34f, outerDepth), boardBaseMaterial);
+        CreateStageBlock("BoardGlass", stageRoot.transform, new Vector3(0f, -0.16f, 0f), new Vector3(width + 0.55f, 0.04f, depth + 0.55f), boardGlassMaterial);
+        CreateStageBlock("TopRail", stageRoot.transform, new Vector3(0f, -0.02f, (outerDepth * 0.5f) + 0.06f), new Vector3(outerWidth + 0.24f, 0.08f, 0.12f), boardFrameMaterial);
+        CreateStageBlock("BottomRail", stageRoot.transform, new Vector3(0f, -0.02f, -(outerDepth * 0.5f) - 0.06f), new Vector3(outerWidth + 0.24f, 0.08f, 0.12f), boardFrameMaterial);
+        CreateStageBlock("LeftRail", stageRoot.transform, new Vector3(-(outerWidth * 0.5f) - 0.06f, -0.02f, 0f), new Vector3(0.12f, 0.08f, outerDepth), boardFrameMaterial);
+        CreateStageBlock("RightRail", stageRoot.transform, new Vector3((outerWidth * 0.5f) + 0.06f, -0.02f, 0f), new Vector3(0.12f, 0.08f, outerDepth), boardFrameMaterial);
+
+        for (int row = 0; row <= grid.x; row++)
+        {
+            float z = (-depth * 0.5f) + (row * blockSpacing) - (blockSpacing * 0.5f);
+            CreateStageBlock("GridRow_" + row, stageRoot.transform, new Vector3(0f, -0.12f, z), new Vector3(width + 0.2f, 0.01f, 0.045f), boardGridMaterial);
+        }
+
+        for (int col = 0; col <= grid.y; col++)
+        {
+            float x = (-width * 0.5f) + (col * blockSpacing) - (blockSpacing * 0.5f);
+            CreateStageBlock("GridCol_" + col, stageRoot.transform, new Vector3(x, -0.12f, 0f), new Vector3(0.045f, 0.01f, depth + 0.2f), boardGridMaterial);
+        }
+
+        GameObject halo = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        halo.name = "BoardHalo";
+        halo.transform.SetParent(stageRoot.transform, false);
+        halo.transform.localPosition = new Vector3(0f, 1.15f, 3.9f);
+        halo.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        halo.transform.localScale = new Vector3(outerWidth * 0.4f, outerDepth * 0.4f, 1f);
+        Renderer haloRenderer = halo.GetComponent<Renderer>();
+        if (haloRenderer != null)
+        {
+            haloRenderer.sharedMaterial = boardFrameMaterial;
+        }
+
+        Collider haloCollider = halo.GetComponent<Collider>();
+        if (haloCollider != null)
+        {
+            Destroy(haloCollider);
+        }
+
+        Light leftLight = CreateAccentLight(stageRoot.transform, new Vector3(-outerWidth * 0.45f, 1.2f, -outerDepth * 0.35f), new Color(0.12f, 0.95f, 1f), 6f, 1.3f);
+        Light rightLight = CreateAccentLight(stageRoot.transform, new Vector3(outerWidth * 0.45f, 1.2f, outerDepth * 0.35f), new Color(1f, 0.25f, 0.85f), 6f, 1.15f);
+        boardVisuals.Add(leftLight.gameObject);
+        boardVisuals.Add(rightLight.gameObject);
+
+        if (level >= 10)
+        {
+            CreateAccentLight(stageRoot.transform, new Vector3(0f, 2f, 0f), new Color(1f, 0.72f, 0.25f), 8f, 0.9f);
+        }
+    }
+
+    private void FrameCameraForGrid(Vector2Int grid)
+    {
+        Camera cam = Camera.main;
+        if (cam == null)
+        {
+            return;
+        }
+
+        float t = Mathf.InverseLerp(2f, 6f, Mathf.Max(grid.x, grid.y));
+        bool portraitish = cam.aspect < 1.05f;
+        if (portraitish)
+        {
+            cam.transform.position = boardCenter + new Vector3(0f, Mathf.Lerp(5.6f, 8.2f, t), Mathf.Lerp(-4.9f, -7.8f, t));
+            cam.transform.rotation = Quaternion.Euler(Mathf.Lerp(58f, 66f, t), 0f, 0f);
+            cam.fieldOfView = Mathf.Lerp(30f, 38f, t);
+        }
+        else
+        {
+            cam.transform.position = boardCenter + new Vector3(0f, Mathf.Lerp(7.2f, 11f, t), Mathf.Lerp(-6.5f, -11f, t));
+            cam.transform.rotation = Quaternion.Euler(Mathf.Lerp(50f, 58f, t), 0f, 0f);
+            cam.fieldOfView = Mathf.Lerp(38f, 48f, t);
+        }
+    }
+
+    private void EnsureBoardMaterials()
+    {
+        if (boardBaseMaterial != null)
+        {
+            return;
+        }
+
+        boardBaseMaterial = CreateRuntimeMaterial(new Color(0.03f, 0.05f, 0.11f), new Color(0.02f, 0.18f, 0.28f) * 1.5f, 0.75f);
+        boardGlassMaterial = CreateRuntimeMaterial(new Color(0.06f, 0.10f, 0.18f), new Color(0.12f, 0.45f, 0.7f) * 1.1f, 0.25f);
+        boardFrameMaterial = CreateRuntimeMaterial(new Color(0.10f, 0.18f, 0.34f), new Color(0.18f, 0.95f, 1.0f) * 2.8f, 0.15f);
+        boardGridMaterial = CreateRuntimeMaterial(new Color(0.10f, 0.12f, 0.24f), new Color(0.85f, 0.2f, 1.0f) * 2.0f, 0.10f);
+    }
+
+    private Material CreateRuntimeMaterial(Color baseColor, Color emission, float metallic)
+    {
+        Shader shader = Shader.Find("Universal Render Pipeline/Lit");
+        if (shader == null)
+        {
+            shader = Shader.Find("Standard");
+        }
+
+        Material mat = new Material(shader);
+        if (mat.HasProperty("_BaseColor"))
+        {
+            mat.SetColor("_BaseColor", baseColor);
+        }
+
+        if (mat.HasProperty("_Color"))
+        {
+            mat.SetColor("_Color", baseColor);
+        }
+
+        if (mat.HasProperty("_Metallic"))
+        {
+            mat.SetFloat("_Metallic", metallic);
+        }
+
+        if (mat.HasProperty("_Smoothness"))
+        {
+            mat.SetFloat("_Smoothness", 0.9f);
+        }
+
+        if (mat.HasProperty("_EmissionColor"))
+        {
+            mat.SetColor("_EmissionColor", emission);
+            mat.EnableKeyword("_EMISSION");
+        }
+
+        return mat;
+    }
+
+    private GameObject CreateStageBlock(string name, Transform parent, Vector3 localPosition, Vector3 localScale, Material material)
+    {
+        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        go.name = name;
+        go.transform.SetParent(parent, false);
+        go.transform.localPosition = localPosition;
+        go.transform.localScale = localScale;
+
+        Renderer renderer = go.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.sharedMaterial = material;
+        }
+
+        Collider col = go.GetComponent<Collider>();
+        if (col != null)
+        {
+            Destroy(col);
+        }
+
+        return go;
+    }
+
+    private Light CreateAccentLight(Transform parent, Vector3 localPosition, Color color, float range, float intensity)
+    {
+        GameObject go = new GameObject("AccentLight");
+        go.transform.SetParent(parent, false);
+        go.transform.localPosition = localPosition;
+        Light light = go.AddComponent<Light>();
+        light.type = LightType.Point;
+        light.color = color;
+        light.range = range;
+        light.intensity = intensity;
+        return light;
     }
 
     private IEnumerator RunReflexMiniGame()
@@ -1091,15 +1276,17 @@ public class GameManagerCompetitive : MonoBehaviour
 
     private void ClearBoard()
     {
-        for (int i = 0; i < activeBlocks.Count; i++)
+        for (int i = boardRoot.childCount - 1; i >= 0; i--)
         {
-            if (activeBlocks[i] != null)
+            Transform child = boardRoot.GetChild(i);
+            if (child != null)
             {
-                Destroy(activeBlocks[i].gameObject);
+                Destroy(child.gameObject);
             }
         }
 
         activeBlocks.Clear();
+        boardVisuals.Clear();
     }
 
     private static void Shuffle<T>(IList<T> list)

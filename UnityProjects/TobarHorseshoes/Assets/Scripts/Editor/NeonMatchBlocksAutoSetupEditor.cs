@@ -25,6 +25,12 @@ public static class NeonMatchBlocksAutoSetupEditor
     private const string BlockPrefabPath = PrefabsFolder + "/NeonCube.prefab";
     private const string ScenePath = ScenesFolder + "/NeonMatchBlocks.unity";
     private const string CubeMaterialPath = MaterialsFolder + "/NeonCube.mat";
+    private const string CubeGlowMaterialPath = MaterialsFolder + "/NeonCubeGlow.mat";
+    private const string FloorBaseMaterialPath = MaterialsFolder + "/NeonFloorBase.mat";
+    private const string FloorGridMaterialPath = MaterialsFolder + "/NeonFloorGrid.mat";
+    private const string BackdropMaterialPath = MaterialsFolder + "/NeonBackdrop.mat";
+    private const string AccentBlueMaterialPath = MaterialsFolder + "/NeonAccentBlue.mat";
+    private const string AccentPinkMaterialPath = MaterialsFolder + "/NeonAccentPink.mat";
 
     [MenuItem("Tools/Neon Match Blocks/Auto Setup Complete Scene")]
     public static void AutoSetupCompleteScene()
@@ -63,6 +69,8 @@ public static class NeonMatchBlocksAutoSetupEditor
         SetupCamera();
         
         GameObject boardRoot = new GameObject("BoardRoot");
+        BuildEnvironment(boardRoot.transform);
+
         GameObject managers = new GameObject("Managers");
         GameObject gameManagerGo = new GameObject("GameManagerCompetitive");
         GameObject uiManagerGo = new GameObject("UIManager");
@@ -87,7 +95,8 @@ public static class NeonMatchBlocksAutoSetupEditor
 
         UiRefs ui = BuildUi();
         Material cubeMat = LoadOrCreateCubeMaterial();
-        Block blockPrefab = LoadOrCreateBlockPrefab(cubeMat);
+        Material cubeGlowMat = LoadOrCreateGlowMaterial();
+        Block blockPrefab = LoadOrCreateBlockPrefab(cubeMat, cubeGlowMat);
         List<Sprite> sportsSprites = LoadOrCreateSportsSprites();
 
         ParticleSystem normalFx = LoadOrCreateParticlePrefab("PS_Match_Normal", new Color(0.20f, 0.95f, 1.00f), 1.0f, 20);
@@ -139,6 +148,59 @@ public static class NeonMatchBlocksAutoSetupEditor
         cam.fieldOfView = 48f;
         cam.backgroundColor = new Color(0.03f, 0.04f, 0.08f);
         cam.clearFlags = CameraClearFlags.SolidColor;
+    }
+
+    private static void BuildEnvironment(Transform boardRoot)
+    {
+        Material floorBase = LoadOrCreateNeonMaterial(FloorBaseMaterialPath, new Color(0.02f, 0.02f, 0.08f), new Color(0.03f, 0.05f, 0.18f) * 1.2f, 0.2f, 0.95f);
+        Material floorGrid = LoadOrCreateNeonMaterial(FloorGridMaterialPath, new Color(0.12f, 0.06f, 0.24f), new Color(0.96f, 0.22f, 1.0f) * 2.5f, 0.05f, 0.9f);
+        Material backdrop = LoadOrCreateNeonMaterial(BackdropMaterialPath, new Color(0.03f, 0.04f, 0.12f), new Color(0.06f, 0.16f, 0.32f) * 1.3f, 0.1f, 0.8f);
+        Material accentBlue = LoadOrCreateNeonMaterial(AccentBlueMaterialPath, new Color(0.08f, 0.20f, 0.36f), new Color(0.16f, 0.95f, 1.0f) * 3.0f, 0.0f, 0.85f);
+        Material accentPink = LoadOrCreateNeonMaterial(AccentPinkMaterialPath, new Color(0.24f, 0.08f, 0.32f), new Color(1.0f, 0.25f, 0.92f) * 3.0f, 0.0f, 0.85f);
+
+        GameObject environment = new GameObject("Environment");
+
+        GameObject backdropWall = CreateSceneBlock("BackdropWall", environment.transform, new Vector3(0f, 5.2f, 18.5f), new Vector3(30f, 10f, 0.35f), backdrop);
+        CreateSceneBlock("HorizonGlow", environment.transform, new Vector3(0f, 0.15f, 12f), new Vector3(24f, 0.07f, 0.2f), accentPink);
+        CreateSceneBlock("FloorBase", environment.transform, new Vector3(0f, -0.82f, 7f), new Vector3(28f, 0.1f, 28f), floorBase);
+
+        for (int i = -14; i <= 14; i++)
+        {
+            float x = i * 1.3f;
+            float z = 7f + i * 0.65f;
+            CreateSceneBlock("FloorLineX_" + i, environment.transform, new Vector3(x, -0.77f, 7f), new Vector3(0.02f, 0.012f, 24f), i % 4 == 0 ? accentBlue : floorGrid);
+            CreateSceneBlock("FloorLineZ_" + i, environment.transform, new Vector3(0f, -0.77f, z), new Vector3(24f, 0.012f, 0.02f), i % 4 == 0 ? accentBlue : floorGrid);
+        }
+
+        CreateSceneBlock("LeftTower", environment.transform, new Vector3(-10f, 3.4f, 15f), new Vector3(0.25f, 6.8f, 0.25f), accentBlue);
+        CreateSceneBlock("RightTower", environment.transform, new Vector3(10f, 3.4f, 15f), new Vector3(0.25f, 6.8f, 0.25f), accentPink);
+        CreateSceneBlock("LeftTowerCross", environment.transform, new Vector3(-10f, 5.1f, 15f), new Vector3(2.4f, 0.08f, 0.08f), accentBlue);
+        CreateSceneBlock("RightTowerCross", environment.transform, new Vector3(10f, 4.4f, 15f), new Vector3(2.8f, 0.08f, 0.08f), accentPink);
+        CreateSceneBlock("BoardAnchor", boardRoot, Vector3.zero, new Vector3(0.1f, 0.1f, 0.1f), accentBlue).SetActive(false);
+
+        CreateSceneLight("BlueWash", environment.transform, new Vector3(-4.5f, 5.5f, -1.5f), new Color(0.15f, 0.85f, 1f), 18f, 1.6f);
+        CreateSceneLight("PinkWash", environment.transform, new Vector3(4.5f, 5f, 1.5f), new Color(1f, 0.28f, 0.82f), 18f, 1.45f);
+        CreateSceneLight("WarmCore", environment.transform, new Vector3(0f, 3.2f, 3.5f), new Color(1f, 0.64f, 0.22f), 14f, 0.75f);
+
+        Light[] sceneLights = Object.FindObjectsOfType<Light>();
+        for (int i = 0; i < sceneLights.Length; i++)
+        {
+            Light mainLight = sceneLights[i];
+            if (mainLight == null || mainLight.type != LightType.Directional)
+            {
+                continue;
+            }
+
+            mainLight.intensity = 0.9f;
+            mainLight.color = new Color(0.72f, 0.82f, 1f);
+            mainLight.transform.rotation = Quaternion.Euler(55f, -25f, 0f);
+            break;
+        }
+
+        if (backdropWall != null)
+        {
+            backdropWall.transform.position += new Vector3(0f, 0f, 0f);
+        }
     }
 
     private static void EnsureEventSystem()
@@ -220,69 +282,122 @@ public static class NeonMatchBlocksAutoSetupEditor
 
         CanvasScaler scaler = canvasGo.GetComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1920f, 1080f);
-        scaler.matchWidthOrHeight = 0.5f;
+        scaler.referenceResolution = new Vector2(1440f, 2560f);
+        scaler.matchWidthOrHeight = 1f;
 
         refs.canvas = canvas;
 
-        GameObject hud = CreateUiPanel("HUD", canvasGo.transform, new Color(0f, 0f, 0f, 0.25f));
+        GameObject hud = new GameObject("HUD", typeof(RectTransform));
+        hud.transform.SetParent(canvasGo.transform, false);
         StretchRect(hud.GetComponent<RectTransform>());
 
-        refs.p1TurnGlow = CreateImage("P1TurnGlow", hud.transform, new Color(0.2f, 0.95f, 1f, 0.95f));
-        SetRect(refs.p1TurnGlow.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(160f, 44f), new Vector2(120f, -42f));
+        Color cyan = new Color(0.25f, 0.95f, 1f, 1f);
+        Color pink = new Color(1f, 0.34f, 0.88f, 1f);
+        Color panelColor = new Color(0.03f, 0.05f, 0.12f, 0.74f);
 
-        refs.p2TurnGlow = CreateImage("P2TurnGlow", hud.transform, new Color(1f, 0.45f, 0.2f, 0.45f));
-        SetRect(refs.p2TurnGlow.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(160f, 44f), new Vector2(-120f, -42f));
+        GameObject titleGroup = new GameObject("TitleGroup", typeof(RectTransform));
+        titleGroup.transform.SetParent(hud.transform, false);
+        SetRect(titleGroup.GetComponent<RectTransform>(), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(620f, 260f), new Vector2(0f, -132f));
 
-        refs.p1ScoreText = CreateTmp("P1ScoreText", hud.transform, "P1: 0", 38, TextAlignmentOptions.MidlineLeft);
-        SetRect(refs.p1ScoreText.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(280f, 50f), new Vector2(28f, -30f));
+        TextMeshProUGUI neonText = CreateTmp("TitleNeon", titleGroup.transform, "NEON", 104, TextAlignmentOptions.Top);
+        SetRect(neonText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(560f, 88f), new Vector2(0f, 0f));
+        neonText.color = cyan;
+        neonText.fontStyle = FontStyles.Bold;
+        neonText.characterSpacing = 4f;
 
-        refs.p2ScoreText = CreateTmp("P2ScoreText", hud.transform, "P2: 0", 38, TextAlignmentOptions.MidlineRight);
-        SetRect(refs.p2ScoreText.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(280f, 50f), new Vector2(-28f, -30f));
+        TextMeshProUGUI matchText = CreateTmp("TitleMatch", titleGroup.transform, "MATCH", 88, TextAlignmentOptions.Top);
+        SetRect(matchText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(560f, 82f), new Vector2(0f, -82f));
+        matchText.color = pink;
+        matchText.fontStyle = FontStyles.Bold;
+        matchText.characterSpacing = 3f;
 
-        refs.p1ComboText = CreateTmp("P1ComboText", hud.transform, "Combo: x1", 28, TextAlignmentOptions.MidlineLeft);
-        SetRect(refs.p1ComboText.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(260f, 40f), new Vector2(28f, -72f));
+        TextMeshProUGUI blocksText = CreateTmp("TitleBlocks", titleGroup.transform, "BLOCKS", 74, TextAlignmentOptions.Top);
+        SetRect(blocksText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(560f, 70f), new Vector2(0f, -156f));
+        blocksText.color = new Color(0.98f, 0.76f, 1f, 1f);
+        blocksText.fontStyle = FontStyles.Bold;
+        blocksText.characterSpacing = 5f;
 
-        refs.p2ComboText = CreateTmp("P2ComboText", hud.transform, "Combo: x1", 28, TextAlignmentOptions.MidlineRight);
-        SetRect(refs.p2ComboText.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(260f, 40f), new Vector2(-28f, -72f));
+        TextMeshProUGUI subtitleText = CreateTmp("TitleSubtitle", titleGroup.transform, "3D ARCADE MEMORY DUEL", 26, TextAlignmentOptions.Top);
+        SetRect(subtitleText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(620f, 34f), new Vector2(0f, -224f));
+        subtitleText.color = new Color(0.72f, 0.90f, 1f, 0.82f);
+        subtitleText.characterSpacing = 4f;
 
-        refs.turnText = CreateTmp("TurnText", hud.transform, "Turn: PLAYER 1", 34, TextAlignmentOptions.Center);
-        SetRect(refs.turnText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(440f, 50f), new Vector2(0f, -30f));
+        GameObject p1Panel = CreateUiPanel("P1Panel", hud.transform, panelColor);
+        SetRect(p1Panel.GetComponent<RectTransform>(), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(298f, 118f), new Vector2(164f, -372f));
+        refs.p1TurnGlow = CreateImage("P1TurnGlow", p1Panel.transform, new Color(0.2f, 0.95f, 1f, 0.95f));
+        StretchRect(refs.p1TurnGlow.rectTransform);
+        refs.p1TurnGlow.rectTransform.offsetMin = new Vector2(8f, 8f);
+        refs.p1TurnGlow.rectTransform.offsetMax = new Vector2(-8f, -8f);
+        refs.p1ScoreText = CreateTmp("P1ScoreText", p1Panel.transform, "PLAYER 1\n0", 38, TextAlignmentOptions.TopLeft);
+        SetRect(refs.p1ScoreText.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(240f, 72f), new Vector2(22f, -12f));
+        refs.p1ScoreText.color = cyan;
+        refs.p1ScoreText.fontStyle = FontStyles.Bold;
+        refs.p1ComboText = CreateTmp("P1ComboText", p1Panel.transform, "COMBO x1", 26, TextAlignmentOptions.BottomLeft);
+        SetRect(refs.p1ComboText.rectTransform, new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(220f, 36f), new Vector2(24f, 18f));
+        refs.p1ComboText.color = new Color(0.78f, 0.96f, 1f, 0.9f);
 
-        refs.levelText = CreateTmp("LevelText", hud.transform, "Level 1 / 20", 30, TextAlignmentOptions.Center);
-        SetRect(refs.levelText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(280f, 46f), new Vector2(0f, -74f));
+        GameObject p2Panel = CreateUiPanel("P2Panel", hud.transform, panelColor);
+        SetRect(p2Panel.GetComponent<RectTransform>(), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(298f, 118f), new Vector2(-164f, -372f));
+        refs.p2TurnGlow = CreateImage("P2TurnGlow", p2Panel.transform, new Color(1f, 0.45f, 0.2f, 0.45f));
+        StretchRect(refs.p2TurnGlow.rectTransform);
+        refs.p2TurnGlow.rectTransform.offsetMin = new Vector2(8f, 8f);
+        refs.p2TurnGlow.rectTransform.offsetMax = new Vector2(-8f, -8f);
+        refs.p2ScoreText = CreateTmp("P2ScoreText", p2Panel.transform, "PLAYER 2\n0", 38, TextAlignmentOptions.TopRight);
+        SetRect(refs.p2ScoreText.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(240f, 72f), new Vector2(-22f, -12f));
+        refs.p2ScoreText.color = new Color(1f, 0.58f, 0.28f, 1f);
+        refs.p2ScoreText.fontStyle = FontStyles.Bold;
+        refs.p2ComboText = CreateTmp("P2ComboText", p2Panel.transform, "COMBO x1", 26, TextAlignmentOptions.BottomRight);
+        SetRect(refs.p2ComboText.rectTransform, new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(220f, 36f), new Vector2(-24f, 18f));
+        refs.p2ComboText.color = new Color(1f, 0.86f, 0.72f, 0.92f);
 
-        refs.timerText = CreateTmp("TimerText", hud.transform, "Time: 30", 30, TextAlignmentOptions.Center);
-        SetRect(refs.timerText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(240f, 46f), new Vector2(0f, -112f));
+        GameObject centerPanel = CreateUiPanel("CenterPanel", hud.transform, new Color(0.04f, 0.06f, 0.14f, 0.82f));
+        SetRect(centerPanel.GetComponent<RectTransform>(), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(380f, 120f), new Vector2(0f, -322f));
+        refs.turnText = CreateTmp("TurnText", centerPanel.transform, "TURN: PLAYER 1", 30, TextAlignmentOptions.Top);
+        SetRect(refs.turnText.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(320f, 34f), new Vector2(0f, -14f));
+        refs.turnText.color = new Color(0.95f, 0.98f, 1f, 1f);
+        refs.turnText.fontStyle = FontStyles.Bold;
+        refs.levelText = CreateTmp("LevelText", centerPanel.transform, "LEVEL 1 / 20", 26, TextAlignmentOptions.Center);
+        SetRect(refs.levelText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(300f, 34f), new Vector2(0f, 4f));
+        refs.levelText.color = pink;
+        refs.levelText.fontStyle = FontStyles.Bold;
+        refs.timerText = CreateTmp("TimerText", centerPanel.transform, "TIME 30", 24, TextAlignmentOptions.Bottom);
+        SetRect(refs.timerText.rectTransform, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(220f, 30f), new Vector2(0f, 16f));
+        refs.timerText.color = cyan;
 
-        refs.reflexPanel = CreateUiPanel("ReflexPanel", canvasGo.transform, new Color(0.02f, 0.06f, 0.12f, 0.88f));
-        SetRect(refs.reflexPanel.GetComponent<RectTransform>(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(800f, 420f), new Vector2(0f, 0f));
-
-        refs.reflexCountdownText = CreateTmp("ReflexCountdownText", refs.reflexPanel.transform, "3", 120, TextAlignmentOptions.Center);
-        SetRect(refs.reflexCountdownText.rectTransform, new Vector2(0.5f, 0.8f), new Vector2(0.5f, 0.8f), new Vector2(300f, 140f), new Vector2(0f, 0f));
-
-        refs.reflexResultText = CreateTmp("ReflexResultText", refs.reflexPanel.transform, "", 42, TextAlignmentOptions.Center);
-        SetRect(refs.reflexResultText.rectTransform, new Vector2(0.5f, 0.62f), new Vector2(0.5f, 0.62f), new Vector2(520f, 90f), new Vector2(0f, 0f));
-
-        refs.reflexLeftButton = CreateButton("ReflexLeftButton", refs.reflexPanel.transform, "PLAYER 1 TAP", new Vector2(220f, 90f), new Vector2(-200f, -90f));
-        refs.reflexRightButton = CreateButton("ReflexRightButton", refs.reflexPanel.transform, "PLAYER 2 TAP", new Vector2(220f, 90f), new Vector2(200f, -90f));
-
+        refs.reflexPanel = CreateUiPanel("ReflexGlow", canvasGo.transform, new Color(0.04f, 0.05f, 0.16f, 0.92f));
+        SetRect(refs.reflexPanel.GetComponent<RectTransform>(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(900f, 480f), Vector2.zero);
+        GameObject reflexContent = CreateUiPanel("ReflexPanel", refs.reflexPanel.transform, new Color(0.02f, 0.06f, 0.12f, 0.96f));
+        StretchRect(reflexContent.GetComponent<RectTransform>());
+        refs.reflexCountdownText = CreateTmp("ReflexCountdownText", reflexContent.transform, "3", 132, TextAlignmentOptions.Center);
+        SetRect(refs.reflexCountdownText.rectTransform, new Vector2(0.5f, 0.82f), new Vector2(0.5f, 0.82f), new Vector2(340f, 140f), Vector2.zero);
+        refs.reflexCountdownText.color = cyan;
+        refs.reflexCountdownText.fontStyle = FontStyles.Bold;
+        refs.reflexResultText = CreateTmp("ReflexResultText", reflexContent.transform, "", 40, TextAlignmentOptions.Center);
+        SetRect(refs.reflexResultText.rectTransform, new Vector2(0.5f, 0.62f), new Vector2(0.5f, 0.62f), new Vector2(620f, 84f), Vector2.zero);
+        refs.reflexResultText.color = new Color(1f, 0.82f, 0.96f, 1f);
+        refs.reflexLeftButton = CreateButton("ReflexLeftButton", reflexContent.transform, "PLAYER 1 TAP", new Vector2(250f, 96f), new Vector2(-220f, -94f));
+        refs.reflexRightButton = CreateButton("ReflexRightButton", reflexContent.transform, "PLAYER 2 TAP", new Vector2(250f, 96f), new Vector2(220f, -94f));
         refs.reflexLeftFlash = CreateImage("LeftFlash", refs.reflexLeftButton.transform, new Color(0.1f, 0.95f, 1f, 0.25f));
         StretchRect(refs.reflexLeftFlash.rectTransform);
         refs.reflexRightFlash = CreateImage("RightFlash", refs.reflexRightButton.transform, new Color(1f, 0.55f, 0.25f, 0.25f));
         StretchRect(refs.reflexRightFlash.rectTransform);
 
-        refs.levelResultPanel = CreateUiPanel("LevelResultPanel", canvasGo.transform, new Color(0.02f, 0.06f, 0.12f, 0.90f));
-        SetRect(refs.levelResultPanel.GetComponent<RectTransform>(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(880f, 480f), new Vector2(0f, 0f));
+        refs.levelResultPanel = CreateUiPanel("ResultGlow", canvasGo.transform, new Color(0.04f, 0.05f, 0.16f, 0.92f));
+        SetRect(refs.levelResultPanel.GetComponent<RectTransform>(), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(980f, 560f), Vector2.zero);
+        GameObject resultContent = CreateUiPanel("LevelResultPanel", refs.levelResultPanel.transform, new Color(0.02f, 0.06f, 0.12f, 0.96f));
+        StretchRect(resultContent.GetComponent<RectTransform>());
+        refs.resultTitle = CreateTmp("ResultTitleText", resultContent.transform, "LEVEL COMPLETE", 72, TextAlignmentOptions.Center);
+        SetRect(refs.resultTitle.rectTransform, new Vector2(0.5f, 0.8f), new Vector2(0.5f, 0.8f), new Vector2(820f, 110f), Vector2.zero);
+        refs.resultTitle.color = cyan;
+        refs.resultTitle.fontStyle = FontStyles.Bold;
+        refs.resultBody = CreateTmp("ResultBodyText", resultContent.transform, "Winner: PLAYER 1", 40, TextAlignmentOptions.Center);
+        SetRect(refs.resultBody.rectTransform, new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.43f), new Vector2(820f, 270f), Vector2.zero);
+        refs.resultBody.color = new Color(1f, 0.88f, 0.96f, 1f);
 
-        refs.resultTitle = CreateTmp("ResultTitleText", refs.levelResultPanel.transform, "LEVEL COMPLETE", 64, TextAlignmentOptions.Center);
-        SetRect(refs.resultTitle.rectTransform, new Vector2(0.5f, 0.78f), new Vector2(0.5f, 0.78f), new Vector2(760f, 120f), new Vector2(0f, 0f));
-
-        refs.resultBody = CreateTmp("ResultBodyText", refs.levelResultPanel.transform, "Winner: PLAYER 1", 38, TextAlignmentOptions.Center);
-        SetRect(refs.resultBody.rectTransform, new Vector2(0.5f, 0.43f), new Vector2(0.5f, 0.43f), new Vector2(760f, 260f), new Vector2(0f, 0f));
-
-        refs.floatingText = CreateTmp("FloatingTextPrefab", canvasGo.transform, "COMBO x2", 40, TextAlignmentOptions.Center);
+        refs.floatingText = CreateTmp("FloatingTextPrefab", canvasGo.transform, "COMBO x2", 46, TextAlignmentOptions.Center);
         SetRect(refs.floatingText.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(360f, 80f), new Vector2(0f, 0f));
+        refs.floatingText.color = pink;
+        refs.floatingText.fontStyle = FontStyles.Bold;
         refs.floatingText.gameObject.SetActive(false);
 
         refs.reflexPanel.SetActive(false);
@@ -306,9 +421,19 @@ public static class NeonMatchBlocksAutoSetupEditor
         }
 
         mat = new Material(shader);
-        SetMaterialColor(mat, "_BaseColor", new Color(0.06f, 0.08f, 0.16f));
-        SetMaterialColor(mat, "_Color", new Color(0.06f, 0.08f, 0.16f));
-        SetMaterialColor(mat, "_EmissionColor", new Color(0.0f, 0.7f, 1.0f) * 1.8f);
+        SetMaterialColor(mat, "_BaseColor", new Color(0.04f, 0.06f, 0.14f));
+        SetMaterialColor(mat, "_Color", new Color(0.04f, 0.06f, 0.14f));
+        SetMaterialColor(mat, "_EmissionColor", new Color(0.05f, 0.35f, 0.65f) * 1.65f);
+        if (mat.HasProperty("_Metallic"))
+        {
+            mat.SetFloat("_Metallic", 0.2f);
+        }
+
+        if (mat.HasProperty("_Smoothness"))
+        {
+            mat.SetFloat("_Smoothness", 0.92f);
+        }
+
         if (mat.HasProperty("_EmissionColor"))
         {
             mat.EnableKeyword("_EMISSION");
@@ -319,7 +444,83 @@ public static class NeonMatchBlocksAutoSetupEditor
         return mat;
     }
 
-    private static Block LoadOrCreateBlockPrefab(Material cubeMat)
+    private static Material LoadOrCreateGlowMaterial()
+    {
+        Material mat = AssetDatabase.LoadAssetAtPath<Material>(CubeGlowMaterialPath);
+        if (mat != null)
+        {
+            return mat;
+        }
+
+        Shader shader = Shader.Find("Universal Render Pipeline/Lit");
+        if (shader == null)
+        {
+            shader = Shader.Find("Standard");
+        }
+
+        mat = new Material(shader);
+        SetMaterialColor(mat, "_BaseColor", new Color(0.0f, 0.72f, 1.0f));
+        SetMaterialColor(mat, "_Color", new Color(0.0f, 0.72f, 1.0f));
+        SetMaterialColor(mat, "_EmissionColor", new Color(0.15f, 0.95f, 1.0f) * 3.5f);
+        if (mat.HasProperty("_Metallic"))
+        {
+            mat.SetFloat("_Metallic", 0.05f);
+        }
+
+        if (mat.HasProperty("_Smoothness"))
+        {
+            mat.SetFloat("_Smoothness", 0.95f);
+        }
+
+        if (mat.HasProperty("_EmissionColor"))
+        {
+            mat.EnableKeyword("_EMISSION");
+        }
+
+        AssetDatabase.CreateAsset(mat, CubeGlowMaterialPath);
+        AssetDatabase.SaveAssets();
+        return mat;
+    }
+
+    private static Material LoadOrCreateNeonMaterial(string path, Color baseColor, Color emissionColor, float metallic, float smoothness)
+    {
+        Material mat = AssetDatabase.LoadAssetAtPath<Material>(path);
+        if (mat != null)
+        {
+            return mat;
+        }
+
+        Shader shader = Shader.Find("Universal Render Pipeline/Lit");
+        if (shader == null)
+        {
+            shader = Shader.Find("Standard");
+        }
+
+        mat = new Material(shader);
+        SetMaterialColor(mat, "_BaseColor", baseColor);
+        SetMaterialColor(mat, "_Color", baseColor);
+        SetMaterialColor(mat, "_EmissionColor", emissionColor);
+        if (mat.HasProperty("_Metallic"))
+        {
+            mat.SetFloat("_Metallic", metallic);
+        }
+
+        if (mat.HasProperty("_Smoothness"))
+        {
+            mat.SetFloat("_Smoothness", smoothness);
+        }
+
+        if (mat.HasProperty("_EmissionColor"))
+        {
+            mat.EnableKeyword("_EMISSION");
+        }
+
+        AssetDatabase.CreateAsset(mat, path);
+        AssetDatabase.SaveAssets();
+        return mat;
+    }
+
+    private static Block LoadOrCreateBlockPrefab(Material cubeMat, Material cubeGlowMat)
     {
         GameObject root = new GameObject("NeonCube");
         root.AddComponent<BoxCollider>();
@@ -350,11 +551,31 @@ public static class NeonMatchBlocksAutoSetupEditor
             cubeRenderer.sharedMaterial = cubeMat;
         }
 
+        GameObject glowShell = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        glowShell.name = "GlowShell";
+        glowShell.transform.SetParent(visualRoot.transform);
+        glowShell.transform.localPosition = Vector3.zero;
+        glowShell.transform.localRotation = Quaternion.identity;
+        glowShell.transform.localScale = Vector3.one * 1.08f;
+        Collider glowCollider = glowShell.GetComponent<Collider>();
+        if (glowCollider != null)
+        {
+            Object.DestroyImmediate(glowCollider);
+        }
+
+        MeshRenderer glowRenderer = glowShell.GetComponent<MeshRenderer>();
+        if (glowRenderer != null && cubeGlowMat != null)
+        {
+            glowRenderer.sharedMaterial = cubeGlowMat;
+            glowRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            glowRenderer.receiveShadows = false;
+        }
+
         GameObject faceRoot = new GameObject("FaceRoot");
         faceRoot.transform.SetParent(visualRoot.transform);
         faceRoot.transform.localPosition = new Vector3(0f, 0f, 0.501f);
         faceRoot.transform.localRotation = Quaternion.identity;
-        faceRoot.transform.localScale = Vector3.one * 0.8f;
+        faceRoot.transform.localScale = Vector3.one * 0.86f;
 
         SpriteRenderer faceSprite = faceRoot.AddComponent<SpriteRenderer>();
         faceSprite.color = Color.white;
@@ -546,12 +767,12 @@ public static class NeonMatchBlocksAutoSetupEditor
         Transform boardRoot,
         List<Sprite> sportsFaces)
     {
-        SetField(gameManager, "playVsAI", true);
-        SetField(gameManager, "maxLevels", 20);
-        SetField(gameManager, "blockPrefab", blockPrefab);
-        SetField(gameManager, "boardRoot", boardRoot);
-        SetField(gameManager, "boardCenter", Vector3.zero);
-        SetField(gameManager, "blockSpacing", 1.45f);
+        SetSerializedBool(gameManager, "playVsAI", true);
+        SetSerializedInt(gameManager, "maxLevels", 20);
+        SetSerializedObjectReference(gameManager, "blockPrefab", blockPrefab);
+        SetSerializedObjectReference(gameManager, "boardRoot", boardRoot);
+        SetSerializedVector3(gameManager, "boardCenter", new Vector3(0f, -0.3f, 0f));
+        SetSerializedFloat(gameManager, "blockSpacing", 1.52f);
         SetObjectReferenceListField(gameManager, "sportsFaces", sportsFaces);
     }
 
@@ -618,6 +839,42 @@ public static class NeonMatchBlocksAutoSetupEditor
         SetField(particleManager, "levelCompleteFx", complete);
     }
 
+    private static GameObject CreateSceneBlock(string name, Transform parent, Vector3 position, Vector3 scale, Material material)
+    {
+        GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        go.name = name;
+        go.transform.SetParent(parent, false);
+        go.transform.localPosition = position;
+        go.transform.localScale = scale;
+
+        MeshRenderer renderer = go.GetComponent<MeshRenderer>();
+        if (renderer != null)
+        {
+            renderer.sharedMaterial = material;
+        }
+
+        Collider col = go.GetComponent<Collider>();
+        if (col != null)
+        {
+            Object.DestroyImmediate(col);
+        }
+
+        return go;
+    }
+
+    private static Light CreateSceneLight(string name, Transform parent, Vector3 position, Color color, float range, float intensity)
+    {
+        GameObject go = new GameObject(name);
+        go.transform.SetParent(parent, false);
+        go.transform.localPosition = position;
+        Light light = go.AddComponent<Light>();
+        light.type = LightType.Point;
+        light.color = color;
+        light.range = range;
+        light.intensity = intensity;
+        return light;
+    }
+
     private static GameObject CreateUiPanel(string name, Transform parent, Color color)
     {
         GameObject panel = new GameObject(name, typeof(RectTransform), typeof(Image));
@@ -660,13 +917,13 @@ public static class NeonMatchBlocksAutoSetupEditor
         go.transform.SetParent(parent, false);
 
         Image image = go.GetComponent<Image>();
-        image.color = new Color(0.10f, 0.12f, 0.20f, 0.95f);
+        image.color = new Color(0.10f, 0.12f, 0.22f, 0.96f);
 
         Button button = go.GetComponent<Button>();
         ColorBlock colors = button.colors;
         colors.normalColor = image.color;
-        colors.highlightedColor = new Color(0.20f, 0.25f, 0.35f, 1f);
-        colors.pressedColor = new Color(0.05f, 0.08f, 0.14f, 1f);
+        colors.highlightedColor = new Color(0.18f, 0.24f, 0.40f, 1f);
+        colors.pressedColor = new Color(0.06f, 0.08f, 0.16f, 1f);
         colors.selectedColor = colors.normalColor;
         button.colors = colors;
 
@@ -675,6 +932,9 @@ public static class NeonMatchBlocksAutoSetupEditor
 
         TextMeshProUGUI text = CreateTmp("Label", go.transform, label, 28, TextAlignmentOptions.Center);
         StretchRect(text.rectTransform);
+        text.fontStyle = FontStyles.Bold;
+        text.characterSpacing = 2f;
+        text.color = new Color(0.86f, 0.96f, 1f, 1f);
         return button;
     }
 
@@ -771,6 +1031,81 @@ public static class NeonMatchBlocksAutoSetupEditor
             property.GetArrayElementAtIndex(i).objectReferenceValue = values[i];
         }
 
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(target);
+    }
+
+    private static void SetSerializedBool(Object target, string fieldName, bool value)
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(fieldName);
+        if (property == null)
+        {
+            Debug.LogWarning("NeonMatchBlocksAutoSetupEditor: Could not find bool field " + fieldName + " on " + target.GetType().Name);
+            return;
+        }
+
+        property.boolValue = value;
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(target);
+    }
+
+    private static void SetSerializedInt(Object target, string fieldName, int value)
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(fieldName);
+        if (property == null)
+        {
+            Debug.LogWarning("NeonMatchBlocksAutoSetupEditor: Could not find int field " + fieldName + " on " + target.GetType().Name);
+            return;
+        }
+
+        property.intValue = value;
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(target);
+    }
+
+    private static void SetSerializedFloat(Object target, string fieldName, float value)
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(fieldName);
+        if (property == null)
+        {
+            Debug.LogWarning("NeonMatchBlocksAutoSetupEditor: Could not find float field " + fieldName + " on " + target.GetType().Name);
+            return;
+        }
+
+        property.floatValue = value;
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(target);
+    }
+
+    private static void SetSerializedVector3(Object target, string fieldName, Vector3 value)
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(fieldName);
+        if (property == null)
+        {
+            Debug.LogWarning("NeonMatchBlocksAutoSetupEditor: Could not find Vector3 field " + fieldName + " on " + target.GetType().Name);
+            return;
+        }
+
+        property.vector3Value = value;
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(target);
+    }
+
+    private static void SetSerializedObjectReference(Object target, string fieldName, Object value)
+    {
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(fieldName);
+        if (property == null)
+        {
+            Debug.LogWarning("NeonMatchBlocksAutoSetupEditor: Could not find object field " + fieldName + " on " + target.GetType().Name);
+            return;
+        }
+
+        property.objectReferenceValue = value;
         serializedObject.ApplyModifiedPropertiesWithoutUndo();
         EditorUtility.SetDirty(target);
     }
