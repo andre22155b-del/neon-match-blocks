@@ -321,16 +321,6 @@ public static class NeonMatchBlocksAutoSetupEditor
 
     private static Block LoadOrCreateBlockPrefab(Material cubeMat)
     {
-        GameObject existingPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(BlockPrefabPath);
-        if (existingPrefab != null)
-        {
-            Block existingBlock = existingPrefab.GetComponent<Block>();
-            if (existingBlock != null)
-            {
-                return existingBlock;
-            }
-        }
-
         GameObject root = new GameObject("NeonCube");
         root.AddComponent<BoxCollider>();
         Block block = root.AddComponent<Block>();
@@ -362,12 +352,13 @@ public static class NeonMatchBlocksAutoSetupEditor
 
         GameObject faceRoot = new GameObject("FaceRoot");
         faceRoot.transform.SetParent(visualRoot.transform);
-        faceRoot.transform.localPosition = new Vector3(0f, 0.501f, 0f);
-        faceRoot.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+        faceRoot.transform.localPosition = new Vector3(0f, 0f, 0.501f);
+        faceRoot.transform.localRotation = Quaternion.identity;
         faceRoot.transform.localScale = Vector3.one * 0.8f;
 
         SpriteRenderer faceSprite = faceRoot.AddComponent<SpriteRenderer>();
         faceSprite.color = Color.white;
+        faceSprite.sortingOrder = 1;
         faceRoot.SetActive(false);
 
         GameObject glow = new GameObject("GlowLight");
@@ -561,7 +552,7 @@ public static class NeonMatchBlocksAutoSetupEditor
         SetField(gameManager, "boardRoot", boardRoot);
         SetField(gameManager, "boardCenter", Vector3.zero);
         SetField(gameManager, "blockSpacing", 1.45f);
-        SetField(gameManager, "sportsFaces", sportsFaces);
+        SetObjectReferenceListField(gameManager, "sportsFaces", sportsFaces);
     }
 
     private static void ConfigureUiManager(UIManager uiManager, UiRefs ui)
@@ -757,6 +748,31 @@ public static class NeonMatchBlocksAutoSetupEditor
         {
             EditorUtility.SetDirty(unityObj);
         }
+    }
+
+    private static void SetObjectReferenceListField(Object target, string fieldName, IList<Sprite> values)
+    {
+        if (target == null)
+        {
+            return;
+        }
+
+        SerializedObject serializedObject = new SerializedObject(target);
+        SerializedProperty property = serializedObject.FindProperty(fieldName);
+        if (property == null || !property.isArray)
+        {
+            Debug.LogWarning("NeonMatchBlocksAutoSetupEditor: Could not find array field " + fieldName + " on " + target.GetType().Name);
+            return;
+        }
+
+        property.arraySize = values != null ? values.Count : 0;
+        for (int i = 0; i < property.arraySize; i++)
+        {
+            property.GetArrayElementAtIndex(i).objectReferenceValue = values[i];
+        }
+
+        serializedObject.ApplyModifiedPropertiesWithoutUndo();
+        EditorUtility.SetDirty(target);
     }
 
     private struct UiRefs
