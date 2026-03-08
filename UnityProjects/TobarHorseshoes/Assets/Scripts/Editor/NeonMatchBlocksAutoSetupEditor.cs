@@ -134,9 +134,9 @@ public static class NeonMatchBlocksAutoSetupEditor
             camGo.tag = "MainCamera";
         }
 
-        cam.transform.position = new Vector3(0f, 7.0f, -18f);
-        cam.transform.rotation = Quaternion.Euler(15f, 0f, 0f);
-        cam.fieldOfView = 58f;
+        cam.transform.position = new Vector3(0f, 9.5f, -10.5f);
+        cam.transform.rotation = Quaternion.Euler(38f, 0f, 0f);
+        cam.fieldOfView = 48f;
         cam.backgroundColor = new Color(0.03f, 0.04f, 0.08f);
         cam.clearFlags = CameraClearFlags.SolidColor;
     }
