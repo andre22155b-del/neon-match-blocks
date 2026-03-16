@@ -38,6 +38,11 @@ public class NeonFieldGoalConfig : ScriptableObject
     public float footballMass = 0.6f;
     public float footballLinearDamping = 0.05f;
     public float footballAngularDamping = 0.08f;
+    public float kickReleaseDuration = 0.08f;
+    [Range(0.5f, 3f)] public float kickReleaseEase = 1.45f;
+    [Range(0.2f, 1.5f)] public float releaseGravityScale = 0.72f;
+    [Range(0.2f, 1.5f)] public float risingGravityScale = 0.94f;
+    [Range(0.2f, 1.8f)] public float fallingGravityScale = 1.08f;
     public float settleVelocityThreshold = 0.2f;
     public float settleAngularVelocityThreshold = 0.45f;
     public float settleStableSeconds = 0.25f;
@@ -50,8 +55,24 @@ public class NeonFieldGoalConfig : ScriptableObject
     public float uprightInnerHalfWidth = 2.82f;
     public float goalPlaneDepthPadding = 0.05f;
 
+    [Header("Moving Goal")]
+    [Min(20)] public int movingGoalStartYardLine = 50;
+    [Min(20)] public int movingGoalFullChallengeYardLine = 65;
+    [Min(0f)] public float movingGoalBaseSideOffset = 0.34f;
+    [Min(0f)] public float movingGoalExtraSideOffset = 0.18f;
+    [Min(0f)] public float movingGoalBaseSpeed = 0.32f;
+    [Min(0f)] public float movingGoalExtraSpeed = 0.18f;
+    [Min(0.1f)] public float movingGoalSharpness = 5.5f;
+
+    [Header("Yard Progression")]
+    [Min(1)] public int startingYardLine = 20;
+    [Min(1)] public int yardsPerGoalStep = 5;
+    [Min(0.01f)] public float worldUnitsPerYard = 0.1f;
+
     [Header("Scoring")]
     public int pointsPerGoal = 3;
+    [Min(1)] public int longBombStartYardLine = 50;
+    [Min(1)] public int longBombPointsPerGoal = 5;
     public int perfectKickBonusPoints = 2;
     public int clutchBonusPoints = 1;
     public int clutchPerfectBonusPoints = 2;
@@ -94,12 +115,26 @@ public class NeonFieldGoalConfig : ScriptableObject
     [Range(0f, 1f)] public float crowdVolume = 0.88f;
     [Range(0f, 1f)] public float ambientVolume = 0.34f;
     [Range(0f, 1f)] public float voiceVolume = 1f;
+    [Range(0f, 1f)] public float announcerVolume = 0.92f;
+    [Range(0.05f, 0.75f)] public float announcerCueGapSeconds = 0.18f;
+    [Range(0.5f, 1f)] public float crowdDuckUnderAnnouncer = 0.82f;
+    [Range(0.4f, 1f)] public float ambientDuckUnderAnnouncer = 0.68f;
+    [Range(1f, 16f)] public float audioDuckRecoverSharpness = 8.5f;
+    [Range(1f, 1.6f)] public float ambientMaxMixScale = 1.24f;
     public AudioClip kickClip;
     public AudioClip goalClip;
     public AudioClip missClip;
     public AudioClip crowdClip;
     public AudioClip ambientLoopClip;
     public AudioClip itsGoodVoiceClip;
+    public AudioClip perfectKickStingClip;
+    public AudioClip longBombStingClip;
+    public AudioClip heatStingClip;
+    public AudioClip clutchStingClip;
+    public AudioClip nearMissStingClip;
+    public AudioClip streakBreakStingClip;
+    public AudioClip finalDriveStingClip;
+    public AudioClip movingGoalStingClip;
 
     [Header("Asset Slots")]
     public GameObject footballVisualPrefab;

@@ -61,9 +61,25 @@ public class RefereePresentationController : MonoBehaviour
         }
     }
 
-    public void CelebrateGoal()
+    public void CelebrateGoal(bool longBomb, bool perfectKick, bool clutchActive, int multiplier)
     {
-        celebrationTimer = celebrationHoldSeconds;
+        float hypeBonus = 0f;
+        if (perfectKick)
+        {
+            hypeBonus += 0.12f;
+        }
+
+        if (clutchActive)
+        {
+            hypeBonus += 0.1f;
+        }
+
+        if (multiplier >= 3)
+        {
+            hypeBonus += 0.08f;
+        }
+
+        celebrationTimer = celebrationHoldSeconds + (longBomb ? 0.28f : 0f) + hypeBonus;
 
         if (animators != null)
         {
@@ -81,6 +97,7 @@ public class RefereePresentationController : MonoBehaviour
             AudioClip clip = config != null ? config.itsGoodVoiceClip : null;
             if (clip != null)
             {
+                voiceSource.pitch = longBomb ? 1.06f : perfectKick ? 1.03f : clutchActive ? 1.02f : 1f;
                 voiceSource.PlayOneShot(clip, config.voiceVolume);
             }
         }
@@ -90,6 +107,10 @@ public class RefereePresentationController : MonoBehaviour
     {
         celebrationTimer = 0f;
         celebrationBlend = 0f;
+        if (voiceSource != null)
+        {
+            voiceSource.pitch = 1f;
+        }
         ApplyArmPose(0f);
         ApplyRootPose(0f);
     }
@@ -98,11 +119,11 @@ public class RefereePresentationController : MonoBehaviour
     {
         if (celebrationTimer > 0f)
         {
-            celebrationTimer -= Time.deltaTime;
+            celebrationTimer -= Time.unscaledDeltaTime;
         }
 
         float targetBlend = celebrationTimer > 0f ? 1f : 0f;
-        celebrationBlend = Mathf.MoveTowards(celebrationBlend, targetBlend, Time.deltaTime * poseLerpSpeed);
+        celebrationBlend = Mathf.MoveTowards(celebrationBlend, targetBlend, Time.unscaledDeltaTime * poseLerpSpeed);
         ApplyArmPose(celebrationBlend);
 
         ApplyRootPose(celebrationBlend);
@@ -194,7 +215,7 @@ public class RefereePresentationController : MonoBehaviour
                 continue;
             }
 
-            float wave = Time.time * 9f + i * 0.75f;
+            float wave = Time.unscaledTime * 9f + i * 0.75f;
             float bounce = blend * Mathf.Abs(Mathf.Sin(wave)) * 0.13f;
             float sway = blend * Mathf.Sin(wave * 0.55f) * 8f;
             float scalePulse = blend * (0.06f + Mathf.Abs(Mathf.Sin(wave * 1.2f)) * 0.05f);

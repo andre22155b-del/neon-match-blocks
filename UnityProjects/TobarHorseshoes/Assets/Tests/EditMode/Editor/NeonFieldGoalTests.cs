@@ -43,6 +43,36 @@ public class NeonFieldGoalTests
     }
 
     [Test]
+    public void GoalDetectorClassifiesWideLeftMiss()
+    {
+        GoalCrossingEvaluation evaluation = GoalDetector.EvaluateCrossing(
+            new Vector3(-3.2f, 3.6f, -0.22f),
+            new Vector3(-3.05f, 3.65f, 0.18f),
+            2.82f,
+            3.05f,
+            0.05f);
+
+        Assert.IsTrue(evaluation.HasFrontToBackCrossing);
+        Assert.IsFalse(evaluation.IsGoal);
+        Assert.AreEqual(GoalCrossingMissType.WideLeft, evaluation.MissType);
+    }
+
+    [Test]
+    public void GoalDetectorClassifiesWideRightLowMiss()
+    {
+        GoalCrossingEvaluation evaluation = GoalDetector.EvaluateCrossing(
+            new Vector3(3.1f, 2.75f, -0.24f),
+            new Vector3(3.2f, 2.8f, 0.22f),
+            2.82f,
+            3.05f,
+            0.05f);
+
+        Assert.IsTrue(evaluation.HasFrontToBackCrossing);
+        Assert.IsFalse(evaluation.IsGoal);
+        Assert.AreEqual(GoalCrossingMissType.WideRightLow, evaluation.MissType);
+    }
+
+    [Test]
     public void FootballProjectileOnlyScoresOnce()
     {
         GameObject go = new GameObject("FootballProjectileTest");
@@ -63,6 +93,78 @@ public class NeonFieldGoalTests
         Assert.NotNull(FieldGoalAudioFactory.GetMissClip());
         Assert.NotNull(FieldGoalAudioFactory.GetCrowdClip());
         Assert.NotNull(FieldGoalAudioFactory.GetAmbientClip());
+        Assert.NotNull(FieldGoalAudioFactory.GetCueClip(FieldGoalAudioCue.Perfect));
+        Assert.NotNull(FieldGoalAudioFactory.GetCueClip(FieldGoalAudioCue.LongBomb));
+        Assert.NotNull(FieldGoalAudioFactory.GetCueClip(FieldGoalAudioCue.FinalDrive));
+    }
+
+    [Test]
+    public void AudioIdentityPrioritizesLongBombCueOverPerfectAndClutch()
+    {
+        FieldGoalScoreResult result = new FieldGoalScoreResult(
+            pointsAwarded: 20,
+            rawPoints: 10,
+            multiplier: 2,
+            clutchActive: true,
+            perfectKick: true,
+            yardLine: 55,
+            longBomb: true);
+
+        Assert.AreEqual(FieldGoalAudioCue.LongBomb, FieldGoalAudioIdentity.GetGoalCue(result));
+    }
+
+    [Test]
+    public void AudioIdentityUsesStreakBreakCueWhenHeatDies()
+    {
+        FieldGoalAudioCue cue = FieldGoalAudioIdentity.GetMissCue(
+            GoalCrossingMissType.None,
+            longBombLine: false,
+            clutchActive: false,
+            brokeHeat: true);
+
+        Assert.AreEqual(FieldGoalAudioCue.StreakBreak, cue);
+    }
+
+    [Test]
+    public void AudioIdentityAmbientScaleRisesInClutchWithMovingGoal()
+    {
+        float baseScale = FieldGoalAudioIdentity.GetAmbientScale(false, 1, false);
+        float hypedScale = FieldGoalAudioIdentity.GetAmbientScale(true, 4, true);
+
+        Assert.Greater(hypedScale, baseScale);
+    }
+
+    [Test]
+    public void AudioIdentityBlocksLowerPriorityCueInsideCooldown()
+    {
+        bool shouldPlay = FieldGoalAudioIdentity.ShouldPlayCue(
+            FieldGoalAudioCue.NearMiss,
+            FieldGoalAudioCue.LongBomb,
+            0.08f,
+            0.18f);
+
+        Assert.IsFalse(shouldPlay);
+    }
+
+    [Test]
+    public void AudioIdentityAllowsHigherPriorityCueToOverrideCooldown()
+    {
+        bool shouldPlay = FieldGoalAudioIdentity.ShouldPlayCue(
+            FieldGoalAudioCue.LongBomb,
+            FieldGoalAudioCue.NearMiss,
+            0.08f,
+            0.18f);
+
+        Assert.IsTrue(shouldPlay);
+    }
+
+    [Test]
+    public void AudioIdentityUsesStrongerDuckForLongBombThanNearMiss()
+    {
+        float longBombDuck = FieldGoalAudioIdentity.GetCueDuckIntensity(FieldGoalAudioCue.LongBomb);
+        float nearMissDuck = FieldGoalAudioIdentity.GetCueDuckIntensity(FieldGoalAudioCue.NearMiss);
+
+        Assert.Greater(longBombDuck, nearMissDuck);
     }
 
     [Test]
@@ -225,6 +327,8 @@ public class NeonFieldGoalTests
     {
         NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
         config.pointsPerGoal = 3;
+        config.longBombStartYardLine = 50;
+        config.longBombPointsPerGoal = 5;
         config.perfectKickBonusPoints = 2;
         config.clutchBonusPoints = 1;
         config.clutchPerfectBonusPoints = 2;
@@ -233,11 +337,117 @@ public class NeonFieldGoalTests
         config.clutchMinimumMultiplier = 2;
         config.clutchWindowSeconds = 10f;
 
-        FieldGoalScoreResult result = FieldGoalScoring.Evaluate(config, FieldGoalMode.ArcadeRush, 8f, 3, true);
+        FieldGoalScoreResult result = FieldGoalScoring.Evaluate(config, FieldGoalMode.ArcadeRush, 8f, 3, true, 35);
 
         Assert.AreEqual(2, result.Multiplier);
         Assert.AreEqual(8, result.RawPoints);
         Assert.AreEqual(16, result.PointsAwarded);
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void LongBombBasePointsJumpToFiveAtFiftyYards()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.pointsPerGoal = 3;
+        config.longBombStartYardLine = 50;
+        config.longBombPointsPerGoal = 5;
+
+        Assert.AreEqual(3, FieldGoalScoring.GetBasePointsForYardLine(config, 45));
+        Assert.AreEqual(5, FieldGoalScoring.GetBasePointsForYardLine(config, 50));
+        Assert.IsTrue(FieldGoalScoring.IsLongBomb(config, 55));
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void YardLineProgressionStartsAtTwentyAndAddsFivePerGoal()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.startingYardLine = 20;
+        config.yardsPerGoalStep = 5;
+
+        Assert.AreEqual(20, FieldGoalScoring.GetCurrentYardLine(config, 0));
+        Assert.AreEqual(25, FieldGoalScoring.GetCurrentYardLine(config, 1));
+        Assert.AreEqual(35, FieldGoalScoring.GetCurrentYardLine(config, 3));
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void KickDepthOffsetMovesBackFiveTenthsPerMadeKickByDefault()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.startingYardLine = 20;
+        config.yardsPerGoalStep = 5;
+        config.worldUnitsPerYard = 0.1f;
+
+        Assert.AreEqual(0f, FieldGoalScoring.GetKickDepthOffset(config, 0));
+        Assert.AreEqual(-0.5f, FieldGoalScoring.GetKickDepthOffset(config, 1));
+        Assert.AreEqual(-1f, FieldGoalScoring.GetKickDepthOffset(config, 2));
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void KickReleaseBlendStartsAtZeroAndEndsAtOne()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.kickReleaseEase = 1.45f;
+
+        Assert.AreEqual(0f, FieldGoalKickMath.EvaluateKickReleaseBlend(config, 0f), 0.0001f);
+        Assert.Greater(FieldGoalKickMath.EvaluateKickReleaseBlend(config, 0.5f), 0.5f);
+        Assert.AreEqual(1f, FieldGoalKickMath.EvaluateKickReleaseBlend(config, 1f), 0.0001f);
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void GravityScaleIsLighterOnReleaseAndHeavierOnFall()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.releaseGravityScale = 0.72f;
+        config.risingGravityScale = 0.94f;
+        config.fallingGravityScale = 1.08f;
+
+        float releaseScale = FieldGoalKickMath.GetGravityScale(config, 4f, 0f);
+        float risingScale = FieldGoalKickMath.GetGravityScale(config, 4f, 1f);
+        float fallingScale = FieldGoalKickMath.GetGravityScale(config, -6f, 1f);
+
+        Assert.Less(releaseScale, risingScale);
+        Assert.Greater(fallingScale, risingScale);
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void MovingGoalActivatesAtFiftyYardLine()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.movingGoalStartYardLine = 50;
+
+        Assert.IsFalse(FieldGoalScoring.IsMovingGoalActive(config, 45));
+        Assert.IsTrue(FieldGoalScoring.IsMovingGoalActive(config, 50));
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void MovingGoalAmplitudeAndSpeedRampWithLongerKicks()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.movingGoalStartYardLine = 50;
+        config.movingGoalFullChallengeYardLine = 65;
+        config.movingGoalBaseSideOffset = 0.34f;
+        config.movingGoalExtraSideOffset = 0.18f;
+        config.movingGoalBaseSpeed = 0.32f;
+        config.movingGoalExtraSpeed = 0.18f;
+
+        Assert.AreEqual(0f, FieldGoalScoring.GetMovingGoalAmplitude(config, 45), 0.0001f);
+        Assert.AreEqual(0.34f, FieldGoalScoring.GetMovingGoalAmplitude(config, 50), 0.0001f);
+        Assert.Greater(FieldGoalScoring.GetMovingGoalAmplitude(config, 65), FieldGoalScoring.GetMovingGoalAmplitude(config, 50));
+        Assert.Greater(FieldGoalScoring.GetMovingGoalSpeed(config, 65), FieldGoalScoring.GetMovingGoalSpeed(config, 50));
 
         Object.DestroyImmediate(config);
     }
