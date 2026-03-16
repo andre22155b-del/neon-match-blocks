@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46fa564fd5c174b87918f0a713c086ff, type: 3}
+  m_Name: NeonFieldGoalConfig
+  m_EditorClassIdentifier: Assembly-CSharp::NeonFieldGoalConfig
+  roundDurationSeconds: 60
+  clutchModeRoundDurationSeconds: 35
+  clutchWindowSeconds: 10
+  respawnDelayAfterGoal: 0.9
+  respawnDelayAfterMiss: 0.65
+  laneHalfWidth: 3.25
+  moverSpeed: 2.35
+  moverAcceleration: 18
+  moverDeceleration: 24
+  moverLeanAngle: 8
+  moverLeanSharpness: 10
+  minKickImpulse: 7.1
+  maxKickImpulse: 10.15
+  launchAngleDegrees: 38
+  maxAimDegrees: 11
+  aimAssistStrength: 0.22
+  kickPowerExponent: 0.82
+  perfectKickCenter: 0.84
+  perfectKickWindow: 0.12
+  perfectKickImpulseBonus: 0.42
+  maxCurveTorque: 1.35
+  maxBallLifeSeconds: 5
+  trajectorySampleCount: 18
+  trajectorySampleStep: 0.08
+  minKickPower: 0.1
+  footballMass: 0.6
+  footballLinearDamping: 0.05
+  footballAngularDamping: 0.08
+  settleVelocityThreshold: 0.2
+  settleAngularVelocityThreshold: 0.45
+  settleStableSeconds: 0.25
+  outOfBoundsY: -2
+  outOfBoundsDistance: 55
+  goalDistance: 21.5
+  crossbarHeight: 3.05
+  uprightInnerHalfWidth: 2.82
+  goalPlaneDepthPadding: 0.05
+  pointsPerGoal: 3
+  perfectKickBonusPoints: 2
+  clutchBonusPoints: 1
+  clutchPerfectBonusPoints: 2
+  makesPerMultiplierStep: 2
+  maxScoreMultiplier: 5
+  clutchMinimumMultiplier: 2
+  goalLightBaseIntensity: 2.15
+  goalLightFlashIntensity: 10.5
+  goalLightFlashDuration: 0.65
+  kickGlowBoost: 0.7
+  kickGlowDuration: 0.16
+  crowdBoostMultiplier: 2.25
+  finalDriveCrowdBoostMultiplier: 1.95
+  cameraKickShake: 0.14
+  cameraGoalShake: 0.26
+  cameraMissShake: 0.1
+  cameraFinalDriveShake: 0.16
+  cameraShakeAngle: 1.65
+  cameraShakeDistance: 0.12
+  cameraKickbackDistance: 0.22
+  cameraKickFovBoost: 1.35
+  cameraGoalFovBoost: 4.1
+  cameraClutchFovBoost: 1.6
+  cameraClutchRollAngle: 0.7
+  cameraShakeDecay: 2.8
+  cameraPositionSharpness: 11
+  cameraRotationSharpness: 9
+  cameraFovSharpness: 8
+  perfectKickSlowMoScale: 0.86
+  perfectKickSlowMoDuration: 0.08
+  perfectGoalSlowMoScale: 0.72
+  perfectGoalSlowMoDuration: 0.12
+  masterSfxVolume: 0.92
+  crowdVolume: 0.88
+  ambientVolume: 0.34
+  voiceVolume: 1
+  kickClip: {fileID: 0}
+  goalClip: {fileID: 0}
+  missClip: {fileID: 0}
+  crowdClip: {fileID: 0}
+  ambientLoopClip: {fileID: 0}
+  itsGoodVoiceClip: {fileID: 0}
+  footballVisualPrefab: {fileID: 0}
+  footballMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  footballMaterial: {fileID: 2100000, guid: 5e2ae65b0ee77426aaa02b56c510b40f, type: 2}
+  refereePrefabs: []
+  refereeAnimatorController: {fileID: 0}
