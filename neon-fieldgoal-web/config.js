@@ -1,0 +1,1 @@
+window.NFG_REMOTE_BOARD_URL = window.NFG_REMOTE_BOARD_URL || "";

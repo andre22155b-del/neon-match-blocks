@@ -1,0 +1,66 @@
+{
+  "scoreAttack": [
+    {
+      "handle": "GRID01",
+      "score": 108,
+      "goals": 24,
+      "longestKick": 60,
+      "maxStreak": 8,
+      "stamp": "2026-03-16T22:14:00.000Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    },
+    {
+      "handle": "NEONQB",
+      "score": 101,
+      "goals": 22,
+      "longestKick": 55,
+      "maxStreak": 7,
+      "stamp": "2026-03-16T21:18:00.000Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    },
+    {
+      "handle": "ARC4DE",
+      "score": 96,
+      "goals": 21,
+      "longestKick": 50,
+      "maxStreak": 7,
+      "stamp": "2026-03-16T19:42:00.000Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    }
+  ],
+  "longBomb": [
+    {
+      "handle": "BANGER",
+      "score": 72,
+      "goals": 12,
+      "longestKick": 65,
+      "maxStreak": 5,
+      "stamp": "2026-03-16T23:03:00.000Z",
+      "source": "remote",
+      "modeKey": "longBomb"
+    },
+    {
+      "handle": "SWAY99",
+      "score": 66,
+      "goals": 11,
+      "longestKick": 65,
+      "maxStreak": 4,
+      "stamp": "2026-03-16T20:45:00.000Z",
+      "source": "remote",
+      "modeKey": "longBomb"
+    },
+    {
+      "handle": "WINDUP",
+      "score": 60,
+      "goals": 10,
+      "longestKick": 60,
+      "maxStreak": 4,
+      "stamp": "2026-03-16T18:10:00.000Z",
+      "source": "remote",
+      "modeKey": "longBomb"
+    }
+  ]
+}
