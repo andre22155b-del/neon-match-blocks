@@ -105,6 +105,34 @@ const VS_TWO_LETTER_WORDS = new Set([
   'OX',
 ]);
 
+export const PRESTIGE_WORDS = new Set([
+  'NEON',
+  'VORTEX',
+  'QUARTZ',
+  'BLAZE',
+  'PHANTOM',
+  'SURGE',
+  'PIXEL',
+  'CYBER',
+  'NEXUS',
+  'PRISM',
+  'FLUX',
+  'APEX',
+  'NOVA',
+  'CIPHER',
+  'ZENITH',
+  'MATRIX',
+  'PULSE',
+  'VECTOR',
+  'STORM',
+  'GLITCH',
+  'HYPER',
+  'ULTRA',
+  'ELITE',
+  'CROWN',
+  'LEGEND',
+]);
+
 const WORDS = new Set([
   'AA',
   'AB',
@@ -984,6 +1012,8 @@ const WORDS = new Set([
   if (word.length >= 2 && word.length <= 6) WORDS.add(word);
 });
 
+PRESTIGE_WORDS.forEach((word) => WORDS.add(word));
+
 export const modes = {
   classic: {
     title: 'Classic',
@@ -1039,7 +1069,7 @@ export function makeTile(overrides = {}) {
 }
 
 function makeSpecialTile(special) {
-  const symbol = special === 'wildcard' ? '★' : special === 'bomb' ? '✦' : '⇄';
+  const symbol = special === 'wildcard' ? 'W' : special === 'bomb' ? 'B' : 'S';
   const variant = special === 'bomb' ? 'magenta' : special === 'swap' ? 'cyan' : 'purple';
   return makeTile({ letter: symbol, value: special === 'bomb' ? 8 : 5, variant, special });
 }
@@ -1299,6 +1329,7 @@ function markClearing(state, matches) {
   const maxLength = Math.max(0, ...matches.map((match) => match.word.length));
   const clearedCells = matches.flatMap((match) => match.cells);
   const hotZoneSet = new Set(state.vs || state.mode === 'daily' ? [] : state.hotZones.map((zone) => `${zone.row},${zone.col}`));
+  const prestigeMatches = matches.filter((match) => PRESTIGE_WORDS.has(match.word.toUpperCase()));
   return {
     ...state,
     phase: 'clearing',
@@ -1309,12 +1340,13 @@ function markClearing(state, matches) {
     },
     feedback: matches.length ? {
       words: [...new Set(matches.map((match) => match.word))],
-      points: matches.reduce((total, match) => total + match.word.length, 0),
+      points: matches.reduce((total, match) => total + getWordScore(match), 0),
       anchor: averageCells(clearedCells),
       hotCells: clearedCells.filter((cell) => hotZoneSet.has(`${cell.row},${cell.col}`)),
       intersection: matches.length > 1 && hasSharedCell(matches),
+      prestigeWords: prestigeMatches.map((match) => match.word),
     } : null,
-    flash: matches.length ? makeFlash('word') : state.flash,
+    flash: prestigeMatches.length ? makeFlash('prestige') : matches.length ? makeFlash('word') : state.flash,
     board: state.board.map((row) => row.map((tile) => (tile && ids.has(tile.id) ? { ...tile, status: 'clearing' } : tile))),
   };
 }
@@ -1325,7 +1357,7 @@ function clearAndGravity(state, matches) {
   const words = [...new Set(scoringMatches.map((match) => match.word))];
   const hotZoneSet = new Set(state.vs || state.mode === 'daily' ? [] : state.hotZones.map((zone) => `${zone.row},${zone.col}`));
   const hotCells = scoringMatches.flatMap((match) => match.cells.filter((cell) => hotZoneSet.has(`${cell.row},${cell.col}`)));
-  const awardedPoints = scoringMatches.reduce((total, match) => total + match.word.length, 0);
+  const awardedPoints = scoringMatches.reduce((total, match) => total + getWordScore(match), 0);
   const combo = Math.min(9, state.combo + (scoringMatches.length > 0 ? 1 : 0));
   const streak = state.streak + scoringMatches.length;
   const nextSpecial = state.mode === 'daily' || state.vs ? null : streak >= 5 && combo >= 5 ? 'swap' : streak >= 3 ? 'wildcard' : state.pendingSpecial;
@@ -1342,6 +1374,7 @@ function clearAndGravity(state, matches) {
   const nextHotZones = hotZoneUsed ? generateHotZones(state.randomSeed ? seededRandom(state.randomSeed + state.hotZoneUses * 211 + 17) : Math.random) : state.hotZones;
   const now = Date.now();
   const achievements = collectAchievements(state, scoringMatches, hotZoneUsed, feverStarts, now);
+  const prestigeWords = [...new Set(scoringMatches.map((match) => match.word.toUpperCase()).filter((word) => PRESTIGE_WORDS.has(word)))];
   const intersection = scoringMatches.length > 1 && hasSharedCell(scoringMatches);
   const objectiveProgress = state.vs && state.objective ? updateObjectiveProgress(state, scoringMatches, actor) : state.objectiveProgress;
   const objectiveComplete = state.objective ? objectiveProgress >= state.objective.goal : state.objectiveComplete;
@@ -1356,7 +1389,7 @@ function clearAndGravity(state, matches) {
     cascadeDepth: state.vs ? state.cascadeDepth + 1 : state.cascadeDepth,
     clearingImpact: null,
     cinematicDrop: null,
-    [wordKey]: [...state[wordKey], ...scoringMatches.map((match) => ({ word: match.word, points: match.word.length }))],
+    [wordKey]: [...state[wordKey], ...scoringMatches.map((match) => ({ word: match.word, points: getWordScore(match), prestige: PRESTIGE_WORDS.has(match.word.toUpperCase()) }))],
     combo,
     bestCombo: Math.max(state.bestCombo, combo),
     feverActive: feverStarts ? true : state.feverActive,
@@ -1376,7 +1409,7 @@ function clearAndGravity(state, matches) {
     aiScore: scoreKey === 'aiScore' ? state.aiScore + awardedPoints : state.aiScore,
     lastActionAt: Date.now(),
     lastWordAt: now,
-    message: intersection ? 'CROSSWORD COMBO — bussin fr' : scoringMatches.length ? `${[...new Set(scoringMatches.map((match) => match.word))].join(' + ')} x${combo}` : 'No same-color word',
+    message: prestigeWords.length ? `PRESTIGE WORD 💎 ${prestigeWords.join(' + ')}` : intersection ? 'CROSSWORD COMBO — bussin fr' : scoringMatches.length ? `${[...new Set(scoringMatches.map((match) => match.word))].join(' + ')} x${combo}` : 'No same-color word',
   };
 }
 
@@ -1541,7 +1574,13 @@ function collectAchievements(state, matches, hotZoneUsed, feverStarts, now) {
   if (state.lastWordAt && now - state.lastWordAt <= 3000) add('back-to-back', 'BACK TO BACK 🔥');
   if (matches.some((match) => match.word.length >= 5)) add('five-letters', '5 LETTERS 💎');
   if (state.combo >= 6) add('beast-mode', 'BEAST MODE 👑');
+  if (matches.some((match) => PRESTIGE_WORDS.has(match.word.toUpperCase()))) add('prestige', 'PRESTIGE 💎');
   return { seen, newOnes };
+}
+
+function getWordScore(match) {
+  const base = match.word.length;
+  return PRESTIGE_WORDS.has(match.word.toUpperCase()) ? base * 2 : base;
 }
 
 function hasSharedCell(matches) {
@@ -1565,6 +1604,8 @@ function updateObjectiveProgress(state, matches, actor) {
       return state.objectiveProgress + matches.filter((match) => Math.abs(match.direction.dr) === 1 && Math.abs(match.direction.dc) === 1).length;
     case 'big-word':
       return state.objectiveProgress + (matches.some((match) => match.word.length >= 5) ? 1 : 0);
+    case 'prestige-hunter':
+      return state.objectiveProgress + (matches.some((match) => PRESTIGE_WORDS.has(match.word.toUpperCase())) ? 1 : 0);
     case 'color-lock':
       return state.objectiveProgress + 1;
     case 'shutout':
@@ -1637,6 +1678,7 @@ function pickObjective() {
     { id: 'shutout', name: 'SHUTOUT ROUND', requirement: 'stop AI from scoring in one round', goal: 1, reward: 15, label: 'main character defense' },
     { id: 'speed-speller', name: 'SPEED SPELLER', requirement: 'find 3 words in under 60 seconds', goal: 3, reward: 10, label: 'no cap moving different' },
     { id: 'big-word', name: 'BIG WORD', requirement: 'spell one word of 5 or more letters', goal: 1, reward: 8, label: 'vocabulary bussin' },
+    { id: 'prestige-hunter', name: 'PRESTIGE HUNTER', requirement: 'spell any prestige word', goal: 1, reward: 20, label: 'IYKYK diamond words' },
   ];
   return objectives[Math.floor(Math.random() * objectives.length)];
 }

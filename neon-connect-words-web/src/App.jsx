@@ -5,6 +5,7 @@ import {
   COLS,
   COMBO_RESET_MS,
   TIMED_SECONDS,
+  PRESTIGE_WORDS,
   findMatches,
   getScoringMatchesForState,
   initialState,
@@ -30,6 +31,13 @@ const modeStyles = {
 
 const difficultyTiming = { easy: 700, medium: 1000, hard: 1400 };
 const wordFoundPhrases = ['BUSSIN 🔥', 'BRILLIANT', 'NO CAP ⚡', 'EXCELLENT', 'SLAY 💜', 'SHARP', 'CLEAN', 'SHEESH'];
+const prestigePhrases = ['GOATED 💎', 'IYKYK 💎', 'PRESTIGE WORD', 'DIFFERENT LEVEL'];
+
+const rivalProfiles = {
+  easy: { name: 'BYTE ROOKIE', team: 'The Warmup', copy: 'random moves, real vibes', intro: 'Learning the board, still dangerous.', win: 'BYTE ROOKIE caught a clean W.', loss: 'BYTE ROOKIE got downloaded.', icon: '◇' },
+  medium: { name: 'CPU RIVAL', team: 'The Competition', copy: 'lowkey knows the board', intro: 'Balanced reads. Sneaky blocks. Real match energy.', win: 'CPU RIVAL said bet.', loss: 'CPU RIVAL got outplayed.', icon: '◆' },
+  hard: { name: 'WORD DEMON', team: 'Threat Engine', copy: 'blocks first, flexes later', intro: 'Hard mode hunts words and blocks your setup.', win: 'WORD DEMON had the board on lock.', loss: 'WORD DEMON caught the L. Main character behavior.', icon: '◈' },
+};
 
 const colorChoices = [
   { id: 'phantom', name: 'PHANTOM', color: '#9d4edd', glow: 'rgba(157,78,221,0.7)' },
@@ -61,6 +69,17 @@ export default function App() {
   }, [state]);
 
   useEffect(() => {
+    const resetScroll = () => window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    resetScroll();
+    const first = window.setTimeout(resetScroll, 0);
+    const second = window.setTimeout(resetScroll, 120);
+    return () => {
+      window.clearTimeout(first);
+      window.clearTimeout(second);
+    };
+  }, [state.screen]);
+
+  useEffect(() => {
     getRank();
   }, []);
 
@@ -86,6 +105,7 @@ export default function App() {
       }
       audio.word(scoringMatches[0].word.length);
       audio.crush();
+      if (scoringMatches.some((match) => PRESTIGE_WORDS.has(match.word.toUpperCase()))) audio.combo(7);
       if (scoringMatches.length > 1 || state.combo >= 3) audio.combo(state.combo + 1);
       dispatch({ type: 'MARK_CLEARING', matches: scoringMatches });
       await wait(CLEAR_MS);
@@ -161,25 +181,30 @@ export default function App() {
   }, [state.aiDifficulty, state.screen, state.vs]);
 
   useEffect(() => {
-    if (turn !== 'ai') return;
+    if (turn !== 'ai' && state.currentTurn !== 'ai' && !state.aiThinking) return;
     if (stateRef.current.screen !== 'game' || !stateRef.current.vs || stateRef.current.gameOver) return;
+    if (stateRef.current.phase !== 'idle') return;
 
     const timer = window.setTimeout(async () => {
       if (aiTurnRunningRef.current) return;
       aiTurnRunningRef.current = true;
-      setIsAnimating(true);
-      const col = chooseAiColumn(stateRef.current);
-      await dropTileAsync(col, 'ai');
-      await runWordScanAsync('ai');
-      await gravityAsync();
-      await runWordScanAsync('ai');
-      setIsAnimating(false);
-      setTurn('player');
-      aiTurnRunningRef.current = false;
+      try {
+        setIsAnimating(true);
+        setTurn('ai');
+        const col = chooseAiColumn(stateRef.current);
+        await dropTileAsync(col, 'ai');
+        await runWordScanAsync('ai');
+        await gravityAsync();
+        await runWordScanAsync('ai');
+      } finally {
+        setIsAnimating(false);
+        setTurn('player');
+        aiTurnRunningRef.current = false;
+      }
     }, difficultyTiming[stateRef.current.aiDifficulty] ?? 1000);
 
     return () => window.clearTimeout(timer);
-  }, [dropTileAsync, gravityAsync, runWordScanAsync, turn]);
+  }, [dropTileAsync, gravityAsync, runWordScanAsync, state.aiThinking, state.currentTurn, state.phase, turn]);
 
   useEffect(() => {
     if (state.screen !== 'game') return;
@@ -210,7 +235,8 @@ export default function App() {
   useEffect(() => {
     if (state.phase === 'idle' && state.screen === 'game') {
       const matches = findMatches(state.board, { minLength: state.vs ? 2 : 3, vs: state.vs });
-      if (matches.length) {
+      const scoringMatches = state.vs ? getScoringMatchesForState(state, matches) : matches;
+      if (scoringMatches.length) {
         const timer = window.setTimeout(runScan, 120);
         return () => window.clearTimeout(timer);
       }
@@ -236,17 +262,20 @@ export default function App() {
 
   useEffect(() => {
     if (!state.feedback) return;
-    const choices = wordFoundPhrases.filter((phrase) => phrase !== lastPhraseRef.current);
-    const phrase = choices[Math.floor(Math.random() * choices.length)] ?? wordFoundPhrases[0];
+    const phrasePool = state.feedback.prestigeWords?.length ? prestigePhrases : wordFoundPhrases;
+    const choices = phrasePool.filter((phrase) => phrase !== lastPhraseRef.current);
+    const phrase = choices[Math.floor(Math.random() * choices.length)] ?? phrasePool[0];
     lastPhraseRef.current = phrase;
     setWordPhrase(phrase);
-    const phraseTimer = window.setTimeout(() => setWordPhrase(null), 1500);
     const timer = window.setTimeout(() => dispatch({ type: 'CLEAR_FEEDBACK' }), 850);
-    return () => {
-      window.clearTimeout(timer);
-      window.clearTimeout(phraseTimer);
-    };
+    return () => window.clearTimeout(timer);
   }, [state.feedback]);
+
+  useEffect(() => {
+    if (!wordPhrase) return;
+    const timer = window.setTimeout(() => setWordPhrase(null), 1500);
+    return () => window.clearTimeout(timer);
+  }, [wordPhrase]);
 
   useEffect(() => {
     if (!state.flash) return;
@@ -289,12 +318,16 @@ export default function App() {
   useEffect(() => {
     if (state.screen !== 'results' || state.mode !== 'daily') return;
     const history = JSON.parse(localStorage.getItem('dailyHistory') || '[]').filter((entry) => entry.date !== state.dailyDate);
-    const next = [{ date: state.dailyDate, score: state.score }, ...history].slice(0, 7);
+    const previousDate = history[0]?.date;
+    const yesterday = getOffsetDate(-1);
+    const currentStreak = previousDate === yesterday ? Number(localStorage.getItem('dailyStreak') || 0) + 1 : 1;
+    const next = [{ date: state.dailyDate, score: state.score, bestWord: bestWord(state.wordsFound).word, prestige: getPrestigeWords(state.wordsFound).length }, ...history].slice(0, 7);
     localStorage.setItem('dailyDate', state.dailyDate);
     localStorage.setItem('dailyScore', String(state.score));
     localStorage.setItem('dailyBestScore', String(state.score));
+    localStorage.setItem('dailyStreak', String(currentStreak));
     localStorage.setItem('dailyHistory', JSON.stringify(next));
-  }, [state.screen, state.mode, state.dailyDate, state.score]);
+  }, [state.screen, state.mode, state.dailyDate, state.score, state.wordsFound]);
 
   useEffect(() => {
     if (state.screen !== 'results' || !state.vs) return;
@@ -355,6 +388,7 @@ function HomeScreen({ onStart, onStartVs }) {
   const today = new Date().toISOString().slice(0, 10);
   const dailyDate = localStorage.getItem('dailyDate');
   const dailyBest = localStorage.getItem('dailyScore') ?? localStorage.getItem('dailyBestScore');
+  const dailyStreak = Number(localStorage.getItem('dailyStreak') || 0);
   const dailyLocked = dailyDate === today;
   const particles = useMemo(
     () =>
@@ -413,6 +447,7 @@ function HomeScreen({ onStart, onStartVs }) {
               <span className="play-dot group-active:translate-x-1">{key === 'daily' && dailyLocked ? '—' : '▶'}</span>
               </div>
               <p className="mt-1 font-ui text-lg text-[var(--color-white)]/75">{key === 'daily' && dailyLocked ? `Come back tomorrow · ${dailyBest ?? 0}` : mode.label}</p>
+              {key === 'daily' && <p className="daily-streak-line">{dailyStreak ? `${dailyStreak} day streak · one shot only` : 'Start your daily streak'}</p>}
             </button>
             {(key === 'classic' || key === 'timed') && (
               <button
@@ -435,6 +470,8 @@ function PlayerCardPanel({ onClose }) {
   const stats = getPlayerStats();
   const winRate = stats.matches ? Math.round((stats.wins / stats.matches) * 100) : 0;
   const quote = winRate > 60 ? 'bussin every session no cap' : winRate >= 40 ? 'lowkey improving, keep going' : 'the glow up era starts now';
+  const prestigeWords = stats.prestigeWords ?? [];
+  const nextPrestige = [...PRESTIGE_WORDS].find((word) => !prestigeWords.includes(word)) ?? 'COMPLETE';
   return (
     <div className="player-card-panel">
       <button className="absolute right-4 top-4 font-mono text-[var(--color-cyan)]" onClick={onClose}>CLOSE</button>
@@ -449,6 +486,13 @@ function PlayerCardPanel({ onClose }) {
         <PlayerStat label="WIN RATE" value={`${winRate}%`} />
         <PlayerStat label="BEST WORD" value={stats.bestWord || 'NONE'} />
         <PlayerStat label="LONGEST STREAK" value={stats.longestStreak} />
+      </div>
+      <div className="prestige-collection">
+        <div className="font-display text-sm text-[var(--color-gold)]">PRESTIGE WORDS FOUND · {prestigeWords.length}/{PRESTIGE_WORDS.size}</div>
+        <div className="font-mono text-[10px] uppercase tracking-[2px] text-[var(--color-cyan)]">Next chase: {nextPrestige}</div>
+        <div className="prestige-badges">
+          {prestigeWords.length ? prestigeWords.map((word) => <span key={word}>{word}</span>) : <span>0</span>}
+        </div>
       </div>
       <p className="mt-5 text-center font-mono text-[11px] italic text-[var(--color-watermark)]">{quote}</p>
     </div>
@@ -465,7 +509,8 @@ function PlayerStat({ label, value }) {
 }
 
 function ScreenFlash({ flash }) {
-  return <div className={`screen-flash ${flash ? `flash-${flash.type}` : ''}`} aria-hidden="true" />;
+  if (!flash) return null;
+  return <div className={`screen-flash flash-${flash.type}`} aria-hidden="true" />;
 }
 
 function AchievementBanner({ achievement }) {
@@ -493,6 +538,7 @@ function PreMatchScreen({ state, dispatch }) {
   const rank = getRank();
   const selectedColor = colorChoices.find((choice) => choice.color === state.vsSetup.playerColor) ?? colorChoices[0];
   const aiColor = colorChoices.find((choice) => choice.color === state.vsSetup.aiColor) ?? colorChoices[5];
+  const rival = getRivalProfile(selectedDifficulty);
 
   if (state.vsSetup.step === 1) {
     return (
@@ -553,7 +599,11 @@ function PreMatchScreen({ state, dispatch }) {
       <div className="vs-preview-card grid grid-cols-[1fr_auto_1fr] items-center gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-4">
         <VsPreviewCard name={state.vsSetup.playerName} team={state.vsSetup.teamName} color={selectedColor} rank={rank} copy="it's giving main character energy" />
         <div className="font-display text-4xl text-[var(--color-scorePurple)] [text-shadow:0_0_18px_var(--color-purpleGlow)]">VS</div>
-        <VsPreviewCard name="CPU OPPONENT" team="The Competition" color={aiColor} rank={null} copy="lowkey about to catch these Ls" />
+        <VsPreviewCard name={rival.name} team={rival.team} color={aiColor} rank={null} copy={rival.copy} />
+      </div>
+      <div className="rival-intro-card">
+        <span>{rival.icon}</span>
+        <p>{rival.intro}</p>
       </div>
       <div className="grid grid-cols-3 gap-2">
         {difficultyChoices.map(([id, label, accent]) => (
@@ -585,6 +635,10 @@ function VsPreviewCard({ name, team, color, rank, copy }) {
       <div className="font-mono text-[10px] italic text-[var(--color-watermark)]">{copy}</div>
     </div>
   );
+}
+
+function getRivalProfile(difficulty) {
+  return rivalProfiles[difficulty] ?? rivalProfiles.medium;
 }
 
 function DifficultyScreen({ state, dispatch }) {
@@ -621,6 +675,8 @@ function DifficultyScreen({ state, dispatch }) {
 
 function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggleMute }) {
   const [hoverCol, setHoverCol] = useState(null);
+  const [queueDrag, setQueueDrag] = useState(false);
+  const queueDragTimerRef = useRef(null);
   const timePercent = state.mode === 'timed' ? Math.max(0, (state.timeLeft / TIMED_SECONDS) * 100) : 100;
   const comboFill = Math.min(100, (state.combo / 9) * 100);
   const hotZonesVisible = !state.vs && state.mode !== 'daily' && state.board.slice(3).some((row) => row.some(Boolean));
@@ -636,6 +692,43 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
         top: `${((state.feedback.anchor.row + 0.5) / rowCount) * 100}%`,
       }
     : {};
+  const columnInputDisabled = state.phase !== 'idle' || Boolean(state.swapMode) || (state.vs && (turn !== 'player' || isAnimating));
+  const handleQueueDrop = (col) => {
+    if (columnInputDisabled) return;
+    onDrop(col);
+  };
+
+  useEffect(() => {
+    if (!queueDrag) return;
+    const clearQueueDrag = () => {
+      if (queueDragTimerRef.current) window.clearTimeout(queueDragTimerRef.current);
+      queueDragTimerRef.current = window.setTimeout(() => {
+        setQueueDrag(false);
+        setHoverCol(null);
+        queueDragTimerRef.current = null;
+      }, 0);
+    };
+    window.addEventListener('dragend', clearQueueDrag);
+    window.addEventListener('drop', clearQueueDrag);
+    window.addEventListener('mouseup', clearQueueDrag);
+    window.addEventListener('touchend', clearQueueDrag);
+    window.addEventListener('touchcancel', clearQueueDrag);
+    window.addEventListener('blur', clearQueueDrag);
+    document.addEventListener('visibilitychange', clearQueueDrag);
+    return () => {
+      window.removeEventListener('dragend', clearQueueDrag);
+      window.removeEventListener('drop', clearQueueDrag);
+      window.removeEventListener('mouseup', clearQueueDrag);
+      window.removeEventListener('touchend', clearQueueDrag);
+      window.removeEventListener('touchcancel', clearQueueDrag);
+      window.removeEventListener('blur', clearQueueDrag);
+      document.removeEventListener('visibilitychange', clearQueueDrag);
+      if (queueDragTimerRef.current) {
+        window.clearTimeout(queueDragTimerRef.current);
+        queueDragTimerRef.current = null;
+      }
+    };
+  }, [queueDrag]);
 
   return (
     <section className="game-screen-stack flex flex-1 flex-col gap-3">
@@ -650,6 +743,7 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
           <div className="h-full bg-[var(--color-cyan)] transition-all duration-500" style={{ width: `${timePercent}%` }} />
         </div>
       )}
+      <HighlightMoment feedback={state.feedback} combo={state.combo} />
       <div className="board-panel rounded-lg border bg-[var(--color-panel)] p-3">
         {state.feverActive && (
           <div className="mb-2 text-center">
@@ -659,11 +753,18 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
             </div>
           </div>
         )}
-        <PreviewQueue tiles={state.nextTiles ?? []} />
+        <PreviewQueue
+          tiles={state.nextTiles ?? []}
+          disabled={columnInputDisabled}
+          dragging={queueDrag}
+          setDragging={setQueueDrag}
+          setHoverCol={setHoverCol}
+          onDropColumn={handleQueueDrop}
+        />
         <div className="word-found-strip">
           {state.feedback && <div className="animate-word-float word-found-text">{state.feedback.words.join(' + ')}</div>}
         </div>
-        <ColumnTaps board={state.board} onDrop={onDrop} disabled={state.phase !== 'idle' || Boolean(state.swapMode) || (state.vs && (turn !== 'player' || isAnimating))} setHoverCol={setHoverCol} />
+        <ColumnTaps board={state.board} onDrop={onDrop} disabled={columnInputDisabled} setHoverCol={setHoverCol} dragActive={queueDrag} onQueueDrop={handleQueueDrop} />
         <div
           className={`neon-board relative grid grid-cols-7 gap-1.5 rounded-md border bg-[var(--color-background)] p-2 ${state.feverActive ? 'fever-board' : ''}`}
           style={{ aspectRatio: `7 / ${rowCount}`, gridTemplateRows: `repeat(${rowCount}, minmax(0, 1fr))` }}
@@ -721,10 +822,11 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
 function Hud({ state, dispatch }) {
   const score = Number.isFinite(Number(state.score)) ? Number(state.score) : 0;
   const streak = Number.isFinite(Number(state.streak)) ? Number(state.streak) : 0;
+  const wordsSpelled = Array.isArray(state.wordsFound) ? state.wordsFound.length : 0;
   const scoreText = String(Math.trunc(score));
   const streakText = String(Math.trunc(streak));
   return (
-    <header className="hud-panel grid grid-cols-3 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-3">
+    <header className="hud-panel grid grid-cols-4 items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-3">
       <div>
         <div className="hud-label">{state.vs ? 'YOU' : 'SCORE'}</div>
         <div className="hud-score font-display font-black leading-none text-[var(--color-scorePurple)]">{scoreText}</div>
@@ -738,6 +840,10 @@ function Hud({ state, dispatch }) {
       <div className="text-center">
         <div className="hud-label">STREAK</div>
         <div className="hud-streak font-display font-black leading-none text-[var(--color-gold)]">{streakText}</div>
+      </div>
+      <div className="text-center">
+        <div className="hud-label">WORDS</div>
+        <div className="hud-words font-display font-black leading-none">{wordsSpelled}</div>
       </div>
       <div className="text-right">
         <div className="hud-label">COMBO</div>
@@ -755,7 +861,7 @@ function Hud({ state, dispatch }) {
 
 function VsScoreboard({ state }) {
   const playerName = state.vsSetup.playerName || 'PLAYER';
-  const aiName = 'CPU';
+  const rival = getRivalProfile(state.aiDifficulty);
   return (
     <div className="vs-scoreboard">
       <div className="vs-score-side" style={{ color: state.vsSetup.playerColor }}>
@@ -769,7 +875,7 @@ function VsScoreboard({ state }) {
         <span>{state.aiRounds}</span>
       </div>
       <div className="vs-score-side text-right" style={{ color: state.vsSetup.aiColor }}>
-        <div>{aiName}</div>
+        <div>{rival.name}</div>
         <strong>{state.aiScore}</strong>
         <RoundDots wins={state.aiRounds} color={state.vsSetup.aiColor} align="end" />
       </div>
@@ -797,6 +903,20 @@ function ObjectivePanel({ state }) {
   );
 }
 
+function HighlightMoment({ feedback, combo }) {
+  if (!feedback) return null;
+  const hasPrestige = feedback.prestigeWords?.length > 0;
+  const title = hasPrestige ? 'PRESTIGE WORD' : feedback.intersection ? 'CROSSWORD COMBO' : combo >= 5 ? 'COMBO HEATER' : 'WORD HIT';
+  const copy = hasPrestige ? feedback.prestigeWords.join(' · ') : feedback.words.join(' · ');
+  return (
+    <div className={`highlight-moment ${hasPrestige ? 'highlight-prestige' : ''}`}>
+      <span>{title}</span>
+      <strong>{copy}</strong>
+      <em>+{feedback.points}</em>
+    </div>
+  );
+}
+
 function QuickTaunts({ state, dispatch }) {
   const [open, setOpen] = useState(false);
   const taunts = ["LET'S GO 🔥", 'TOO EASY 😤', 'NICE WORD 🤝', "IT'S GIVING L 💀"];
@@ -813,13 +933,58 @@ function QuickTaunts({ state, dispatch }) {
   );
 }
 
-function PreviewQueue({ tiles }) {
+function PreviewQueue({ tiles, disabled, dragging, setDragging, setHoverCol, onDropColumn }) {
+  const touchActiveRef = useRef(false);
+  const clearDrag = () => {
+    touchActiveRef.current = false;
+    setDragging(false);
+    setHoverCol(null);
+  };
+  const findTouchColumn = (touch) => {
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+    const button = target?.closest?.('[data-drop-col]');
+    if (!button || button.disabled) return null;
+    return Number(button.dataset.dropCol);
+  };
+  const handleTouchMove = (event) => {
+    if (!touchActiveRef.current) return;
+    const col = findTouchColumn(event.touches[0]);
+    setHoverCol(Number.isInteger(col) ? col : null);
+  };
+  const handleTouchEnd = (event) => {
+    if (!touchActiveRef.current) return;
+    const touch = event.changedTouches[0];
+    const col = findTouchColumn(touch);
+    clearDrag();
+    if (Number.isInteger(col)) onDropColumn(col);
+  };
+
   return (
     <div className="next-queue">
       <span>NEXT</span>
       <div className="next-queue-tiles">
         {tiles.map((tile, index) => (
-          <div key={`${tile.id}-${index}`} className={`next-tile ${tone[tile.variant] ?? 'tile-purple'}`}>
+          <div
+            key={`${tile.id}-${index}`}
+            className={`next-tile ${tone[tile.variant] ?? 'tile-purple'} ${index === 0 && !disabled ? 'next-tile-active' : ''} ${index === 0 && dragging ? 'next-tile-dragging' : ''}`}
+            draggable={index === 0 && !disabled}
+            onDragStart={(event) => {
+              if (index !== 0 || disabled) return;
+              event.dataTransfer.effectAllowed = 'move';
+              event.dataTransfer.setData('text/plain', tile.id);
+              setDragging(true);
+            }}
+            onDragEnd={clearDrag}
+            onTouchStart={(event) => {
+              if (index !== 0 || disabled) return;
+              event.preventDefault();
+              touchActiveRef.current = true;
+              setDragging(true);
+            }}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={clearDrag}
+          >
             <span>{tile.letter}</span>
             <span>{tile.value}</span>
           </div>
@@ -829,7 +994,7 @@ function PreviewQueue({ tiles }) {
   );
 }
 
-function ColumnTaps({ board, onDrop, disabled, setHoverCol }) {
+function ColumnTaps({ board, onDrop, disabled, setHoverCol, dragActive, onQueueDrop }) {
   return (
     <div className="mb-2 grid grid-cols-7 gap-1.5">
       {Array.from({ length: COLS }).map((_, col) => {
@@ -838,9 +1003,23 @@ function ColumnTaps({ board, onDrop, disabled, setHoverCol }) {
         const dangerClass = full ? 'drop-button-full' : emptyRows === 1 ? 'drop-button-danger' : emptyRows === 2 ? 'drop-button-warning' : '';
         return (
           <button
+            type="button"
             key={col}
-            className={`drop-button ${dangerClass}`}
+            className={`drop-button ${dangerClass} ${dragActive && !disabled && !full ? 'drop-button-drag-target' : ''}`}
+            data-drop-col={col}
             disabled={disabled || full}
+            onDragOver={(event) => {
+              if (disabled || full || !dragActive) return;
+              event.preventDefault();
+              event.dataTransfer.dropEffect = 'move';
+              setHoverCol(col);
+            }}
+            onDrop={(event) => {
+              if (disabled || full || !dragActive) return;
+              event.preventDefault();
+              setHoverCol(null);
+              onQueueDrop(col);
+            }}
             onMouseEnter={() => setHoverCol(col)}
             onMouseLeave={() => setHoverCol(null)}
             onFocus={() => setHoverCol(col)}
@@ -880,11 +1059,12 @@ function Cell({ tile, row, col, active, columnHot, hotZone, hotBurst, cinematicC
   const cinematicTier = isCinematicDrop ? getImpactTier(cinematicCue.length) : null;
   return (
     <button
+      type="button"
       className={`relative min-w-0 rounded-md border border-[var(--color-emptyCellBorder)] bg-[var(--color-emptyCell)] transition ${
         columnHot ? 'bg-[var(--color-purpleGlow)] shadow-[inset_0_0_18px_var(--color-purpleGlow)]' : ''
       } ${hotZone ? 'hot-zone-cell' : ''} ${hotBurst ? 'hot-zone-burst' : ''} ${isCinematicWordCell && !isCinematicDrop ? 'anticipation-pulse' : ''} ${active ? 'ring-2 ring-[var(--color-gold)]' : ''}`}
       onClick={onClick}
-      disabled={!tile}
+      aria-disabled={!tile}
     >
       {tile && (
         <div
@@ -1004,15 +1184,18 @@ function VictoryScreen({ state }) {
 function ResultsScreen({ state, dispatch }) {
   const dailyHistory = state.mode === 'daily' ? JSON.parse(localStorage.getItem('dailyHistory') || '[]') : [];
   const winner = state.vs ? (state.score >= state.aiScore ? 'YOU WIN' : 'AI WINS') : null;
+  const prestigeFound = getPrestigeWords(state.wordsFound);
   if (state.vs) {
     const playerBest = bestWord(state.wordsFound);
     const aiBest = bestWord(state.aiWordsFound);
+    const rival = getRivalProfile(state.aiDifficulty);
+    const playerWon = state.score >= state.aiScore;
     return (
       <section className="flex flex-1 flex-col justify-center gap-5">
         <div className="vs-results-card rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-5 text-center shadow-[0_18px_54px_var(--color-shadow)]">
           <h1 className="font-display text-4xl text-[var(--color-gold)]">{winner}</h1>
           <RankBadge rank={getRank()} className="mt-3" />
-          <p className="mt-2 font-mono text-xs uppercase tracking-[3px] text-[var(--color-watermark)]">{state.message}</p>
+          <p className="mt-2 font-mono text-xs uppercase tracking-[3px] text-[var(--color-watermark)]">{playerWon ? rival.loss : rival.win}</p>
           <div className="mt-5 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
             <div style={{ color: state.vsSetup.playerColor }}>
               <div className="font-display text-lg">{state.vsSetup.playerName || 'PLAYER'}</div>
@@ -1021,7 +1204,7 @@ function ResultsScreen({ state, dispatch }) {
             </div>
             <div className="font-display text-2xl text-[var(--color-scorePurple)]">VS</div>
             <div className="text-right" style={{ color: state.vsSetup.aiColor }}>
-              <div className="font-display text-lg">CPU</div>
+              <div className="font-display text-lg">{rival.name}</div>
               <div className="font-display text-3xl">{state.aiScore}</div>
               <RoundDots wins={state.aiRounds} color={state.vsSetup.aiColor} align="end" />
             </div>
@@ -1040,6 +1223,7 @@ function ResultsScreen({ state, dispatch }) {
             <div>Peak Combo: x{state.bestCombo}</div>
             <div>AI Peak: x1</div>
           </div>
+          {prestigeFound.length > 0 && <PrestigeSummary words={prestigeFound} />}
         </div>
         <button
           className="rounded-lg bg-[linear-gradient(135deg,var(--color-purpleStart),var(--color-purpleEnd))] py-4 font-display text-lg text-[var(--color-white)] shadow-[0_0_22px_var(--color-purpleGlow)]"
@@ -1081,13 +1265,15 @@ function ResultsScreen({ state, dispatch }) {
         <div className="mt-5 max-h-28 overflow-auto rounded-md bg-[var(--color-background)] p-3 font-mono text-sm text-[var(--color-cyan)]">
           {formatWords(state.wordsFound) || 'No words found'}
         </div>
+        {prestigeFound.length > 0 && <PrestigeSummary words={prestigeFound} />}
         {state.mode === 'daily' && (
           <div className="mt-4 rounded-md bg-[var(--color-background)] p-3 text-left">
             <div className="font-display text-sm text-[var(--color-gold)]">DAILY ARENA</div>
+            <div className="mb-2 font-mono text-xs text-[var(--color-cyan)]">Seed {state.dailyDate} · {localStorage.getItem('dailyStreak') || 1} day streak · same board, one shot</div>
             {dailyHistory.map((entry) => (
               <div key={entry.date} className="flex justify-between font-mono text-xs text-[var(--color-white)]/75">
                 <span>{entry.date}</span>
-                <span>{entry.score}</span>
+                <span>{entry.score} · {entry.bestWord ?? 'NONE'}</span>
               </div>
             ))}
           </div>
@@ -1116,6 +1302,15 @@ function ResultStat({ label, value }) {
     <div className="rounded-md border border-[var(--color-border)] bg-[var(--color-background)] p-3">
       <div className="font-mono text-xs text-[var(--color-purpleText)]">{label}</div>
       <div className="font-display text-lg text-[var(--color-white)]">{value}</div>
+    </div>
+  );
+}
+
+function PrestigeSummary({ words }) {
+  return (
+    <div className="prestige-summary">
+      <div>PRESTIGE WORDS 💎</div>
+      <p>{words.join(' · ')}</p>
     </div>
   );
 }
@@ -1186,9 +1381,23 @@ async function makeShareCard(state) {
   ctx.fillStyle = getCssColor('white');
   ctx.fillText(`BEST WORD ${best.word} · ${best.points}`, 540, 770);
   ctx.fillText(`PEAK COMBO x${state.bestCombo}`, 540, 850);
+  const prestigeWords = getPrestigeWords(state.wordsFound);
+  if (prestigeWords.length) {
+    ctx.fillStyle = getCssColor('gold');
+    ctx.fillText(`PRESTIGE ${prestigeWords.slice(0, 3).join(' · ')}`, 540, 920);
+  }
   ctx.font = '32px "Share Tech Mono"';
   ctx.fillStyle = getCssColor('cyan');
-  ctx.fillText(`${state.mode.toUpperCase()} · ${new Date().toISOString().slice(0, 10)}`, 540, 940);
+  ctx.fillText(`${state.mode.toUpperCase()} · ${new Date().toISOString().slice(0, 10)}`, 540, prestigeWords.length ? 1000 : 940);
+  if (state.mode === 'daily') {
+    ctx.fillStyle = getCssColor('gold');
+    ctx.fillText(`DAILY STREAK ${localStorage.getItem('dailyStreak') || 1}`, 540, prestigeWords.length ? 1060 : 1000);
+  }
+  if (state.vs) {
+    const rival = getRivalProfile(state.aiDifficulty);
+    ctx.fillStyle = getCssColor('gold');
+    ctx.fillText(`VS ${rival.name}`, 540, prestigeWords.length ? 1060 : 1000);
+  }
   ctx.font = '28px "Share Tech Mono"';
   ctx.fillStyle = getCssColor('watermark');
   ctx.fillText('Tobar Mix Creations', 540, 1250);
@@ -1212,6 +1421,13 @@ function bestWord(words) {
     },
     { word: 'NONE', points: 0 },
   );
+}
+
+function getPrestigeWords(words) {
+  return [...new Set(words
+    .map((entry) => (typeof entry === 'string' ? entry : entry.word))
+    .filter((word) => PRESTIGE_WORDS.has(String(word).toUpperCase()))
+    .map((word) => String(word).toUpperCase()))];
 }
 
 function pickContrastColor(playerColor) {
@@ -1248,13 +1464,15 @@ function RankBadge({ rank, className = '' }) {
 }
 
 function getPlayerStats() {
-  return JSON.parse(localStorage.getItem('playerStats') || '{"matches":0,"wins":0,"losses":0,"bestWord":"","longestStreak":0,"lossStreak":0}');
+  const stats = JSON.parse(localStorage.getItem('playerStats') || '{"matches":0,"wins":0,"losses":0,"bestWord":"","longestStreak":0,"lossStreak":0,"prestigeWords":[]}');
+  return { ...stats, prestigeWords: stats.prestigeWords ?? [] };
 }
 
 function updatePlayerStats(state) {
   const stats = getPlayerStats();
   const playerWon = state.score >= state.aiScore;
   const best = bestWord(state.wordsFound);
+  const prestigeWords = [...new Set([...(stats.prestigeWords ?? []), ...getPrestigeWords(state.wordsFound)])];
   const next = {
     ...stats,
     matches: stats.matches + 1,
@@ -1264,6 +1482,7 @@ function updatePlayerStats(state) {
     bestWord: best.points > (stats.bestWordPoints ?? 0) ? best.word : stats.bestWord,
     bestWordPoints: Math.max(best.points, stats.bestWordPoints ?? 0),
     longestStreak: Math.max(stats.longestStreak ?? 0, state.streak ?? 0),
+    prestigeWords,
   };
   localStorage.setItem('playerStats', JSON.stringify(next));
   const currentRank = normalizeRank(localStorage.getItem('playerRank'));
@@ -1282,6 +1501,12 @@ function StudioTag({ className = '' }) {
 
 function wait(ms) {
   return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+function getOffsetDate(offsetDays) {
+  const date = new Date();
+  date.setDate(date.getDate() + offsetDays);
+  return date.toISOString().slice(0, 10);
 }
 
 function getDroppedTile(state) {
