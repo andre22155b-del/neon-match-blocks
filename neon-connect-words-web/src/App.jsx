@@ -952,9 +952,20 @@ function PreviewQueue({ tiles, board, disabled, dragging, setDragging, setHoverC
       return columnHasSpace(col) ? col : null;
     }
     const boardElement = document.querySelector('.neon-board');
-    const rect = boardElement?.getBoundingClientRect();
+    const dropRowElement = document.querySelector('.drop-zone-row');
+    const boardRect = boardElement?.getBoundingClientRect();
+    const dropRect = dropRowElement?.getBoundingClientRect();
+    const rect = boardRect && dropRect
+      ? {
+          left: Math.min(boardRect.left, dropRect.left),
+          right: Math.max(boardRect.right, dropRect.right),
+          top: Math.min(boardRect.top, dropRect.top) - 26,
+          bottom: boardRect.bottom + 20,
+          width: Math.max(boardRect.right, dropRect.right) - Math.min(boardRect.left, dropRect.left),
+        }
+      : boardRect;
     if (!rect || x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) return null;
-    const col = Math.floor(((x - rect.left) / rect.width) * COLS);
+    const col = Math.max(0, Math.min(COLS - 1, Math.floor(((x - rect.left) / rect.width) * COLS)));
     return columnHasSpace(col) ? col : null;
   };
   const startDrag = (x, y) => {
@@ -1019,6 +1030,7 @@ function PreviewQueue({ tiles, board, disabled, dragging, setDragging, setHoverC
             onPointerDown={(event) => {
               if (index !== 0 || disabled || event.pointerType === 'touch') return;
               event.preventDefault();
+              event.currentTarget.setPointerCapture?.(event.pointerId);
               startDrag(event.clientX, event.clientY);
             }}
             onTouchStart={(event) => {
@@ -1052,7 +1064,7 @@ function PreviewQueue({ tiles, board, disabled, dragging, setDragging, setHoverC
 
 function ColumnTaps({ board, onDrop, disabled, setHoverCol, dragActive, onQueueDrop }) {
   return (
-    <div className="mb-2 grid grid-cols-7 gap-1.5">
+    <div className="drop-zone-row mb-2 grid grid-cols-7 gap-1.5">
       {Array.from({ length: COLS }).map((_, col) => {
         const emptyRows = board.reduce((count, row) => count + (row[col] ? 0 : 1), 0);
         const full = emptyRows === 0;

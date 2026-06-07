@@ -786,6 +786,16 @@ button {
   transition: all 0.2s ease;
 }
 
+.drop-zone-row {
+  position: relative;
+  padding-block: 4px;
+}
+
+.drop-zone-row:has(.drop-button-drag-target) {
+  border-radius: 10px;
+  background: linear-gradient(90deg, transparent, rgba(157, 78, 221, 0.06), transparent);
+}
+
 .drop-button:hover:not(:disabled),
 .drop-button:focus-visible:not(:disabled) {
   background: rgba(157, 78, 221, 0.22);
@@ -904,6 +914,8 @@ button {
 
 .next-tile-drag-preview {
   position: fixed;
+  width: 42px;
+  height: 42px;
   z-index: 9998;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(1.18);
@@ -917,6 +929,8 @@ button {
 
 .drop-button-drag-target:not(:disabled) {
   border-color: rgba(199, 125, 255, 0.8);
+  background: rgba(157, 78, 221, 0.18);
+  box-shadow: 0 0 14px rgba(157, 78, 221, 0.45), inset 0 0 8px rgba(157, 78, 221, 0.18);
 }
 
 .drop-button-drag-target:hover:not(:disabled),
