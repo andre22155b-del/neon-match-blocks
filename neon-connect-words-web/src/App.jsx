@@ -755,6 +755,7 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
         )}
         <PreviewQueue
           tiles={state.nextTiles ?? []}
+          board={state.board}
           disabled={columnInputDisabled}
           dragging={queueDrag}
           setDragging={setQueueDrag}
@@ -933,31 +934,71 @@ function QuickTaunts({ state, dispatch }) {
   );
 }
 
-function PreviewQueue({ tiles, disabled, dragging, setDragging, setHoverCol, onDropColumn }) {
-  const touchActiveRef = useRef(false);
+function PreviewQueue({ tiles, board, disabled, dragging, setDragging, setHoverCol, onDropColumn }) {
+  const dragActiveRef = useRef(false);
+  const [dragPoint, setDragPoint] = useState(null);
   const clearDrag = () => {
-    touchActiveRef.current = false;
+    dragActiveRef.current = false;
     setDragging(false);
     setHoverCol(null);
+    setDragPoint(null);
   };
-  const findTouchColumn = (touch) => {
-    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+  const columnHasSpace = (col) => Number.isInteger(col) && col >= 0 && col < COLS && board.some((row) => !row[col]);
+  const findDropColumn = (x, y) => {
+    const target = document.elementFromPoint(x, y);
     const button = target?.closest?.('[data-drop-col]');
-    if (!button || button.disabled) return null;
-    return Number(button.dataset.dropCol);
+    if (button && !button.disabled) {
+      const col = Number(button.dataset.dropCol);
+      return columnHasSpace(col) ? col : null;
+    }
+    const boardElement = document.querySelector('.neon-board');
+    const rect = boardElement?.getBoundingClientRect();
+    if (!rect || x < rect.left || x > rect.right || y < rect.top || y > rect.bottom) return null;
+    const col = Math.floor(((x - rect.left) / rect.width) * COLS);
+    return columnHasSpace(col) ? col : null;
   };
-  const handleTouchMove = (event) => {
-    if (!touchActiveRef.current) return;
-    const col = findTouchColumn(event.touches[0]);
-    setHoverCol(Number.isInteger(col) ? col : null);
+  const startDrag = (x, y) => {
+    dragActiveRef.current = true;
+    setDragging(true);
+    setDragPoint({ x, y });
+    setHoverCol(findDropColumn(x, y));
   };
-  const handleTouchEnd = (event) => {
-    if (!touchActiveRef.current) return;
-    const touch = event.changedTouches[0];
-    const col = findTouchColumn(touch);
+  const moveDrag = (x, y) => {
+    if (!dragActiveRef.current) return;
+    setDragPoint({ x, y });
+    setHoverCol(findDropColumn(x, y));
+  };
+  const finishDrag = (x, y) => {
+    if (!dragActiveRef.current) return;
+    const col = findDropColumn(x, y);
     clearDrag();
     if (Number.isInteger(col)) onDropColumn(col);
   };
+  const handleTouchMove = (event) => {
+    if (!dragActiveRef.current) return;
+    event.preventDefault();
+    const touch = event.touches[0];
+    moveDrag(touch.clientX, touch.clientY);
+  };
+  const handleTouchEnd = (event) => {
+    if (!dragActiveRef.current) return;
+    const touch = event.changedTouches[0];
+    finishDrag(touch.clientX, touch.clientY);
+  };
+  const handlePointerMove = (event) => moveDrag(event.clientX, event.clientY);
+  const handlePointerUp = (event) => finishDrag(event.clientX, event.clientY);
+
+  useEffect(() => {
+    if (!dragging) return;
+    window.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('pointerup', handlePointerUp);
+    window.addEventListener('pointercancel', clearDrag);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerUp);
+      window.removeEventListener('pointercancel', clearDrag);
+    };
+  }, [dragging]);
 
   return (
     <div className="next-queue">
@@ -967,7 +1008,7 @@ function PreviewQueue({ tiles, disabled, dragging, setDragging, setHoverCol, onD
           <div
             key={`${tile.id}-${index}`}
             className={`next-tile ${tone[tile.variant] ?? 'tile-purple'} ${index === 0 && !disabled ? 'next-tile-active' : ''} ${index === 0 && dragging ? 'next-tile-dragging' : ''}`}
-            draggable={index === 0 && !disabled}
+            draggable={false}
             onDragStart={(event) => {
               if (index !== 0 || disabled) return;
               event.dataTransfer.effectAllowed = 'move';
@@ -975,11 +1016,16 @@ function PreviewQueue({ tiles, disabled, dragging, setDragging, setHoverCol, onD
               setDragging(true);
             }}
             onDragEnd={clearDrag}
+            onPointerDown={(event) => {
+              if (index !== 0 || disabled || event.pointerType === 'touch') return;
+              event.preventDefault();
+              startDrag(event.clientX, event.clientY);
+            }}
             onTouchStart={(event) => {
               if (index !== 0 || disabled) return;
               event.preventDefault();
-              touchActiveRef.current = true;
-              setDragging(true);
+              const touch = event.touches[0];
+              startDrag(touch.clientX, touch.clientY);
             }}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -990,6 +1036,16 @@ function PreviewQueue({ tiles, disabled, dragging, setDragging, setHoverCol, onD
           </div>
         ))}
       </div>
+      {dragPoint && tiles[0] && (
+        <div
+          className={`next-tile next-tile-drag-preview ${tone[tiles[0].variant] ?? 'tile-purple'}`}
+          style={{ left: `${dragPoint.x}px`, top: `${dragPoint.y}px` }}
+          aria-hidden="true"
+        >
+          <span>{tiles[0].letter}</span>
+          <span>{tiles[0].value}</span>
+        </div>
+      )}
     </div>
   );
 }
