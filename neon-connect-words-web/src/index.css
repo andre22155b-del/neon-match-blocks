@@ -899,6 +899,7 @@ button {
 
 .next-tile-active {
   cursor: grab;
+  animation: nextTileNudge 1.4s ease-in-out infinite !important;
 }
 
 .next-tile-active:active,
@@ -947,6 +948,19 @@ button {
   font-family: 'Share Tech Mono', monospace;
   font-size: 7px;
   text-shadow: none;
+}
+
+.next-tile small {
+  position: absolute;
+  bottom: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #6a6a90;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 1px;
+  opacity: 0.82;
+  pointer-events: none;
 }
 
 .word-found-strip {
@@ -1227,7 +1241,14 @@ button {
 
 .hud-score,
 .hud-streak,
-.hud-words,
+.hud-words {
+  font-family: Rajdhani, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.9;
+}
+
 .hud-combo {
   font-family: Orbitron, sans-serif;
   font-size: 28px;
@@ -1257,6 +1278,7 @@ button {
   border-radius: 8px;
   background: linear-gradient(180deg, rgba(15, 10, 35, 0.9) 0%, rgba(10, 8, 25, 0.95) 100%);
   box-shadow: 0 0 12px rgba(157, 78, 221, 0.2), inset 0 0 12px rgba(0, 0, 0, 0.4);
+  column-gap: clamp(6px, 2vw, 18px);
 }
 
 .hud-panel::after {
@@ -1274,7 +1296,7 @@ button {
   color: #6a6a90;
   font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
 }
 
 .mute-button {
@@ -1891,5 +1913,69 @@ button {
   100% {
     transform: translateY(-10px) scale(0.98);
     opacity: 0;
+  }
+}
+
+@keyframes nextTileNudge {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
+  }
+  45% {
+    transform: translateY(-3px) scale(1.07);
+    filter: brightness(1.18);
+  }
+}
+
+@media (max-width: 430px) {
+  .game-screen-stack {
+    gap: 6px;
+  }
+
+  .mute-button {
+    padding: 5px 9px;
+    font-size: 9px;
+  }
+
+  .hud-panel {
+    padding: 10px 9px !important;
+  }
+
+  .hud-label {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+  }
+
+  .hud-score,
+  .hud-streak,
+  .hud-words {
+    font-size: 31px;
+  }
+
+  .hud-combo {
+    font-size: 26px;
+  }
+
+  .board-panel {
+    padding: 7px !important;
+  }
+
+  .next-queue {
+    margin-bottom: 11px;
+    gap: 8px;
+  }
+
+  .drop-button {
+    height: 34px;
+  }
+
+  .neon-board {
+    gap: 4px !important;
+    padding: 6px !important;
+  }
+
+  .combo-panel {
+    padding: 10px 14px;
   }
 }

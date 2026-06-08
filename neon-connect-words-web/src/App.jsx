@@ -786,7 +786,7 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
                 col={colIndex}
                 active={state.swapMode?.first?.row === rowIndex && state.swapMode?.first?.col === colIndex}
                 columnHot={hoverCol === colIndex && state.phase === 'idle' && !state.swapMode}
-                hotZone={hotZonesVisible && state.hotZones.some((zone) => zone.row === rowIndex && zone.col === colIndex)}
+                hotZone={Boolean(tile) && hotZonesVisible && state.hotZones.some((zone) => zone.row === rowIndex && zone.col === colIndex)}
                 hotBurst={state.feedback?.hotCells?.some((cell) => cell.row === rowIndex && cell.col === colIndex)}
                 cinematicCue={cinematicCue}
                 impactTier={impactCells.has(`${rowIndex},${colIndex}`) ? impactTier : null}
@@ -1045,6 +1045,7 @@ function PreviewQueue({ tiles, board, disabled, dragging, setDragging, setHoverC
           >
             <span>{tile.letter}</span>
             <span>{tile.value}</span>
+            {index === 0 && !disabled && <small>DRAG</small>}
           </div>
         ))}
       </div>
