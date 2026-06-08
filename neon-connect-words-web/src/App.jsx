@@ -30,7 +30,7 @@ const modeStyles = {
 };
 
 const difficultyTiming = { easy: 700, medium: 1000, hard: 1400 };
-const wordFoundPhrases = ['BUSSIN 🔥', 'BRILLIANT', 'NO CAP ⚡', 'EXCELLENT', 'SLAY 💜', 'SHARP', 'CLEAN', 'SHEESH'];
+const wordFoundPhrases = ['NICE WORD', 'BRILLIANT', 'GREAT CLEAR', 'EXCELLENT', 'BUSSIN 🔥', 'SHARP', 'CLEAN', 'WORD HIT'];
 const prestigePhrases = ['GOATED 💎', 'IYKYK 💎', 'PRESTIGE WORD', 'DIFFERENT LEVEL'];
 
 const rivalProfiles = {
@@ -47,6 +47,8 @@ const colorChoices = [
   { id: 'venom', name: 'VENOM', color: '#39ff14', glow: 'rgba(57,255,20,0.7)' },
   { id: 'inferno', name: 'INFERNO', color: '#ff3333', glow: 'rgba(255,51,51,0.7)' },
 ];
+
+const WORD_REVEAL_MS = 950;
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, undefined, () => initialState('classic'));
@@ -108,6 +110,7 @@ export default function App() {
       if (scoringMatches.some((match) => PRESTIGE_WORDS.has(match.word.toUpperCase()))) audio.combo(7);
       if (scoringMatches.length > 1 || state.combo >= 3) audio.combo(state.combo + 1);
       dispatch({ type: 'MARK_CLEARING', matches: scoringMatches });
+      await wait(WORD_REVEAL_MS);
       await wait(CLEAR_MS);
       dispatch({ type: 'CLEAR_AND_GRAVITY', matches: scoringMatches });
     });
@@ -267,13 +270,13 @@ export default function App() {
     const phrase = choices[Math.floor(Math.random() * choices.length)] ?? phrasePool[0];
     lastPhraseRef.current = phrase;
     setWordPhrase(phrase);
-    const timer = window.setTimeout(() => dispatch({ type: 'CLEAR_FEEDBACK' }), 850);
+    const timer = window.setTimeout(() => dispatch({ type: 'CLEAR_FEEDBACK' }), 1900);
     return () => window.clearTimeout(timer);
   }, [state.feedback]);
 
   useEffect(() => {
     if (!wordPhrase) return;
-    const timer = window.setTimeout(() => setWordPhrase(null), 1500);
+    const timer = window.setTimeout(() => setWordPhrase(null), 2200);
     return () => window.clearTimeout(timer);
   }, [wordPhrase]);
 
@@ -428,6 +431,7 @@ function HomeScreen({ onStart, onStartVs }) {
         <div className="text-4xl text-[var(--color-cyan)] drop-shadow-[0_0_14px_var(--color-cyanSoft)]">CONNECT</div>
         <div className="text-5xl text-[var(--color-white)]">WORDS</div>
         <div className="home-tagline">word puzzle · arcade juice · neon purple energy</div>
+        <div className="home-howto">Drop letters. Spell words. Clear the board.</div>
       </div>
       <div className="h-px w-full opacity-50 bg-[linear-gradient(90deg,var(--color-purpleEnd),var(--color-cyan),var(--color-purpleEnd))]" />
       <div className="grid grid-cols-1 gap-3">
@@ -762,6 +766,7 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
           setHoverCol={setHoverCol}
           onDropColumn={handleQueueDrop}
         />
+        <GoalStrip state={state} />
         <div className="word-found-strip">
           {state.feedback && <div className="animate-word-float word-found-text">{state.feedback.words.join(' + ')}</div>}
         </div>
@@ -1179,6 +1184,29 @@ function ComboPanel({ combo, streak, fill, pendingSpecial }) {
   );
 }
 
+function GoalStrip({ state }) {
+  const wordsSpelled = Array.isArray(state.wordsFound) ? state.wordsFound.length : 0;
+  const best = getStoredBestScore();
+  const bestFourPlus = bestWord(state.wordsFound).word;
+  const hasFourPlus = bestFourPlus !== 'NONE' && bestFourPlus.length >= 4;
+  const goals = [
+    { label: 'Spell 5 words', value: `${Math.min(wordsSpelled, 5)}/5`, complete: wordsSpelled >= 5 },
+    { label: 'Find a 4+ word', value: hasFourPlus ? bestFourPlus : '—', complete: hasFourPlus },
+    { label: best > 0 ? 'Beat best score' : 'Set first best', value: best > 0 ? `${state.score}/${best}` : `${state.score}`, complete: best > 0 ? state.score > best : state.score > 0 },
+  ];
+
+  return (
+    <div className="goal-strip" aria-label="Current goals">
+      {goals.map((goal) => (
+        <div className={`goal-chip ${goal.complete ? 'goal-chip-complete' : ''}`} key={goal.label}>
+          <span>{goal.label}</span>
+          <strong>{goal.value}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function getComboColor(combo) {
   if (combo >= 7) return 'var(--color-gold)';
   if (combo >= 5) return 'var(--color-magenta)';
@@ -1201,10 +1229,11 @@ function getComboGlow(combo) {
 }
 
 function StatusPanel({ state }) {
+  const friendlyMessage = getFriendlyStatus(state);
   return (
     <aside className="status-panel rounded-lg border border-[var(--color-border)] bg-[var(--color-panel)] p-3">
       <div className="flex items-center justify-between gap-3">
-        <p className="status-message">{state.message}</p>
+        <p className="status-message">{friendlyMessage}</p>
         <span className="font-mono text-sm text-[var(--color-cyan)]">{state.mode.toUpperCase()}</span>
       </div>
       {state.mode === 'timed' && <p className="font-mono text-[var(--color-gold)]">{state.timeLeft}s</p>}
@@ -1215,6 +1244,16 @@ function StatusPanel({ state }) {
       )}
     </aside>
   );
+}
+
+function getFriendlyStatus(state) {
+  if (state.phase !== 'idle') return state.message;
+  if (state.feedback) return 'Nice word. Watch the board settle.';
+  const wordsFound = Array.isArray(state.wordsFound) ? state.wordsFound : [];
+  if (wordsFound.length === 0) return 'Drop letters. Build your first word.';
+  if (state.combo >= 3) return 'Keep the streak alive.';
+  if (state.nextTiles?.[0]) return `Next letter: ${state.nextTiles[0].letter}. Look for a spot.`;
+  return state.message;
 }
 
 function VictoryScreen({ state }) {
@@ -1492,6 +1531,16 @@ function bestWord(words) {
   );
 }
 
+function getStoredBestScore() {
+  const stats = getPlayerStats();
+  const scores = [
+    Number(stats.bestScore || 0),
+    Number(localStorage.getItem('dailyBestScore') || 0),
+    Number(localStorage.getItem('dailyScore') || 0),
+  ];
+  return Math.max(0, ...scores.filter(Number.isFinite));
+}
+
 function getPrestigeWords(words) {
   return [...new Set(words
     .map((entry) => (typeof entry === 'string' ? entry : entry.word))
@@ -1533,7 +1582,7 @@ function RankBadge({ rank, className = '' }) {
 }
 
 function getPlayerStats() {
-  const stats = JSON.parse(localStorage.getItem('playerStats') || '{"matches":0,"wins":0,"losses":0,"bestWord":"","longestStreak":0,"lossStreak":0,"prestigeWords":[]}');
+  const stats = JSON.parse(localStorage.getItem('playerStats') || '{"matches":0,"wins":0,"losses":0,"bestScore":0,"bestWord":"","longestStreak":0,"lossStreak":0,"prestigeWords":[]}');
   return { ...stats, prestigeWords: stats.prestigeWords ?? [] };
 }
 
@@ -1548,6 +1597,7 @@ function updatePlayerStats(state) {
     wins: stats.wins + (playerWon ? 1 : 0),
     losses: stats.losses + (playerWon ? 0 : 1),
     lossStreak: playerWon ? 0 : (stats.lossStreak ?? 0) + 1,
+    bestScore: Math.max(stats.bestScore ?? 0, state.score ?? 0),
     bestWord: best.points > (stats.bestWordPoints ?? 0) ? best.word : stats.bestWord,
     bestWordPoints: Math.max(best.points, stats.bestWordPoints ?? 0),
     longestStreak: Math.max(stats.longestStreak ?? 0, state.streak ?? 0),

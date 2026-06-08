@@ -9,7 +9,7 @@ export default {
       },
       animation: {
         'grid-pan': 'gridPan 12s linear infinite',
-        'tile-drop': 'tileDrop 420ms cubic-bezier(.2,.9,.24,1.2)',
+        'tile-drop': 'tileDrop 520ms cubic-bezier(.18,.76,.24,1)',
         'tile-clear': 'tileClear 580ms ease-in forwards',
         'gold-pulse': 'goldPulse 580ms ease-out',
         'logo-flicker': 'logoFlicker 3s ease-in-out infinite',
@@ -20,8 +20,9 @@ export default {
           '100%': { backgroundPosition: '56px 56px' },
         },
         tileDrop: {
-          '0%': { transform: 'translateY(-120%) scale(.92)', opacity: '.65' },
-          '70%': { transform: 'translateY(10%) scale(1.03)', opacity: '1' },
+          '0%': { transform: 'translateY(-140%) scale(.96)', opacity: '.55' },
+          '58%': { transform: 'translateY(-18%) scale(.99)', opacity: '.92' },
+          '86%': { transform: 'translateY(5%) scale(1.015)', opacity: '1' },
           '100%': { transform: 'translateY(0) scale(1)', opacity: '1' },
         },
         tileClear: {

@@ -65,6 +65,22 @@ button {
   text-transform: lowercase;
 }
 
+.home-howto {
+  display: inline-block;
+  margin-top: 12px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(5, 5, 9, 0.42);
+  padding: 7px 14px;
+  color: rgba(255, 255, 255, 0.84);
+  font-family: Rajdhani, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.08);
+}
+
 .daily-streak-line {
   margin-top: 5px;
   color: var(--color-gold);
@@ -856,11 +872,11 @@ button {
 }
 
 .animate-word-float {
-  animation: wordFloat 600ms ease-out forwards;
+  animation: wordFloat 1800ms ease-out forwards;
 }
 
 .animate-score-rise {
-  animation: scoreRise 800ms ease-out forwards;
+  animation: scoreRise 1600ms ease-out forwards;
 }
 
 .next-queue {
@@ -873,6 +889,59 @@ button {
   font-family: 'Share Tech Mono', monospace;
   font-size: 10px;
   letter-spacing: 2px;
+}
+
+.goal-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0 0 8px;
+}
+
+.goal-chip {
+  min-width: 0;
+  border: 1px solid rgba(157, 78, 221, 0.22);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(15, 10, 35, 0.72), rgba(8, 5, 20, 0.86));
+  padding: 7px 6px;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.35);
+}
+
+.goal-chip span,
+.goal-chip strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.goal-chip span {
+  color: #6a6a90;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.goal-chip strong {
+  margin-top: 4px;
+  color: #ffffff;
+  font-family: Orbitron, sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.28);
+}
+
+.goal-chip-complete {
+  border-color: rgba(255, 214, 10, 0.42);
+  background: linear-gradient(180deg, rgba(255, 214, 10, 0.12), rgba(15, 10, 35, 0.86));
+  box-shadow: 0 0 14px rgba(255, 214, 10, 0.14), inset 0 0 12px rgba(255, 214, 10, 0.08);
+}
+
+.goal-chip-complete strong {
+  color: #ffd60a;
+  text-shadow: 0 0 12px rgba(255, 214, 10, 0.65);
 }
 
 .next-queue-tiles {
@@ -1003,7 +1072,7 @@ button {
     0 0 18px rgba(255, 214, 10, 0.8),
     0 0 34px rgba(157, 78, 221, 0.45);
   pointer-events: none;
-  animation: wordPhraseFlash 1.5s ease-out forwards;
+  animation: wordPhraseFlash 2.2s ease-out forwards;
 }
 
 .animate-tile-clear,
@@ -1018,10 +1087,10 @@ button {
 
 .tile-land {
   animation:
-    tileDrop 420ms cubic-bezier(.2, .9, .24, 1.2),
-    tileCrush 280ms ease-out 420ms,
-    tileGlowBurst 150ms ease-out 420ms,
-    tileBreath 2.5s ease-in-out 700ms infinite;
+    tileDrop 520ms cubic-bezier(.18, .76, .24, 1),
+    tileCrush 260ms ease-out 520ms,
+    tileGlowBurst 180ms ease-out 520ms,
+    tileBreath 2.5s ease-in-out 780ms infinite;
 }
 
 .cinematic-drop {
@@ -1510,11 +1579,13 @@ button {
     transform: translateY(0) scale(0.94);
     opacity: 0;
   }
-  20% {
+  12%,
+  72% {
+    transform: translateY(-7px) scale(1.02);
     opacity: 1;
   }
   100% {
-    transform: translateY(-26px) scale(1);
+    transform: translateY(-24px) scale(1);
     opacity: 0;
   }
 }
@@ -1524,11 +1595,12 @@ button {
     transform: translateY(4px);
     opacity: 0;
   }
-  20% {
+  14%,
+  68% {
     opacity: 1;
   }
   100% {
-    transform: translateY(-38px);
+    transform: translateY(-34px);
     opacity: 0;
   }
 }
