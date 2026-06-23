@@ -1,0 +1,89 @@
+[     103ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[     196ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[     196ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:4174/ <--[HTTP]--> 127.0.0.1:4174/ (server)
+  (browser) 127.0.0.1:4174/ <--[WebSocket (failing)]--> 127.0.0.1:4174/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:4174/@vite/client:511
+[     425ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[     933ms] [ERROR] An unknown error occurred when fetching the script. @ :0
+[     945ms] [ERROR] Failed to register service worker TypeError: Failed to register a ServiceWorker for scope ('http://127.0.0.1:4174/') with script ('http://127.0.0.1:4174/sw.js'): An unknown error occurred when fetching the script. @ http://127.0.0.1:4174/src/main.tsx?t=1778180459106:25
+[    1001ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/balsense-mark.svg:0
+[    1069ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/favicon-32.png:0
+[    1070ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/balsense-icon-192.png:0
+[    1070ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:4174/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:4174/:0
+[93680389ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/main.tsx:0
+[93811286ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[93811297ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[93812299ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[93813300ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[93814307ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[93817405ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/tailwind.css:0
+[93817422ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/styles.css:0
+[93822346ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/styles.css:0
+[93822360ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/tailwind.css?t=1778290278140:0
+[93861870ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[93861875ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[93871255ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/tailwind.css:0
+[93871279ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/styles.css:0
+[93878608ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/tailwind.css:0
+[93878712ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/styles.css:0
+[94783296ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[94783308ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94784311ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94785314ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94786318ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94792803ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/tailwind.css:0
+[94792822ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/styles.css:0
+[94947399ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[94947404ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94948406ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94949409ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94950414ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94951416ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94952418ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94953421ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94954424ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94955425ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94956429ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94957432ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94958433ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94959436ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94960440ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94961442ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94962446ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94963447ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94964449ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[94970724ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/styles.css:0
+[94970734ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:4174/src/tailwind.css:0
+[95040145ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[95040156ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95041159ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95042162ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95043164ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95044167ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95045170ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95046172ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95047177ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95048181ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95049184ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95050187ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95051191ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95052198ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95053202ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95054205ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95055208ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95056212ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95057214ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95058217ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95059220ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95060222ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95061226ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95071835ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-T2CJCCX5.js?v=1895983e:21548
+[95072465ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[95239435ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[95239444ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95240446ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95241448ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95242450ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[95243453ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0

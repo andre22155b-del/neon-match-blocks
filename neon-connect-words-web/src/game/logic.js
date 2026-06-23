@@ -665,6 +665,7 @@ const WORDS = new Set([
   'LAUGH',
   'LEAF',
   'LEARN',
+  'LEE',
   'LEFT',
   'LEMON',
   'LESS',

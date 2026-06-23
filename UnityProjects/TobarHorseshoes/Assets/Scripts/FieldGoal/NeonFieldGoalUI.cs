@@ -13,8 +13,11 @@ public class NeonFieldGoalUI : MonoBehaviour
     [Header("HUD")]
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI goalsText;
+    public TextMeshProUGUI runStatsText;
+    public TextMeshProUGUI windText;
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI modeText;
+    public TextMeshProUGUI kickStateText;
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI hintText;
     public Image kickPowerFill;
@@ -53,6 +56,7 @@ public class NeonFieldGoalUI : MonoBehaviour
     [Header("Title Screen")]
     public GameObject titleScreenPanel;
     public TextMeshProUGUI titleScreenBodyText;
+    public TextMeshProUGUI titleScreenRecordsText;
     public Button arcadeRushButton;
     public Button clutchBlitzButton;
 
@@ -70,6 +74,10 @@ public class NeonFieldGoalUI : MonoBehaviour
     private RectTransform arcadeRushCardRect;
     private RectTransform clutchBlitzCardRect;
     private RectTransform titleGridRoot;
+    private Image gameplayTopRibbon;
+    private Image gameplayKickStatePlate;
+    private Image gameplayBottomPlate;
+    private Image gameplayBottomGlow;
     private Image titleTopGlow;
     private Image titleBottomGlow;
     private TextMeshProUGUI titleScreenTagText;
@@ -116,11 +124,15 @@ public class NeonFieldGoalUI : MonoBehaviour
         }
 
         SetScore(0);
+        SetRunStats(0, 0, 0);
         SetMultiplier(1, 0);
         SetModeLabel(string.Empty);
+        SetKickState(20, 3, false);
         SetTimer(60f);
+        SetWind(0f, 0f);
         ShowStatus("Slide to line it up.");
         SetHint("Swipe up on the kick pad.");
+        SetBestRecords(0, 0, 0, "STREET ROOKIE", "LOCAL BOARD EMPTY");
         SetKickPreview(0f, 0f, false);
     }
 
@@ -222,9 +234,24 @@ public class NeonFieldGoalUI : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    public void SetWind(float direction01, float strength01)
+    {
+        if (windText == null)
+        {
+            return;
+        }
+
+        windText.text = FieldGoalWindMath.GetHudLabel(direction01, strength01);
+        windText.color = strength01 >= 0.66f
+            ? new Color(1f, 0.84f, 0.42f, 0.96f)
+            : strength01 > 0.02f
+                ? new Color(0.74f, 0.96f, 1f, 0.94f)
+                : new Color(0.66f, 0.88f, 0.92f, 0.8f);
+    }
+
     public void SetGoals(int goals)
     {
-        SetScore(goals);
+        SetRunStats(goals, 0, 0);
     }
 
     public void SetScore(int score)
@@ -233,6 +260,22 @@ public class NeonFieldGoalUI : MonoBehaviour
         {
             goalsText.text = "SCORE " + score.ToString("N0");
         }
+    }
+
+    public void SetRunStats(int goals, int longestMadeKick)
+    {
+        SetRunStats(goals, longestMadeKick, 0);
+    }
+
+    public void SetRunStats(int goals, int longestMadeKick, int bestStreak)
+    {
+        if (runStatsText == null)
+        {
+            return;
+        }
+
+        string longestLabel = longestMadeKick > 0 ? longestMadeKick + " YD" : "--";
+        runStatsText.text = "GOALS " + goals.ToString("N0") + "  |  LONGEST " + longestLabel + "  |  BEST HEAT " + Mathf.Max(0, bestStreak);
     }
 
     public void SetMultiplier(int multiplier, int streak)
@@ -272,6 +315,18 @@ public class NeonFieldGoalUI : MonoBehaviour
         }
     }
 
+    public void SetKickState(int yardLine, int basePoints, bool movingGoalActive)
+    {
+        if (kickStateText == null)
+        {
+            return;
+        }
+
+        string pointLabel = basePoints >= 5 ? "5 PT BANGER" : basePoints + " PTS";
+        string movementLabel = movingGoalActive ? "SWAYING GOAL" : "SET UPRIGHTS";
+        kickStateText.text = yardLine + " YD  |  " + pointLabel + "  |  " + movementLabel;
+    }
+
     public void ShowStatus(string message)
     {
         if (statusText != null)
@@ -286,6 +341,30 @@ public class NeonFieldGoalUI : MonoBehaviour
         {
             hintText.text = message;
         }
+    }
+
+    public void SetBestRecords(int bestScore, int bestLongestKick)
+    {
+        SetBestRecords(bestScore, bestLongestKick, 0, "STREET ROOKIE", "LOCAL BOARD EMPTY");
+    }
+
+    public void SetBestRecords(int bestScore, int bestLongestKick, int bestStreak, string rewardLabel, string boardLabel)
+    {
+        if (titleScreenRecordsText == null)
+        {
+            return;
+        }
+
+        string longestLabel = bestLongestKick > 0 ? bestLongestKick + " YD" : "--";
+        titleScreenRecordsText.text =
+            "BEST SCORE " + bestScore.ToString("N0") + "  |  BEST BANGER " + longestLabel + "  |  BEST HEAT " + Mathf.Max(0, bestStreak) +
+            "\n" +
+            rewardLabel + "  |  " + boardLabel;
+    }
+
+    public void ShowSpotlight(string title, string subtitle, Color color)
+    {
+        ShowAnnouncement(title, subtitle, color);
     }
 
     public void ShowItsGood()
@@ -309,10 +388,14 @@ public class NeonFieldGoalUI : MonoBehaviour
             new Color(1f, 0.62f, 0.22f, 0.95f));
     }
 
-    public void ShowGoalBurst(int pointsAwarded, int multiplier, bool perfectKick, bool clutchActive)
+    public void ShowGoalBurst(int pointsAwarded, int multiplier, bool perfectKick, bool clutchActive, int yardLine, bool longBomb)
     {
         string title = "IT'S GOOD";
-        if (perfectKick && clutchActive)
+        if (longBomb)
+        {
+            title = yardLine + " YD BANGER";
+        }
+        else if (perfectKick && clutchActive)
         {
             title = "CLUTCH LASER";
         }
@@ -326,9 +409,19 @@ public class NeonFieldGoalUI : MonoBehaviour
         }
 
         Color color = clutchActive || perfectKick ? kickPerfectColor : kickHighColor;
+        string subtitle = "+" + pointsAwarded + " PTS  |  x" + multiplier + " MULTI";
+        if (longBomb)
+        {
+            subtitle += "  |  STREET CASH";
+        }
+        else if (perfectKick)
+        {
+            subtitle += "  |  CLEAN";
+        }
+
         ShowAnnouncement(
             title,
-            "+" + pointsAwarded + " PTS  |  x" + multiplier + " MULTI",
+            subtitle,
             color);
     }
 
@@ -350,10 +443,15 @@ public class NeonFieldGoalUI : MonoBehaviour
 
     public void ShowResults(int goals)
     {
-        ShowResults(goals, goals, 1, string.Empty);
+        ShowResults(goals, goals, 0, 1, 0, string.Empty, string.Empty);
     }
 
-    public void ShowResults(int score, int goals, int bestMultiplier, string modeLabel)
+    public void ShowResults(int score, int goals, int longestMadeKick, int bestMultiplier, string modeLabel)
+    {
+        ShowResults(score, goals, longestMadeKick, bestMultiplier, 0, modeLabel, string.Empty);
+    }
+
+    public void ShowResults(int score, int goals, int longestMadeKick, int bestMultiplier, int bestStreak, string modeLabel, string progressionSummary)
     {
         HideAnnouncementImmediate();
 
@@ -364,22 +462,25 @@ public class NeonFieldGoalUI : MonoBehaviour
 
         if (resultsTitleText != null)
         {
-            resultsTitleText.text = GetResultsHeadline(score, bestMultiplier);
+            resultsTitleText.text = GetResultsHeadline(score, bestMultiplier, longestMadeKick);
         }
 
         if (resultsBodyText != null)
         {
             string modeLine = string.IsNullOrEmpty(modeLabel) ? string.Empty : modeLabel + "\n";
+            string longestKickLabel = longestMadeKick > 0 ? longestMadeKick + " YD" : "--";
             resultsBodyText.text = modeLine +
                 "Score " + score.ToString("N0") +
                 "  |  Goals " + goals.ToString("N0") +
-                "  |  Best x" + bestMultiplier +
-                "\n3-point makes. Perfect kicks and clutch cash stack hard.";
+                "  |  Longest " + longestKickLabel +
+                "  |  Heat " + Mathf.Max(0, bestStreak) +
+                "\n50+ YD bangers are worth 5. Misses stay fast. The moving goal stays live while the clock cooks." +
+                (string.IsNullOrEmpty(progressionSummary) ? string.Empty : "\n" + progressionSummary);
         }
 
         if (resultsCtaText != null)
         {
-            resultsCtaText.text = GetResultsCta(score, bestMultiplier);
+            resultsCtaText.text = GetResultsCta(score, bestMultiplier, longestMadeKick);
         }
     }
 
@@ -627,7 +728,7 @@ public class NeonFieldGoalUI : MonoBehaviour
         float introTime = 0.16f;
         while (introTime > 0f)
         {
-            introTime -= Time.deltaTime;
+            introTime -= Time.unscaledDeltaTime;
             float t = 1f - Mathf.Clamp01(introTime / 0.16f);
             announcementGroup.transform.localScale = Vector3.one * Mathf.LerpUnclamped(0.9f, 1.05f, t);
             yield return null;
@@ -636,8 +737,8 @@ public class NeonFieldGoalUI : MonoBehaviour
         float visibleDuration = 1.1f;
         while (visibleDuration > 0f)
         {
-            visibleDuration -= Time.deltaTime;
-            float pulse = 1f + Mathf.Sin(Time.time * 11f) * 0.015f;
+            visibleDuration -= Time.unscaledDeltaTime;
+            float pulse = 1f + Mathf.Sin(Time.unscaledTime * 11f) * 0.015f;
             announcementGroup.transform.localScale = Vector3.one * pulse;
             yield return null;
         }
@@ -646,7 +747,7 @@ public class NeonFieldGoalUI : MonoBehaviour
         float startAlpha = announcementGroup.alpha;
         while (fadeTime > 0f)
         {
-            fadeTime -= Time.deltaTime;
+            fadeTime -= Time.unscaledDeltaTime;
             announcementGroup.alpha = Mathf.Lerp(0f, startAlpha, fadeTime / 0.25f);
             announcementGroup.transform.localScale = Vector3.one * Mathf.Lerp(0.96f, 1f, fadeTime / 0.25f);
             yield return null;
@@ -686,6 +787,79 @@ public class NeonFieldGoalUI : MonoBehaviour
             return;
         }
 
+        EnsureGameplayHudBackdrop();
+
+        if (goalsText != null)
+        {
+            RectTransform scoreRect = goalsText.rectTransform;
+            scoreRect.anchorMin = new Vector2(0.5f, 0.68f);
+            scoreRect.anchorMax = new Vector2(0.5f, 0.68f);
+            scoreRect.sizeDelta = new Vector2(280f, 48f);
+            scoreRect.anchoredPosition = new Vector2(0f, 10f);
+            scoreRect.localScale = Vector3.one;
+        }
+
+        if (runStatsText == null && goalsText != null)
+        {
+            runStatsText = CreateRuntimeText(
+                "RunStatsText",
+                goalsText.transform.parent,
+                "GOALS 0  |  LONGEST --",
+                20,
+                new Vector2(0.5f, 0.26f),
+                new Vector2(0.5f, 0.26f),
+                new Vector2(300f, 28f),
+                Vector2.zero,
+                template);
+            runStatsText.color = new Color(0.78f, 0.95f, 1f, 0.92f);
+        }
+
+        if (timerText != null)
+        {
+            RectTransform timerPanelRect = timerText.transform.parent as RectTransform;
+            if (timerPanelRect != null && timerPanelRect.name == "TimerPanel")
+            {
+                timerPanelRect.anchorMin = new Vector2(1f, 1f);
+                timerPanelRect.anchorMax = new Vector2(1f, 1f);
+                timerPanelRect.sizeDelta = new Vector2(300f, 138f);
+                timerPanelRect.anchoredPosition = new Vector2(-216f, -102f);
+                timerPanelRect.localScale = Vector3.one;
+            }
+
+            RectTransform timerRect = timerText.rectTransform;
+            timerRect.anchorMin = new Vector2(0.5f, 0.66f);
+            timerRect.anchorMax = new Vector2(0.5f, 0.66f);
+            timerRect.sizeDelta = new Vector2(240f, 48f);
+            timerRect.anchoredPosition = new Vector2(0f, 6f);
+            timerRect.localScale = Vector3.one;
+        }
+
+        if (windText == null && timerText != null)
+        {
+            windText = CreateRuntimeText(
+                "WindText",
+                timerText.transform.parent,
+                "WIND CALM",
+                18,
+                new Vector2(0.5f, 0.22f),
+                new Vector2(0.5f, 0.22f),
+                new Vector2(240f, 26f),
+                Vector2.zero,
+                template);
+            windText.color = new Color(0.66f, 0.88f, 0.92f, 0.8f);
+        }
+        else if (windText != null)
+        {
+            windText.fontSize = 18;
+            windText.alignment = TextAlignmentOptions.Center;
+            RectTransform windRect = windText.rectTransform;
+            windRect.anchorMin = new Vector2(0.5f, 0.22f);
+            windRect.anchorMax = new Vector2(0.5f, 0.22f);
+            windRect.sizeDelta = new Vector2(240f, 26f);
+            windRect.anchoredPosition = Vector2.zero;
+            windRect.localScale = Vector3.one;
+        }
+
         if (multiplierText == null && goalsText != null)
         {
             multiplierText = CreateRuntimeText(
@@ -715,6 +889,65 @@ public class NeonFieldGoalUI : MonoBehaviour
                 template);
             modeText.color = new Color(1f, 0.94f, 0.34f, 0.92f);
         }
+        if (modeText != null)
+        {
+            modeText.fontSize = 20;
+            modeText.alignment = TextAlignmentOptions.Center;
+            RectTransform modeRect = modeText.rectTransform;
+            modeRect.anchorMin = new Vector2(0.5f, 1f);
+            modeRect.anchorMax = new Vector2(0.5f, 1f);
+            modeRect.sizeDelta = new Vector2(560f, 32f);
+            modeRect.anchoredPosition = new Vector2(0f, -102f);
+            modeRect.localScale = Vector3.one;
+        }
+
+        if (kickStateText == null)
+        {
+            kickStateText = CreateRuntimeText(
+                "KickStateText",
+                transform,
+                "20 YD  |  3 PTS  |  SET UPRIGHTS",
+                20,
+                new Vector2(0.5f, 1f),
+                new Vector2(0.5f, 1f),
+                new Vector2(760f, 30f),
+                new Vector2(0f, -198f),
+                template);
+            kickStateText.color = new Color(0.80f, 0.98f, 0.72f, 0.95f);
+        }
+        if (kickStateText != null)
+        {
+            kickStateText.fontSize = 18;
+            kickStateText.alignment = TextAlignmentOptions.Center;
+            RectTransform kickStateRect = kickStateText.rectTransform;
+            kickStateRect.anchorMin = new Vector2(0.5f, 1f);
+            kickStateRect.anchorMax = new Vector2(0.5f, 1f);
+            kickStateRect.sizeDelta = new Vector2(860f, 28f);
+            kickStateRect.anchoredPosition = new Vector2(0f, -136f);
+            kickStateRect.localScale = Vector3.one;
+        }
+
+        if (statusText != null)
+        {
+            statusText.fontSize = 34;
+            RectTransform statusRect = statusText.rectTransform;
+            statusRect.anchorMin = new Vector2(0.5f, 0f);
+            statusRect.anchorMax = new Vector2(0.5f, 0f);
+            statusRect.sizeDelta = new Vector2(1180f, 48f);
+            statusRect.anchoredPosition = new Vector2(0f, 316f);
+            statusRect.localScale = Vector3.one;
+        }
+
+        if (hintText != null)
+        {
+            hintText.fontSize = 24;
+            RectTransform hintRect = hintText.rectTransform;
+            hintRect.anchorMin = new Vector2(0.5f, 0f);
+            hintRect.anchorMax = new Vector2(0.5f, 0f);
+            hintRect.sizeDelta = new Vector2(1260f, 34f);
+            hintRect.anchoredPosition = new Vector2(0f, 274f);
+            hintRect.localScale = Vector3.one;
+        }
 
         if (resultsPanel != null && modeSelectButton == null)
         {
@@ -735,6 +968,16 @@ public class NeonFieldGoalUI : MonoBehaviour
         if (resultsPanel != null)
         {
             resultsPanelRect = resultsPanel.GetComponent<RectTransform>();
+            if (resultsBodyText != null)
+            {
+                resultsBodyText.fontSize = 28;
+                RectTransform bodyRect = resultsBodyText.rectTransform;
+                bodyRect.anchorMin = new Vector2(0.5f, 0.48f);
+                bodyRect.anchorMax = new Vector2(0.5f, 0.48f);
+                bodyRect.sizeDelta = new Vector2(800f, 220f);
+                bodyRect.anchoredPosition = Vector2.zero;
+            }
+
             if (resultsCtaText == null)
             {
                 resultsCtaText = CreateRuntimeText(
@@ -794,7 +1037,7 @@ public class NeonFieldGoalUI : MonoBehaviour
             titleScreenBodyText = CreateRuntimeText(
                 "TitleScreenBodyText",
                 titleRoot,
-                "Pick your mode and start cashing kicks.",
+                "Pick your mode and start stacking local legend runs.",
                 30,
                 new Vector2(0.5f, 0.6f),
                 new Vector2(0.5f, 0.6f),
@@ -810,12 +1053,37 @@ public class NeonFieldGoalUI : MonoBehaviour
             titleScreenBodyText.alignment = TextAlignmentOptions.Center;
         }
 
+        if (titleScreenRecordsText == null)
+        {
+            titleScreenRecordsText = CreateRuntimeText(
+                "TitleScreenRecordsText",
+                titleRoot,
+                "BEST SCORE 0  |  BEST BANGER --  |  BEST HEAT 0\nSTREET ROOKIE  |  LOCAL BOARD EMPTY",
+                24,
+                new Vector2(0.5f, 0.52f),
+                new Vector2(0.5f, 0.52f),
+                new Vector2(980f, 70f),
+                Vector2.zero,
+                template);
+            titleScreenRecordsText.color = new Color(1f, 0.92f, 0.34f, 0.92f);
+        }
+        if (titleScreenRecordsText != null)
+        {
+            titleScreenRecordsText.fontSize = 22;
+            titleScreenRecordsText.alignment = TextAlignmentOptions.Center;
+            RectTransform recordsRect = titleScreenRecordsText.rectTransform;
+            recordsRect.anchorMin = new Vector2(0.5f, 0.52f);
+            recordsRect.anchorMax = new Vector2(0.5f, 0.52f);
+            recordsRect.sizeDelta = new Vector2(1080f, 72f);
+            recordsRect.anchoredPosition = Vector2.zero;
+        }
+
         if (arcadeRushButton == null)
         {
             arcadeRushButton = CreateRuntimeButton(
                 "ArcadeRushButton",
                 titleRoot,
-                "ARCADE RUSH",
+                "SCORE ATTACK",
                 new Vector2(360f, 110f),
                 new Vector2(0f, -40f),
                 template,
@@ -828,7 +1096,7 @@ public class NeonFieldGoalUI : MonoBehaviour
             CreateRuntimeText(
                 "ArcadeRushHint",
                 arcadeRushButton.transform,
-                "60 seconds. Build heat, then clutch up.",
+                "60 seconds. Pure score chase with unlocks.",
                 20,
                 new Vector2(0.5f, 0.18f),
                 new Vector2(0.5f, 0.18f),
@@ -869,9 +1137,9 @@ public class NeonFieldGoalUI : MonoBehaviour
         ConfigureModeCard(
             arcadeRushButton,
             template,
-            "ARCADE RUSH",
-            "BUILD HEAT",
-            "60 SEC // STACK MULTIS // CASH OUT IN CLUTCH",
+            "SCORE ATTACK",
+            "CHASE THE BOARD",
+            "60 SEC // STACK HEAT // UNLOCK REWARDS",
             new Color(0.06f, 0.16f, 0.3f, 0.96f),
             new Color(0.22f, 0.95f, 1f, 1f));
         ConfigureModeCard(
@@ -879,7 +1147,7 @@ public class NeonFieldGoalUI : MonoBehaviour
             template,
             "CLUTCH BLITZ",
             "PRESSURE ON",
-            "35 SEC // CLUTCH IS LIVE FROM SNAP ONE",
+            "35 SEC // SWAYING GOAL // STREET CASH",
             new Color(0.18f, 0.08f, 0.24f, 0.96f),
             new Color(1f, 0.48f, 0.84f, 1f));
         ConfigureActionButton(
@@ -902,12 +1170,12 @@ public class NeonFieldGoalUI : MonoBehaviour
     {
         if (titleScreenBodyText != null)
         {
-            titleScreenBodyText.text = "Arcade-crazy kicks. 3 points per make. Perfect strikes, multipliers, and clutch bonuses stack hard.";
+            titleScreenBodyText.text = "Arcade-crazy score attack. Build heat, unlock stronger kick rewards, and stack local legend runs while the bars pulse and the uprights sway.";
         }
 
         if (titleScreenTagText != null)
         {
-            titleScreenTagText.text = "SOLO RUN // NEON TURF // HYPE ARCADE";
+            titleScreenTagText.text = "STREET HYPE // FUTURE TURF // LOCAL LEGENDS";
         }
     }
 
@@ -927,8 +1195,13 @@ public class NeonFieldGoalUI : MonoBehaviour
         }
     }
 
-    private string GetResultsHeadline(int score, int bestMultiplier)
+    private string GetResultsHeadline(int score, int bestMultiplier, int longestMadeKick)
     {
+        if (longestMadeKick >= 55)
+        {
+            return "LONG BOMB";
+        }
+
         if (score >= 60 || bestMultiplier >= 5)
         {
             return "CITY LIGHTS";
@@ -947,8 +1220,13 @@ public class NeonFieldGoalUI : MonoBehaviour
         return "TIME'S UP";
     }
 
-    private string GetResultsCta(int score, int bestMultiplier)
+    private string GetResultsCta(int score, int bestMultiplier, int longestMadeKick)
     {
+        if (longestMadeKick >= 50)
+        {
+            return "That banger had juice. Run it back and chase an even deeper bomb.";
+        }
+
         if (score >= 60 || bestMultiplier >= 5)
         {
             return "That run was glowing. Smash RUN IT BACK and break the skyline.";
@@ -1063,7 +1341,7 @@ public class NeonFieldGoalUI : MonoBehaviour
             titleScreenTagText = CreateRuntimeText(
                 "TitleScreenTagText",
                 titleRoot,
-                "SOLO RUN // NEON TURF // HYPE ARCADE",
+                "STREET HYPE // FUTURE TURF // SOLO RUN",
                 22,
                 new Vector2(0.5f, 1f),
                 new Vector2(0.5f, 1f),
@@ -1072,6 +1350,93 @@ public class NeonFieldGoalUI : MonoBehaviour
                 template);
             titleScreenTagText.color = new Color(0.22f, 0.95f, 1f, 0.88f);
             titleScreenTagText.characterSpacing = 2f;
+        }
+    }
+
+    private void EnsureGameplayHudBackdrop()
+    {
+        gameplayTopRibbon = EnsureChildImage(
+            transform,
+            "GameplayTopRibbon",
+            new Color(0.03f, 0.06f, 0.12f, 0.72f),
+            new Vector2(0.5f, 1f),
+            new Vector2(0.5f, 1f),
+            new Vector2(1560f, 110f),
+            new Vector2(0f, -112f));
+        if (gameplayTopRibbon != null)
+        {
+            gameplayTopRibbon.transform.SetAsFirstSibling();
+        }
+
+        gameplayKickStatePlate = EnsureChildImage(
+            transform,
+            "GameplayKickStatePlate",
+            new Color(0.02f, 0.09f, 0.08f, 0.72f),
+            new Vector2(0.5f, 1f),
+            new Vector2(0.5f, 1f),
+            new Vector2(940f, 66f),
+            new Vector2(0f, -122f));
+        if (gameplayKickStatePlate != null)
+        {
+            gameplayKickStatePlate.transform.SetAsFirstSibling();
+        }
+
+        gameplayBottomPlate = EnsureChildImage(
+            transform,
+            "GameplayBottomPlate",
+            new Color(0.03f, 0.06f, 0.12f, 0.76f),
+            new Vector2(0.5f, 0f),
+            new Vector2(0.5f, 0f),
+            new Vector2(1320f, 118f),
+            new Vector2(0f, 294f));
+        if (gameplayBottomPlate != null)
+        {
+            gameplayBottomPlate.transform.SetAsFirstSibling();
+        }
+
+        gameplayBottomGlow = EnsureChildImage(
+            transform,
+            "GameplayBottomGlow",
+            new Color(0.22f, 0.95f, 1f, 0.12f),
+            new Vector2(0.5f, 0f),
+            new Vector2(0.5f, 0f),
+            new Vector2(980f, 28f),
+            new Vector2(0f, 334f));
+        if (gameplayBottomGlow != null)
+        {
+            gameplayBottomGlow.transform.SetAsFirstSibling();
+        }
+
+        Transform existingTitlePanel = transform.Find("TitlePanel");
+        if (existingTitlePanel != null)
+        {
+            RectTransform titlePanelRect = existingTitlePanel.GetComponent<RectTransform>();
+            if (titlePanelRect != null)
+            {
+                titlePanelRect.anchorMin = new Vector2(0.5f, 1f);
+                titlePanelRect.anchorMax = new Vector2(0.5f, 1f);
+                titlePanelRect.sizeDelta = new Vector2(440f, 68f);
+                titlePanelRect.anchoredPosition = new Vector2(0f, -58f);
+                titlePanelRect.localScale = Vector3.one;
+            }
+
+            Image titlePanelImage = existingTitlePanel.GetComponent<Image>();
+            if (titlePanelImage != null)
+            {
+                titlePanelImage.color = new Color(0.04f, 0.08f, 0.14f, 0.82f);
+            }
+
+            Transform existingTitleText = existingTitlePanel.Find("TitleText");
+            if (existingTitleText != null)
+            {
+                TextMeshProUGUI titleText = existingTitleText.GetComponent<TextMeshProUGUI>();
+                if (titleText != null)
+                {
+                    titleText.fontSize = 28;
+                    titleText.characterSpacing = 3f;
+                    titleText.color = kickPerfectColor;
+                }
+            }
         }
     }
 
@@ -1358,7 +1723,7 @@ public class NeonFieldGoalUI : MonoBehaviour
         textRef.text = text;
         textRef.fontSize = fontSize;
         textRef.alignment = TextAlignmentOptions.Center;
-        textRef.enableWordWrapping = true;
+        textRef.textWrappingMode = TextWrappingModes.Normal;
         RectTransform rect = textRef.rectTransform;
         rect.anchorMin = anchorMin;
         rect.anchorMax = anchorMax;
@@ -1400,7 +1765,7 @@ public class NeonFieldGoalUI : MonoBehaviour
         tmp.text = text;
         tmp.fontSize = fontSize;
         tmp.alignment = TextAlignmentOptions.Center;
-        tmp.enableWordWrapping = true;
+        tmp.textWrappingMode = TextWrappingModes.Normal;
         RectTransform rect = tmp.rectTransform;
         rect.anchorMin = anchorMin;
         rect.anchorMax = anchorMax;

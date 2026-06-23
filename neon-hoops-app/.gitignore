@@ -1,0 +1,5 @@
+node_modules/
+dist/
+coverage/
+backend/data/game-data.json
+.DS_Store

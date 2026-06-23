@@ -15,10 +15,10 @@ public class GoalPresentationController : MonoBehaviour
     public Renderer[] endZoneRenderers;
     public Light[] crowdLights;
     public string emissionProperty = "_EmissionColor";
-    public Color baseGlowColor = new Color(0.14f, 0.95f, 1f);
-    public Color scoreGlowColor = new Color(1f, 0.62f, 0.18f);
+    public Color baseGlowColor = new Color(0.22f, 1f, 0.96f);
+    public Color scoreGlowColor = new Color(1f, 0.72f, 0.24f);
     public float pulseSpeed = 2.4f;
-    public float pulseAmplitude = 0.35f;
+    public float pulseAmplitude = 0.42f;
 
     private MaterialPropertyBlock propertyBlock;
     private int emissionPropertyId;
@@ -37,6 +37,8 @@ public class GoalPresentationController : MonoBehaviour
     private FieldGoalAudioCue activeCue;
     private int currentStreak;
     private int currentMultiplier = 1;
+    private int currentYardLine = 20;
+    private float currentWindStrength;
     private bool currentClutchActive;
     private bool currentMovingGoalLive;
 
@@ -93,14 +95,18 @@ public class GoalPresentationController : MonoBehaviour
         }
     }
 
-    public void SetRunIntensity(int streak, int multiplier, bool clutchActive, bool movingGoalLive)
+    public void SetRunIntensity(int streak, int multiplier, bool clutchActive, bool movingGoalLive, int yardLine, float windStrength01)
     {
         currentStreak = Mathf.Max(0, streak);
         currentMultiplier = Mathf.Max(1, multiplier);
+        currentYardLine = Mathf.Max(1, yardLine);
+        currentWindStrength = Mathf.Clamp01(windStrength01);
         currentClutchActive = clutchActive;
         currentMovingGoalLive = movingGoalLive;
         float baseAmbientVolume = config != null ? config.ambientVolume : 0.3f;
         float ambientScale = FieldGoalAudioIdentity.GetAmbientScale(clutchActive, currentMultiplier, movingGoalLive);
+        ambientScale += FieldGoalWindMath.GetDistancePressure01(config, currentYardLine) * 0.08f;
+        ambientScale += currentWindStrength * 0.06f;
         float ambientCap = config != null ? Mathf.Max(1f, config.ambientMaxMixScale) : 1.24f;
         ambientTargetVolume = baseAmbientVolume * Mathf.Min(ambientScale, ambientCap);
     }
@@ -211,6 +217,8 @@ public class GoalPresentationController : MonoBehaviour
         cueElapsedTime = 999f;
         cueDuckTimer = 0f;
         activeCue = FieldGoalAudioCue.None;
+        currentYardLine = config != null ? Mathf.Max(1, config.startingYardLine) : 20;
+        currentWindStrength = 0f;
     }
 
     private void Update()
@@ -258,26 +266,44 @@ public class GoalPresentationController : MonoBehaviour
 
         float baseIntensity = config != null ? config.goalLightBaseIntensity : 1.8f;
         float flashIntensity = config != null ? config.goalLightFlashIntensity : 8.5f;
-        float pulse = baseIntensity + Mathf.Sin(time * pulseSpeed) * pulseAmplitude;
+        float distancePressure = FieldGoalWindMath.GetDistancePressure01(config, currentYardLine);
+        float comboPressure = Mathf.Clamp(currentStreak - 1, 0, 5) * 0.09f + Mathf.Clamp(currentMultiplier - 1, 0, 4) * 0.14f;
+        float livePulseAmplitude = pulseAmplitude + distancePressure * 0.16f + currentWindStrength * 0.08f;
+        float pulse = baseIntensity +
+            distancePressure * 0.82f +
+            currentWindStrength * 0.25f +
+            comboPressure +
+            Mathf.Sin(time * pulseSpeed) * livePulseAmplitude;
+        if (currentMovingGoalLive)
+        {
+            pulse += 0.18f;
+        }
+
+        if (currentClutchActive)
+        {
+            pulse += 0.2f;
+        }
+
         float activeIntensity = pulse;
-        Color activeColor = baseGlowColor;
+        Color activeColor = Color.Lerp(baseGlowColor, scoreGlowColor, distancePressure * 0.26f + currentWindStrength * 0.1f + comboPressure * 0.08f);
         if (kickFlashTimer > 0f)
         {
             float kickDuration = Mathf.Max(0.01f, config != null ? config.kickGlowDuration : 0.16f);
             float kickBlend = Mathf.Sin((1f - Mathf.Clamp01(kickFlashTimer / kickDuration)) * Mathf.PI);
-            activeIntensity += kickBlend * (config != null ? config.kickGlowBoost : 0.7f);
+            activeIntensity += kickBlend * ((config != null ? config.kickGlowBoost : 0.7f) + 0.55f);
+            activeColor = Color.Lerp(activeColor, Color.white, kickBlend * 0.22f);
         }
 
         if (flashTimer > 0f)
         {
             flashTimer -= deltaTime;
             float flashBlend = Mathf.Clamp01(flashTimer / Mathf.Max(0.01f, config != null ? config.goalLightFlashDuration : 0.5f));
-            activeIntensity = Mathf.Lerp(pulse, flashIntensity, flashBlend);
-            activeColor = Color.Lerp(baseGlowColor, scoreGlowColor, flashBlend);
+            activeIntensity = Mathf.Lerp(pulse, flashIntensity * (1f + comboPressure * 0.08f), flashBlend);
+            activeColor = Color.Lerp(activeColor, Color.Lerp(scoreGlowColor, Color.white, 0.28f), flashBlend);
         }
 
         ApplyEmission(goalRenderers, activeColor, activeIntensity);
-        ApplyEmission(endZoneRenderers, activeColor, activeIntensity * 0.85f);
+        ApplyEmission(endZoneRenderers, Color.Lerp(activeColor, scoreGlowColor, 0.16f), activeIntensity * 1.05f);
         UpdateCrowdLights(flashTimer > 0f, crowdBoostTimer > 0f, finalDriveTimer > 0f);
     }
 
@@ -319,9 +345,12 @@ public class GoalPresentationController : MonoBehaviour
             }
 
             float baseIntensity = i < baseCrowdIntensities.Length ? baseCrowdIntensities[i] : 1f;
+            float distancePressure = FieldGoalWindMath.GetDistancePressure01(config, currentYardLine);
             float idleWave = 0.88f + 0.18f * Mathf.Sin(Time.unscaledTime * 1.6f + i * 0.8f);
             idleWave += Mathf.Clamp(currentMultiplier - 1, 0, 4) * 0.03f;
             idleWave += Mathf.Clamp(currentStreak - 1, 0, 4) * 0.015f;
+            idleWave += distancePressure * 0.12f;
+            idleWave += currentWindStrength * 0.08f;
             if (currentMovingGoalLive)
             {
                 idleWave += 0.05f;

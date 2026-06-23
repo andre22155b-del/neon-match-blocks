@@ -1,0 +1,58 @@
+[     138ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[     148ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[     148ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:4174/ <--[HTTP]--> 127.0.0.1:4174/ (server)
+  (browser) 127.0.0.1:4174/ <--[WebSocket (failing)]--> 127.0.0.1:4174/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:4174/@vite/client:511
+[     167ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[     424ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[   12980ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[   12991ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[   12991ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:4174/ <--[HTTP]--> 127.0.0.1:4174/ (server)
+  (browser) 127.0.0.1:4174/ <--[WebSocket (failing)]--> 127.0.0.1:4174/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:4174/@vite/client:511
+[   13016ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[   13068ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[  128685ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  128697ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  128698ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:4174/ <--[HTTP]--> 127.0.0.1:4174/ (server)
+  (browser) 127.0.0.1:4174/ <--[WebSocket (failing)]--> 127.0.0.1:4174/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:4174/@vite/client:511
+[  128707ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[  128755ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[  130001ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  130013ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[  130031ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  130048ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:4174/ <--[HTTP]--> 127.0.0.1:4174/ (server)
+  (browser) 127.0.0.1:4174/ <--[WebSocket (failing)]--> 127.0.0.1:4174/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:4174/@vite/client:511
+[  130054ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[  170049ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  170060ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  170060ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:4174/ <--[HTTP]--> 127.0.0.1:4174/ (server)
+  (browser) 127.0.0.1:4174/ <--[WebSocket (failing)]--> 127.0.0.1:4174/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:4174/@vite/client:511
+[  170065ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[  170108ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[  209463ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  209482ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=Qoun2AaZSx6W' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[  209482ms] [ERROR] [vite] failed to connect to websocket.
+your current setup:
+  (browser) 127.0.0.1:4174/ <--[HTTP]--> 127.0.0.1:4174/ (server)
+  (browser) 127.0.0.1:4174/ <--[WebSocket (failing)]--> 127.0.0.1:4174/ (server)
+Check out your Vite / network configuration and https://vite.dev/config/server-options.html#server-hmr . @ http://127.0.0.1:4174/@vite/client:511
+[  209508ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[  209564ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[  263697ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:5173/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[  263856ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:5173/:0
+[  265146ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:5173/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[  265210ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:5173/:0

@@ -1,0 +1,182 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#040A12"/>
+      <stop offset="0.45" stop-color="#07111C"/>
+      <stop offset="1" stop-color="#02050A"/>
+    </linearGradient>
+    <linearGradient id="field" x1="800" y1="220" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A4820"/>
+      <stop offset="0.38" stop-color="#0E8D34"/>
+      <stop offset="1" stop-color="#04130A"/>
+    </linearGradient>
+    <linearGradient id="goal" x1="800" y1="122" x2="800" y2="384" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF6AA"/>
+      <stop offset="1" stop-color="#FFD041"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="b1"/>
+      <feGaussianBlur stdDeviation="22" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#sky)"/>
+
+  <g opacity="0.5" filter="url(#soft)">
+    <ellipse cx="800" cy="186" rx="560" ry="96" fill="#102033"/>
+    <ellipse cx="800" cy="280" rx="740" ry="64" fill="#08131D"/>
+  </g>
+
+  <polygon points="316,228 1284,228 1448,900 152,900" fill="url(#field)" stroke="#39FF7B" stroke-width="4"/>
+
+  <g opacity="0.35">
+    <path d="M800 228V900" stroke="#A7FFC6" stroke-width="3"/>
+    <path d="M648 228L548 900" stroke="#78FFB0" stroke-width="2"/>
+    <path d="M952 228L1052 900" stroke="#78FFB0" stroke-width="2"/>
+    <path d="M560 228L398 900" stroke="#78FFB0" stroke-width="2"/>
+    <path d="M1040 228L1202 900" stroke="#78FFB0" stroke-width="2"/>
+  </g>
+
+  <g opacity="0.92" filter="url(#glow)">
+    <path d="M496 820L1104 820" stroke="#D9FFE8" stroke-width="8" stroke-linecap="round"/>
+    <path d="M560 708L1040 708" stroke="#D9FFE8" stroke-width="7" stroke-linecap="round"/>
+    <path d="M616 612L984 612" stroke="#D9FFE8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M668 532L932 532" stroke="#D9FFE8" stroke-width="5" stroke-linecap="round"/>
+    <path d="M714 464L886 464" stroke="#D9FFE8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M754 404L846 404" stroke="#D9FFE8" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.42">
+    <path d="M478 838L1122 838" stroke="#0D3216" stroke-width="44" stroke-linecap="round"/>
+    <path d="M548 718L1052 718" stroke="#0D3216" stroke-width="36" stroke-linecap="round"/>
+    <path d="M612 620L988 620" stroke="#0D3216" stroke-width="30" stroke-linecap="round"/>
+    <path d="M666 538L934 538" stroke="#0D3216" stroke-width="24" stroke-linecap="round"/>
+    <path d="M712 468L888 468" stroke="#0D3216" stroke-width="20" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.64">
+    <path d="M760 844L760 796" stroke="#C8FFD9" stroke-width="4"/>
+    <path d="M840 844L840 796" stroke="#C8FFD9" stroke-width="4"/>
+    <path d="M726 724L726 688" stroke="#C8FFD9" stroke-width="4"/>
+    <path d="M874 724L874 688" stroke="#C8FFD9" stroke-width="4"/>
+    <path d="M698 628L698 600" stroke="#C8FFD9" stroke-width="3"/>
+    <path d="M902 628L902 600" stroke="#C8FFD9" stroke-width="3"/>
+    <path d="M778 472L778 448" stroke="#C8FFD9" stroke-width="3"/>
+    <path d="M822 472L822 448" stroke="#C8FFD9" stroke-width="3"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <rect x="792" y="150" width="16" height="212" rx="8" fill="url(#goal)"/>
+    <rect x="636" y="268" width="328" height="16" rx="8" fill="url(#goal)"/>
+    <rect x="636" y="118" width="16" height="166" rx="8" fill="url(#goal)"/>
+    <rect x="948" y="118" width="16" height="166" rx="8" fill="url(#goal)"/>
+  </g>
+
+  <g opacity="0.72" filter="url(#glow)">
+    <rect x="568" y="282" width="24" height="132" rx="12" fill="#39FF7B"/>
+    <rect x="1010" y="282" width="24" height="132" rx="12" fill="#FF5BDA"/>
+    <rect x="566" y="406" width="28" height="12" rx="6" fill="#D8FFF3"/>
+    <rect x="1008" y="406" width="28" height="12" rx="6" fill="#FFD4F7"/>
+  </g>
+
+  <g opacity="0.88" filter="url(#soft)">
+    <polygon points="560,234 1040,234 1258,356 342,356" fill="#08131B"/>
+    <polygon points="616,188 984,188 1126,242 474,242" fill="#091720"/>
+    <rect x="640" y="248" width="320" height="26" rx="13" fill="#0F2732" stroke="#FFD756" stroke-width="2"/>
+    <text x="800" y="266" text-anchor="middle" fill="#FFD756" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">MUSTANGS</text>
+  </g>
+
+  <g filter="url(#glow)">
+    <path d="M798 774C812 710 828 618 846 522C864 430 884 340 910 252" stroke="#E6FFF0" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g opacity="0.78">
+    <path d="M804 772C818 710 834 618 852 522C870 430 890 340 916 252" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="10 12" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.95">
+    <ellipse cx="800" cy="796" rx="34" ry="14" fill="#02140B"/>
+    <ellipse cx="800" cy="784" rx="24" ry="10" fill="#39FF7B" filter="url(#glow)"/>
+    <path d="M780 784C780 772 788 760 800 760C812 760 820 772 820 784C820 796 812 808 800 808C788 808 780 796 780 784Z" fill="#121D28" stroke="#D5FFF0" stroke-width="3"/>
+    <path d="M792 770L808 798" stroke="#FF5BDA" stroke-width="4" stroke-linecap="round"/>
+    <path d="M808 770L792 798" stroke="#39FF7B" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.9">
+    <g transform="translate(572 560)">
+      <ellipse cx="0" cy="132" rx="48" ry="12" fill="#03110A"/>
+      <rect x="-12" y="38" width="24" height="82" rx="12" fill="#16202A"/>
+      <rect x="-48" y="54" width="20" height="84" rx="10" transform="rotate(14 -48 54)" fill="#73FFD3"/>
+      <rect x="28" y="54" width="20" height="84" rx="10" transform="rotate(-14 28 54)" fill="#FF65DE"/>
+      <rect x="-10" y="116" width="8" height="44" rx="4" fill="#16202A"/>
+      <rect x="2" y="116" width="8" height="44" rx="4" fill="#16202A"/>
+      <ellipse cx="0" cy="14" rx="22" ry="24" fill="#C6FFF6"/>
+      <rect x="-22" y="54" width="44" height="28" rx="10" fill="#3AFF82"/>
+    </g>
+    <g transform="translate(724 536)">
+      <ellipse cx="0" cy="150" rx="46" ry="12" fill="#03110A"/>
+      <rect x="-11" y="44" width="22" height="88" rx="11" fill="#16202A"/>
+      <rect x="-44" y="60" width="18" height="88" rx="9" transform="rotate(18 -44 60)" fill="#73FFD3"/>
+      <rect x="26" y="60" width="18" height="88" rx="9" transform="rotate(-18 26 60)" fill="#FF65DE"/>
+      <rect x="-9" y="128" width="8" height="44" rx="4" fill="#16202A"/>
+      <rect x="1" y="128" width="8" height="44" rx="4" fill="#16202A"/>
+      <ellipse cx="0" cy="16" rx="20" ry="22" fill="#C6FFF6"/>
+      <rect x="-20" y="58" width="40" height="26" rx="10" fill="#3AFF82"/>
+    </g>
+    <g transform="translate(876 536)">
+      <ellipse cx="0" cy="150" rx="46" ry="12" fill="#03110A"/>
+      <rect x="-11" y="44" width="22" height="88" rx="11" fill="#16202A"/>
+      <rect x="-44" y="60" width="18" height="88" rx="9" transform="rotate(18 -44 60)" fill="#73FFD3"/>
+      <rect x="26" y="60" width="18" height="88" rx="9" transform="rotate(-18 26 60)" fill="#FF65DE"/>
+      <rect x="-9" y="128" width="8" height="44" rx="4" fill="#16202A"/>
+      <rect x="1" y="128" width="8" height="44" rx="4" fill="#16202A"/>
+      <ellipse cx="0" cy="16" rx="20" ry="22" fill="#C6FFF6"/>
+      <rect x="-20" y="58" width="40" height="26" rx="10" fill="#3AFF82"/>
+    </g>
+    <g transform="translate(1028 560)">
+      <ellipse cx="0" cy="132" rx="48" ry="12" fill="#03110A"/>
+      <rect x="-12" y="38" width="24" height="82" rx="12" fill="#16202A"/>
+      <rect x="-48" y="54" width="20" height="84" rx="10" transform="rotate(14 -48 54)" fill="#73FFD3"/>
+      <rect x="28" y="54" width="20" height="84" rx="10" transform="rotate(-14 28 54)" fill="#FF65DE"/>
+      <rect x="-10" y="116" width="8" height="44" rx="4" fill="#16202A"/>
+      <rect x="2" y="116" width="8" height="44" rx="4" fill="#16202A"/>
+      <ellipse cx="0" cy="14" rx="22" ry="24" fill="#C6FFF6"/>
+      <rect x="-22" y="54" width="44" height="28" rx="10" fill="#3AFF82"/>
+    </g>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="84" y="34" width="1432" height="94" rx="24" fill="#06131C" stroke="#41FF83" stroke-width="2"/>
+    <rect x="598" y="50" width="404" height="60" rx="18" fill="#0A1922" stroke="#FFD756" stroke-width="2"/>
+    <text x="800" y="88" text-anchor="middle" fill="#FFD756" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">NEON FIELDGOAL</text>
+    <text x="214" y="88" text-anchor="middle" fill="#FF6BDD" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">SCORE 42</text>
+    <text x="1380" y="88" text-anchor="middle" fill="#4EFFE0" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">00:18</text>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="1160" y="148" width="310" height="168" rx="24" fill="#0E1722" stroke="#4EFFE0" stroke-width="2"/>
+    <text x="1315" y="196" text-anchor="middle" fill="#DAFFF6" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">FIRST-PERSON VIEW</text>
+    <text x="1315" y="232" text-anchor="middle" fill="#FFD756" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">WIND &gt;&gt; HEAVY</text>
+    <text x="1315" y="266" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="20">50 YD BANGER</text>
+    <text x="1315" y="296" text-anchor="middle" fill="#8FFFF0" font-family="Arial, Helvetica, sans-serif" font-size="18">Sliding goal live</text>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="96" y="710" width="416" height="128" rx="24" fill="#0F1822" stroke="#42FF83" stroke-width="2"/>
+    <text x="130" y="758" fill="#C8FFD9" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">EYE-LEVEL KICKER CAM</text>
+    <text x="130" y="794" fill="#92FFE7" font-family="Arial, Helvetica, sans-serif" font-size="20">Breathing sway before kick. Smooth follow on release.</text>
+    <text x="130" y="824" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18">No player body, just the lane, ball, rush, and uprights.</text>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="534" y="784" width="532" height="58" rx="20" fill="#111922" stroke="#53FFE3" stroke-width="2"/>
+    <text x="800" y="821" text-anchor="middle" fill="#E3FFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Slide for daylight. Read the wind. Split the uprights.</text>
+  </g>
+</svg>

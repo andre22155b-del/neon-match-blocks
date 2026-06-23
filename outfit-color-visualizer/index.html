@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Outfit Color Matcher</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <main class="app-shell">
+      <header class="hero panel">
+        <p class="eyebrow">Spin, Compare, Build</p>
+        <h1>Outfit color board.</h1>
+        <p class="hero-copy">
+          Pick colors, compare two, or upload one real item for quick outfit
+          ideas.
+        </p>
+      </header>
+
+      <section class="workspace-panel panel">
+        <div class="section-head workspace-head">
+          <div>
+            <p class="section-kicker">Workspace</p>
+            <h2>Picks and Filter</h2>
+          </div>
+          <button id="clear-selections" class="ghost-button" type="button">
+            Clear
+          </button>
+        </div>
+        <div id="selected-chips" class="chips empty">
+          Tap colors to pin them.
+        </div>
+        <div class="workspace-divider"></div>
+        <div id="filter-pills" class="filter-pills" role="tablist"></div>
+      </section>
+
+      <section class="rows-panel panel">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Color Board</p>
+            <h2>Full Color Grid</h2>
+          </div>
+          <p class="micro-copy">Drag the grid. Tap tiles. Use `A/B` to compare.</p>
+        </div>
+        <div id="rows-root" class="rows-root"></div>
+      </section>
+
+      <section class="panel item-lab-panel">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Item Photo</p>
+            <h2>Upload or Snap</h2>
+          </div>
+          <p class="micro-copy">
+            Pull colors from one real piece.
+          </p>
+        </div>
+
+        <div class="item-lab-toolbar">
+          <label class="media-button" for="item-upload-input">
+            Upload
+          </label>
+          <label class="media-button media-button-accent" for="item-camera-input">
+            Take photo
+          </label>
+          <button id="clear-items" class="ghost-button" type="button">
+            Clear
+          </button>
+        </div>
+
+        <div class="item-lab-copy">
+          Tap an extracted color to send it to compare.
+        </div>
+
+        <input
+          id="item-upload-input"
+          class="visually-hidden"
+          type="file"
+          accept="image/*"
+          multiple
+        />
+        <input
+          id="item-camera-input"
+          class="visually-hidden"
+          type="file"
+          accept="image/*"
+          capture="environment"
+        />
+
+        <div id="item-gallery" class="item-gallery empty">
+          Upload or snap an item to extract its colors and get outfit ideas.
+        </div>
+      </section>
+
+      <section class="panel compare-panel">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Compare</p>
+            <h2>Two Colors</h2>
+          </div>
+          <p class="micro-copy">Type a name or use `A/B` on any tile.</p>
+        </div>
+
+        <div class="compare-picker-bar">
+          <p id="compare-picker-copy" class="compare-picker-copy">
+            Use `A/B` on tiles, or set the next tap.
+          </p>
+          <div class="compare-targets" role="group" aria-label="Choose compare side">
+            <button id="compare-target-a" class="compare-target" type="button">
+              Next for A
+            </button>
+            <button id="compare-target-b" class="compare-target" type="button">
+              Next for B
+            </button>
+            <button id="compare-target-cancel" class="compare-target compare-target-cancel" type="button">
+              Cancel
+            </button>
+          </div>
+        </div>
+
+        <div class="compare-input-grid">
+          <label class="compare-input" data-compare-slot="a">
+            <span>Color A</span>
+            <div class="compare-field">
+              <div id="compare-swatch-a" class="input-swatch"></div>
+              <input
+                id="compare-a"
+                list="color-suggestions"
+                placeholder="Sky blue"
+                autocomplete="off"
+              />
+            </div>
+          </label>
+
+          <label class="compare-input" data-compare-slot="b">
+            <span>Color B</span>
+            <div class="compare-field">
+              <div id="compare-swatch-b" class="input-swatch"></div>
+              <input
+                id="compare-b"
+                list="color-suggestions"
+                placeholder="Tan"
+                autocomplete="off"
+              />
+            </div>
+          </label>
+        </div>
+
+        <datalist id="color-suggestions"></datalist>
+
+        <div id="compare-preview" class="compare-preview">
+          <div class="compare-half compare-half-left">
+            <div id="compare-label-a" class="compare-half-label"></div>
+          </div>
+          <div class="compare-half compare-half-right">
+            <div id="compare-label-b" class="compare-half-label"></div>
+          </div>
+        </div>
+
+        <article id="compare-verdict" class="verdict-card empty">
+          Enter two colors to see how they work together.
+        </article>
+      </section>
+
+      <section class="results-header">
+        <div>
+          <p class="section-kicker">Results</p>
+          <h2>Matches</h2>
+        </div>
+      </section>
+
+      <section id="cards-root" class="cards-grid"></section>
+    </main>
+
+    <template id="row-template">
+      <section class="row-block">
+        <div class="row-labels">
+          <div>
+            <p class="row-kicker"></p>
+            <h3></h3>
+          </div>
+          <p class="row-hint"></p>
+        </div>
+        <div class="row-viewport">
+          <div class="row-scroll-controls row-scroll-controls-left" role="group" aria-label="Scroll row">
+            <button class="row-scroll-button" data-direction="-1" type="button" aria-label="Scroll row left">
+              ‹
+            </button>
+          </div>
+          <div class="row-scroll-controls row-scroll-controls-right" role="group" aria-label="Scroll row">
+            <button class="row-scroll-button" data-direction="1" type="button" aria-label="Scroll row right">
+              ›
+            </button>
+          </div>
+          <div class="edge-fade edge-fade-left"></div>
+          <div class="edge-fade edge-fade-right"></div>
+          <div class="row-track-wrap">
+            <div class="row-track"></div>
+          </div>
+        </div>
+      </section>
+    </template>
+
+    <template id="swatch-template">
+      <div class="swatch-shell">
+        <div class="swatch-compare-actions" aria-label="Send swatch to compare">
+          <button class="swatch-compare-button" data-slot="a" type="button" aria-label="Send color to Compare A">
+            A
+          </button>
+          <button class="swatch-compare-button" data-slot="b" type="button" aria-label="Send color to Compare B">
+            B
+          </button>
+        </div>
+        <button class="swatch" type="button">
+          <span class="swatch-sheen"></span>
+          <span class="swatch-name"></span>
+          <span class="swatch-hex"></span>
+          <span class="swatch-note"></span>
+        </button>
+      </div>
+    </template>
+
+    <template id="card-template">
+      <article class="pair-card">
+        <div class="pair-card-top">
+          <div class="pair-card-labels"></div>
+          <span class="pair-card-pill"></span>
+        </div>
+        <div class="pair-card-swatches">
+          <div class="pair-card-swatch">
+            <div class="pair-card-color"></div>
+            <div>
+              <strong class="pair-card-name"></strong>
+              <span class="pair-card-meta"></span>
+            </div>
+          </div>
+          <div class="pair-card-swatch">
+            <div class="pair-card-color"></div>
+            <div>
+              <strong class="pair-card-name"></strong>
+              <span class="pair-card-meta"></span>
+            </div>
+          </div>
+        </div>
+        <p class="pair-card-copy"></p>
+        <div class="pair-card-suggestions"></div>
+      </article>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

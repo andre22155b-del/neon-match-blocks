@@ -1,0 +1,102 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - img "BalSense logo" [ref=e13]
+          - generic [ref=e14]: BalSense
+          - generic [ref=e15]: by Tobar Mix Creations
+        - button "Open next event details" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: In 4 days
+          - generic "Health indicator with 0 attention flags" [ref=e19]
+      - generic [ref=e22]: Command
+    - generic [ref=e24]:
+      - img [ref=e26]
+      - paragraph [ref=e29]: Avant minimum due in 4 days — $25.
+    - tabpanel "Command" [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e37]:
+          - generic [ref=e39]:
+            - paragraph [ref=e40]: Best play
+            - heading "Indigo" [level=2] [ref=e41]
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - paragraph [ref=e44]: Why now
+              - paragraph [ref=e45]: Indigo has the most room — 55% available. Statement closes day 19. Safest card in the set.
+            - generic [ref=e46]:
+              - paragraph [ref=e47]: What to avoid
+              - paragraph [ref=e48]: Destiny (98%) and Capital One Platinum (86%) are critical. Capital One SavorOne (84%) is close behind.
+            - generic [ref=e49]:
+              - paragraph [ref=e50]: Confidence
+              - generic [ref=e52]: Cautious
+            - button "Use This Card" [ref=e54] [cursor=pointer]
+            - button "See full reasoning" [ref=e55] [cursor=pointer]
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]:
+              - paragraph [ref=e62]: Stack score
+              - generic [ref=e63]:
+                - generic [ref=e64]: "24"
+                - paragraph [ref=e65]: Take action now
+            - button "See breakdown" [ref=e66] [cursor=pointer]
+          - generic [ref=e71]:
+            - generic [ref=e72]: Stack
+            - generic [ref=e73]: $918.82 · Used 72.7% · 6 cards
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: Coming up
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e80]:
+                - paragraph [ref=e81]: Avant
+                - paragraph [ref=e82]: Due Date
+              - generic [ref=e83]: Jun 1
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - paragraph [ref=e86]: Destiny
+                - paragraph [ref=e87]: Due Date
+              - generic [ref=e88]: Jun 3
+            - generic [ref=e89]:
+              - generic [ref=e90]:
+                - paragraph [ref=e91]: Destiny
+                - paragraph [ref=e92]: Expected Report
+              - generic [ref=e93]: Jun 3
+        - generic [ref=e95]:
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - paragraph [ref=e98]: BalSense Coach
+              - heading "Ask before you swipe." [level=3] [ref=e99]
+            - img [ref=e101]
+          - generic [ref=e105]: Ask me what to use, what to avoid, or tell me a current balance so I can recalibrate the Stack.
+          - generic [ref=e106]:
+            - button "Recovery plan" [ref=e107] [cursor=pointer]:
+              - img [ref=e108]
+              - text: Recovery plan
+            - button "Spend window" [ref=e111] [cursor=pointer]:
+              - img [ref=e112]
+              - text: Spend window
+            - button "Habit signals" [ref=e115] [cursor=pointer]:
+              - img [ref=e116]
+              - text: Habit signals
+            - button "Current Stack" [ref=e119] [cursor=pointer]:
+              - img [ref=e120]
+              - text: Current Stack
+          - generic [ref=e123]:
+            - 'textbox "Try: Avant balance 300" [ref=e124]'
+            - button "Send BalSense Coach message" [ref=e125] [cursor=pointer]:
+              - img [ref=e126]
+  - generic [ref=e130]:
+    - button "Dashboard" [ref=e131] [cursor=pointer]:
+      - img [ref=e133]
+      - generic [ref=e138]: Dashboard
+    - button "Cards" [ref=e139] [cursor=pointer]:
+      - img [ref=e141]
+      - generic [ref=e143]: Cards
+    - button "Strategy" [ref=e144] [cursor=pointer]:
+      - img [ref=e146]
+      - generic [ref=e148]: Strategy
+    - button "Insights" [ref=e149] [cursor=pointer]:
+      - img [ref=e151]
+      - generic [ref=e152]: Insights
+    - button "Settings" [ref=e153] [cursor=pointer]:
+      - img [ref=e155]
+      - generic [ref=e158]: Settings

@@ -1,0 +1,82 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - img "BalSense logo" [ref=e13]
+          - generic [ref=e14]: BalSense
+          - generic [ref=e15]: by Tobar Mix Creations
+        - button "Open next event details" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: In 4 days
+          - generic "Health indicator with 0 attention flags" [ref=e19]
+      - generic [ref=e22]: Command
+    - generic [ref=e344]:
+      - img [ref=e346]
+      - paragraph [ref=e349]: Avant minimum due in 4 days — $25.
+    - tabpanel "Command" [ref=e350]:
+      - generic [ref=e351]:
+        - button "Ask BalSense" [ref=e353] [cursor=pointer]:
+          - img [ref=e355]
+          - generic [ref=e358]: Ask BalSense
+        - generic [ref=e363]:
+          - generic [ref=e365]:
+            - paragraph [ref=e366]: Best play
+            - heading "Indigo" [level=2] [ref=e367]
+          - generic [ref=e368]:
+            - generic [ref=e369]:
+              - paragraph [ref=e370]: Why now
+              - paragraph [ref=e371]: Indigo has the most room — 55% available. Statement closes day 19. Safest card in the set.
+            - generic [ref=e372]:
+              - paragraph [ref=e373]: What to avoid
+              - paragraph [ref=e374]: Destiny (98%) and Capital One Platinum (86%) are critical. Capital One SavorOne (84%) is close behind.
+            - generic [ref=e375]:
+              - paragraph [ref=e376]: Confidence
+              - generic [ref=e378]: Cautious
+            - button "Use This Card" [ref=e380] [cursor=pointer]
+            - button "See full reasoning" [ref=e381] [cursor=pointer]
+        - generic [ref=e385]:
+          - generic [ref=e386]:
+            - generic [ref=e387]:
+              - generic [ref=e391]: "41"
+              - generic [ref=e392]:
+                - paragraph [ref=e393]: Stack score
+                - paragraph [ref=e394]: Take action now
+                - paragraph [ref=e395]: Score reflects pressure, timing, and runway.
+            - button "See breakdown" [ref=e396] [cursor=pointer]
+          - generic [ref=e401]:
+            - generic [ref=e402]: Stack
+            - generic [ref=e403]: $918.82 · Used 72.7% · 6 cards
+        - generic [ref=e406]:
+          - paragraph [ref=e407]: Coming up
+          - generic [ref=e408]:
+            - generic [ref=e409]:
+              - generic [ref=e410]:
+                - paragraph [ref=e411]: Avant
+                - paragraph [ref=e412]: Due Date
+              - generic [ref=e413]: Jun 1
+            - generic [ref=e414]:
+              - generic [ref=e415]:
+                - paragraph [ref=e416]: Destiny
+                - paragraph [ref=e417]: Due Date
+              - generic [ref=e418]: Jun 3
+            - generic [ref=e419]:
+              - generic [ref=e420]:
+                - paragraph [ref=e421]: Destiny
+                - paragraph [ref=e422]: Expected Report
+              - generic [ref=e423]: Jun 3
+  - generic [ref=e99]:
+    - button "Dashboard" [active] [ref=e100] [cursor=pointer]:
+      - img [ref=e102]
+      - generic [ref=e107]: Dashboard
+    - button "Cards" [ref=e108] [cursor=pointer]:
+      - img [ref=e110]
+      - generic [ref=e112]: Cards
+    - button "Strategy" [ref=e113] [cursor=pointer]:
+      - img [ref=e115]
+      - generic [ref=e117]: Strategy
+    - button "Insights" [ref=e118] [cursor=pointer]:
+      - img [ref=e120]
+      - generic [ref=e121]: Insights
+    - button "Settings" [ref=e122] [cursor=pointer]:
+      - img [ref=e124]
+      - generic [ref=e127]: Settings

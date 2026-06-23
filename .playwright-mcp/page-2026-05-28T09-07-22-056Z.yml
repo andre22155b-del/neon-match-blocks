@@ -1,0 +1,171 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e8]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - img "BalSense logo" [ref=e13]
+            - generic [ref=e14]: BalSense
+            - generic [ref=e15]: by Tobar Mix Creations
+          - button "Open next event details" [ref=e17] [cursor=pointer]:
+            - generic [ref=e18]: In 4 days
+            - generic "Health indicator with 0 attention flags" [ref=e19]
+        - generic [ref=e22]: Moves
+        - button "Open full calendar" [ref=e136] [cursor=pointer]:
+          - generic [ref=e137]:
+            - generic [ref=e138]:
+              - button "Show earlier dates" [ref=e139]:
+                - img [ref=e140]
+              - generic [ref=e142]: May 28 - Jun 10
+              - button "Show later dates" [ref=e143]:
+                - img [ref=e144]
+            - generic [ref=e146]:
+              - button "28 Thu" [ref=e147]:
+                - generic [ref=e148]: "28"
+                - generic [ref=e149]: Thu
+              - button "29 Fri" [ref=e151]:
+                - generic [ref=e152]: "29"
+                - generic [ref=e153]: Fri
+              - button "30 Sat" [ref=e155]:
+                - generic [ref=e156]: "30"
+                - generic [ref=e157]: Sat
+              - button "31 Sun" [ref=e159]:
+                - generic [ref=e160]: "31"
+                - generic [ref=e161]: Sun
+              - button "1 Mon Avant" [ref=e163]:
+                - generic [ref=e164]: "1"
+                - generic [ref=e165]: Mon
+                - generic [ref=e168]: Avant
+              - button "2 Tue" [ref=e169]:
+                - generic [ref=e170]: "2"
+                - generic [ref=e171]: Tue
+              - button "3 Wed Destiny Destiny" [ref=e173]:
+                - generic [ref=e174]: "3"
+                - generic [ref=e175]: Wed
+                - generic [ref=e176]:
+                  - generic [ref=e178]: Destiny
+                  - generic [ref=e180]: Destiny
+              - button "4 Thu Avant Destiny" [ref=e181]:
+                - generic [ref=e182]: "4"
+                - generic [ref=e183]: Thu
+                - generic [ref=e184]:
+                  - generic [ref=e186]: Avant
+                  - generic [ref=e188]: Destiny
+              - button "5 Fri Avant" [ref=e189]:
+                - generic [ref=e190]: "5"
+                - generic [ref=e191]: Fri
+                - generic [ref=e194]: Avant
+              - button "6 Sat" [ref=e195]:
+                - generic [ref=e196]: "6"
+                - generic [ref=e197]: Sat
+              - button "7 Sun" [ref=e199]:
+                - generic [ref=e200]: "7"
+                - generic [ref=e201]: Sun
+              - button "8 Mon" [ref=e203]:
+                - generic [ref=e204]: "8"
+                - generic [ref=e205]: Mon
+              - button "9 Tue" [ref=e207]:
+                - generic [ref=e208]: "9"
+                - generic [ref=e209]: Tue
+              - button "10 Wed Capital Capital" [ref=e211]:
+                - generic [ref=e212]: "10"
+                - generic [ref=e213]: Wed
+                - generic [ref=e214]:
+                  - generic [ref=e216]: Capital
+                  - generic [ref=e218]: Capital
+      - tabpanel "Moves has urgent activity" [ref=e219]:
+        - generic [ref=e220]:
+          - generic [ref=e221]:
+            - button "Critical Capital One SavorOne Due Jun 10 · Closes Jun 16 Critical utilization. Hold new spend. Details Edit" [active] [ref=e340]:
+              - generic [ref=e228]: Critical
+              - generic [ref=e230]:
+                - generic [ref=e231]:
+                  - heading "Capital One SavorOne" [level=4] [ref=e232]
+                  - paragraph [ref=e233]: Due Jun 10 · Closes Jun 16
+                - generic [ref=e342]:
+                  - paragraph [ref=e343]: Critical utilization. Hold new spend.
+                  - generic [ref=e344]:
+                    - button "Details" [ref=e345] [cursor=pointer]:
+                      - generic [ref=e346]: Details
+                      - img [ref=e347]
+                    - button "Edit" [ref=e349] [cursor=pointer]:
+                      - img [ref=e350]
+                      - generic [ref=e353]: Edit
+            - button "Critical Capital One Platinum Due Jun 10 Next statement Jun 16" [ref=e240] [cursor=pointer]:
+              - generic [ref=e242]: Critical
+              - generic [ref=e244]:
+                - generic [ref=e245]:
+                  - heading "Capital One Platinum" [level=4] [ref=e246]
+                  - paragraph [ref=e247]: Due Jun 10
+                - paragraph [ref=e249]: Next statement Jun 16
+            - button "Clear Credit One Due Jun 18 Next statement Jun 22" [ref=e254] [cursor=pointer]:
+              - generic [ref=e256]: Clear
+              - generic [ref=e258]:
+                - generic [ref=e259]:
+                  - heading "Credit One" [level=4] [ref=e260]
+                  - paragraph [ref=e261]: Due Jun 18
+                - paragraph [ref=e263]: Next statement Jun 22
+            - button "Due Soon Avant Due Jun 1 Next statement Jun 5" [ref=e268] [cursor=pointer]:
+              - generic [ref=e270]: Due Soon
+              - generic [ref=e272]:
+                - generic [ref=e273]:
+                  - heading "Avant" [level=4] [ref=e274]
+                  - paragraph [ref=e275]: Due Jun 1
+                - paragraph [ref=e277]: Next statement Jun 5
+            - button "Critical Destiny Due Jun 3 Next statement Jun 4" [ref=e282] [cursor=pointer]:
+              - generic [ref=e284]: Critical
+              - generic [ref=e286]:
+                - generic [ref=e287]:
+                  - heading "Destiny" [level=4] [ref=e288]
+                  - paragraph [ref=e289]: Due Jun 3
+                - paragraph [ref=e291]: Next statement Jun 4
+            - button "Best Play Indigo Due Jun 18 Next statement Jun 19" [ref=e296] [cursor=pointer]:
+              - generic [ref=e298]: Best Play
+              - generic [ref=e300]:
+                - generic [ref=e301]:
+                  - heading "Indigo" [level=4] [ref=e302]
+                  - paragraph [ref=e303]: Due Jun 18
+                - paragraph [ref=e305]: Next statement Jun 19
+          - generic [ref=e308]:
+            - generic [ref=e309]:
+              - paragraph [ref=e310]: Quick add
+              - paragraph [ref=e311]: Log a posted charge to catch statement-date drift early.
+            - generic [ref=e312]:
+              - generic [ref=e313]:
+                - generic [ref=e314]: Card
+                - generic [ref=e315]:
+                  - button "Capital One SavorOne" [ref=e316] [cursor=pointer]
+                  - button "Capital One Platinum" [ref=e317] [cursor=pointer]
+                  - button "Credit One" [ref=e318] [cursor=pointer]
+                  - button "Avant" [ref=e319] [cursor=pointer]
+                  - button "Destiny" [ref=e320] [cursor=pointer]
+                  - button "Indigo" [ref=e321] [cursor=pointer]
+              - generic [ref=e322]:
+                - generic [ref=e323]: Amount
+                - spinbutton "Amount" [ref=e324]
+              - generic [ref=e325]:
+                - generic [ref=e326]: Posted date
+                - textbox "Posted date" [ref=e327]: 2026-05-28
+              - button "Log transaction" [ref=e329] [cursor=pointer]
+        - generic [ref=e334]:
+          - paragraph [ref=e335]: Best play
+          - heading "Indigo" [level=3] [ref=e336]
+          - paragraph [ref=e337]: 21 days left. Balanced usage. Safe to use.
+    - button "Add account" [ref=e338] [cursor=pointer]:
+      - img [ref=e339]
+  - generic [ref=e106]:
+    - button "Dashboard" [ref=e107] [cursor=pointer]:
+      - img [ref=e109]
+      - generic [ref=e114]: Dashboard
+    - button "Cards" [ref=e115] [cursor=pointer]:
+      - img [ref=e117]
+      - generic [ref=e119]: Cards
+    - button "Strategy" [ref=e120] [cursor=pointer]:
+      - img [ref=e122]
+      - generic [ref=e124]: Strategy
+    - button "Insights" [ref=e125] [cursor=pointer]:
+      - img [ref=e127]
+      - generic [ref=e128]: Insights
+    - button "Settings" [ref=e129] [cursor=pointer]:
+      - img [ref=e131]
+      - generic [ref=e134]: Settings

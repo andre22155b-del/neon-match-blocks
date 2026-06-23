@@ -1,0 +1,142 @@
+[     107ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[     368ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/settings?from=%2Fpulse:0
+[ 1574246ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[ 1575574ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[ 1575818ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[ 2679993ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[ 2680448ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[ 2680734ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[ 9261221ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[ 9262401ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[ 9262574ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[14879296ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[14879850ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[14880110ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[38444539ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[38445022ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[38445272ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[40184113ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[40184129ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40185132ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40186136ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40187142ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40188146ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40189150ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40190155ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40191160ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40192165ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40193170ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40194174ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40195177ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40196182ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40197187ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40198192ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40199196ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40200202ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40201207ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40202211ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40203216ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40204220ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40205224ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40206228ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40209482ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[40210018ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[40479839ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[40480250ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[40480424ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[40692250ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[40692262ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40693267ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40694270ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40695273ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40696278ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40697282ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40698285ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40699290ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40700294ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40701299ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40702304ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40703309ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40704314ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40705318ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40706324ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40707330ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40708334ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40709337ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40710342ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40711345ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40712350ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40713354ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40714357ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40715362ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40716366ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40717369ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40718373ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40719377ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40720379ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40721383ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40722386ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40723390ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[40727003ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[40727710ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[49239034ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[49239733ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[49240029ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[49940105ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[49941371ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[49942197ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[52024923ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[52027124ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[52027416ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[74103935ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[74104606ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[74104980ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[83685280ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[83685904ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[83686155ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[85683347ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[85683864ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[85684498ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[89476593ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[89476888ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[89477113ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[90971316ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[90971706ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[90972159ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[114703932ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[114704808ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[114705320ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[115098077ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[115098820ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[115099199ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[116438609ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[116439010ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[116439496ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[118215905ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[118216380ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[118216529ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0
+[130289815ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[130289820ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130290825ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130291827ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130292831ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130293836ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130294839ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130295843ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130296848ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130297856ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130298858ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130299862ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130300867ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130301870ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130302874ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130303878ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130304882ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130305888ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130306892ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130307896ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130308900ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130309905ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130310909ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/:0
+[130315333ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[130316201ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/:0

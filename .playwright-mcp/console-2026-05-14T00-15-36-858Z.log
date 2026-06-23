@@ -1,0 +1,14 @@
+[     668ms] HierarchyRequestError: Failed to execute 'insertAdjacentElement' on 'Element': Only one element on document allowed.
+    at applyCommandScoreTuning (http://127.0.0.1:8765/:411:29)
+    at MutationObserver.<anonymous> (http://127.0.0.1:8765/:631:11)
+[     671ms] HierarchyRequestError: Failed to execute 'insertAdjacentElement' on 'Element': Only one element on document allowed.
+    at applyCommandScoreTuning (http://127.0.0.1:8765/:411:29)
+    at document.addEventListener.once (http://127.0.0.1:8765/:618:15)
+[     681ms] HierarchyRequestError: Failed to execute 'insertAdjacentElement' on 'Element': Only one element on document allowed.
+    at applyCommandScoreTuning (http://127.0.0.1:8765/:411:29)
+    at MutationObserver.<anonymous> (http://127.0.0.1:8765/:631:11)
+[     681ms] HierarchyRequestError: Failed to execute 'insertAdjacentElement' on 'Element': Only one element on document allowed.
+    at applyCommandScoreTuning (http://127.0.0.1:8765/:411:29)
+    at MutationObserver.<anonymous> (http://127.0.0.1:8765/:631:11)
+[     741ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8765/balsense-icon-192.png:0
+[     744ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8765/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8765/:0

@@ -1,0 +1,20 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic:
+      - generic: •••• 4521
+  - generic [ref=e9]:
+    - button "Dashboard" [ref=e10] [cursor=pointer]:
+      - img [ref=e12]
+      - generic [ref=e17]: Dashboard
+    - button "Cards" [ref=e18] [cursor=pointer]:
+      - img [ref=e20]
+      - generic [ref=e22]: Cards
+    - button "Strategy" [ref=e23] [cursor=pointer]:
+      - img [ref=e25]
+      - generic [ref=e27]: Strategy
+    - button "Insights" [ref=e28] [cursor=pointer]:
+      - img [ref=e30]
+      - generic [ref=e31]: Insights
+    - button "Settings" [ref=e32] [cursor=pointer]:
+      - img [ref=e34]
+      - generic [ref=e37]: Settings

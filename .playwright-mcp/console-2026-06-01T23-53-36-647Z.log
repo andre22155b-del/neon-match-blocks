@@ -1,0 +1,7 @@
+[      53ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:4174/?token=nwdSyG4BIlow' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/@vite/client:535
+[      57ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[     101ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/src/components/balsense/GlassPanel.tsx:0
+[     101ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/src/components/balsense/AnimatedNumber.tsx:0
+[     101ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/src/components/InlineDateEditor.tsx:0
+[     102ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/src/components/balsense/visuals.tsx:0
+[     197ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:4174/balsense-icon-192.png (Download error or resource isn't a valid image) @ chrome-error://chromewebdata/:0

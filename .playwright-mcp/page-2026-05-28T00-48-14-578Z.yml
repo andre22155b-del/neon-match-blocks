@@ -1,0 +1,137 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e8]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - img "BalSense logo" [ref=e13]
+            - generic [ref=e14]: BalSense
+            - generic [ref=e15]: by Tobar Mix Creations
+          - button "Open next event details" [ref=e17] [cursor=pointer]:
+            - generic [ref=e18]: In 5 days
+            - generic "Health indicator with 0 attention flags" [ref=e19]
+        - generic [ref=e22]: Moves
+        - button "Open full calendar" [ref=e24] [cursor=pointer]:
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - button "Show earlier dates" [ref=e27]:
+                - img [ref=e28]
+              - generic [ref=e30]: May 27 - Jun 9
+              - button "Show later dates" [ref=e31]:
+                - img [ref=e32]
+            - generic [ref=e34]:
+              - button "27 Wed" [ref=e35]:
+                - generic [ref=e36]: "27"
+                - generic [ref=e37]: Wed
+              - button "28 Thu" [ref=e39]:
+                - generic [ref=e40]: "28"
+                - generic [ref=e41]: Thu
+              - button "29 Fri" [ref=e43]:
+                - generic [ref=e44]: "29"
+                - generic [ref=e45]: Fri
+              - button "30 Sat" [ref=e47]:
+                - generic [ref=e48]: "30"
+                - generic [ref=e49]: Sat
+              - button "31 Sun" [ref=e51]:
+                - generic [ref=e52]: "31"
+                - generic [ref=e53]: Sun
+              - button "1 Mon Avant" [ref=e55]:
+                - generic [ref=e56]: "1"
+                - generic [ref=e57]: Mon
+                - generic [ref=e60]: Avant
+              - button "2 Tue" [ref=e61]:
+                - generic [ref=e62]: "2"
+                - generic [ref=e63]: Tue
+              - button "3 Wed Destiny Destiny" [ref=e65]:
+                - generic [ref=e66]: "3"
+                - generic [ref=e67]: Wed
+                - generic [ref=e68]:
+                  - generic [ref=e70]: Destiny
+                  - generic [ref=e72]: Destiny
+              - button "4 Thu Avant Destiny" [ref=e73]:
+                - generic [ref=e74]: "4"
+                - generic [ref=e75]: Thu
+                - generic [ref=e76]:
+                  - generic [ref=e78]: Avant
+                  - generic [ref=e80]: Destiny
+              - button "5 Fri Avant" [ref=e81]:
+                - generic [ref=e82]: "5"
+                - generic [ref=e83]: Fri
+                - generic [ref=e86]: Avant
+              - button "6 Sat" [ref=e87]:
+                - generic [ref=e88]: "6"
+                - generic [ref=e89]: Sat
+              - button "7 Sun" [ref=e91]:
+                - generic [ref=e92]: "7"
+                - generic [ref=e93]: Sun
+              - button "8 Mon" [ref=e95]:
+                - generic [ref=e96]: "8"
+                - generic [ref=e97]: Mon
+              - button "9 Tue" [ref=e99]:
+                - generic [ref=e100]: "9"
+                - generic [ref=e101]: Tue
+      - tabpanel "Command" [ref=e104]:
+        - generic [ref=e105]:
+          - generic [ref=e110]:
+            - generic [ref=e112]:
+              - paragraph [ref=e113]: Best play
+              - heading "Indigo" [level=2] [ref=e114]
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - paragraph [ref=e117]: Why now
+                - paragraph [ref=e118]: Indigo has the most room — 55% available. Statement closes day 19. Safest card in the set.
+              - generic [ref=e119]:
+                - paragraph [ref=e120]: What to avoid
+                - paragraph [ref=e121]: Destiny (98%) and Capital One Platinum (86%) are critical. Capital One SavorOne (84%) is close behind.
+              - generic [ref=e122]:
+                - paragraph [ref=e123]: Confidence
+                - generic [ref=e125]: Cautious
+              - button "Use This Card" [ref=e127] [cursor=pointer]
+              - button "See full reasoning" [ref=e128] [cursor=pointer]
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]:
+                - paragraph [ref=e135]: Stack score
+                - generic [ref=e136]:
+                  - generic [ref=e137]: "37"
+                  - paragraph [ref=e138]: Take action now
+              - button "See breakdown" [ref=e139] [cursor=pointer]
+            - generic [ref=e144]:
+              - generic [ref=e145]: Stack
+              - generic [ref=e146]: $918.82 · Used 72.7% · 6 cards
+          - generic [ref=e149]:
+            - paragraph [ref=e150]: Coming up
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - generic [ref=e153]:
+                  - paragraph [ref=e154]: Avant
+                  - paragraph [ref=e155]: Due Date
+                - generic [ref=e156]: Jun 1
+              - generic [ref=e157]:
+                - generic [ref=e158]:
+                  - paragraph [ref=e159]: Destiny
+                  - paragraph [ref=e160]: Due Date
+                - generic [ref=e161]: Jun 3
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - paragraph [ref=e164]: Destiny
+                  - paragraph [ref=e165]: Expected Report
+                - generic [ref=e166]: Jun 3
+    - button "Add account" [ref=e167] [cursor=pointer]:
+      - img [ref=e168]
+  - generic [ref=e170]:
+    - button "Dashboard" [ref=e171] [cursor=pointer]:
+      - img [ref=e173]
+      - generic [ref=e178]: Dashboard
+    - button "Cards" [ref=e179] [cursor=pointer]:
+      - img [ref=e181]
+      - generic [ref=e183]: Cards
+    - button "Strategy" [ref=e184] [cursor=pointer]:
+      - img [ref=e186]
+      - generic [ref=e188]: Strategy
+    - button "Insights" [ref=e189] [cursor=pointer]:
+      - img [ref=e191]
+      - generic [ref=e192]: Insights
+    - button "Settings" [ref=e193] [cursor=pointer]:
+      - img [ref=e195]
+      - generic [ref=e198]: Settings

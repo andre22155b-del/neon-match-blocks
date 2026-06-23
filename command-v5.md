@@ -1,0 +1,66 @@
+- generic [ref=e5] [box=0,0,1440,1100]:
+  - generic [ref=e10] [box=0,20,279,828]:
+    - generic [ref=e11] [box=0,20,267,164]:
+      - img "BalSense logo" [ref=e14] [box=102,36,64,64]
+      - paragraph [ref=e15] [box=80,108,108,32]: BalSense
+      - paragraph [ref=e16] [box=40,144,187,7]: Budget + Credit Management
+      - paragraph [ref=e17] [box=72,158,123,13]: by Tobar Mix Creations
+    - paragraph [ref=e19] [box=20,200,227,10]: The Desk
+    - tablist "BalSense sections" [ref=e20] [box=0,214,267,284]:
+      - tab "Dashboard" [selected] [ref=e22] [cursor=pointer] [box=8,222,251,64]:
+        - img [ref=e24] [box=84,245,18,18]
+        - generic [ref=e30] [box=114,245,72,18]: Dashboard
+      - tab "Cards has urgent activity" [ref=e32] [cursor=pointer] [box=8,290,251,64]:
+        - img [ref=e34] [box=100,313,18,18]
+        - generic [ref=e38] [box=130,313,38,18]: Cards
+      - tab "Strategy" [ref=e40] [cursor=pointer] [box=8,358,251,64]:
+        - img [ref=e42] [box=89,381,18,18]
+        - generic [ref=e45] [box=119,381,59,18]: Strategy
+      - tab "Insights" [ref=e47] [cursor=pointer] [box=8,426,251,64]:
+        - img [ref=e49] [box=92,449,18,18]
+        - generic [ref=e51] [box=122,449,53,18]: Insights
+    - generic [ref=e53] [box=20,522,227,190]:
+      - paragraph [ref=e54] [box=49,551,169,12]: Best play
+      - strong [ref=e55] [box=49,579,169,23]: Skyline Visa
+      - generic [ref=e57] [box=49,618,69,26]: Clear
+      - paragraph [ref=e59] [box=49,660,169,24]: 6 of 8 cards clear.
+    - generic [ref=e60] [box=0,733,267,115]:
+      - generic [ref=e63] [box=110,733,62,13]: Live · 8m ago
+      - button "Collapse sidebar" [ref=e64] [cursor=pointer] [box=118,762,32,32]:
+        - img [ref=e66] [box=126,770,16,16]
+      - button "Open settings" [ref=e68] [cursor=pointer] [box=30,810,208,18]:
+        - img [ref=e69] [box=96,810,18,18]
+        - generic [ref=e72] [box=122,811,49,16]: Settings
+  - generic [ref=e75] [box=280,0,880,1100]:
+    - generic [ref=e76] [box=280,0,880,48]:
+      - generic [ref=e77] [box=300,15,86,17]: May 7, 2026
+      - generic [ref=e79] [box=411,17,109,13]: Next event today
+      - generic "Health indicator with 6 attention flags" [ref=e80] [box=532,19,10,10]
+    - generic [ref=e81] [box=308,60,824,40]:
+      - generic [ref=e82] [box=325,70,84,20]: Command
+      - generic [ref=e83] [box=425,70,595,20]: 🔴 Studio Store due in 2 days
+      - generic [ref=e268] [box=1036,72,79,16]: May 7, 2026
+    - button "Open full calendar" [ref=e87] [cursor=pointer] [box=308,112,824,90]:
+      - generic [ref=e88] [box=308,112,824,90]:
+        - generic [ref=e89] [box=321,121,798,24]
+        - generic [ref=e97] [box=321,153,798,40]
+    - tabpanel "Dashboard" [ref=e269] [box=308,234,824,486]:
+      - generic [ref=e270] [box=308,234,800,462]:
+        - generic [ref=e271] [box=308,234,800,416]
+        - button "See workspace tools" [ref=e305] [cursor=pointer] [box=308,682,800,14]
+  - generic [ref=e219] [box=1181,20,239,350]:
+    - generic [ref=e220] [box=1205,44,191,123]:
+      - heading "Skyline Visa" [level=3] [ref=e221] [box=1205,68,179,30]
+      - generic [ref=e226] [box=1236,131,132,30]: 27 days left. Low usage. Safe to use.
+    - button "Confirm your due date. Studio Store payment should be due around May 9. Confirm when you see it." [ref=e228] [cursor=pointer] [box=1205,183,191,74]:
+      - img [ref=e229] [box=1205,185,16,16]
+      - generic [ref=e232] [box=1233,183,163,74]:
+        - generic [ref=e233] [box=1233,183,163,16]: Confirm your due date.
+        - generic [ref=e234] [box=1233,203,163,54]: Studio Store payment should be due around May 9. Confirm when you see it.
+    - generic [ref=e235] [box=1205,277,191,70]:
+      - button "Credit report checklist" [ref=e237] [cursor=pointer] [box=1206,278,185,17]:
+        - generic [ref=e239] [box=1206,278,157,17]: Credit report checklist
+        - img [ref=e240] [box=1375,278,16,16]
+      - generic [ref=e242] [box=1205,308,187,39]:
+        - button "CSV Format Review the import structure inline." [ref=e243] [cursor=pointer] [box=1206,309,185,37]
+        - generic [ref=e249] [box=1206,345,185,588]

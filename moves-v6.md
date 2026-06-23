@@ -1,0 +1,57 @@
+- generic [ref=e5] [box=0,0,1440,1100]:
+  - generic [ref=e305] [box=0,20,279,742]:
+    - generic [ref=e306] [box=0,20,267,164]:
+      - img "BalSense logo" [ref=e309] [box=102,36,64,64]
+      - paragraph [ref=e310] [box=80,108,108,32]: BalSense
+      - paragraph [ref=e311] [box=40,144,187,7]: Budget + Credit Management
+      - paragraph [ref=e312] [box=72,158,123,13]: by Tobar Mix Creations
+    - paragraph [ref=e314] [box=20,200,227,10]: The Desk
+    - tablist "BalSense sections" [ref=e315] [box=0,214,267,284]:
+      - tab "Dashboard" [ref=e317] [cursor=pointer] [box=8,222,251,64]:
+        - img [ref=e319] [box=83,245,18,18]
+        - generic [ref=e325] [box=113,245,72,18]: Dashboard
+      - tab "Cards has urgent activity" [selected] [ref=e327] [cursor=pointer] [box=8,290,251,64]:
+        - img [ref=e329] [box=101,313,18,18]
+        - generic [ref=e333] [box=131,313,38,18]: Cards
+      - tab "Strategy" [ref=e335] [cursor=pointer] [box=8,358,251,64]:
+        - img [ref=e337] [box=89,381,18,18]
+        - generic [ref=e340] [box=119,381,59,18]: Strategy
+      - tab "Insights" [ref=e342] [cursor=pointer] [box=8,426,251,64]:
+        - img [ref=e344] [box=92,449,18,18]
+        - generic [ref=e346] [box=122,449,53,18]: Insights
+    - generic [ref=e349] [box=39,537,189,74]:
+      - paragraph [ref=e350] [box=39,537,189,12]: Best play
+      - strong [ref=e351] [box=39,561,189,19]: Skyline Visa
+      - paragraph [ref=e352] [box=39,592,189,20]: 6 of 8 cards clear.
+    - generic [ref=e353] [box=0,647,267,115]:
+      - generic [ref=e356] [box=110,647,61,13]: Live · 3m ago
+      - button "Collapse sidebar" [ref=e357] [cursor=pointer] [box=118,676,32,32]:
+        - img [ref=e359] [box=126,684,16,16]
+      - button "Open settings" [ref=e361] [cursor=pointer] [box=30,724,208,18]:
+        - img [ref=e362] [box=96,724,18,18]
+        - generic [ref=e365] [box=122,725,49,16]: Settings
+  - generic [ref=e6] [box=280,0,880,1100]:
+    - generic [ref=e8] [box=280,0,880,1100]:
+      - generic [ref=e9] [box=280,0,880,48]:
+        - generic [ref=e10] [box=300,15,86,17]: May 7, 2026
+        - generic [ref=e12] [box=411,17,109,13]: Next event today
+        - generic "Health indicator with 6 attention flags" [ref=e13] [box=532,19,10,10]
+      - generic [ref=e14] [box=308,48,824,40]:
+        - generic [ref=e15] [box=325,58,84,20]: Moves
+        - generic [ref=e16] [box=425,58,674,20]: 🔴 Studio Store due in 2 days
+      - button "Open full calendar" [ref=e18] [cursor=pointer] [box=308,-391,824,90]:
+        - generic [ref=e19] [box=308,-391,824,90]
+      - tabpanel "Cards has urgent activity" [ref=e110] [box=308,-269,824,1270]:
+        - generic [ref=e111] [box=308,-269,800,1246]
+    - button "Add account" [ref=e267] [cursor=pointer] [box=1080,1020,52,52]:
+      - img [ref=e268] [box=1100,1035,12,22]
+  - generic [ref=e370] [box=1181,20,239,238]:
+    - generic [ref=e371] [box=1205,44,191,101]:
+      - paragraph [ref=e372] [box=1205,44,179,12]: Best play
+      - heading "Skyline Visa" [level=3] [ref=e373] [box=1205,68,179,22]
+      - paragraph [ref=e374] [box=1205,108,179,37]: 27 days left. Low usage. Safe to use.
+    - button "Confirm your due date. Studio Store payment should be due around May 9. Confirm when you see it." [ref=e376] [cursor=pointer] [box=1205,161,191,74]:
+      - img [ref=e377] [box=1205,163,16,16]
+      - generic [ref=e380] [box=1233,161,163,74]:
+        - generic [ref=e381] [box=1233,161,163,16]: Confirm your due date.
+        - generic [ref=e382] [box=1233,180,163,54]: Studio Store payment should be due around May 9. Confirm when you see it.

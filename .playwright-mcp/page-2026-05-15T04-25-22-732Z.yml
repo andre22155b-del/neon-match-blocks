@@ -1,0 +1,262 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - img "BalSense logo" [ref=e11]
+          - generic [ref=e13]: BalSense
+        - generic [ref=e14]:
+          - generic [ref=e15]: Next event today
+          - generic "Health indicator with 5 attention flags" [ref=e16]
+      - generic [ref=e17]:
+        - generic [ref=e18]: Moves
+        - generic [ref=e20]: 🔴 Flex Card due in 3 days
+      - button "Open full calendar" [ref=e22] [cursor=pointer]:
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - button "Show earlier dates" [ref=e25]:
+              - img [ref=e26]
+            - generic [ref=e28]: May 14 - May 27
+            - button "Show later dates" [ref=e29]:
+              - img [ref=e30]
+          - generic [ref=e32]:
+            - button "14 Thu Studio S" [ref=e33]:
+              - generic [ref=e34]: "14"
+              - generic [ref=e35]: Thu
+              - generic [ref=e38]: Studio S
+            - button "15 Fri" [ref=e39]:
+              - generic [ref=e40]: "15"
+              - generic [ref=e41]: Fri
+            - button "16 Sat Northlin" [ref=e43]:
+              - generic [ref=e44]: "16"
+              - generic [ref=e45]: Sat
+              - generic [ref=e48]: Northlin
+            - button "17 Sun Atlas Am Flex Car" [ref=e49]:
+              - generic [ref=e50]: "17"
+              - generic [ref=e51]: Sun
+              - generic [ref=e52]:
+                - generic [ref=e54]: Atlas Am
+                - generic [ref=e56]: Flex Car
+            - button "18 Mon Peak Pla" [ref=e57]:
+              - generic [ref=e58]: "18"
+              - generic [ref=e59]: Mon
+              - generic [ref=e62]: Peak Pla
+            - button "19 Tue Skyline" [ref=e63]:
+              - generic [ref=e64]: "19"
+              - generic [ref=e65]: Tue
+              - generic [ref=e68]: Skyline
+            - button "20 Wed" [ref=e69]:
+              - generic [ref=e70]: "20"
+              - generic [ref=e71]: Wed
+            - button "21 Thu Atlas Am" [ref=e73]:
+              - generic [ref=e74]: "21"
+              - generic [ref=e75]: Thu
+              - generic [ref=e78]: Atlas Am
+            - button "22 Fri Flex Car Flex Car" [ref=e79]:
+              - generic [ref=e80]: "22"
+              - generic [ref=e81]: Fri
+              - generic [ref=e82]:
+                - generic [ref=e84]: Flex Car
+                - generic [ref=e86]: Flex Car
+            - button "23 Sat Union Li" [ref=e87]:
+              - generic [ref=e88]: "23"
+              - generic [ref=e89]: Sat
+              - generic [ref=e92]: Union Li
+            - button "24 Sun Atlas Am" [ref=e93]:
+              - generic [ref=e94]: "24"
+              - generic [ref=e95]: Sun
+              - generic [ref=e98]: Atlas Am
+            - button "25 Mon" [ref=e99]:
+              - generic [ref=e100]: "25"
+              - generic [ref=e101]: Mon
+            - button "26 Tue Harbor R Northlin" [ref=e103]:
+              - generic [ref=e104]: "26"
+              - generic [ref=e105]: Tue
+              - generic [ref=e106]:
+                - generic [ref=e108]: Harbor R
+                - generic [ref=e110]: Northlin
+            - button "27 Wed" [ref=e111]:
+              - generic [ref=e112]: "27"
+              - generic [ref=e113]: Wed
+      - tabpanel "Command" [ref=e116]:
+        - generic [ref=e117]:
+          - generic [ref=e122]:
+            - generic [ref=e124]:
+              - paragraph [ref=e125]: Best play
+              - heading "Peak Platinum" [level=2] [ref=e126]
+            - generic [ref=e127]:
+              - generic [ref=e128]:
+                - paragraph [ref=e129]: Why now
+                - paragraph [ref=e130]: 30 days until due, 4 days until statement, and 6% utilization keeps this move safe.
+              - generic [ref=e131]:
+                - paragraph [ref=e132]: What to avoid
+                - paragraph [ref=e133]: Avoid Flex Card — Due in 3 days or less.
+              - generic [ref=e134]:
+                - paragraph [ref=e135]: Confidence
+                - generic [ref=e137]: Good confidence
+              - button "Use This Card" [ref=e139] [cursor=pointer]
+              - button "See full reasoning" [ref=e140] [cursor=pointer]
+          - generic [ref=e144]:
+            - generic [ref=e145]:
+              - generic [ref=e146]:
+                - paragraph [ref=e147]: Stack score
+                - generic [ref=e148]:
+                  - generic [ref=e149]: "26"
+                  - paragraph [ref=e150]: Watch your moves
+              - button "See breakdown" [ref=e151] [cursor=pointer]
+            - generic [ref=e156]:
+              - generic [ref=e157]: Stack
+              - generic [ref=e158]: $31,180 · 8 cards
+          - generic [ref=e161]:
+            - paragraph [ref=e162]: Coming up
+            - generic [ref=e163]:
+              - generic [ref=e164]:
+                - generic [ref=e165]:
+                  - paragraph [ref=e166]: Studio Store
+                  - paragraph [ref=e167]: Statement Close
+                - generic [ref=e168]: May 14
+              - generic [ref=e169]:
+                - generic [ref=e170]:
+                  - paragraph [ref=e171]: Flex Card
+                  - paragraph [ref=e172]: Autopay
+                - generic [ref=e173]: May 15
+              - generic [ref=e174]:
+                - generic [ref=e175]:
+                  - paragraph [ref=e176]: Northline Card
+                  - paragraph [ref=e177]: Expected Report
+                - generic [ref=e178]: May 16
+    - button "Add account" [ref=e179] [cursor=pointer]:
+      - img [ref=e180]
+  - generic [ref=e182]:
+    - generic [ref=e183]:
+      - generic [ref=e184]:
+        - paragraph [ref=e185]: Calendar
+        - heading "Timing map" [level=3] [ref=e186]
+      - button "Close calendar" [ref=e187] [cursor=pointer]:
+        - img [ref=e188]
+    - generic [ref=e192]:
+      - generic [ref=e193]:
+        - generic [ref=e194]:
+          - paragraph [ref=e195]: Calendar
+          - heading "May 14 - May 20" [level=3] [ref=e196]
+          - paragraph [ref=e197]: Use Week for near-term timing, Month for planning, and Day for exact action.
+        - generic [ref=e198]:
+          - button "Today" [ref=e199] [cursor=pointer]
+          - button "Previous period" [ref=e200] [cursor=pointer]:
+            - img [ref=e201]
+          - button "Next period" [ref=e203] [cursor=pointer]:
+            - img [ref=e204]
+      - generic [ref=e206]:
+        - tablist "Calendar modes" [ref=e207]:
+          - button "Week" [ref=e208] [cursor=pointer]
+          - button "Month" [ref=e209] [cursor=pointer]
+          - button "Day" [ref=e210] [cursor=pointer]
+          - button "Year" [ref=e211] [cursor=pointer]
+        - generic [ref=e212]:
+          - button "All" [ref=e213] [cursor=pointer]
+          - button "Due" [ref=e214] [cursor=pointer]
+          - button "Statement" [ref=e215] [cursor=pointer]
+          - button "Autopay" [ref=e216] [cursor=pointer]
+          - button "Reports" [ref=e217] [cursor=pointer]
+      - generic [ref=e218]:
+        - button "Thu 14 Studio Store · Statement Close" [ref=e219] [cursor=pointer]:
+          - generic [ref=e220]:
+            - generic [ref=e221]: Thu
+            - strong [ref=e222]:
+              - generic [ref=e223]: "14"
+          - generic [ref=e225]: Studio Store · Statement Close
+        - button "Fri 15 Flex Card · Autopay" [ref=e226] [cursor=pointer]:
+          - generic [ref=e227]:
+            - generic [ref=e228]: Fri
+            - strong [ref=e229]:
+              - generic [ref=e230]: "15"
+          - generic [ref=e232]: Flex Card · Autopay
+        - button "Sat 16 Northline Card · Expected Report" [ref=e233] [cursor=pointer]:
+          - generic [ref=e234]:
+            - generic [ref=e235]: Sat
+            - strong [ref=e236]:
+              - generic [ref=e237]: "16"
+          - generic [ref=e239]: Northline Card · Expected Report
+        - button "Sun 17 Flex Card · Due Atlas Amex · Expected Report" [ref=e240] [cursor=pointer]:
+          - generic [ref=e241]:
+            - generic [ref=e242]: Sun
+            - strong [ref=e243]:
+              - generic [ref=e244]: "17"
+          - generic [ref=e245]:
+            - generic [ref=e246]: Flex Card · Due
+            - generic [ref=e247]: Atlas Amex · Expected Report
+        - button "Mon 18 Peak Platinum · Statement Close" [ref=e248] [cursor=pointer]:
+          - generic [ref=e249]:
+            - generic [ref=e250]: Mon
+            - strong [ref=e251]:
+              - generic [ref=e252]: "18"
+          - generic [ref=e254]: Peak Platinum · Statement Close
+        - button "Tue 19 Skyline Visa · Expected Report" [ref=e255] [cursor=pointer]:
+          - generic [ref=e256]:
+            - generic [ref=e257]: Tue
+            - strong [ref=e258]:
+              - generic [ref=e259]: "19"
+          - generic [ref=e261]: Skyline Visa · Expected Report
+        - button "Wed 20 No events" [ref=e262] [cursor=pointer]:
+          - generic [ref=e263]:
+            - generic [ref=e264]: Wed
+            - strong [ref=e265]:
+              - generic [ref=e266]: "20"
+          - generic [ref=e268]: No events
+      - generic [ref=e269]:
+        - generic [ref=e270]:
+          - generic [ref=e271]:
+            - paragraph [ref=e272]: Selected day
+            - heading "Thursday, May 14, 2026" [level=4] [ref=e273]
+          - button "Open Day" [ref=e274] [cursor=pointer]
+        - article [ref=e276]:
+          - generic [ref=e277]:
+            - paragraph [ref=e278]: Studio Store
+            - paragraph [ref=e279]: Statement Close
+          - generic [ref=e281]: Statement Close
+      - generic [ref=e282]: "Tip: Start in Week for tactical timing, then widen to Month or Year only when you need planning context."
+  - generic [ref=e284]:
+    - button "Command" [ref=e285] [cursor=pointer]:
+      - img [ref=e287]
+      - generic [ref=e292]: Command
+    - button "Moves" [ref=e293] [cursor=pointer]:
+      - img [ref=e295]
+      - generic [ref=e297]: Moves
+    - button "Playbook" [ref=e298] [cursor=pointer]:
+      - img [ref=e300]
+      - generic [ref=e302]: Playbook
+    - button "Pulse" [ref=e303] [cursor=pointer]:
+      - img [ref=e305]
+      - generic [ref=e306]: Pulse
+    - button "Calendar" [ref=e307] [cursor=pointer]:
+      - img [ref=e309]
+      - generic [ref=e312]: Calendar
+  - generic [ref=e315]:
+    - generic [ref=e316]:
+      - img [ref=e317]
+      - textbox "Search cards, dates, actions..." [active] [ref=e320]
+    - generic [ref=e321]:
+      - button "Go to Dashboard D" [ref=e322] [cursor=pointer]:
+        - img [ref=e323]
+        - generic [ref=e328]: Go to Dashboard
+        - generic [ref=e329]: D
+      - button "Go to Cards C" [ref=e330] [cursor=pointer]:
+        - img [ref=e331]
+        - generic [ref=e333]: Go to Cards
+        - generic [ref=e334]: C
+      - button "Go to Strategy S" [ref=e335] [cursor=pointer]:
+        - img [ref=e336]
+        - generic [ref=e338]: Go to Strategy
+        - generic [ref=e339]: S
+      - button "Go to Insights I" [ref=e340] [cursor=pointer]:
+        - img [ref=e341]
+        - generic [ref=e342]: Go to Insights
+        - generic [ref=e343]: I
+      - button "Add account A" [ref=e344] [cursor=pointer]:
+        - img [ref=e345]
+        - generic [ref=e346]: Add account
+        - generic [ref=e347]: A
+      - button "Export CSV E" [ref=e348] [cursor=pointer]:
+        - img [ref=e349]
+        - generic [ref=e352]: Export CSV
+        - generic [ref=e353]: E

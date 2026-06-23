@@ -872,11 +872,11 @@ button {
 }
 
 .animate-word-float {
-  animation: wordFloat 1800ms ease-out forwards;
+  animation: wordFloat 2800ms ease-out forwards;
 }
 
 .animate-score-rise {
-  animation: scoreRise 1600ms ease-out forwards;
+  animation: scoreRise 2200ms ease-out forwards;
 }
 
 .next-queue {
@@ -1009,16 +1009,6 @@ button {
   box-shadow: 0 0 18px rgba(157, 78, 221, 0.62), inset 0 0 10px rgba(157, 78, 221, 0.18);
 }
 
-.next-tile span:last-child {
-  position: absolute;
-  top: 2px;
-  right: 3px;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 7px;
-  text-shadow: none;
-}
-
 .next-tile small {
   position: absolute;
   bottom: -13px;
@@ -1072,7 +1062,64 @@ button {
     0 0 18px rgba(255, 214, 10, 0.8),
     0 0 34px rgba(157, 78, 221, 0.45);
   pointer-events: none;
-  animation: wordPhraseFlash 2.2s ease-out forwards;
+  animation: wordPhraseFlash 2.8s ease-out forwards;
+}
+
+.words-spelled-box {
+  border: 1px solid rgba(157, 78, 221, 0.28);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(15, 10, 35, 0.88), rgba(8, 5, 20, 0.94));
+  padding: 10px 12px;
+  box-shadow: 0 0 16px rgba(157, 78, 221, 0.14), inset 0 0 12px rgba(0, 0, 0, 0.38);
+}
+
+.words-spelled-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #6a6a90;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.words-spelled-head strong {
+  color: #00d4ff;
+  font-family: Rajdhani, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.55);
+}
+
+.words-spelled-current {
+  margin-top: 7px;
+  color: #ffd60a;
+  font-family: Orbitron, sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(255, 214, 10, 0.55);
+}
+
+.words-spelled-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.words-spelled-list span {
+  border: 1px solid rgba(157, 78, 221, 0.2);
+  border-radius: 999px;
+  background: rgba(157, 78, 221, 0.08);
+  padding: 4px 8px;
+  color: rgba(255, 255, 255, 0.76);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
 }
 
 .animate-tile-clear,

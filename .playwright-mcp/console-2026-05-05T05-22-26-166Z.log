@@ -1,0 +1,24 @@
+[      99ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 1639361ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:4174/src/components/balsense/BalSenseTabBar.tsx?t=1777960185521:0
+[ 1639361ms] [ERROR] [hmr] Failed to reload /src/components/balsense/BalSenseTabBar.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:4174/@vite/client:175
+[ 1781236ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:4174/src/components/balsense/BalSenseInsights.tsx?t=1777960327394:0
+[ 1781237ms] [ERROR] [hmr] Failed to reload /src/components/balsense/BalSenseInsights.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:4174/@vite/client:175
+[ 2883104ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 2931193ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 3264607ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[ 3264838ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 4837715ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[ 4838078ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 5109919ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 5111410ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 5111888ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 5192295ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 7824652ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[ 7824968ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[30946919ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[30947462ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/balsense/BalSenseSidebar.tsx?t=1777966362397:0
+[30947463ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/balsense/BalSenseStatusBar.tsx?t=1777966362397:0
+[30947463ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/balsense/BalSenseSummary.tsx?t=1777966362397:0
+[30947463ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/balsense/AnimatedNumber.tsx?t=1777966362397:0
+[30947463ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/balsense/GlassPanel.tsx?t=1777963737299:0
+[30947463ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/balsense/visuals.tsx?t=1777966362397:0

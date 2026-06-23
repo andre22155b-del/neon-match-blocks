@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AddEm Capture</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="panel">
+      <header class="header">
+        <img src="icons/icon48.png" alt="AddEm" class="logo" />
+        <div>
+          <h1>AddEm</h1>
+          <p>Quick browser capture</p>
+        </div>
+      </header>
+
+      <form id="capture-form" class="form">
+        <label>
+          URL
+          <input id="url" type="url" required />
+        </label>
+
+        <label>
+          Title
+          <input id="title" type="text" required />
+        </label>
+
+        <label>
+          Notes (selected text or your note)
+          <textarea id="notes" rows="3" placeholder="Optional notes..."></textarea>
+        </label>
+
+        <label>
+          Tags (comma separated)
+          <input id="tags" type="text" placeholder="youtube, learning, web" />
+        </label>
+
+        <div class="actions">
+          <button id="save-sync" type="submit" class="primary">Save</button>
+          <button id="sync-pending" type="button">Sync Pending</button>
+          <button id="open-app" type="button">Open AddEm</button>
+        </div>
+      </form>
+
+      <div class="status-wrap">
+        <p id="status" class="status"></p>
+        <p id="meta" class="meta"></p>
+      </div>
+
+      <footer>
+        <button id="open-options" type="button" class="link">Configure Endpoint</button>
+      </footer>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

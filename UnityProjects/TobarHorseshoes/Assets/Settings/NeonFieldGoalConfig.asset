@@ -23,6 +23,7 @@ MonoBehaviour:
   moverDeceleration: 24
   moverLeanAngle: 8
   moverLeanSharpness: 10
+  kickReleaseDebounceSeconds: 0.1
   minKickImpulse: 7.1
   maxKickImpulse: 10.15
   launchAngleDegrees: 38
@@ -40,6 +41,11 @@ MonoBehaviour:
   footballMass: 0.6
   footballLinearDamping: 0.05
   footballAngularDamping: 0.08
+  kickReleaseDuration: 0.08
+  kickReleaseEase: 1.45
+  releaseGravityScale: 0.72
+  risingGravityScale: 0.94
+  fallingGravityScale: 1.08
   settleVelocityThreshold: 0.2
   settleAngularVelocityThreshold: 0.45
   settleStableSeconds: 0.25
@@ -49,7 +55,42 @@ MonoBehaviour:
   crossbarHeight: 3.05
   uprightInnerHalfWidth: 2.82
   goalPlaneDepthPadding: 0.05
+  defenseBaseBlockerCount: 3
+  defenseMaxBlockerCount: 5
+  defenseExtraBlockerStartYardLine: 35
+  defenseMaxBlockerYardLine: 50
+  defenseLineForwardOffset: 4.75
+  defenseBlockerSpacing: 1.6
+  defenseBarWidth: 1.18
+  defenseBarDepth: 0.48
+  defenseBarBaseHeight: 1.08
+  defenseBarExtraHeight: 0.62
+  defenseBarBaseTravel: 0.34
+  defenseBarExtraTravel: 0.46
+  defenseBarBasePulseSpeed: 1.05
+  defenseBarExtraPulseSpeed: 0.62
+  defenseBarKickSurge: 0.28
+  defenseJumpDuration: 0.54
+  defenseReactionDelay: 0.05
+  defenseStaggerDelay: 0.03
+  windStartYardLine: 35
+  windMaxYardLine: 60
+  windBaseAcceleration: 0.42
+  windExtraAcceleration: 1.02
+  perfectKickWindResistance: 0.18
+  movingGoalStartYardLine: 50
+  movingGoalFullChallengeYardLine: 65
+  movingGoalBaseSideOffset: 0.34
+  movingGoalExtraSideOffset: 0.18
+  movingGoalBaseSpeed: 0.32
+  movingGoalExtraSpeed: 0.18
+  movingGoalSharpness: 5.5
+  startingYardLine: 20
+  yardsPerGoalStep: 5
+  worldUnitsPerYard: 0.1
   pointsPerGoal: 3
+  longBombStartYardLine: 50
+  longBombPointsPerGoal: 5
   perfectKickBonusPoints: 2
   clutchBonusPoints: 1
   clutchPerfectBonusPoints: 2
@@ -63,6 +104,18 @@ MonoBehaviour:
   kickGlowDuration: 0.16
   crowdBoostMultiplier: 2.25
   finalDriveCrowdBoostMultiplier: 1.95
+  cameraFirstPersonFov: 68
+  cameraFirstPersonEyeHeight: 1.72
+  cameraFirstPersonBackOffset: 1.35
+  cameraFirstPersonLookHeight: 3.15
+  cameraIdleSwayDistance: 0.018
+  cameraIdleSwaySpeed: 1.45
+  cameraIdleRollAngle: 0.3
+  cameraBallFollowDistance: 5.2
+  cameraBallFollowHeight: 1.85
+  cameraBallFollowLookAhead: 1.45
+  cameraBallFollowSharpness: 4.8
+  cameraDistanceFovBoost: 4.2
   cameraKickShake: 0.14
   cameraGoalShake: 0.26
   cameraMissShake: 0.1
@@ -82,16 +135,32 @@ MonoBehaviour:
   perfectKickSlowMoDuration: 0.08
   perfectGoalSlowMoScale: 0.72
   perfectGoalSlowMoDuration: 0.12
+  nearMissSlowMoScale: 0.9
+  nearMissSlowMoDuration: 0.06
   masterSfxVolume: 0.92
   crowdVolume: 0.88
   ambientVolume: 0.34
   voiceVolume: 1
+  announcerVolume: 0.92
+  announcerCueGapSeconds: 0.18
+  crowdDuckUnderAnnouncer: 0.82
+  ambientDuckUnderAnnouncer: 0.68
+  audioDuckRecoverSharpness: 8.5
+  ambientMaxMixScale: 1.24
   kickClip: {fileID: 0}
   goalClip: {fileID: 0}
   missClip: {fileID: 0}
   crowdClip: {fileID: 0}
   ambientLoopClip: {fileID: 0}
   itsGoodVoiceClip: {fileID: 0}
+  perfectKickStingClip: {fileID: 0}
+  longBombStingClip: {fileID: 0}
+  heatStingClip: {fileID: 0}
+  clutchStingClip: {fileID: 0}
+  nearMissStingClip: {fileID: 0}
+  streakBreakStingClip: {fileID: 0}
+  finalDriveStingClip: {fileID: 0}
+  movingGoalStingClip: {fileID: 0}
   footballVisualPrefab: {fileID: 0}
   footballMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   footballMaterial: {fileID: 2100000, guid: 5e2ae65b0ee77426aaa02b56c510b40f, type: 2}

@@ -1,0 +1,99 @@
+- generic [ref=e5]:
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - img "BalSense logo" [ref=e14]
+      - paragraph [ref=e15]: BalSense
+      - paragraph [ref=e16]: Budget + Credit Management
+      - paragraph [ref=e17]: by Tobar Mix Creations
+    - paragraph [ref=e19]: The Desk
+    - tablist "BalSense sections" [ref=e20]:
+      - tab "Dashboard" [selected] [ref=e22] [cursor=pointer]:
+        - img [ref=e24]
+        - generic [ref=e30]: Dashboard
+      - tab "Cards has urgent activity" [ref=e32] [cursor=pointer]:
+        - img [ref=e34]
+        - generic [ref=e38]: Cards
+      - tab "Strategy" [ref=e40] [cursor=pointer]:
+        - img [ref=e42]
+        - generic [ref=e45]: Strategy
+      - tab "Insights" [ref=e47] [cursor=pointer]:
+        - img [ref=e49]
+        - generic [ref=e51]: Insights
+    - generic [ref=e54]:
+      - paragraph [ref=e55]: Best play
+      - strong [ref=e56]: Skyline Visa
+      - paragraph [ref=e57]: 1 of 1 cards clear.
+    - generic [ref=e58]:
+      - generic [ref=e61]: Live · just now
+      - button "Collapse sidebar" [ref=e62] [cursor=pointer]:
+        - img [ref=e64]
+      - button "Open settings" [ref=e66] [cursor=pointer]:
+        - img [ref=e67]
+        - generic [ref=e70]: Settings
+  - generic [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e75]: May 7, 2026
+      - generic [ref=e77]: Next event today
+      - generic "Health indicator with 6 attention flags" [ref=e78]
+    - generic [ref=e79]:
+      - generic [ref=e80]: Command
+      - generic [ref=e81]: 🔴 Studio Store due in 2 days
+      - generic [ref=e83]: May 7, 2026
+    - tabpanel "Dashboard" [ref=e85]:
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - generic [ref=e92]:
+            - paragraph [ref=e93]: Best play
+            - heading "Use this card" [level=3] [ref=e94]
+            - heading "Skyline Visa" [level=2] [ref=e95]
+            - generic [ref=e96]:
+              - generic [ref=e100]: 27 days left. Low usage. Safe to use.
+              - generic [ref=e101]: Good confidence
+          - paragraph [ref=e103]: Studio Store minimum due in 2 days — $25.
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - paragraph [ref=e109]: BalScore
+              - generic [ref=e110]:
+                - generic [ref=e111]: "4"
+                - paragraph [ref=e112]: Watch your moves
+            - button "See breakdown" [ref=e113] [cursor=pointer]
+          - paragraph [ref=e119]: Available credit $29,830 across 8 cards.
+        - button "See workspace tools" [ref=e121] [cursor=pointer]
+  - generic [ref=e126]:
+    - generic [ref=e127]:
+      - heading "Skyline Visa" [level=3] [ref=e128]
+      - generic [ref=e133]: 27 days left. Low usage. Safe to use.
+    - button "Confirm your due date. Studio Store payment should be due around May 9. Confirm when you see it." [ref=e135] [cursor=pointer]:
+      - img [ref=e136]
+      - generic [ref=e139]:
+        - generic [ref=e140]: Confirm your due date.
+        - generic [ref=e141]: Studio Store payment should be due around May 9. Confirm when you see it.
+    - generic [ref=e142]:
+      - button "Credit report checklist" [ref=e144] [cursor=pointer]:
+        - generic [ref=e146]: Credit report checklist
+        - img [ref=e147]
+      - generic [ref=e149]:
+        - button "CSV Format Review the import structure inline." [ref=e150] [cursor=pointer]:
+          - generic [ref=e151]:
+            - generic [ref=e152]: CSV Format
+            - generic [ref=e153]: Review the import structure inline.
+          - img [ref=e154]
+        - generic [ref=e156]:
+          - list [ref=e157]:
+            - listitem [ref=e158]: Account nickname
+            - listitem [ref=e159]: Masked account number
+            - listitem [ref=e160]: Account type
+            - listitem [ref=e161]: Current balance
+            - listitem [ref=e162]: Credit limit
+            - listitem [ref=e163]: High balance
+            - listitem [ref=e164]: Payment status
+            - listitem [ref=e165]: Amount past due
+            - listitem [ref=e166]: Date opened
+            - listitem [ref=e167]: Last payment date
+            - listitem [ref=e168]: Last report date
+            - listitem [ref=e169]: Statement closing day
+            - listitem [ref=e170]: Due day
+            - listitem [ref=e171]: Autopay day
+            - listitem [ref=e172]: Payment history notes
+            - listitem [ref=e173]: Dispute, CFPB, or MOV notes
+          - button "Open full format" [ref=e174] [cursor=pointer]

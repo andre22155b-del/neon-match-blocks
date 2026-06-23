@@ -1,0 +1,8 @@
+[     517ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8767/balsense-icon-192.png:0
+[     521ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8767/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8767/:0
+[  486619ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8767/balsense-icon-192.png:0
+[  486620ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8767/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8767/:0
+[  494223ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8767/balsense-icon-192.png:0
+[  494225ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8767/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8767/:0
+[  497470ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8767/balsense-icon-192.png:0
+[  497471ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8767/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8767/:0

@@ -1,0 +1,221 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#07101A"/>
+      <stop offset="0.52" stop-color="#041019"/>
+      <stop offset="1" stop-color="#020508"/>
+    </linearGradient>
+    <linearGradient id="field" x1="800" y1="184" x2="800" y2="822" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B6126"/>
+      <stop offset="0.45" stop-color="#0A7B2A"/>
+      <stop offset="1" stop-color="#031A0B"/>
+    </linearGradient>
+    <linearGradient id="goalGlow" x1="800" y1="118" x2="800" y2="332" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF7B0"/>
+      <stop offset="1" stop-color="#FFD646"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="14" result="blur1"/>
+      <feGaussianBlur stdDeviation="28" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <ellipse cx="800" cy="208" rx="560" ry="120" fill="#0A1824" filter="url(#soft)"/>
+
+  <polygon points="286,148 488,78 1112,78 1314,148 1458,320 1420,364 180,364 142,320" fill="#09141F"/>
+  <polygon points="226,258 472,152 1128,152 1374,258 1440,364 160,364" fill="#08121A"/>
+
+  <g opacity="0.9" filter="url(#soft)">
+    <rect x="182" y="232" width="86" height="18" rx="9" fill="#4EFFE0"/>
+    <rect x="286" y="204" width="84" height="18" rx="9" fill="#FF5FDC"/>
+    <rect x="1230" y="204" width="84" height="18" rx="9" fill="#4EFFE0"/>
+    <rect x="1332" y="232" width="86" height="18" rx="9" fill="#FF5FDC"/>
+    <rect x="538" y="126" width="112" height="16" rx="8" fill="#4EFFE0"/>
+    <rect x="952" y="126" width="112" height="16" rx="8" fill="#FF5FDC"/>
+  </g>
+
+  <polygon points="528,186 1072,186 1344,804 256,804" fill="url(#field)"/>
+  <polygon points="528,186 1072,186 1344,804 256,804" stroke="#46FF85" stroke-width="4"/>
+
+  <g opacity="0.42">
+    <polygon points="578,244 1022,244 1244,750 356,750" stroke="#A7FFC2" stroke-width="2"/>
+    <polygon points="626,356 974,356 1148,658 452,658" stroke="#A7FFC2" stroke-width="2"/>
+    <polygon points="674,468 926,468 1054,570 546,570" stroke="#A7FFC2" stroke-width="2"/>
+    <polygon points="722,580 878,580 960,486 640,486" stroke="#A7FFC2" stroke-width="2"/>
+  </g>
+
+  <g opacity="0.9" filter="url(#glow)">
+    <polygon points="620,344 980,344 988,358 612,358" fill="#C6FFD6"/>
+    <polygon points="674,470 926,470 932,482 668,482" fill="#C6FFD6"/>
+    <polygon points="728,596 872,596 876,606 724,606" fill="#C6FFD6"/>
+  </g>
+
+  <g opacity="0.68">
+    <polygon points="622,186 644,186 866,804 842,804" fill="#0E3517"/>
+    <polygon points="800,186 822,186 944,804 920,804" fill="#11411B"/>
+    <polygon points="980,186 1002,186 1054,804 1030,804" fill="#0E3517"/>
+  </g>
+
+  <g filter="url(#glow)" opacity="0.95">
+    <rect x="470" y="264" width="18" height="230" rx="9" fill="#3FFF82"/>
+    <rect x="1112" y="264" width="18" height="230" rx="9" fill="#FF5CDA"/>
+    <rect x="470" y="264" width="660" height="16" rx="8" fill="#D3FFF0"/>
+    <rect x="548" y="376" width="14" height="118" rx="7" fill="#39FF7B"/>
+    <rect x="1038" y="376" width="14" height="118" rx="7" fill="#FF5CDA"/>
+    <rect x="560" y="430" width="28" height="16" rx="8" fill="#D1FFF0"/>
+    <rect x="1012" y="430" width="28" height="16" rx="8" fill="#FFD3F8"/>
+  </g>
+
+  <g opacity="0.82">
+    <polygon points="636,224 658,224 650,804 626,804" fill="#103316"/>
+    <polygon points="944,224 966,224 992,804 970,804" fill="#103316"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <rect x="724" y="664" width="152" height="20" rx="10" fill="#BFFFD0"/>
+    <rect x="742" y="676" width="116" height="10" rx="5" fill="#FFD75B"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <rect x="792" y="154" width="16" height="138" rx="8" fill="url(#goalGlow)"/>
+    <rect x="640" y="276" width="320" height="14" rx="7" fill="url(#goalGlow)"/>
+    <rect x="640" y="114" width="14" height="176" rx="7" fill="url(#goalGlow)"/>
+    <rect x="946" y="114" width="14" height="176" rx="7" fill="url(#goalGlow)"/>
+  </g>
+
+  <g opacity="0.42" filter="url(#soft)">
+    <ellipse cx="800" cy="300" rx="236" ry="38" fill="#FFD756"/>
+    <ellipse cx="800" cy="314" rx="286" ry="48" fill="#52FF8A"/>
+  </g>
+
+  <g filter="url(#glow)" opacity="0.92">
+    <path d="M612 232L988 232" stroke="#5BFF93" stroke-width="7" stroke-linecap="round"/>
+    <path d="M632 252L968 252" stroke="#5BFF93" stroke-width="2" opacity="0.7"/>
+  </g>
+
+  <g opacity="0.95">
+    <g transform="translate(592 450)">
+      <ellipse cx="0" cy="118" rx="44" ry="10" fill="#021A10"/>
+      <rect x="-17" y="28" width="34" height="74" rx="12" fill="#121B24"/>
+      <rect x="-30" y="34" width="14" height="68" rx="7" transform="rotate(-16 -30 34)" fill="#78FFD7"/>
+      <rect x="16" y="34" width="14" height="68" rx="7" transform="rotate(14 16 34)" fill="#FF60DB"/>
+      <rect x="-14" y="18" width="28" height="10" rx="5" fill="#FF60DB"/>
+      <rect x="-16" y="102" width="14" height="38" rx="7" fill="#121B24"/>
+      <rect x="2" y="102" width="14" height="38" rx="7" fill="#121B24"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#B8FFF2"/>
+      <rect x="-18" y="-2" width="36" height="10" rx="5" fill="#76FFD7"/>
+      <rect x="-15" y="48" width="30" height="22" rx="9" fill="#3DFF82"/>
+    </g>
+    <g transform="translate(700 434)">
+      <ellipse cx="0" cy="134" rx="46" ry="11" fill="#021A10"/>
+      <rect x="-18" y="30" width="36" height="78" rx="12" fill="#121B24"/>
+      <rect x="-32" y="36" width="14" height="70" rx="7" transform="rotate(-10 -32 36)" fill="#78FFD7"/>
+      <rect x="18" y="36" width="14" height="70" rx="7" transform="rotate(12 18 36)" fill="#FF60DB"/>
+      <rect x="-14" y="18" width="28" height="10" rx="5" fill="#76FFD7"/>
+      <rect x="-16" y="108" width="14" height="40" rx="7" fill="#121B24"/>
+      <rect x="2" y="108" width="14" height="40" rx="7" fill="#121B24"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#B8FFF2"/>
+      <rect x="-15" y="50" width="30" height="22" rx="9" fill="#FF60DB"/>
+    </g>
+    <g transform="translate(812 426)">
+      <ellipse cx="0" cy="142" rx="48" ry="11" fill="#021A10"/>
+      <rect x="-19" y="30" width="38" height="82" rx="12" fill="#121B24"/>
+      <rect x="-34" y="36" width="14" height="72" rx="7" transform="rotate(-4 -34 36)" fill="#78FFD7"/>
+      <rect x="20" y="36" width="14" height="72" rx="7" transform="rotate(4 20 36)" fill="#FF60DB"/>
+      <rect x="-15" y="18" width="30" height="10" rx="5" fill="#FF60DB"/>
+      <rect x="-16" y="112" width="14" height="42" rx="7" fill="#121B24"/>
+      <rect x="2" y="112" width="14" height="42" rx="7" fill="#121B24"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#B8FFF2"/>
+      <rect x="-16" y="52" width="32" height="22" rx="9" fill="#3DFF82"/>
+    </g>
+    <g transform="translate(926 436)">
+      <ellipse cx="0" cy="134" rx="46" ry="11" fill="#021A10"/>
+      <rect x="-18" y="30" width="36" height="78" rx="12" fill="#121B24"/>
+      <rect x="-32" y="36" width="14" height="70" rx="7" transform="rotate(10 -32 36)" fill="#78FFD7"/>
+      <rect x="18" y="36" width="14" height="70" rx="7" transform="rotate(-12 18 36)" fill="#FF60DB"/>
+      <rect x="-14" y="18" width="28" height="10" rx="5" fill="#76FFD7"/>
+      <rect x="-16" y="108" width="14" height="40" rx="7" fill="#121B24"/>
+      <rect x="2" y="108" width="14" height="40" rx="7" fill="#121B24"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#B8FFF2"/>
+      <rect x="-15" y="50" width="30" height="22" rx="9" fill="#FF60DB"/>
+    </g>
+    <g transform="translate(1034 450)">
+      <ellipse cx="0" cy="118" rx="44" ry="10" fill="#021A10"/>
+      <rect x="-17" y="28" width="34" height="74" rx="12" fill="#121B24"/>
+      <rect x="-30" y="34" width="14" height="68" rx="7" transform="rotate(16 -30 34)" fill="#78FFD7"/>
+      <rect x="16" y="34" width="14" height="68" rx="7" transform="rotate(-14 16 34)" fill="#FF60DB"/>
+      <rect x="-14" y="18" width="28" height="10" rx="5" fill="#76FFD7"/>
+      <rect x="-16" y="102" width="14" height="38" rx="7" fill="#121B24"/>
+      <rect x="2" y="102" width="14" height="38" rx="7" fill="#121B24"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#B8FFF2"/>
+      <rect x="-15" y="48" width="30" height="22" rx="9" fill="#3DFF82"/>
+    </g>
+  </g>
+
+  <g filter="url(#glow)" opacity="0.94">
+    <path d="M1098 188C1150 162 1212 162 1262 188" stroke="#FFD756" stroke-width="12" stroke-linecap="round"/>
+    <polygon points="1252,176 1286,190 1252,204" fill="#FFD756"/>
+  </g>
+
+  <g opacity="0.96">
+    <ellipse cx="800" cy="744" rx="126" ry="20" fill="#02120A"/>
+    <rect x="784" y="560" width="32" height="110" rx="16" fill="#121D28"/>
+    <rect x="748" y="588" width="24" height="102" rx="12" transform="rotate(18 748 588)" fill="#A9FFF1"/>
+    <rect x="828" y="588" width="24" height="102" rx="12" transform="rotate(-18 828 588)" fill="#FF62DC"/>
+    <rect x="786" y="670" width="12" height="64" rx="6" fill="#121D28"/>
+    <rect x="802" y="670" width="12" height="64" rx="6" fill="#121D28"/>
+    <ellipse cx="800" cy="538" rx="30" ry="34" fill="#C0FFF3"/>
+    <rect x="774" y="594" width="52" height="34" rx="10" fill="#3CFF83"/>
+    <rect x="784" y="634" width="32" height="24" rx="8" fill="#FF62DC"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <ellipse cx="800" cy="520" rx="20" ry="12" fill="#3CFF83"/>
+    <path d="M800 514C842 470 858 408 866 348" stroke="#E7FFF0" stroke-width="7" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.82">
+    <path d="M804 516C846 474 864 414 872 356" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="12 12" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="94" y="34" width="1412" height="92" rx="24" fill="#07141D" stroke="#42FF83" stroke-width="2"/>
+    <rect x="584" y="52" width="432" height="56" rx="18" fill="#0B1821" stroke="#FFD756" stroke-width="2"/>
+    <text x="800" y="87" text-anchor="middle" fill="#FFD756" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">NEON FIELDGOAL</text>
+    <text x="194" y="87" text-anchor="middle" fill="#FF72E0" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">SCORE 31</text>
+    <text x="1406" y="87" text-anchor="middle" fill="#4EFFE0" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">00:24</text>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="1220" y="142" width="250" height="132" rx="22" fill="#101722" stroke="#4EFFE0" stroke-width="2"/>
+    <text x="1345" y="188" text-anchor="middle" fill="#D8FFF4" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">WIND >>> BREEZE</text>
+    <text x="1345" y="224" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="20">35 YD LINE</text>
+    <text x="1345" y="256" text-anchor="middle" fill="#FFD756" font-family="Arial, Helvetica, sans-serif" font-size="18">Next make: 40 YD</text>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="106" y="726" width="410" height="108" rx="22" fill="#101722" stroke="#42FF83" stroke-width="2"/>
+    <text x="138" y="772" fill="#C9FFD8" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">ARCADE RUSH</text>
+    <text x="138" y="808" fill="#8FFFE4" font-family="Arial, Helvetica, sans-serif" font-size="20">3 points inside 50. Wind builds on deeper kicks.</text>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="1040" y="714" width="430" height="122" rx="22" fill="#151923" stroke="#FFD756" stroke-width="2"/>
+    <text x="1074" y="760" fill="#FFF0B4" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">50 YD BANGER ZONE</text>
+    <text x="1074" y="796" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="20">Worth 5 points. Sliding uprights, live wind, full chaos.</text>
+  </g>
+
+  <g filter="url(#soft)">
+    <rect x="510" y="774" width="580" height="66" rx="20" fill="#111923" stroke="#53FFE3" stroke-width="2"/>
+    <text x="800" y="816" text-anchor="middle" fill="#DDFEFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Slide for a lane. Read the wind. Split the uprights.</text>
+  </g>
+</svg>

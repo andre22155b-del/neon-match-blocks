@@ -1,0 +1,11 @@
+[     687ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://collector.github.com/github/collect:0
+[     687ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://collector.github.com/github/collect:0
+[    2578ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://collector.github.com/github/collect:0
+[    5663ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://collector.github.com/github/collect:0
+[   31823ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ https://appleid.apple.com/auth/authorize?client_id=com.github.social-oidc&redirect_uri=https%3A%2F%2Fgithub.com%2Fsessions%2Fsocial%2Fapple%2Fcallback&nonce=c6f379f3eefc31e96ab78317916db57f&state=b5945f3414e9a3b988b79c3da7dc6b7b&scope=email&response_mode=form_post&response_type=code:0
+[   45909ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://securemetrics.apple.com/b/ss/applestoreww/1/JS-2.23.0/s97002746539960?AQB=1&ndh=1&pf=1&t=23%2F4%2F2026%200%3A17%3A50%206%20300&fid=3059B5DE7FC34A0B-39A4A0166CFA5587&ce=UTF-8&cdp=2&cl=1800&pageName=apple%20-%20index%2Ftab%20%28us%29&g=https%3A%2F%2Fwww.apple.com%2F&r=https%3A%2F%2Fappleid.apple.com%2F&cc=USD&ch=www.us.homepage&server=ac-2.29.1&h1=www.us.homepage&v3=aos%3A%20us&l3=D%3Das_tex&c4=D%3Dg&v4=D%3DpageName&v14=en-us&c20=aos%3A%20us&v49=D%3Dr&v54=D%3Dg&v97=s.t-p&s=1470x956&c=30&j=1.6&v=N&k=Y&bw=501&bh=794&AQE=1:0
+[   46017ms] [WARNING] AT: request failed Error: Network request failed
+    at t.onerror (https://www.apple.com/metrics/ac-target/latest/ac-target.js:1:79303) @ https://www.apple.com/metrics/ac-target/latest/ac-target.js:0
+[   46020ms] [WARNING] AT: [page-init] View delivery error Error: Network request failed
+    at t.onerror (https://www.apple.com/metrics/ac-target/latest/ac-target.js:1:79303) @ https://www.apple.com/metrics/ac-target/latest/ac-target.js:0
+[   46020ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://securemvt.apple.com/rest/v1/delivery?client=apple&sessionId=c21b16551df046aa96b380ba24771b47&version=2.3.2:0

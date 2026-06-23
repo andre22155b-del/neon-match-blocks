@@ -1,0 +1,150 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]: May 7, 2026
+      - generic [ref=e12]: Next event today
+      - generic "Health indicator with 6 attention flags" [ref=e13]
+    - generic [ref=e14]:
+      - generic [ref=e15]: Command
+      - generic [ref=e16]: 🔴 Studio Store due in 2 days
+      - generic [ref=e18]: May 7, 2026
+    - button "Open full calendar" [ref=e20] [cursor=pointer]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - button "Show earlier dates" [ref=e23]:
+            - img [ref=e24]
+          - generic [ref=e26]: May 7 - May 20
+          - button "Show later dates" [ref=e27]:
+            - img [ref=e28]
+        - generic [ref=e30]:
+          - generic [ref=e31]:
+            - generic [ref=e32]: "7"
+            - generic [ref=e33]: Thu
+            - generic [ref=e36]: Atlas Am
+          - generic [ref=e37]:
+            - generic [ref=e38]: "8"
+            - generic [ref=e39]: Fri
+          - generic [ref=e41]:
+            - generic [ref=e42]: "9"
+            - generic [ref=e43]: Sat
+            - generic [ref=e44]:
+              - generic [ref=e46]: Skyline
+              - generic [ref=e48]: Studio S
+          - generic [ref=e49]:
+            - generic [ref=e50]: "10"
+            - generic [ref=e51]: Sun
+          - generic [ref=e53]:
+            - generic [ref=e54]: "11"
+            - generic [ref=e55]: Mon
+            - generic [ref=e58]: Harbor R
+          - generic [ref=e59]:
+            - generic [ref=e60]: "12"
+            - generic [ref=e61]: Tue
+            - generic [ref=e64]: Flex Car
+          - generic [ref=e65]:
+            - generic [ref=e66]: "13"
+            - generic [ref=e67]: Wed
+            - generic [ref=e68]:
+              - generic [ref=e70]: Union Li
+              - generic [ref=e72]: Peak Pla
+          - generic [ref=e73]:
+            - generic [ref=e74]: "14"
+            - generic [ref=e75]: Thu
+            - generic [ref=e78]: Studio S
+          - generic [ref=e79]:
+            - generic [ref=e80]: "15"
+            - generic [ref=e81]: Fri
+          - generic [ref=e83]:
+            - generic [ref=e84]: "16"
+            - generic [ref=e85]: Sat
+            - generic [ref=e88]: Harbor R
+          - generic [ref=e89]:
+            - generic [ref=e90]: "17"
+            - generic [ref=e91]: Sun
+            - generic [ref=e94]: Flex Car
+          - generic [ref=e95]:
+            - generic [ref=e96]: "18"
+            - generic [ref=e97]: Mon
+            - generic [ref=e98]:
+              - generic [ref=e100]: Peak Pla
+              - generic [ref=e102]: Peak Pla
+          - generic [ref=e103]:
+            - generic [ref=e104]: "19"
+            - generic [ref=e105]: Tue
+          - generic [ref=e107]:
+            - generic [ref=e108]: "20"
+            - generic [ref=e109]: Wed
+    - tabpanel "Dashboard" [ref=e112]:
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - generic [ref=e119]:
+            - paragraph [ref=e120]: Best play
+            - heading "Use this card" [level=3] [ref=e121]
+            - heading "Skyline Visa" [level=2] [ref=e122]
+            - generic [ref=e123]:
+              - generic [ref=e127]: 27 days left. Low usage. Safe to use.
+              - generic [ref=e128]: Good confidence
+          - paragraph [ref=e130]: Studio Store minimum due in 2 days — $25.
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - paragraph [ref=e136]: BalScore
+              - generic [ref=e137]:
+                - generic [ref=e138]: "6"
+                - paragraph [ref=e139]: Watch your moves
+            - button "See breakdown" [ref=e140] [cursor=pointer]
+          - paragraph [ref=e146]: Available credit $29,830 across 8 cards.
+        - button "See workspace tools" [ref=e148] [cursor=pointer]
+      - generic [ref=e152]:
+        - generic [ref=e153]:
+          - heading "Skyline Visa" [level=3] [ref=e154]
+          - generic [ref=e159]: 27 days left. Low usage. Safe to use.
+        - button "Confirm your due date. Studio Store payment should be due around May 9. Confirm when you see it." [ref=e161] [cursor=pointer]:
+          - img [ref=e162]
+          - generic [ref=e165]:
+            - generic [ref=e166]: Confirm your due date.
+            - generic [ref=e167]: Studio Store payment should be due around May 9. Confirm when you see it.
+        - generic [ref=e168]:
+          - button "Credit report checklist" [ref=e170] [cursor=pointer]:
+            - generic [ref=e172]: Credit report checklist
+            - img [ref=e173]
+          - generic [ref=e175]:
+            - button "CSV Format Review the import structure inline." [ref=e176] [cursor=pointer]:
+              - generic [ref=e177]:
+                - generic [ref=e178]: CSV Format
+                - generic [ref=e179]: Review the import structure inline.
+              - img [ref=e180]
+            - generic [ref=e182]:
+              - list [ref=e183]:
+                - listitem [ref=e184]: Account nickname
+                - listitem [ref=e185]: Masked account number
+                - listitem [ref=e186]: Account type
+                - listitem [ref=e187]: Current balance
+                - listitem [ref=e188]: Credit limit
+                - listitem [ref=e189]: High balance
+                - listitem [ref=e190]: Payment status
+                - listitem [ref=e191]: Amount past due
+                - listitem [ref=e192]: Date opened
+                - listitem [ref=e193]: Last payment date
+                - listitem [ref=e194]: Last report date
+                - listitem [ref=e195]: Statement closing day
+                - listitem [ref=e196]: Due day
+                - listitem [ref=e197]: Autopay day
+                - listitem [ref=e198]: Payment history notes
+                - listitem [ref=e199]: Dispute, CFPB, or MOV notes
+              - button "Open full format" [ref=e200] [cursor=pointer]
+  - generic [ref=e202]:
+    - button "Dashboard" [ref=e203] [cursor=pointer]:
+      - img [ref=e204]
+      - generic [ref=e209]: Dashboard
+    - button "Cards" [ref=e210] [cursor=pointer]:
+      - img [ref=e211]
+      - generic [ref=e213]: Cards
+    - button "Strategy" [ref=e214] [cursor=pointer]:
+      - img [ref=e215]
+      - generic [ref=e217]: Strategy
+    - button "Insights" [ref=e218] [cursor=pointer]:
+      - img [ref=e219]
+      - generic [ref=e220]: Insights
+    - button "Settings" [ref=e221] [cursor=pointer]:
+      - img [ref=e222]
+      - generic [ref=e225]: Settings

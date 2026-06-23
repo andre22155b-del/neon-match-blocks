@@ -1,0 +1,14 @@
+[     109ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[ 2265699ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[ 2266022ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=5e70b19c:21548
+[25387958ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[25388501ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/AlertsPanel.tsx?t=1777963738587:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/BalSenseDashboard.tsx?t=1777966368904:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/AccountForm.tsx?t=1777963736317:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/AccountList.tsx?t=1777963738433:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/balsense/BalSenseTimelineStrip.tsx?t=1777963752895:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/FigureText.tsx?t=1777963737727:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/components/CalendarView.tsx?t=1777963737727:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/dateUtils.ts?t=1777963657690:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/sampleData.ts?t=1777963657792:0
+[25388502ms] [ERROR] Failed to load resource: net::ERR_NETWORK_CHANGED @ http://127.0.0.1:4174/src/storage.ts?t=1777963657794:0

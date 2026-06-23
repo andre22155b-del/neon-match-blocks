@@ -1,0 +1,256 @@
+<svg width="768" height="1365" viewBox="0 0 768 1365" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="384" y1="0" x2="384" y2="1365" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#060A2C"/>
+      <stop offset="0.52" stop-color="#160A42"/>
+      <stop offset="1" stop-color="#09051D"/>
+    </linearGradient>
+    <linearGradient id="floorGlow" x1="384" y1="940" x2="384" y2="1280" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3A128E" stop-opacity="0"/>
+      <stop offset="1" stop-color="#8D2CFF" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="cyanBar" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#4EEBFF"/>
+      <stop offset="1" stop-color="#87FFF1"/>
+    </linearGradient>
+    <linearGradient id="titlePink" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FF69FF"/>
+      <stop offset="1" stop-color="#B94BFF"/>
+    </linearGradient>
+    <filter id="glowCyan" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowPink" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softBloom" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+
+  <rect width="768" height="1365" fill="url(#bg)"/>
+  <rect x="0" y="920" width="768" height="445" fill="url(#floorGlow)"/>
+
+  <g opacity="0.26">
+    <path d="M0 1025H768" stroke="#B04BFF" stroke-width="2"/>
+    <path d="M0 1072H768" stroke="#B04BFF" stroke-width="1.5"/>
+    <path d="M0 1125H768" stroke="#B04BFF" stroke-width="1.25"/>
+    <path d="M0 1182H768" stroke="#B04BFF" stroke-width="1"/>
+    <path d="M0 1245H768" stroke="#B04BFF" stroke-width="1"/>
+    <path d="M70 1365L250 930" stroke="#B04BFF" stroke-width="1.5"/>
+    <path d="M190 1365L320 930" stroke="#B04BFF" stroke-width="1.25"/>
+    <path d="M315 1365L384 930" stroke="#B04BFF" stroke-width="1.25"/>
+    <path d="M453 1365L446 930" stroke="#B04BFF" stroke-width="1.25"/>
+    <path d="M578 1365L512 930" stroke="#B04BFF" stroke-width="1.25"/>
+    <path d="M700 1365L588 930" stroke="#B04BFF" stroke-width="1.5"/>
+  </g>
+
+  <g opacity="0.22">
+    <rect x="52" y="820" width="54" height="190" rx="10" fill="#53E8FF"/>
+    <rect x="665" y="775" width="45" height="235" rx="10" fill="#61F7FF"/>
+    <rect x="624" y="845" width="30" height="165" rx="8" fill="#AF4EFF"/>
+    <rect x="120" y="870" width="36" height="140" rx="8" fill="#B24BFF"/>
+  </g>
+
+  <g filter="url(#glowCyan)">
+    <text x="78" y="112" fill="#66F5FF" font-family="Arial, sans-serif" font-size="78" font-weight="700">NEON</text>
+  </g>
+  <g filter="url(#glowPink)">
+    <text x="78" y="166" fill="url(#titlePink)" font-family="Arial, sans-serif" font-size="66" font-weight="700">CONNECT</text>
+    <text x="78" y="220" fill="url(#titlePink)" font-family="Arial, sans-serif" font-size="66" font-weight="700">WORDS</text>
+  </g>
+
+  <g filter="url(#glowCyan)">
+    <text x="493" y="104" fill="#6DF3FF" font-family="Arial, sans-serif" font-size="30" font-weight="700">SCORE:</text>
+  </g>
+  <g filter="url(#glowPink)">
+    <text x="618" y="104" fill="#FF8BFF" font-family="Arial, sans-serif" font-size="30" font-weight="700">12,450</text>
+  </g>
+
+  <rect x="492" y="132" width="199" height="40" rx="14" fill="#10173F" stroke="#5FEFFF" stroke-width="3"/>
+  <rect x="500" y="140" width="128" height="24" rx="10" fill="url(#cyanBar)" filter="url(#softBloom)"/>
+  <g filter="url(#glowCyan)">
+    <text x="529" y="218" fill="#6DF3FF" font-family="Arial, sans-serif" font-size="32" font-weight="700">COMBO x3</text>
+  </g>
+
+  <rect x="78" y="295" width="612" height="800" rx="22" fill="#131847" stroke="#64F4FF" stroke-width="5"/>
+  <rect x="86" y="303" width="596" height="784" rx="18" fill="none" stroke="#B45DFF" stroke-width="2.5" opacity="0.7"/>
+
+  <g opacity="0.55">
+    <path d="M166 315V1075" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M254 315V1075" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M342 315V1075" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M430 315V1075" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M518 315V1075" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M606 315V1075" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M90 408H678" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M90 501H678" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M90 594H678" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M90 687H678" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M90 780H678" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M90 873H678" stroke="#5377FF" stroke-width="1.2"/>
+    <path d="M90 966H678" stroke="#5377FF" stroke-width="1.2"/>
+  </g>
+
+  <g filter="url(#glowPink)">
+    <text x="309" y="356" fill="#FFA0FF" font-family="Arial, sans-serif" font-size="38" font-weight="700">WORD</text>
+    <text x="276" y="398" fill="#FF8BFF" font-family="Arial, sans-serif" font-size="38" font-weight="700">COMBO</text>
+  </g>
+  <g filter="url(#glowCyan)">
+    <text x="483" y="398" fill="#6BF7FF" font-family="Arial, sans-serif" font-size="38" font-weight="700">x3</text>
+  </g>
+
+  <g opacity="0.95">
+    <path d="M385 505C418 524 489 521 549 572C585 602 610 631 618 650" stroke="#63F6FF" stroke-width="6" stroke-linecap="round" filter="url(#glowCyan)"/>
+    <path d="M386 505C395 567 388 632 388 718C388 792 385 866 385 950" stroke="#5FF3FF" stroke-width="5" stroke-linecap="round" filter="url(#glowCyan)"/>
+    <path d="M476 716H563V625" stroke="#FF66FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowPink)"/>
+    <path d="M388 716H476" stroke="#FF66FF" stroke-width="5" stroke-linecap="round" filter="url(#glowPink)"/>
+    <path d="M298 902H386" stroke="#63F6FF" stroke-width="5" stroke-linecap="round" filter="url(#glowCyan)"/>
+  </g>
+
+  <g opacity="0.85" filter="url(#glowPink)">
+    <circle cx="625" cy="650" r="5" fill="#FFA5FF"/>
+    <circle cx="612" cy="635" r="3" fill="#FF89FF"/>
+    <circle cx="597" cy="621" r="2.5" fill="#FF89FF"/>
+    <circle cx="571" cy="592" r="2.5" fill="#FF89FF"/>
+    <circle cx="552" cy="573" r="2" fill="#FF89FF"/>
+  </g>
+
+  <g font-family="Arial, sans-serif" font-size="32" font-weight="700">
+    <!-- row 1 -->
+    <g>
+      <rect x="99" y="333" width="74" height="74" rx="14" fill="#1A2154" stroke="#5FEFFF" stroke-width="2"/>
+      <text x="124" y="380" fill="#66F5FF">S</text>
+      <rect x="187" y="333" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="214" y="380" fill="#FFBB55">T</text>
+      <rect x="275" y="333" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="301" y="380" fill="#B794FF">L</text>
+      <rect x="363" y="333" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="390" y="380" fill="#8E5ADB" opacity="0.32">_</text>
+      <rect x="539" y="333" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="564" y="380" fill="#FF82FF">O</text>
+    </g>
+
+    <!-- row 2 -->
+    <g>
+      <rect x="99" y="426" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="123" y="473" fill="#FF82FF">S</text>
+      <rect x="187" y="426" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="214" y="473" fill="#FFBB55">T</text>
+      <rect x="363" y="426" width="74" height="74" rx="14" fill="#20306F" stroke="#63F6FF" stroke-width="4"/>
+      <text x="388" y="473" fill="#66F5FF">C</text>
+      <rect x="451" y="426" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="478" y="473" fill="#8E5ADB" opacity="0.55">L</text>
+      <rect x="539" y="426" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="563" y="473" fill="#66F5FF">G</text>
+    </g>
+
+    <!-- row 3 -->
+    <g>
+      <rect x="99" y="519" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="124" y="566" fill="#FF82FF">L</text>
+      <rect x="187" y="519" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="213" y="566" fill="#FF82FF">O</text>
+      <rect x="363" y="519" width="74" height="74" rx="14" fill="#20306F" stroke="#63F6FF" stroke-width="4"/>
+      <text x="390" y="566" fill="#66F5FF">Y</text>
+      <rect x="451" y="519" width="74" height="74" rx="14" fill="#3A1F67" stroke="#FF6DFF" stroke-width="4"/>
+      <text x="476" y="566" fill="#66F5FF">B</text>
+      <rect x="539" y="519" width="74" height="74" rx="14" fill="#3A1F67" stroke="#FF6DFF" stroke-width="4"/>
+      <text x="565" y="566" fill="#66F5FF">R</text>
+    </g>
+
+    <!-- row 4 -->
+    <g>
+      <rect x="99" y="612" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="121" y="659" fill="#FF82FF">G</text>
+      <rect x="187" y="612" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="215" y="659" fill="#FF82FF">R</text>
+      <rect x="363" y="612" width="74" height="74" rx="14" fill="#3A1F67" stroke="#FF6DFF" stroke-width="4"/>
+      <text x="388" y="659" fill="#66F5FF">B</text>
+      <rect x="451" y="612" width="74" height="74" rx="14" fill="#3A1F67" stroke="#FF6DFF" stroke-width="4"/>
+      <text x="479" y="659" fill="#66F5FF">E</text>
+      <rect x="539" y="612" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="565" y="659" fill="#FFBB55">T</text>
+    </g>
+
+    <!-- row 5 -->
+    <g>
+      <rect x="99" y="705" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="123" y="752" fill="#FF82FF">P</text>
+      <rect x="187" y="705" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="214" y="752" fill="#FF82FF">O</text>
+      <rect x="363" y="705" width="74" height="74" rx="14" fill="#3A1F67" stroke="#FF6DFF" stroke-width="4"/>
+      <text x="390" y="752" fill="#66F5FF">E</text>
+      <rect x="451" y="705" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="479" y="752" fill="#66F5FF">E</text>
+      <rect x="539" y="705" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="563" y="752" fill="#66F5FF">O</text>
+    </g>
+
+    <!-- row 6 -->
+    <g>
+      <rect x="99" y="798" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="123" y="845" fill="#FF82FF">P</text>
+      <rect x="187" y="798" width="74" height="74" rx="14" fill="#3A1F67" stroke="#FF6DFF" stroke-width="4"/>
+      <text x="212" y="845" fill="#B9A5FF">A</text>
+      <rect x="363" y="798" width="74" height="74" rx="14" fill="#20306F" stroke="#63F6FF" stroke-width="4"/>
+      <text x="389" y="845" fill="#66F5FF">R</text>
+      <rect x="451" y="798" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="477" y="845" fill="#D08CFF">A</text>
+      <rect x="539" y="798" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="564" y="845" fill="#FF82FF">G</text>
+    </g>
+
+    <!-- row 7 -->
+    <g>
+      <rect x="99" y="891" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="122" y="938" fill="#FFBB55">G</text>
+      <rect x="187" y="891" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="213" y="938" fill="#66F5FF">A</text>
+      <rect x="275" y="891" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="301" y="938" fill="#FF82FF">A</text>
+      <rect x="451" y="891" width="74" height="74" rx="14" fill="#1A2154" stroke="#B95CFF" stroke-width="2"/>
+      <text x="477" y="938" fill="#FF82FF">R</text>
+      <rect x="539" y="891" width="74" height="74" rx="14" fill="#1A2154" stroke="#4F6DFF" stroke-width="2"/>
+      <text x="566" y="938" fill="#FFBB55">L</text>
+    </g>
+  </g>
+
+  <path d="M258 1025L214 1082H240V1120H276V1082H302L258 1025Z" fill="#63F6FF" filter="url(#glowCyan)"/>
+
+  <g transform="translate(62 1183)">
+    <g transform="translate(0 0)">
+      <rect x="0" y="12" width="74" height="106" rx="16" fill="#22316A" stroke="#63F6FF" stroke-width="4"/>
+      <rect x="20" y="0" width="74" height="106" rx="16" fill="#1D275F" stroke="#63F6FF" stroke-width="4"/>
+      <text x="48" y="69" fill="#66F5FF" font-family="Arial, sans-serif" font-size="36" font-weight="700">A</text>
+    </g>
+    <g transform="translate(137 0)">
+      <rect x="0" y="12" width="74" height="106" rx="16" fill="#4C2366" stroke="#FF6EFF" stroke-width="4"/>
+      <rect x="20" y="0" width="74" height="106" rx="16" fill="#3C1A5C" stroke="#FF6EFF" stroke-width="4"/>
+      <text x="48" y="69" fill="#FF82FF" font-family="Arial, sans-serif" font-size="36" font-weight="700">R</text>
+    </g>
+    <g transform="translate(274 0)">
+      <rect x="0" y="12" width="74" height="106" rx="16" fill="#4A2E83" stroke="#C16BFF" stroke-width="4"/>
+      <rect x="20" y="0" width="74" height="106" rx="16" fill="#392267" stroke="#C16BFF" stroke-width="4"/>
+      <text x="49" y="69" fill="#D896FF" font-family="Arial, sans-serif" font-size="36" font-weight="700">E</text>
+    </g>
+    <g transform="translate(411 0)">
+      <rect x="0" y="12" width="74" height="106" rx="16" fill="#22316A" stroke="#63F6FF" stroke-width="4"/>
+      <rect x="20" y="0" width="74" height="106" rx="16" fill="#1D275F" stroke="#63F6FF" stroke-width="4"/>
+      <text x="49" y="69" fill="#66F5FF" font-family="Arial, sans-serif" font-size="36" font-weight="700">L</text>
+    </g>
+    <g transform="translate(548 0)">
+      <rect x="0" y="12" width="74" height="106" rx="16" fill="#694125" stroke="#FFB44D" stroke-width="4"/>
+      <rect x="20" y="0" width="74" height="106" rx="16" fill="#573518" stroke="#FFB44D" stroke-width="4"/>
+      <text x="49" y="69" fill="#FFB44D" font-family="Arial, sans-serif" font-size="36" font-weight="700">T</text>
+    </g>
+  </g>
+</svg>

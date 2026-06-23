@@ -1,0 +1,11 @@
+{
+  "name": "addem-capture-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tiny local backend for AddEm browser capture",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}

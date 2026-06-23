@@ -1,0 +1,779 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		46611B4A2F57988B001EAE5E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46611B492F57988B001EAE5E /* WidgetKit.framework */; };
+		46611B4C2F57988B001EAE5E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46611B4B2F57988B001EAE5E /* SwiftUI.framework */; };
+		46611B5B2F57988D001EAE5E /* AddemWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 46611B472F57988B001EAE5E /* AddemWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		46611B272F579775001EAE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46611B112F579770001EAE5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46611B182F579770001EAE5E;
+			remoteInfo = Addem;
+		};
+		46611B312F579775001EAE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46611B112F579770001EAE5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46611B182F579770001EAE5E;
+			remoteInfo = Addem;
+		};
+		46611B592F57988D001EAE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46611B112F579770001EAE5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46611B462F57988B001EAE5E;
+			remoteInfo = AddemWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		46611B602F57988D001EAE5E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				46611B5B2F57988D001EAE5E /* AddemWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		46611B192F579770001EAE5E /* Addem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Addem.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46611B262F579775001EAE5E /* AddemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46611B302F579775001EAE5E /* AddemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AddemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46611B472F57988B001EAE5E /* AddemWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AddemWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		46611B492F57988B001EAE5E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		46611B4B2F57988B001EAE5E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		46611B622F57A0F0001EAE5E /* AddemWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AddemWidgetExtension.entitlements; sourceTree = "<group>"; };
+		46611B642F57A7C4001EAE5E /* SmartOrganizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartOrganizer.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		46611B5C2F57988D001EAE5E /* Exceptions for "AddemWidget" folder in "AddemWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 46611B462F57988B001EAE5E /* AddemWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		46611B1B2F579770001EAE5E /* Addem */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Addem;
+			sourceTree = "<group>";
+		};
+		46611B292F579775001EAE5E /* AddemTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AddemTests;
+			sourceTree = "<group>";
+		};
+		46611B332F579775001EAE5E /* AddemUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AddemUITests;
+			sourceTree = "<group>";
+		};
+		46611B4D2F57988B001EAE5E /* AddemWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				46611B5C2F57988D001EAE5E /* Exceptions for "AddemWidget" folder in "AddemWidgetExtension" target */,
+			);
+			path = AddemWidget;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		46611B162F579770001EAE5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B232F579775001EAE5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B2D2F579775001EAE5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B442F57988B001EAE5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46611B4C2F57988B001EAE5E /* SwiftUI.framework in Frameworks */,
+				46611B4A2F57988B001EAE5E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		46611B102F579770001EAE5E = {
+			isa = PBXGroup;
+			children = (
+				46611B622F57A0F0001EAE5E /* AddemWidgetExtension.entitlements */,
+				46611B632F57A639001EAE5E /* shared */,
+				46611B292F579775001EAE5E /* AddemTests */,
+				46611B332F579775001EAE5E /* AddemUITests */,
+				46611B4D2F57988B001EAE5E /* AddemWidget */,
+				46611B482F57988B001EAE5E /* Frameworks */,
+				46611B1A2F579770001EAE5E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		46611B1A2F579770001EAE5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				46611B192F579770001EAE5E /* Addem.app */,
+				46611B262F579775001EAE5E /* AddemTests.xctest */,
+				46611B302F579775001EAE5E /* AddemUITests.xctest */,
+				46611B472F57988B001EAE5E /* AddemWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		46611B482F57988B001EAE5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				46611B492F57988B001EAE5E /* WidgetKit.framework */,
+				46611B4B2F57988B001EAE5E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		46611B632F57A639001EAE5E /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				46611B642F57A7C4001EAE5E /* SmartOrganizer.swift */,
+				46611B1B2F579770001EAE5E /* Addem */,
+			);
+			path = shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		46611B182F579770001EAE5E /* Addem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46611B3A2F579775001EAE5E /* Build configuration list for PBXNativeTarget "Addem" */;
+			buildPhases = (
+				46611B152F579770001EAE5E /* Sources */,
+				46611B162F579770001EAE5E /* Frameworks */,
+				46611B172F579770001EAE5E /* Resources */,
+				46611B602F57988D001EAE5E /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46611B5A2F57988D001EAE5E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				46611B1B2F579770001EAE5E /* Addem */,
+			);
+			name = Addem;
+			packageProductDependencies = (
+			);
+			productName = Addem;
+			productReference = 46611B192F579770001EAE5E /* Addem.app */;
+			productType = "com.apple.product-type.application";
+		};
+		46611B252F579775001EAE5E /* AddemTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46611B3D2F579775001EAE5E /* Build configuration list for PBXNativeTarget "AddemTests" */;
+			buildPhases = (
+				46611B222F579775001EAE5E /* Sources */,
+				46611B232F579775001EAE5E /* Frameworks */,
+				46611B242F579775001EAE5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46611B282F579775001EAE5E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				46611B292F579775001EAE5E /* AddemTests */,
+			);
+			name = AddemTests;
+			packageProductDependencies = (
+			);
+			productName = AddemTests;
+			productReference = 46611B262F579775001EAE5E /* AddemTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		46611B2F2F579775001EAE5E /* AddemUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46611B402F579775001EAE5E /* Build configuration list for PBXNativeTarget "AddemUITests" */;
+			buildPhases = (
+				46611B2C2F579775001EAE5E /* Sources */,
+				46611B2D2F579775001EAE5E /* Frameworks */,
+				46611B2E2F579775001EAE5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46611B322F579775001EAE5E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				46611B332F579775001EAE5E /* AddemUITests */,
+			);
+			name = AddemUITests;
+			packageProductDependencies = (
+			);
+			productName = AddemUITests;
+			productReference = 46611B302F579775001EAE5E /* AddemUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		46611B462F57988B001EAE5E /* AddemWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46611B5D2F57988D001EAE5E /* Build configuration list for PBXNativeTarget "AddemWidgetExtension" */;
+			buildPhases = (
+				46611B432F57988B001EAE5E /* Sources */,
+				46611B442F57988B001EAE5E /* Frameworks */,
+				46611B452F57988B001EAE5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				46611B4D2F57988B001EAE5E /* AddemWidget */,
+			);
+			name = AddemWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = AddemWidgetExtension;
+			productReference = 46611B472F57988B001EAE5E /* AddemWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46611B112F579770001EAE5E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					46611B182F579770001EAE5E = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					46611B252F579775001EAE5E = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 46611B182F579770001EAE5E;
+					};
+					46611B2F2F579775001EAE5E = {
+						CreatedOnToolsVersion = 26.2;
+						TestTargetID = 46611B182F579770001EAE5E;
+					};
+					46611B462F57988B001EAE5E = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = 46611B142F579770001EAE5E /* Build configuration list for PBXProject "Addem" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 46611B102F579770001EAE5E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 46611B1A2F579770001EAE5E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				46611B182F579770001EAE5E /* Addem */,
+				46611B252F579775001EAE5E /* AddemTests */,
+				46611B2F2F579775001EAE5E /* AddemUITests */,
+				46611B462F57988B001EAE5E /* AddemWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		46611B172F579770001EAE5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B242F579775001EAE5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B2E2F579775001EAE5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B452F57988B001EAE5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		46611B152F579770001EAE5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B222F579775001EAE5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B2C2F579775001EAE5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46611B432F57988B001EAE5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		46611B282F579775001EAE5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46611B182F579770001EAE5E /* Addem */;
+			targetProxy = 46611B272F579775001EAE5E /* PBXContainerItemProxy */;
+		};
+		46611B322F579775001EAE5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46611B182F579770001EAE5E /* Addem */;
+			targetProxy = 46611B312F579775001EAE5E /* PBXContainerItemProxy */;
+		};
+		46611B5A2F57988D001EAE5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46611B462F57988B001EAE5E /* AddemWidgetExtension */;
+			targetProxy = 46611B592F57988D001EAE5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		46611B382F579775001EAE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		46611B392F579775001EAE5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		46611B3B2F579775001EAE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Addem/Addem.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 6;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = AddEm;
+				INFOPLIST_KEY_CFBundleName = AddEm;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.Addem;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		46611B3C2F579775001EAE5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Addem/Addem.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 6;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = AddEm;
+				INFOPLIST_KEY_CFBundleName = AddEm;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.Addem;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		46611B3E2F579775001EAE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.AddemTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Addem.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Addem";
+			};
+			name = Debug;
+		};
+		46611B3F2F579775001EAE5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.AddemTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Addem.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Addem";
+			};
+			name = Release;
+		};
+		46611B412F579775001EAE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.AddemUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Addem;
+			};
+			name = Debug;
+		};
+		46611B422F579775001EAE5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.AddemUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Addem;
+			};
+			name = Release;
+		};
+		46611B5E2F57988D001EAE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AddemWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddemWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AddEm;
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.Addem.AddemWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		46611B5F2F57988D001EAE5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = AddemWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 6;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AddemWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AddEm;
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drewtobar.Addem.AddemWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		46611B142F579770001EAE5E /* Build configuration list for PBXProject "Addem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46611B382F579775001EAE5E /* Debug */,
+				46611B392F579775001EAE5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46611B3A2F579775001EAE5E /* Build configuration list for PBXNativeTarget "Addem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46611B3B2F579775001EAE5E /* Debug */,
+				46611B3C2F579775001EAE5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46611B3D2F579775001EAE5E /* Build configuration list for PBXNativeTarget "AddemTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46611B3E2F579775001EAE5E /* Debug */,
+				46611B3F2F579775001EAE5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46611B402F579775001EAE5E /* Build configuration list for PBXNativeTarget "AddemUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46611B412F579775001EAE5E /* Debug */,
+				46611B422F579775001EAE5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46611B5D2F57988D001EAE5E /* Build configuration list for PBXNativeTarget "AddemWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46611B5E2F57988D001EAE5E /* Debug */,
+				46611B5F2F57988D001EAE5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46611B112F579770001EAE5E /* Project object */;
+}

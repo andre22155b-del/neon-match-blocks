@@ -1,0 +1,4 @@
+[      49ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/balsense-mark.svg:0
+[      80ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/icon.png:0
+[      80ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4174/icon.png:0
+[      80ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:4174/icon.png (Download error or resource isn't a valid image) @ http://127.0.0.1:4174/:0

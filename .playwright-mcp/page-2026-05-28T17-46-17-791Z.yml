@@ -1,0 +1,216 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - img "BalSense logo" [ref=e13]
+          - generic [ref=e14]: BalSense
+          - generic [ref=e15]: by Tobar Mix Creations
+        - button "Open next event details" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: In 4 days
+          - generic "Health indicator with 0 attention flags" [ref=e19]
+      - generic [ref=e22]: Pulse
+    - tabpanel "Command" [ref=e24]:
+      - generic [ref=e25]:
+        - button "Ask BalSense" [ref=e27] [cursor=pointer]:
+          - img [ref=e29]
+          - generic [ref=e32]: Ask BalSense
+        - generic [ref=e37]:
+          - generic [ref=e39]:
+            - paragraph [ref=e40]: Best play
+            - heading "Indigo" [level=2] [ref=e41]
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - paragraph [ref=e44]: Why now
+              - paragraph [ref=e45]: Indigo has the most room — 55% available. Statement closes day 19. Safest card in the set.
+            - generic [ref=e46]:
+              - paragraph [ref=e47]: What to avoid
+              - paragraph [ref=e48]: Destiny (98%) and Capital One Platinum (86%) are critical. Capital One SavorOne (84%) is close behind.
+            - generic [ref=e49]:
+              - paragraph [ref=e50]: Confidence
+              - generic [ref=e52]: Cautious
+            - button "Use This Card" [ref=e54] [cursor=pointer]
+            - button "See full reasoning" [ref=e55] [cursor=pointer]
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - generic [ref=e61]:
+              - generic [ref=e65]: "19"
+              - generic [ref=e66]:
+                - paragraph [ref=e67]: Stack score
+                - paragraph [ref=e68]: Take action now
+                - paragraph [ref=e69]: Score reflects pressure, timing, and runway.
+            - button "See breakdown" [ref=e70] [cursor=pointer]
+          - generic [ref=e75]:
+            - generic [ref=e76]: Stack
+            - generic [ref=e77]: $918.82 · Used 72.7% · 6 cards
+        - generic [ref=e80]:
+          - paragraph [ref=e81]: Coming up
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - generic [ref=e84]:
+                - paragraph [ref=e85]: Avant
+                - paragraph [ref=e86]: Due Date
+              - generic [ref=e87]: Jun 1
+            - generic [ref=e88]:
+              - generic [ref=e89]:
+                - paragraph [ref=e90]: Destiny
+                - paragraph [ref=e91]: Due Date
+              - generic [ref=e92]: Jun 3
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - paragraph [ref=e95]: Destiny
+                - paragraph [ref=e96]: Expected Report
+              - generic [ref=e97]: Jun 3
+  - generic [ref=e99]:
+    - button "Dashboard" [ref=e100] [cursor=pointer]:
+      - img [ref=e102]
+      - generic [ref=e107]: Dashboard
+    - button "Cards" [ref=e108] [cursor=pointer]:
+      - img [ref=e110]
+      - generic [ref=e112]: Cards
+    - button "Strategy" [ref=e113] [cursor=pointer]:
+      - img [ref=e115]
+      - generic [ref=e117]: Strategy
+    - button "Insights" [ref=e118] [cursor=pointer]:
+      - img [ref=e120]
+      - generic [ref=e121]: Insights
+    - button "Settings" [ref=e122] [cursor=pointer]:
+      - img [ref=e124]
+      - generic [ref=e127]: Settings
+  - complementary [ref=e129]:
+    - generic [ref=e130]:
+      - generic [ref=e131]:
+        - img [ref=e132]
+        - heading "Settings" [level=3] [ref=e135]
+      - button "Close settings" [ref=e136] [cursor=pointer]:
+        - img [ref=e137]
+    - generic [ref=e140]:
+      - generic [ref=e141]:
+        - paragraph [ref=e143]: Your Data
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - generic [ref=e146]: Accounts stored
+            - generic [ref=e147]: "6"
+          - generic [ref=e148]:
+            - generic [ref=e149]: Snapshots stored
+            - generic [ref=e150]: "0"
+          - generic [ref=e151]:
+            - generic [ref=e152]: Transactions logged
+            - generic [ref=e153]: "0"
+        - generic [ref=e154]:
+          - button "Export All Data" [ref=e155] [cursor=pointer]:
+            - img [ref=e156]
+            - text: Export All Data
+          - button "Clear All Data" [ref=e159] [cursor=pointer]:
+            - img [ref=e160]
+            - text: Clear All Data
+      - generic [ref=e164]:
+        - paragraph [ref=e165]: Date Review
+        - generic [ref=e166]:
+          - generic [ref=e167]:
+            - paragraph [ref=e170]: Capital One SavorOne
+            - generic [ref=e171]:
+              - button "Statement 16 Confirmed" [ref=e172] [cursor=pointer]: Statement 16 Confirmed
+              - button "Due 10 Confirmed" [ref=e174] [cursor=pointer]: Due 10 Confirmed
+          - generic [ref=e176]:
+            - paragraph [ref=e179]: Capital One Platinum
+            - generic [ref=e180]:
+              - button "Statement 16 Confirmed" [ref=e181] [cursor=pointer]: Statement 16 Confirmed
+              - button "Due 10 Confirmed" [ref=e183] [cursor=pointer]: Due 10 Confirmed
+          - generic [ref=e185]:
+            - paragraph [ref=e188]: Credit One
+            - generic [ref=e189]:
+              - button "Statement 22 Confirmed" [ref=e190] [cursor=pointer]: Statement 22 Confirmed
+              - button "Due 18 Confirmed" [ref=e192] [cursor=pointer]: Due 18 Confirmed
+          - generic [ref=e194]:
+            - paragraph [ref=e197]: Avant
+            - generic [ref=e198]:
+              - button "Statement 5 Confirmed" [ref=e199] [cursor=pointer]: Statement 5 Confirmed
+              - button "Due 1 Confirmed" [ref=e201] [cursor=pointer]: Due 1 Confirmed
+          - generic [ref=e203]:
+            - paragraph [ref=e206]: Destiny
+            - generic [ref=e207]:
+              - button "Statement 4 Confirmed" [ref=e208] [cursor=pointer]: Statement 4 Confirmed
+              - button "Due 3 Confirmed" [ref=e210] [cursor=pointer]: Due 3 Confirmed
+          - generic [ref=e212]:
+            - paragraph [ref=e215]: Indigo
+            - generic [ref=e216]:
+              - button "Statement 19 Confirmed" [ref=e217] [cursor=pointer]: Statement 19 Confirmed
+              - button "Due 18 Confirmed" [ref=e219] [cursor=pointer]: Due 18 Confirmed
+        - generic [ref=e221]:
+          - paragraph [ref=e222]: Playbook cards
+          - generic [ref=e223]:
+            - generic [ref=e224]: Capital One SavorOne
+            - generic [ref=e226]:
+              - button "Statement 16 Confirmed" [ref=e227] [cursor=pointer]: Statement 16 Confirmed
+              - button "Due 10 Confirmed" [ref=e229] [cursor=pointer]: Due 10 Confirmed
+          - generic [ref=e231]:
+            - generic [ref=e232]: Capital One Platinum
+            - generic [ref=e234]:
+              - button "Statement 16 Confirmed" [ref=e235] [cursor=pointer]: Statement 16 Confirmed
+              - button "Due 10 Confirmed" [ref=e237] [cursor=pointer]: Due 10 Confirmed
+          - generic [ref=e239]:
+            - generic [ref=e240]: Credit One
+            - generic [ref=e242]:
+              - button "Statement 22 Confirmed" [ref=e243] [cursor=pointer]: Statement 22 Confirmed
+              - button "Due 18 Confirmed" [ref=e245] [cursor=pointer]: Due 18 Confirmed
+          - generic [ref=e247]:
+            - generic [ref=e248]: Avant
+            - generic [ref=e250]:
+              - button "Statement 5 Confirmed" [ref=e251] [cursor=pointer]: Statement 5 Confirmed
+              - button "Due 1 Confirmed" [ref=e253] [cursor=pointer]: Due 1 Confirmed
+          - generic [ref=e255]:
+            - generic [ref=e256]: Destiny
+            - generic [ref=e258]:
+              - button "Statement 4 Confirmed" [ref=e259] [cursor=pointer]: Statement 4 Confirmed
+              - button "Due 3 Confirmed" [ref=e261] [cursor=pointer]: Due 3 Confirmed
+          - generic [ref=e263]:
+            - generic [ref=e264]: Indigo
+            - generic [ref=e266]:
+              - button "Statement 19 Confirmed" [ref=e267] [cursor=pointer]: Statement 19 Confirmed
+              - button "Due 18 Confirmed" [ref=e269] [cursor=pointer]: Due 18 Confirmed
+      - generic [ref=e272]:
+        - paragraph [ref=e273]: Privacy
+        - paragraph [ref=e274]: All your data lives on this device only. BalSense never transmits, stores, or shares your financial information. Nothing leaves your browser.
+        - generic [ref=e275]:
+          - img [ref=e276]
+          - generic [ref=e278]: Local only · No account required · No tracking
+      - generic [ref=e280]:
+        - paragraph [ref=e281]: Reference
+        - generic [ref=e282]:
+          - paragraph [ref=e283]: Credit report checklist
+          - list [ref=e284]:
+            - listitem [ref=e285]: Account nickname
+            - listitem [ref=e286]: Masked account number
+            - listitem [ref=e287]: Account type
+            - listitem [ref=e288]: Current balance
+            - listitem [ref=e289]: Credit limit
+            - listitem [ref=e290]: High balance
+            - listitem [ref=e291]: Payment status
+            - listitem [ref=e292]: Amount past due
+            - listitem [ref=e293]: Date opened
+            - listitem [ref=e294]: Last payment date
+            - listitem [ref=e295]: Last report date
+            - listitem [ref=e296]: Statement closing day
+            - listitem [ref=e297]: Due day
+            - listitem [ref=e298]: Autopay day
+            - listitem [ref=e299]: Payment history notes
+            - listitem [ref=e300]: Dispute, CFPB, or MOV notes
+        - generic [ref=e301]:
+          - paragraph [ref=e302]: CSV format
+          - code [ref=e303]: nickname,accent_color,balance,limit,minimum_payment,due_day,statement_day,due_date_confirmed,statement_date_confirmed,date_flexibility_days,last_report_date,report_interval_days,autopay_day,reminder_lead,notes,created_at,updated_at
+      - generic [ref=e305]:
+        - paragraph [ref=e306]: About
+        - generic [ref=e307]:
+          - generic [ref=e308]:
+            - generic [ref=e309]: App version
+            - generic [ref=e310]: v1.0.0
+          - generic [ref=e311]:
+            - generic [ref=e312]: Built with
+            - generic [ref=e313]: React + TypeScript
+          - button "Send feedback mailto" [ref=e314] [cursor=pointer]:
+            - generic [ref=e315]:
+              - img [ref=e316]
+              - text: Send feedback
+            - generic [ref=e318]: mailto
+        - paragraph [ref=e319]: BalSense by Tobar Mix Creations

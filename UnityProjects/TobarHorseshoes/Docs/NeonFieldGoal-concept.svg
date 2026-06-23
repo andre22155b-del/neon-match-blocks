@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#07111F"/>
+      <stop offset="0.5" stop-color="#0A1E30"/>
+      <stop offset="1" stop-color="#04070D"/>
+    </linearGradient>
+    <linearGradient id="field" x1="800" y1="315" x2="800" y2="840" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0D3B4C"/>
+      <stop offset="0.55" stop-color="#0A2635"/>
+      <stop offset="1" stop-color="#07131F"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#11243B" stop-opacity="0.86"/>
+      <stop offset="1" stop-color="#08121F" stop-opacity="0.74"/>
+    </linearGradient>
+    <linearGradient id="goal" x1="800" y1="120" x2="800" y2="365" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFD95F"/>
+      <stop offset="0.55" stop-color="#FF9B39"/>
+      <stop offset="1" stop-color="#FF5B2E"/>
+    </linearGradient>
+    <linearGradient id="cyanLine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9CF8FF"/>
+      <stop offset="1" stop-color="#2EE8FF"/>
+    </linearGradient>
+    <linearGradient id="orangeLine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFE070"/>
+      <stop offset="1" stop-color="#FF7A2A"/>
+    </linearGradient>
+    <radialGradient id="goalGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 250) rotate(90) scale(210 300)">
+      <stop offset="0" stop-color="#FFB347" stop-opacity="0.95"/>
+      <stop offset="0.45" stop-color="#FF6A2A" stop-opacity="0.46"/>
+      <stop offset="1" stop-color="#FF6A2A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyanGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(800 595) rotate(90) scale(310 560)">
+      <stop offset="0" stop-color="#2EE8FF" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#2EE8FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowOrange" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#cyanGlow)"/>
+
+  <g opacity="0.55">
+    <path d="M0 210C220 150 510 150 800 210C1090 270 1380 270 1600 210V0H0V210Z" fill="#09172A"/>
+    <path d="M0 250C220 190 510 190 800 250C1090 310 1380 310 1600 250" stroke="#13324A" stroke-width="2"/>
+    <path d="M0 292C220 232 510 232 800 292C1090 352 1380 352 1600 292" stroke="#10283B" stroke-width="1.5"/>
+  </g>
+
+  <g opacity="0.9">
+    <circle cx="160" cy="150" r="5" fill="#2EE8FF"/>
+    <circle cx="240" cy="138" r="6" fill="#FF7A2A"/>
+    <circle cx="335" cy="145" r="4" fill="#F8F178"/>
+    <circle cx="1280" cy="148" r="5" fill="#2EE8FF"/>
+    <circle cx="1368" cy="140" r="6" fill="#FF7A2A"/>
+    <circle cx="1450" cy="152" r="4" fill="#F8F178"/>
+    <circle cx="108" cy="193" r="4" fill="#F8F178"/>
+    <circle cx="1492" cy="196" r="4" fill="#2EE8FF"/>
+    <circle cx="86" cy="252" r="5" fill="#FF7A2A"/>
+    <circle cx="1505" cy="251" r="5" fill="#2EE8FF"/>
+  </g>
+
+  <ellipse cx="800" cy="250" rx="225" ry="118" fill="url(#goalGlow)" filter="url(#soft)"/>
+
+  <g opacity="0.35">
+    <path d="M410 318L540 186H1060L1190 318" stroke="#133A52" stroke-width="4"/>
+    <path d="M470 318L585 152H1015L1130 318" stroke="#173E59" stroke-width="2"/>
+  </g>
+
+  <polygon points="305,840 1295,840 1040,314 560,314" fill="url(#field)" stroke="#174D64" stroke-width="3"/>
+
+  <g opacity="0.9" filter="url(#glowCyan)">
+    <path d="M800 840V314" stroke="#1FEEFF" stroke-width="3" stroke-opacity="0.65"/>
+    <path d="M588 374H1012" stroke="#1FEEFF" stroke-width="2.5" stroke-opacity="0.6"/>
+    <path d="M616 433H984" stroke="#1FEEFF" stroke-width="2" stroke-opacity="0.56"/>
+    <path d="M642 487H958" stroke="#1FEEFF" stroke-width="2" stroke-opacity="0.52"/>
+    <path d="M669 543H931" stroke="#1FEEFF" stroke-width="2" stroke-opacity="0.48"/>
+    <path d="M696 601H904" stroke="#1FEEFF" stroke-width="2" stroke-opacity="0.44"/>
+    <path d="M722 660H878" stroke="#1FEEFF" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M748 720H852" stroke="#1FEEFF" stroke-width="2" stroke-opacity="0.36"/>
+  </g>
+
+  <polygon points="646,355 954,355 914,420 686,420" fill="#37102E" fill-opacity="0.86" stroke="#FF4CD5" stroke-width="2.5"/>
+  <text x="800" y="399" text-anchor="middle" fill="#7CF6FF" font-size="30" font-family="Arial Black, Arial, sans-serif" letter-spacing="5">NEON END ZONE</text>
+
+  <g filter="url(#glowOrange)">
+    <path d="M690 365V235" stroke="url(#goal)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M910 365V235" stroke="url(#goal)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M690 365H910" stroke="url(#goal)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M800 235V112" stroke="url(#goal)" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#glowCyan)">
+    <path d="M798 675C792 602 790 533 800 470C812 392 847 334 877 290" stroke="#7CF6FF" stroke-width="4" stroke-linecap="round" stroke-dasharray="10 12"/>
+    <circle cx="880" cy="288" r="18" stroke="#7CF6FF" stroke-width="3" fill="#7CF6FF" fill-opacity="0.12"/>
+  </g>
+
+  <g transform="translate(799 688)">
+    <ellipse cx="0" cy="0" rx="34" ry="20" fill="#6B3F1E" stroke="#E9C6A1" stroke-width="3"/>
+    <path d="M-20 -2C-10 7 10 7 20 -2" stroke="#EFD2A7" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M-8 -8L8 -8" stroke="#F8F1DA" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-6 -11L-6 -5M-2 -11L-2 -5M2 -11L2 -5M6 -11L6 -5" stroke="#F8F1DA" stroke-width="1.7" stroke-linecap="round"/>
+    <ellipse cx="0" cy="24" rx="42" ry="11" fill="#00E7FF" fill-opacity="0.18"/>
+  </g>
+
+  <g opacity="0.92">
+    <path d="M626 430C617 417 611 400 613 381C616 350 640 334 665 335C692 337 713 359 712 389C711 409 703 422 693 434L680 434C688 421 693 408 693 392C693 373 681 356 662 354C646 352 630 364 628 383C627 399 632 417 640 430H626Z" fill="#0E2234"/>
+    <circle cx="652" cy="317" r="19" fill="#11283C"/>
+    <path d="M670 351L706 306" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M636 351L598 306" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M639 429L620 486" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M668 429L687 486" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M908 430C899 417 893 400 895 381C898 350 922 334 947 335C974 337 995 359 994 389C993 409 985 422 975 434L962 434C970 421 975 408 975 392C975 373 963 356 944 354C928 352 912 364 910 383C909 399 914 417 922 430H908Z" fill="#0E2234"/>
+    <circle cx="934" cy="317" r="19" fill="#11283C"/>
+    <path d="M952 351L988 306" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M918 351L880 306" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M921 429L902 486" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+    <path d="M950 429L969 486" stroke="#11283C" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <rect x="82" y="60" width="270" height="120" rx="30" fill="url(#panel)" stroke="#1FEFFF" stroke-opacity="0.45" stroke-width="2"/>
+    <text x="118" y="102" fill="#7CF6FF" font-size="24" font-family="Arial, sans-serif" letter-spacing="2">CLUTCH BLITZ</text>
+    <text x="118" y="153" fill="#FFB457" font-size="54" font-family="Arial Black, Arial, sans-serif">00:18</text>
+  </g>
+
+  <g>
+    <rect x="611" y="54" width="378" height="70" rx="28" fill="url(#panel)" stroke="#FFE070" stroke-opacity="0.35" stroke-width="2"/>
+    <text x="800" y="99" text-anchor="middle" fill="#F9F379" font-size="34" font-family="Arial Black, Arial, sans-serif" letter-spacing="6">NEON FIELDGOAL</text>
+  </g>
+
+  <g>
+    <rect x="1166" y="54" width="352" height="138" rx="30" fill="url(#panel)" stroke="#FF8A42" stroke-opacity="0.42" stroke-width="2"/>
+    <text x="1206" y="99" fill="#FFBE64" font-size="23" font-family="Arial, sans-serif" letter-spacing="2">SCORE</text>
+    <text x="1206" y="160" fill="#FFFFFF" font-size="64" font-family="Arial Black, Arial, sans-serif">24</text>
+    <text x="1370" y="110" fill="#7CF6FF" font-size="22" font-family="Arial, sans-serif" letter-spacing="2">MULTI</text>
+    <text x="1370" y="160" fill="#7CF6FF" font-size="48" font-family="Arial Black, Arial, sans-serif">x3 HEAT</text>
+  </g>
+
+  <g filter="url(#glowOrange)">
+    <rect x="515" y="132" width="570" height="132" rx="38" fill="#190F1F" fill-opacity="0.84" stroke="#FF7A2A" stroke-width="3"/>
+    <text x="800" y="194" text-anchor="middle" fill="#FFF2A1" font-size="60" font-family="Arial Black, Arial, sans-serif" letter-spacing="5">IT'S GOOD</text>
+    <text x="800" y="234" text-anchor="middle" fill="#7CF6FF" font-size="24" font-family="Arial, sans-serif" letter-spacing="3">+11 PTS  |  x3 MULTI  |  PURE STRIKE</text>
+  </g>
+
+  <g>
+    <rect x="118" y="670" width="276" height="118" rx="38" fill="url(#panel)" stroke="#1FEFFF" stroke-opacity="0.3" stroke-width="2"/>
+    <text x="152" y="714" fill="#7CF6FF" font-size="22" font-family="Arial, sans-serif" letter-spacing="2">MOVE</text>
+    <circle cx="207" cy="742" r="33" fill="#091825" stroke="#2EE8FF" stroke-width="3"/>
+    <path d="M219 742H194M194 742L204 732M194 742L204 752" stroke="#A0FAFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="307" cy="742" r="33" fill="#091825" stroke="#2EE8FF" stroke-width="3"/>
+    <path d="M294 742H319M319 742L309 732M319 742L309 752" stroke="#A0FAFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="151" y="775" fill="#FFB457" font-size="18" font-family="Arial, sans-serif" letter-spacing="1.5">slow strafe lane control</text>
+  </g>
+
+  <g>
+    <rect x="1148" y="630" width="334" height="206" rx="42" fill="url(#panel)" stroke="#FF8A42" stroke-opacity="0.3" stroke-width="2"/>
+    <text x="1188" y="678" fill="#FFB457" font-size="22" font-family="Arial, sans-serif" letter-spacing="2">KICK PAD</text>
+    <rect x="1188" y="708" width="34" height="96" rx="17" fill="#07131D" stroke="#2EE8FF" stroke-width="2"/>
+    <rect x="1193" y="731" width="24" height="68" rx="12" fill="url(#orangeLine)"/>
+    <circle cx="1364" cy="748" r="62" fill="#08131F" stroke="#2EE8FF" stroke-width="3"/>
+    <circle cx="1364" cy="748" r="26" fill="#FFF5AC" fill-opacity="0.15" stroke="#FFF27E" stroke-width="3"/>
+    <path d="M1364 705V790M1320 748H1408" stroke="#A4FCFF" stroke-opacity="0.42" stroke-width="2"/>
+    <text x="1188" y="812" fill="#7CF6FF" font-size="18" font-family="Arial, sans-serif">swipe up for power</text>
+    <text x="1188" y="836" fill="#7CF6FF" font-size="18" font-family="Arial, sans-serif">drag sideways for curve</text>
+  </g>
+
+  <g>
+    <rect x="96" y="570" width="305" height="62" rx="24" fill="url(#panel)" stroke="#1FEFFF" stroke-opacity="0.22" stroke-width="2"/>
+    <text x="122" y="610" fill="#FFFFFF" font-size="28" font-family="Arial Black, Arial, sans-serif">PURE STRIKE.</text>
+  </g>
+
+  <g opacity="0.92">
+    <rect x="1126" y="232" width="296" height="126" rx="26" fill="url(#panel)" stroke="#F7EA74" stroke-opacity="0.28" stroke-width="2"/>
+    <text x="1160" y="276" fill="#F9F379" font-size="20" font-family="Arial, sans-serif" letter-spacing="2">MODE BONUS</text>
+    <text x="1160" y="322" fill="#FFFFFF" font-size="28" font-family="Arial Black, Arial, sans-serif">3-point field goals</text>
+    <text x="1160" y="352" fill="#7CF6FF" font-size="20" font-family="Arial, sans-serif">perfect kicks stack extra points</text>
+  </g>
+
+  <text x="800" y="872" text-anchor="middle" fill="#8DB6CA" font-size="18" font-family="Arial, sans-serif" letter-spacing="2">Concept mockup based on the current Neon FieldGoal build direction</text>
+</svg>

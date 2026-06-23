@@ -1,0 +1,210 @@
+- generic [ref=e5]:
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - img "BalSense logo" [ref=e13]
+      - paragraph [ref=e14]: BalSense
+      - paragraph [ref=e15]: Budget + Credit Management
+    - paragraph [ref=e17]: Control center
+    - tablist "BalSense sections" [ref=e18]:
+      - tab "Dashboard has urgent activity" [ref=e20] [cursor=pointer]:
+        - img [ref=e22]
+        - generic [ref=e29]: Dashboard
+      - tab "Cards has urgent activity" [ref=e31] [cursor=pointer]:
+        - img [ref=e33]
+        - generic [ref=e37]: Cards
+      - tab "Strategy" [ref=e39] [cursor=pointer]:
+        - img [ref=e41]
+        - generic [ref=e44]: Strategy
+      - generic [ref=e45]:
+        - tab "Insights" [active] [selected] [ref=e46] [cursor=pointer]:
+          - img [ref=e48]
+          - generic [ref=e50]: Insights
+        - generic:
+          - generic:
+            - generic: Simple metrics and trends.
+            - generic: I
+    - generic [ref=e52]:
+      - paragraph [ref=e53]: Live pick
+      - strong [ref=e54]: Aurora Rewards
+      - generic [ref=e56]: Available
+      - paragraph [ref=e58]: 2 of 3 cards are currently eligible to use.
+    - generic [ref=e59]:
+      - paragraph [ref=e60]: Updated 2 hr ago
+      - button "Collapse sidebar" [ref=e61] [cursor=pointer]:
+        - img [ref=e62]
+  - generic [ref=e64]:
+    - generic [ref=e66]:
+      - generic [ref=e67]:
+        - generic [ref=e68]: May 4, 2026
+        - generic [ref=e70]: Next event in 1 days
+        - generic [ref=e72]: Utilization 19%
+        - generic "Health indicator with 6 attention flags" [ref=e74]
+      - generic [ref=e75]:
+        - button "Dashboard" [ref=e76] [cursor=pointer]
+        - button "Cards" [ref=e78] [cursor=pointer]
+        - button "Strategy" [ref=e79] [cursor=pointer]
+        - button "Insights" [ref=e80] [cursor=pointer]: Insights
+      - generic [ref=e84]:
+        - generic [ref=e86]:
+          - generic [ref=e87]: "4"
+          - generic [ref=e88]: Mon
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - generic [ref=e91]: "5"
+            - generic [ref=e92]: Tue
+          - generic [ref=e93]:
+            - generic "Harbor Rewards Statement Close" [ref=e94]: Harbor R
+            - generic "Northline Card Expected Report" [ref=e95]: Northlin
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: "6"
+            - generic [ref=e99]: Wed
+          - generic [ref=e100]:
+            - generic "Atlas Amex Expected Report" [ref=e101]: Atlas Am
+            - generic "Union Line Statement Close" [ref=e102]: Union Li
+        - generic [ref=e104]:
+          - generic [ref=e105]: "7"
+          - generic [ref=e106]: Thu
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]: "8"
+            - generic [ref=e110]: Fri
+          - generic "Skyline Visa Expected Report" [ref=e112]: Skyline
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - generic [ref=e115]: "9"
+            - generic [ref=e116]: Sat
+          - generic "Studio Store Due" [ref=e118]: Studio S
+        - generic [ref=e120]:
+          - generic [ref=e121]: "10"
+          - generic [ref=e122]: Sun
+        - generic [ref=e123]:
+          - generic [ref=e124]:
+            - generic [ref=e125]: "11"
+            - generic [ref=e126]: Mon
+          - generic [ref=e127]:
+            - generic "Harbor Rewards Due" [ref=e128]: Harbor R
+            - generic "Flex Card Expected Report" [ref=e129]: Flex Car
+        - generic [ref=e130]:
+          - generic [ref=e131]:
+            - generic [ref=e132]: "12"
+            - generic [ref=e133]: Tue
+          - generic "Union Line Expected Report" [ref=e135]: Union Li
+        - generic [ref=e136]:
+          - generic [ref=e137]:
+            - generic [ref=e138]: "13"
+            - generic [ref=e139]: Wed
+          - generic "Peak Platinum Due" [ref=e141]: Peak Pla
+        - generic [ref=e142]:
+          - generic [ref=e143]:
+            - generic [ref=e144]: "14"
+            - generic [ref=e145]: Thu
+          - generic [ref=e146]:
+            - generic "Studio Store Statement Close" [ref=e147]: Studio S
+            - generic "Audit Test 904 Due" [ref=e148]: Audit Te
+        - generic [ref=e149]:
+          - generic [ref=e150]:
+            - generic [ref=e151]: "15"
+            - generic [ref=e152]: Fri
+          - generic "Harbor Rewards Expected Report" [ref=e154]: Harbor R
+        - generic [ref=e156]:
+          - generic [ref=e157]: "16"
+          - generic [ref=e158]: Sat
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]: "17"
+            - generic [ref=e162]: Sun
+          - generic [ref=e163]:
+            - generic "Flex Card Due" [ref=e164]: Flex Car
+            - generic "Peak Platinum Expected Report" [ref=e165]: Peak Pla
+      - tabpanel "Insights" [ref=e776]:
+        - generic [ref=e777]:
+          - generic [ref=e778]:
+            - generic [ref=e780]:
+              - paragraph [ref=e781]: Safe right now
+              - strong [ref=e783]: "2"
+              - paragraph [ref=e784]: Cards outside the 3-day avoid window.
+            - generic [ref=e786]:
+              - paragraph [ref=e787]: Average due runway
+              - strong [ref=e789]: 10 days
+              - paragraph [ref=e790]: Higher runway keeps choices flexible.
+            - generic [ref=e792]:
+              - paragraph [ref=e793]: Average utilization
+              - strong [ref=e795]: 22%
+              - paragraph [ref=e796]: Lower utilization leaves more room for strategy.
+            - generic [ref=e798]:
+              - paragraph [ref=e799]: Credit capacity
+              - strong [ref=e801]: $10,060
+              - paragraph [ref=e802]: Open headroom across current limits.
+          - generic [ref=e805]:
+            - generic [ref=e806]:
+              - paragraph [ref=e807]: Behavior trends
+              - heading "Trend watch" [level=3] [ref=e808]
+              - paragraph [ref=e809]: Placeholder signals for future BalSense insights.
+            - generic [ref=e812]: Insights
+            - generic [ref=e813]:
+              - generic [ref=e814]:
+                - generic [ref=e815]:
+                  - paragraph [ref=e816]: Highest utilization
+                  - generic [ref=e817]: Available
+                - strong [ref=e819]: Northline Cash
+                - paragraph [ref=e820]:
+                  - generic [ref=e821]: 51% utilization
+              - generic [ref=e822]:
+                - generic [ref=e823]:
+                  - paragraph [ref=e824]: Closest statement
+                  - generic [ref=e825]: Available
+                - strong [ref=e827]: Halo Travel
+                - paragraph [ref=e828]:
+                  - generic [ref=e829]: 1 days to statement
+              - generic [ref=e830]:
+                - paragraph [ref=e831]: Coming soon
+                - paragraph [ref=e832]: Spend velocity, recurring purchase timing, and statement-cycle win streaks will live here.
+    - button "Add account" [ref=e636] [cursor=pointer]:
+      - img [ref=e637]
+    - complementary [ref=e741]:
+      - generic [ref=e742]:
+        - generic [ref=e743]:
+          - heading "CSV Format" [level=3] [ref=e744]
+          - button "Close CSV format drawer" [ref=e745] [cursor=pointer]:
+            - img [ref=e746]
+        - generic [ref=e750]:
+          - generic [ref=e751]:
+            - paragraph [ref=e752]: Field list
+            - list [ref=e753]:
+              - listitem [ref=e754]: Account nickname
+              - listitem [ref=e755]: Masked account number
+              - listitem [ref=e756]: Account type
+              - listitem [ref=e757]: Current balance
+              - listitem [ref=e758]: Credit limit
+              - listitem [ref=e759]: High balance
+              - listitem [ref=e760]: Payment status
+              - listitem [ref=e761]: Amount past due
+              - listitem [ref=e762]: Date opened
+              - listitem [ref=e763]: Last payment date
+              - listitem [ref=e764]: Last report date
+              - listitem [ref=e765]: Statement closing day
+              - listitem [ref=e766]: Due day
+              - listitem [ref=e767]: Autopay day
+              - listitem [ref=e768]: Payment history notes
+              - listitem [ref=e769]: Dispute, CFPB, or MOV notes
+          - generic [ref=e770]:
+            - paragraph [ref=e771]: Header row
+            - code [ref=e772]: nickname,due_day,statement_day,last_report_date,report_interval_days,autopay_day,reminder_lead,notes
+  - generic [ref=e641]:
+    - generic [ref=e642]:
+      - heading "Aurora Rewards" [level=3] [ref=e643]
+      - generic [ref=e648]: 19 days left. Low usage. Safe to use.
+    - generic [ref=e650]:
+      - paragraph [ref=e651]: Halo Travel
+      - paragraph [ref=e652]:
+        - generic [ref=e655]: Due in 3 days or less
+    - generic [ref=e656]:
+      - button "Credit report checklist" [ref=e658] [cursor=pointer]:
+        - generic [ref=e660]: Credit report checklist
+        - img [ref=e661]
+      - button "CSV Format Open the import structure in a drawer." [ref=e664] [cursor=pointer]:
+        - generic [ref=e665]:
+          - generic [ref=e666]: CSV Format
+          - generic [ref=e667]: Open the import structure in a drawer.
+        - img [ref=e773]

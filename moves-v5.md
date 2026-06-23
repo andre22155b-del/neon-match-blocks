@@ -1,0 +1,64 @@
+- generic [ref=e5] [box=0,0,1440,1100]:
+  - generic [ref=e353] [box=0,20,279,828]:
+    - generic [ref=e354] [box=0,20,267,164]:
+      - img "BalSense logo" [ref=e357] [box=102,36,64,64]
+      - paragraph [ref=e358] [box=80,108,108,32]: BalSense
+      - paragraph [ref=e359] [box=40,144,187,7]: Budget + Credit Management
+      - paragraph [ref=e360] [box=72,158,123,13]: by Tobar Mix Creations
+    - paragraph [ref=e362] [box=20,200,227,10]: The Desk
+    - tablist "BalSense sections" [ref=e363] [box=0,214,267,284]:
+      - tab "Dashboard" [ref=e365] [cursor=pointer] [box=8,222,251,64]:
+        - img [ref=e367] [box=83,245,18,18]
+        - generic [ref=e373] [box=113,245,72,18]: Dashboard
+      - tab "Cards has urgent activity" [selected] [ref=e375] [cursor=pointer] [box=8,290,251,64]:
+        - img [ref=e377] [box=101,313,18,18]
+        - generic [ref=e381] [box=131,313,38,18]: Cards
+      - tab "Strategy" [ref=e383] [cursor=pointer] [box=8,358,251,64]:
+        - img [ref=e385] [box=89,381,18,18]
+        - generic [ref=e388] [box=119,381,59,18]: Strategy
+      - tab "Insights" [ref=e390] [cursor=pointer] [box=8,426,251,64]:
+        - img [ref=e392] [box=92,449,18,18]
+        - generic [ref=e394] [box=122,449,53,18]: Insights
+    - generic [ref=e396] [box=20,522,227,190]:
+      - paragraph [ref=e397] [box=49,551,169,12]: Best play
+      - strong [ref=e398] [box=49,579,169,23]: Skyline Visa
+      - generic [ref=e400] [box=49,618,69,26]: Clear
+      - paragraph [ref=e402] [box=49,660,169,24]: 6 of 8 cards clear.
+    - generic [ref=e403] [box=0,733,267,115]:
+      - generic [ref=e406] [box=110,733,61,13]: Live · 3m ago
+      - button "Collapse sidebar" [ref=e407] [cursor=pointer] [box=118,762,32,32]:
+        - img [ref=e409] [box=126,770,16,16]
+      - button "Open settings" [ref=e411] [cursor=pointer] [box=30,810,208,18]:
+        - img [ref=e412] [box=96,810,18,18]
+        - generic [ref=e415] [box=122,811,49,16]: Settings
+  - generic [ref=e6] [box=280,0,880,1100]:
+    - generic [ref=e8] [box=280,0,880,1100]:
+      - generic [ref=e9] [box=280,0,880,48]:
+        - generic [ref=e10] [box=300,15,86,17]: May 7, 2026
+        - generic [ref=e12] [box=411,17,109,13]: Next event today
+        - generic "Health indicator with 6 attention flags" [ref=e13] [box=532,19,10,10]
+      - generic [ref=e14] [box=308,60,824,40]:
+        - generic [ref=e15] [box=325,70,84,20]: Moves
+        - generic [ref=e16] [box=425,70,674,20]: 🔴 Studio Store due in 2 days
+      - button "Open full calendar" [ref=e18] [cursor=pointer] [box=308,112,824,90]:
+        - generic [ref=e19] [box=308,112,824,90]
+      - tabpanel "Cards has urgent activity" [ref=e110] [box=308,234,824,1597]:
+        - generic [ref=e111] [box=308,234,800,1573]
+    - button "Add account" [ref=e309] [cursor=pointer] [box=1080,1020,52,52]:
+      - img [ref=e310] [box=1100,1035,12,22]
+  - generic [ref=e420] [box=1181,20,239,350]:
+    - generic [ref=e421] [box=1205,44,191,123]:
+      - heading "Skyline Visa" [level=3] [ref=e422] [box=1205,68,179,30]
+      - generic [ref=e427] [box=1236,131,132,30]: 27 days left. Low usage. Safe to use.
+    - button "Confirm your due date. Studio Store payment should be due around May 9. Confirm when you see it." [ref=e429] [cursor=pointer] [box=1205,183,191,74]:
+      - img [ref=e430] [box=1205,185,16,16]
+      - generic [ref=e433] [box=1233,183,163,74]:
+        - generic [ref=e434] [box=1233,183,163,16]: Confirm your due date.
+        - generic [ref=e435] [box=1233,203,163,54]: Studio Store payment should be due around May 9. Confirm when you see it.
+    - generic [ref=e436] [box=1205,277,191,70]:
+      - button "Credit report checklist" [ref=e438] [cursor=pointer] [box=1206,278,185,17]:
+        - generic [ref=e440] [box=1206,278,157,17]: Credit report checklist
+        - img [ref=e441] [box=1375,278,16,16]
+      - generic [ref=e443] [box=1205,308,187,39]:
+        - button "CSV Format Review the import structure inline." [ref=e444] [cursor=pointer] [box=1206,309,185,37]
+        - generic [ref=e450] [box=1206,345,185,588]

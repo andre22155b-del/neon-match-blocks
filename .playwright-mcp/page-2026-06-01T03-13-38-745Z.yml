@@ -1,0 +1,126 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - img "BalSense logo" [ref=e13]
+          - generic [ref=e14]: BalSense
+          - generic [ref=e15]: by Tobar Mix Creations
+        - button "Open next event details" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: Next event in 1 day
+          - generic "Health indicator with 2 attention flags" [ref=e19]
+      - generic [ref=e21]:
+        - generic [ref=e22]: Command
+        - generic [ref=e240]: May 31, 2026
+    - generic [ref=e242]:
+      - img [ref=e244]
+      - paragraph [ref=e247]: Avant minimum due in 1 day — $25.
+    - tabpanel "Command has urgent activity" [ref=e248]:
+      - generic [ref=e249]:
+        - generic [ref=e250]:
+          - button "Ask BalSense" [ref=e251] [cursor=pointer]:
+            - img [ref=e253]
+            - generic [ref=e256]: Ask BalSense
+          - button "Close BalSense Coach backdrop" [ref=e328] [cursor=pointer]
+          - generic [ref=e329]:
+            - generic [ref=e330]:
+              - generic [ref=e331]:
+                - paragraph [ref=e332]: BalSense Coach
+                - heading "Ask before you swipe." [level=3] [ref=e333]
+              - button "Close BalSense Coach" [ref=e334] [cursor=pointer]:
+                - img [ref=e335]
+            - generic [ref=e338]:
+              - generic [ref=e339]: Ask me what to use, what to avoid, or tell me a current balance so I can recalibrate the Stack.
+              - generic [ref=e371]: Swipe check
+              - generic [ref=e372]: "Swipe Check: tell me the amount first. Try “Can I spend $38?” and I will call the safest card, what to avoid, and the pressure after the swipe."
+              - generic [ref=e373]: Statement shield
+              - generic [ref=e374]: "Statement Shield: Protect Destiny: 98% used, statement closes in 4 days. Protect Avant: 70% used, statement closes in 5 days. Protect Capital One Platinum: 86% used, statement closes in 16 days."
+            - generic [ref=e340]:
+              - button "Confirm payment" [ref=e341] [cursor=pointer]:
+                - img [ref=e342]
+                - text: Confirm payment
+              - button "Swipe check" [ref=e345] [cursor=pointer]:
+                - img [ref=e346]
+                - text: Swipe check
+              - button "Recovery plan" [ref=e349] [cursor=pointer]:
+                - img [ref=e350]
+                - text: Recovery plan
+              - button "Spend window" [ref=e353] [cursor=pointer]:
+                - img [ref=e354]
+                - text: Spend window
+              - button "Statement shield" [active] [ref=e357] [cursor=pointer]:
+                - img [ref=e358]
+                - text: Statement shield
+              - button "Current Stack" [ref=e361] [cursor=pointer]:
+                - img [ref=e362]
+                - text: Current Stack
+            - generic [ref=e365]:
+              - 'textbox "Try: Can I spend 38?" [ref=e366]'
+              - button "Send BalSense Coach message" [ref=e367] [cursor=pointer]:
+                - img [ref=e368]
+        - generic [ref=e261]:
+          - generic [ref=e262]:
+            - generic [ref=e263]:
+              - paragraph [ref=e264]: Best play
+              - heading "Indigo" [level=2] [ref=e265]
+            - generic [ref=e268]:
+              - generic [ref=e269]: Indigo
+              - img [ref=e270]
+          - generic [ref=e272]:
+            - generic [ref=e273]:
+              - paragraph [ref=e274]: Why now
+              - paragraph [ref=e275]: Indigo has the most room — 55% available. Statement closes day 19. Safest card in the set.
+            - generic [ref=e276]:
+              - paragraph [ref=e277]: What to avoid
+              - paragraph [ref=e278]: Destiny (98%) and Capital One Platinum (86%) are critical. Capital One SavorOne (84%) is close behind.
+            - generic [ref=e279]:
+              - paragraph [ref=e280]: Confidence
+              - generic [ref=e282]: Cautious
+            - button "Use This Card" [ref=e284] [cursor=pointer]
+            - button "See full reasoning" [ref=e285] [cursor=pointer]
+        - generic [ref=e289]:
+          - generic [ref=e290]:
+            - generic [ref=e291]:
+              - generic [ref=e295]: "36"
+              - generic [ref=e296]:
+                - paragraph [ref=e297]: Stack score
+                - paragraph [ref=e298]: Take action now
+                - paragraph [ref=e299]: Score reflects pressure, timing, and runway.
+            - button "See breakdown" [ref=e300] [cursor=pointer]
+          - generic [ref=e305]:
+            - generic [ref=e306]: Stack
+            - generic [ref=e307]: $918.82 · Used 72.7% · 6 cards
+        - generic [ref=e310]:
+          - paragraph [ref=e311]: Coming up
+          - generic [ref=e312]:
+            - generic [ref=e313]:
+              - generic [ref=e314]:
+                - paragraph [ref=e315]: Avant
+                - paragraph [ref=e316]: Due Date
+              - generic [ref=e317]: Jun 1
+            - generic [ref=e318]:
+              - generic [ref=e319]:
+                - paragraph [ref=e320]: Destiny
+                - paragraph [ref=e321]: Due Date
+              - generic [ref=e322]: Jun 3
+            - generic [ref=e323]:
+              - generic [ref=e324]:
+                - paragraph [ref=e325]: Destiny
+                - paragraph [ref=e326]: Expected Report
+              - generic [ref=e327]: Jun 3
+  - generic [ref=e114]:
+    - button "Dashboard" [ref=e115] [cursor=pointer]:
+      - img [ref=e117]
+      - generic [ref=e122]: Dashboard
+    - button "Cards" [ref=e123] [cursor=pointer]:
+      - img [ref=e125]
+      - generic [ref=e127]: Cards
+    - button "Strategy" [ref=e128] [cursor=pointer]:
+      - img [ref=e130]
+      - generic [ref=e132]: Strategy
+    - button "Insights" [ref=e133] [cursor=pointer]:
+      - img [ref=e135]
+      - generic [ref=e136]: Insights
+    - button "Settings" [ref=e137] [cursor=pointer]:
+      - img [ref=e139]
+      - generic [ref=e142]: Settings

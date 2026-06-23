@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon FieldGoal Smoke</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #050914;
+      color: #d8f9ff;
+      font: 14px/1.4 monospace;
+    }
+
+    body {
+      padding: 16px;
+    }
+
+    .banner {
+      margin: 0 0 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      background: rgba(0, 245, 255, 0.08);
+      color: #d8f9ff;
+      max-width: 1180px;
+    }
+
+    .banner strong {
+      color: #56f2ff;
+    }
+
+    .banner a {
+      color: #ffe45c;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    iframe {
+      display: block;
+      width: 1180px;
+      height: 664px;
+      margin-top: 16px;
+      border: 0;
+      transform: scale(0.32);
+      transform-origin: top left;
+      margin-bottom: -448px;
+      pointer-events: none;
+      background: #02040a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Neon FieldGoal Smoke</h1>
+  <div class="banner" id="smokeBanner">
+    <strong>QA page only.</strong> This is the internal smoke runner, not the playable game.
+    Open <a href="/" target="_top">/</a> to play. Fresh run status will appear below.
+  </div>
+  <pre id="output">Booting smoke tests...</pre>
+  <iframe id="game" src="/"></iframe>
+  <script>
+    const output = document.getElementById("output");
+    const frame = document.getElementById("game");
+    const banner = document.getElementById("smokeBanner");
+    const results = [];
+    let uncaught = null;
+
+    function persistReport(snapshot) {
+      fetch("/api/smoke-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(snapshot)
+      }).catch(() => {});
+    }
+
+    function log(name, pass, detail) {
+      results.push({ name, pass, detail });
+      const snapshot = {
+        status: results.every((entry) => entry.pass) ? "PASS" : "FAIL",
+        updatedAt: new Date().toISOString(),
+        uncaught,
+        results
+      };
+      output.textContent = JSON.stringify(snapshot, null, 2);
+      document.title = `${snapshot.status} ${results.filter((entry) => entry.pass).length}/${results.length}`;
+      banner.innerHTML = `<strong>QA page only.</strong> This is the internal smoke runner, not the playable game. Open <a href="/" target="_top">/</a> to play. Current run: <strong>${snapshot.status}</strong> at ${snapshot.updatedAt}.`;
+      persistReport(snapshot);
+    }
+
+    function wait(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    async function waitFor(predicate, timeoutMs, detailFactory) {
+      const startedAt = performance.now();
+      while (performance.now() - startedAt < timeoutMs) {
+        if (predicate()) {
+          return;
+        }
+        await wait(50);
+      }
+      throw new Error(typeof detailFactory === "function" ? detailFactory() : "Timed out");
+    }
+
+    function expect(condition, name, detail) {
+      log(name, !!condition, detail);
+      if (!condition) {
+        throw new Error(`${name}: ${detail}`);
+      }
+    }
+
+    window.addEventListener("error", (event) => {
+      uncaught = String(event.message || event.error || "unknown error");
+    });
+    window.addEventListener("unhandledrejection", (event) => {
+      uncaught = String((event && event.reason) || "unhandled rejection");
+    });
+
+    async function run() {
+      const win = frame.contentWindow;
+      const doc = frame.contentDocument;
+      await wait(600);
+      const api = win && win.__nfgDebug;
+      expect(!!api, "debug-surface", "window.__nfgDebug is available");
+      expect(!doc.getElementById("menuMorePanel").classList.contains("open"), "menu-more-default-collapsed", "collapsed by default");
+      doc.getElementById("menuMoreToggle").dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+      await wait(50);
+      expect(doc.getElementById("menuMorePanel").classList.contains("open"), "menu-more-open", "expanded after toggle");
+
+      api.setSelectedMode("longBomb");
+      await wait(50);
+      expect(api.state.selectedModeKey === "longBomb", "title-mode-select", `selected=${api.state.selectedModeKey}`);
+      expect(api.state.yardLine === 50, "title-preview-yardline", `yardLine=${api.state.yardLine}`);
+      expect(api.state.movingGoalActive === true, "title-preview-moving-goal", `moving=${api.state.movingGoalActive}`);
+      expect((doc.getElementById("titleHeroTitle").textContent || "").trim().length > 0, "title-hero-card", "hero card rendered");
+      if (typeof api.setOneThumbModeForTest === "function") {
+        api.setOneThumbModeForTest(true);
+        await wait(30);
+        expect(doc.getElementById("kickZone").classList.contains("one-thumb"), "one-thumb-layout", "kick zone switched to one-thumb mode");
+        api.setOneThumbModeForTest(false);
+      }
+
+      api.setSelectedMode("scoreAttack");
+      await wait(50);
+
+      doc.getElementById("startBtn").dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+      await wait(100);
+      expect(["aim", "tutorial"].includes(api.state.gameState), "menu-start-click", `state=${api.state.gameState}`);
+      if (api.state.gameState === "tutorial") {
+        expect(doc.getElementById("tutorialOverlay").style.display === "flex", "tutorial-overlay-visible", `display=${doc.getElementById("tutorialOverlay").style.display}`);
+        doc.getElementById("tutorialPrimaryBtn").dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+        await wait(80);
+      }
+      expect(api.state.gameState === "aim", "tutorial-dismiss-to-aim", `state=${api.state.gameState}`);
+      expect(doc.getElementById("titleScreen").style.display === "none", "menu-hidden-after-start", `display=${doc.getElementById("titleScreen").style.display}`);
+
+      api.setSelectedMode("scoreAttack");
+      api.startGame();
+      await wait(100);
+      expect(api.state.activeModeKey === "scoreAttack", "scoreattack-mode", `active=${api.state.activeModeKey}`);
+      expect(api.state.yardLine === 20, "scoreattack-yardline", `yardLine=${api.state.yardLine}`);
+      expect(Math.ceil(api.state.timeLeft) === 60, "scoreattack-timer", `time=${api.state.timeLeft}`);
+
+      let predictedCluster = null;
+      if (typeof api.seedPredictedGoalGridClusterForTest === "function") {
+        predictedCluster = api.seedPredictedGoalGridClusterForTest(undefined, undefined, 1, "#56f2ff");
+      } else if (typeof api.seedGoalGridForTest === "function") {
+        const fullStack = [];
+        for (let row = 0; row < 9; row += 1) {
+          for (let col = 0; col < 8; col += 1) {
+            fullStack.push({ row, col, color: "#56f2ff" });
+          }
+        }
+        api.seedGoalGridForTest(fullStack);
+      }
+      expect(!!predictedCluster, "goal-grid-predict", predictedCluster ? `row=${predictedCluster.row} col=${predictedCluster.col} count=${predictedCluster.seededCount}` : "no-prediction");
+
+      api.launchBall(predictedCluster?.power ?? 0.72, predictedCluster?.aim ?? 0);
+      if (typeof api.advanceForTest === "function") {
+        api.advanceForTest(2600);
+      } else {
+        await waitFor(
+          () => !api.state.ballAnim && ["aim", "over"].includes(api.state.gameState),
+          5000,
+          () => `shot did not settle: state=${api.state.gameState}`
+        );
+      }
+      expect(["aim", "over"].includes(api.state.gameState), "post-shot-state", `state=${api.state.gameState}`);
+      expect(api.state.score >= 0, "post-shot-score", `score=${api.state.score}`);
+      expect(api.state.goalGrid && api.state.goalGrid.lastDropCount > 0, "goal-grid-drop", `drops=${api.state.goalGrid?.lastDropCount}`);
+      expect(api.state.runStats && api.state.runStats.gridDrops > 0, "goal-grid-runstats", `gridDrops=${api.state.runStats?.gridDrops}`);
+      expect(api.state.score >= 3, "goal-grid-bonus-score", `score=${api.state.score}`);
+      expect(!!api.state.telemetry?.sessionId, "telemetry-session", `session=${api.state.telemetry?.sessionId}`);
+      expect(
+        Array.isArray(api.state.telemetry?.recentEvents) &&
+          api.state.telemetry.recentEvents.some((event) => event.type === "kick_result"),
+        "telemetry-kick-result",
+        `recent=${(api.state.telemetry?.recentEvents || []).map((event) => event.type).join(",")}`
+      );
+
+      api.setSelectedMode("longBomb");
+      api.startGame();
+      await wait(100);
+      expect(api.state.activeModeKey === "longBomb", "longbomb-mode", `active=${api.state.activeModeKey}`);
+      expect(api.state.yardLine === 50, "longbomb-yardline", `yardLine=${api.state.yardLine}`);
+      expect(Math.ceil(api.state.timeLeft) === 45, "longbomb-timer", `time=${api.state.timeLeft}`);
+
+      api.setSelectedMode("suddenDeath");
+      api.startGame();
+      await wait(100);
+      expect(api.state.activeModeKey === "suddenDeath", "suddendeath-mode", `active=${api.state.activeModeKey}`);
+      expect(api.state.yardLine === 35, "suddendeath-yardline", `yardLine=${api.state.yardLine}`);
+      expect(Math.ceil(api.state.timeLeft) === 90, "suddendeath-timer", `time=${api.state.timeLeft}`);
+
+      if (typeof api.forceMissForTest === "function") {
+        api.forceMissForTest("TEST MISS");
+        if (typeof api.advanceForTest === "function") {
+          api.advanceForTest(1200);
+        }
+      } else {
+        api.state.playerX = 0.16;
+        api.state.playerViewX = 0.16;
+        api.launchBall(0.18, -1);
+        if (typeof api.advanceForTest === "function") {
+          api.advanceForTest(3200);
+        } else {
+          await waitFor(
+            () => api.state.gameState === "over" || doc.getElementById("resultScreen").style.display === "flex",
+            5000,
+            () => `sudden death did not end: state=${api.state.gameState}`
+          );
+        }
+      }
+      expect(
+        api.state.gameState === "over" || doc.getElementById("resultScreen").style.display === "flex",
+        "suddendeath-miss-ends-run",
+        `state=${api.state.gameState}, score=${api.state.score}, goals=${api.state.goals}`
+      );
+
+      api.setSelectedMode("scoreAttack");
+      await wait(50);
+      expect((doc.getElementById("weeklyChallengeTitle").textContent || "").trim().length > 0, "weekly-ui", "weekly challenge rendered");
+      expect((doc.getElementById("rivalsList").children || []).length >= 3, "rivals-ui", `rows=${doc.getElementById("rivalsList").children.length}`);
+
+      expect(!uncaught, "runtime-errors", uncaught || "no uncaught runtime errors");
+      log("smoke-finished", true, "all scripted smoke checks completed");
+    }
+
+    frame.addEventListener("load", () => {
+      run().catch((error) => {
+        log("smoke-finished", false, error && error.message ? error.message : String(error));
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+- generic [ref=e5]:
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - img "BalSense logo" [ref=e11]
+      - generic [ref=e12]:
+        - paragraph [ref=e13]: BalSense
+        - paragraph [ref=e14]: Budget + Credit Management
+        - heading "Control center" [level=2] [ref=e15]
+        - paragraph [ref=e16]: One view at a time. Fast switches. Less clutter.
+    - tablist "BalSense sections" [ref=e17]:
+      - tab "Dashboard Balances and next move." [ref=e18] [cursor=pointer]:
+        - generic [ref=e19]:
+          - paragraph [ref=e20]: Dashboard
+          - paragraph [ref=e21]: Balances and next move.
+      - tab "Cards Edit card inputs fast." [active] [selected] [ref=e22] [cursor=pointer]:
+        - generic [ref=e23]:
+          - paragraph [ref=e24]: Cards
+          - paragraph [ref=e25]: Edit card inputs fast.
+      - tab "Strategy Clear decision view." [ref=e26] [cursor=pointer]:
+        - generic [ref=e27]:
+          - paragraph [ref=e28]: Strategy
+          - paragraph [ref=e29]: Clear decision view.
+      - tab "Insights Simple metrics and trends." [ref=e30] [cursor=pointer]:
+        - generic [ref=e31]:
+          - paragraph [ref=e32]: Insights
+          - paragraph [ref=e33]: Simple metrics and trends.
+    - generic [ref=e34]:
+      - paragraph [ref=e35]: Live pick
+      - strong [ref=e36]: Aurora Rewards
+      - generic [ref=e38]: Available
+      - paragraph [ref=e40]: 2 of 3 cards are currently eligible to use.
+  - generic [ref=e43]:
+    - generic [ref=e44]:
+      - generic [ref=e45]: May 4, 2026
+      - generic [ref=e47]: Next event in 1 days
+      - generic [ref=e49]: Utilization 19%
+      - generic "Health indicator with 6 attention flags" [ref=e51]
+    - generic [ref=e56]:
+      - generic [ref=e58]:
+        - generic [ref=e59]: "4"
+        - generic [ref=e60]: Mon
+      - generic [ref=e61]:
+        - generic [ref=e62]:
+          - generic [ref=e63]: "5"
+          - generic [ref=e64]: Tue
+        - generic [ref=e65]:
+          - generic "Harbor Rewards Statement Close" [ref=e66]: Harbor Rew
+          - generic "Northline Card Expected Report" [ref=e67]: Northline
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: "6"
+          - generic [ref=e71]: Wed
+        - generic [ref=e72]:
+          - generic "Atlas Amex Expected Report" [ref=e73]: Atlas Amex
+          - generic "Union Line Statement Close" [ref=e74]: Union Line
+      - generic [ref=e76]:
+        - generic [ref=e77]: "7"
+        - generic [ref=e78]: Thu
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - generic [ref=e81]: "8"
+          - generic [ref=e82]: Fri
+        - generic "Skyline Visa Expected Report" [ref=e84]: Skyline Vi
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]: "9"
+          - generic [ref=e88]: Sat
+        - generic "Studio Store Due" [ref=e90]: Studio Sto
+      - generic [ref=e92]:
+        - generic [ref=e93]: "10"
+        - generic [ref=e94]: Sun
+      - generic [ref=e95]:
+        - generic [ref=e96]:
+          - generic [ref=e97]: "11"
+          - generic [ref=e98]: Mon
+        - generic [ref=e99]:
+          - generic "Harbor Rewards Due" [ref=e100]: Harbor Rew
+          - generic "Flex Card Expected Report" [ref=e101]: Flex Card
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - generic [ref=e104]: "12"
+          - generic [ref=e105]: Tue
+        - generic "Union Line Expected Report" [ref=e107]: Union Line
+      - generic [ref=e108]:
+        - generic [ref=e109]:
+          - generic [ref=e110]: "13"
+          - generic [ref=e111]: Wed
+        - generic "Peak Platinum Due" [ref=e113]: Peak Plati
+      - generic [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]: "14"
+          - generic [ref=e117]: Thu
+        - generic [ref=e118]:
+          - generic "Studio Store Statement Close" [ref=e119]: Studio Sto
+          - generic "Audit Test 904 Due" [ref=e120]: Audit Test
+      - generic [ref=e121]:
+        - generic [ref=e122]:
+          - generic [ref=e123]: "15"
+          - generic [ref=e124]: Fri
+        - generic "Harbor Rewards Expected Report" [ref=e126]: Harbor Rew
+      - generic [ref=e128]:
+        - generic [ref=e129]: "16"
+        - generic [ref=e130]: Sat
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - generic [ref=e133]: "17"
+          - generic [ref=e134]: Sun
+        - generic [ref=e135]:
+          - generic "Flex Card Due" [ref=e136]: Flex Card
+          - generic "Peak Platinum Expected Report" [ref=e137]: Peak Plati
+    - generic [ref=e138]:
+      - generic [ref=e140]:
+        - paragraph [ref=e141]: Focused workspace
+        - heading "Cards" [level=2] [ref=e1231]
+        - paragraph [ref=e143]: Edit card inputs fast.
+      - tabpanel "Cards Edit card inputs fast." [ref=e1232]:
+        - generic [ref=e1233]:
+          - generic [ref=e1234]:
+            - generic [ref=e1235]:
+              - paragraph [ref=e1236]: Inputs
+              - heading "Edit card timing fast" [level=3] [ref=e1237]
+            - generic [ref=e1238]: Available
+          - generic [ref=e1242]: Cards
+          - generic [ref=e1243]:
+            - button "Aurora Rewards Recommended Due in 19 days, statement in 2 days, utilization 10%." [ref=e1246] [cursor=pointer]:
+              - generic [ref=e1247]:
+                - generic [ref=e1248]:
+                  - heading "Aurora Rewards" [level=4] [ref=e1249]
+                  - generic [ref=e1250]: Recommended
+                - paragraph [ref=e1252]: Due in 19 days, statement in 2 days, utilization 10%.
+            - button "Northline Cash Available Due in 8 days, statement in 5 days, utilization 51%." [ref=e1255] [cursor=pointer]:
+              - generic [ref=e1256]:
+                - generic [ref=e1257]:
+                  - heading "Northline Cash" [level=4] [ref=e1258]
+                  - generic [ref=e1259]: Available
+                - paragraph [ref=e1261]: Due in 8 days, statement in 5 days, utilization 51%.
+            - button "Halo Travel Disqualified Due in 3 days or less" [ref=e1264] [cursor=pointer]:
+              - generic [ref=e1265]:
+                - generic [ref=e1266]:
+                  - heading "Halo Travel" [level=4] [ref=e1267]
+                  - generic [ref=e1268]: Disqualified
+                - paragraph [ref=e1270]: Due in 3 days or less

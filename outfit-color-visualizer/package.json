@@ -1,0 +1,14 @@
+{
+  "name": "outfit-color-visualizer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node ./tests/smoke.mjs",
+    "test:browser": "node ./tests/browser-check.mjs",
+    "test:deep": "node ./tests/smoke.mjs && node ./tests/browser-check.mjs"
+  },
+  "dependencies": {
+    "jsdom": "^26.0.0",
+    "puppeteer-core": "^24.40.0"
+  }
+}

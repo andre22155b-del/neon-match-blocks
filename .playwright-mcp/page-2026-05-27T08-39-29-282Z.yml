@@ -1,0 +1,159 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - img "BalSense logo" [ref=e11]
+          - generic [ref=e12]: BalSense
+          - generic [ref=e13]: by Tobar Mix Creations
+        - generic [ref=e14]:
+          - generic [ref=e15]: In 5 days
+          - generic "Health indicator with 0 attention flags" [ref=e16]
+      - generic [ref=e18]: Moves
+      - button "Open full calendar" [ref=e20] [cursor=pointer]:
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - button "Show earlier dates" [ref=e23]:
+              - img [ref=e24]
+            - generic [ref=e26]: May 27 - Jun 9
+            - button "Show later dates" [ref=e27]:
+              - img [ref=e28]
+          - generic [ref=e30]:
+            - button "27 Wed" [ref=e31]:
+              - generic [ref=e32]: "27"
+              - generic [ref=e33]: Wed
+            - button "28 Thu" [ref=e35]:
+              - generic [ref=e36]: "28"
+              - generic [ref=e37]: Thu
+            - button "29 Fri" [ref=e39]:
+              - generic [ref=e40]: "29"
+              - generic [ref=e41]: Fri
+            - button "30 Sat" [ref=e43]:
+              - generic [ref=e44]: "30"
+              - generic [ref=e45]: Sat
+            - button "31 Sun" [ref=e47]:
+              - generic [ref=e48]: "31"
+              - generic [ref=e49]: Sun
+            - button "1 Mon Avant" [ref=e51]:
+              - generic [ref=e52]: "1"
+              - generic [ref=e53]: Mon
+              - generic [ref=e56]: Avant
+            - button "2 Tue" [ref=e57]:
+              - generic [ref=e58]: "2"
+              - generic [ref=e59]: Tue
+            - button "3 Wed Destiny Destiny" [ref=e61]:
+              - generic [ref=e62]: "3"
+              - generic [ref=e63]: Wed
+              - generic [ref=e64]:
+                - generic [ref=e66]: Destiny
+                - generic [ref=e68]: Destiny
+            - button "4 Thu Avant Destiny" [ref=e69]:
+              - generic [ref=e70]: "4"
+              - generic [ref=e71]: Thu
+              - generic [ref=e72]:
+                - generic [ref=e74]: Avant
+                - generic [ref=e76]: Destiny
+            - button "5 Fri Avant" [ref=e77]:
+              - generic [ref=e78]: "5"
+              - generic [ref=e79]: Fri
+              - generic [ref=e82]: Avant
+            - button "6 Sat" [ref=e83]:
+              - generic [ref=e84]: "6"
+              - generic [ref=e85]: Sat
+            - button "7 Sun" [ref=e87]:
+              - generic [ref=e88]: "7"
+              - generic [ref=e89]: Sun
+            - button "8 Mon" [ref=e91]:
+              - generic [ref=e92]: "8"
+              - generic [ref=e93]: Mon
+            - button "9 Tue" [ref=e95]:
+              - generic [ref=e96]: "9"
+              - generic [ref=e97]: Tue
+      - tabpanel "Moves has urgent activity" [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - button "Critical Capital One SavorOne Due Jun 10 Next statement Jun 16" [ref=e107] [cursor=pointer]:
+              - generic [ref=e109]: Critical
+              - generic [ref=e111]:
+                - generic [ref=e112]:
+                  - heading "Capital One SavorOne" [level=4] [ref=e113]
+                  - paragraph [ref=e114]: Due Jun 10
+                - paragraph [ref=e116]: Next statement Jun 16
+            - button "Critical Capital One Platinum Due Jun 10 Next statement Jun 16" [ref=e121] [cursor=pointer]:
+              - generic [ref=e123]: Critical
+              - generic [ref=e125]:
+                - generic [ref=e126]:
+                  - heading "Capital One Platinum" [level=4] [ref=e127]
+                  - paragraph [ref=e128]: Due Jun 10
+                - paragraph [ref=e130]: Next statement Jun 16
+            - button "Clear Credit One Due Jun 18 Next statement Jun 22" [ref=e135] [cursor=pointer]:
+              - generic [ref=e137]: Clear
+              - generic [ref=e139]:
+                - generic [ref=e140]:
+                  - heading "Credit One" [level=4] [ref=e141]
+                  - paragraph [ref=e142]: Due Jun 18
+                - paragraph [ref=e144]: Next statement Jun 22
+            - button "Clear Avant Due Jun 1 Next statement Jun 5" [ref=e149] [cursor=pointer]:
+              - generic [ref=e151]: Clear
+              - generic [ref=e153]:
+                - generic [ref=e154]:
+                  - heading "Avant" [level=4] [ref=e155]
+                  - paragraph [ref=e156]: Due Jun 1
+                - paragraph [ref=e158]: Next statement Jun 5
+            - button "Critical Destiny Due Jun 3 Next statement Jun 4" [ref=e163] [cursor=pointer]:
+              - generic [ref=e165]: Critical
+              - generic [ref=e167]:
+                - generic [ref=e168]:
+                  - heading "Destiny" [level=4] [ref=e169]
+                  - paragraph [ref=e170]: Due Jun 3
+                - paragraph [ref=e172]: Next statement Jun 4
+            - button "Best Play Indigo Due Jun 18 Next statement Jun 19" [ref=e177] [cursor=pointer]:
+              - generic [ref=e179]: Best Play
+              - generic [ref=e181]:
+                - generic [ref=e182]:
+                  - heading "Indigo" [level=4] [ref=e183]
+                  - paragraph [ref=e184]: Due Jun 18
+                - paragraph [ref=e186]: Next statement Jun 19
+          - generic [ref=e189]:
+            - generic [ref=e190]:
+              - paragraph [ref=e191]: Quick add
+              - paragraph [ref=e192]: Log a posted charge to catch statement-date drift early.
+            - generic [ref=e193]:
+              - generic [ref=e194]:
+                - generic [ref=e195]: Card
+                - generic [ref=e196]:
+                  - button "Capital One SavorOne" [ref=e197] [cursor=pointer]
+                  - button "Capital One Platinum" [ref=e198] [cursor=pointer]
+                  - button "Credit One" [ref=e199] [cursor=pointer]
+                  - button "Avant" [ref=e200] [cursor=pointer]
+                  - button "Destiny" [ref=e201] [cursor=pointer]
+                  - button "Indigo" [ref=e202] [cursor=pointer]
+              - generic [ref=e203]:
+                - generic [ref=e204]: Amount
+                - spinbutton "Amount" [ref=e205]
+              - generic [ref=e206]:
+                - generic [ref=e207]: Posted date
+                - textbox "Posted date" [ref=e208]: 2026-05-27
+              - button "Log transaction" [ref=e210] [cursor=pointer]
+        - generic [ref=e215]:
+          - paragraph [ref=e216]: Best play
+          - heading "Indigo" [level=3] [ref=e217]
+          - paragraph [ref=e218]: 22 days left. Balanced usage. Safe to use.
+    - button "Add account" [ref=e219] [cursor=pointer]:
+      - img [ref=e220]
+  - generic [ref=e222]:
+    - button "Dashboard" [ref=e223] [cursor=pointer]:
+      - img [ref=e225]
+      - generic [ref=e230]: Dashboard
+    - button "Cards" [ref=e231] [cursor=pointer]:
+      - img [ref=e233]
+      - generic [ref=e235]: Cards
+    - button "Strategy" [ref=e236] [cursor=pointer]:
+      - img [ref=e238]
+      - generic [ref=e240]: Strategy
+    - button "Insights" [ref=e241] [cursor=pointer]:
+      - img [ref=e243]
+      - generic [ref=e244]: Insights
+    - button "Settings" [ref=e245] [cursor=pointer]:
+      - img [ref=e247]
+      - generic [ref=e250]: Settings

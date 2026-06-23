@@ -1,0 +1,2 @@
+[    4297ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[    4805ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://localhost:4174/:0

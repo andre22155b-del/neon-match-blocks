@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AddEm Extension Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>AddEm Extension Settings</h1>
+      <p class="sub">Configure backend sync and optional AddEm app deep-link behavior.</p>
+
+      <form id="settings-form">
+        <label>
+          Backend Capture Endpoint URL
+          <input id="endpointUrl" type="url" placeholder="https://api.yourdomain.com/captures" />
+        </label>
+
+        <label>
+          Auth Token (optional)
+          <input id="authToken" type="password" placeholder="Bearer token value" />
+        </label>
+
+        <label>
+          AddEm Deep Link Base
+          <input id="addEmSchemeBase" type="text" placeholder="addem://capture" />
+        </label>
+
+        <label class="check">
+          <input id="openAddEmAfterSave" type="checkbox" />
+          Open AddEm app after each save
+        </label>
+
+        <div class="actions">
+          <button type="submit">Save Settings</button>
+        </div>
+      </form>
+
+      <p id="status" class="status"></p>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

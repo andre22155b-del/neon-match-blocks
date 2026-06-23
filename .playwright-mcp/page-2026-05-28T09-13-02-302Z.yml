@@ -1,0 +1,44 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - img "BalSense logo" [ref=e13]
+          - generic [ref=e14]: BalSense
+          - generic [ref=e15]: by Tobar Mix Creations
+        - button "Open next event details" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: In 4 days
+          - generic "Health indicator with 0 attention flags" [ref=e19]
+      - generic [ref=e22]: Pulse
+    - tabpanel "Pulse" [ref=e443]:
+      - generic [ref=e444]:
+        - paragraph [ref=e446]: Stack at Risk. Heavy pressure across the card set.
+        - generic [ref=e449]:
+          - generic [ref=e450]:
+            - paragraph [ref=e451]: Stack available
+            - paragraph [ref=e452]: $918.82
+          - generic [ref=e453]:
+            - paragraph [ref=e454]: Stack used
+            - paragraph [ref=e455]: 72.7%
+          - generic [ref=e456]:
+            - paragraph [ref=e457]: Closest due
+            - paragraph [ref=e458]: Avant · 4 days
+          - generic [ref=e459]:
+            - paragraph [ref=e460]: Highest exposure
+            - paragraph [ref=e461]: Destiny · 98%
+  - generic [ref=e106]:
+    - button "Dashboard" [ref=e107] [cursor=pointer]:
+      - img [ref=e109]
+      - generic [ref=e114]: Dashboard
+    - button "Cards" [ref=e115] [cursor=pointer]:
+      - img [ref=e117]
+      - generic [ref=e119]: Cards
+    - button "Strategy" [ref=e120] [cursor=pointer]:
+      - img [ref=e122]
+      - generic [ref=e124]: Strategy
+    - button "Insights" [active] [ref=e125] [cursor=pointer]:
+      - img [ref=e127]
+      - generic [ref=e128]: Insights
+    - button "Settings" [ref=e129] [cursor=pointer]:
+      - img [ref=e131]
+      - generic [ref=e134]: Settings

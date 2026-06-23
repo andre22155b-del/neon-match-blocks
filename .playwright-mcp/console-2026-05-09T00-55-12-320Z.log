@@ -1,0 +1,14 @@
+[   15719ms] [ERROR] WebSocket connection to 'ws://127.0.0.1:5173/?token=Lu1lmapUu-b3' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:5173/@vite/client:535
+[   16046ms] SyntaxError: Failed to construct 'WebSocket': The URL 'ws://localhost:undefined/?token=Lu1lmapUu-b3' is invalid.
+    at setupWebSocket (http://127.0.0.1:5173/@vite/client:536:19)
+    at fallback (http://127.0.0.1:5173/@vite/client:509:16)
+    at WebSocket.<anonymous> (http://127.0.0.1:5173/@vite/client:555:7)
+[   16077ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:5173/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=c6e5985b:21548
+[   17145ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:5173/:0
+[ 1642690ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Request) @ http://127.0.0.1:5173/@vite/client:0
+[ 1642692ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Request) @ http://127.0.0.1:5173/src/main.tsx:0
+[ 1642696ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:5173/@react-refresh:0
+[ 1642699ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:5173/manifest.json:0
+[ 1642707ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:5173/manifest.json:0
+[ 1642710ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:5173/balsense-mark.svg:0
+[ 1642714ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:5173/favicon-32.png:0

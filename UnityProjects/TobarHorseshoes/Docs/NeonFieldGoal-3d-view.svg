@@ -1,0 +1,213 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#07111B"/>
+      <stop offset="0.55" stop-color="#051018"/>
+      <stop offset="1" stop-color="#020608"/>
+    </linearGradient>
+    <linearGradient id="field" x1="800" y1="200" x2="800" y2="860" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E5A24"/>
+      <stop offset="0.42" stop-color="#0A7A2A"/>
+      <stop offset="1" stop-color="#041A0B"/>
+    </linearGradient>
+    <linearGradient id="grid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A4FFB5"/>
+      <stop offset="1" stop-color="#42FF82"/>
+    </linearGradient>
+    <linearGradient id="goalGlow" x1="800" y1="180" x2="800" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFF8B0"/>
+      <stop offset="1" stop-color="#F7D84B"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF62E2"/>
+      <stop offset="1" stop-color="#FF3CA7"/>
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="hardGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="18" result="blur1"/>
+      <feGaussianBlur stdDeviation="32" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="crowdGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <ellipse cx="800" cy="210" rx="560" ry="120" fill="#0B1B29" filter="url(#softGlow)"/>
+  <ellipse cx="800" cy="742" rx="720" ry="150" fill="#03110A"/>
+
+  <g opacity="0.9">
+    <polygon points="260,140 480,68 1120,68 1340,140 1468,274 1495,350 104,350 132,274" fill="#0C1823"/>
+    <polygon points="180,310 390,206 1210,206 1420,310 1486,348 114,348" fill="#08121A"/>
+    <polygon points="118,349 1490,349 1542,401 58,401" fill="#0B1620"/>
+  </g>
+
+  <g opacity="0.9" filter="url(#crowdGlow)">
+    <rect x="168" y="254" width="60" height="18" rx="9" fill="#54FFD3"/>
+    <rect x="252" y="228" width="68" height="20" rx="10" fill="#FF59D8"/>
+    <rect x="350" y="200" width="72" height="22" rx="11" fill="#67FFE5"/>
+    <rect x="1180" y="205" width="72" height="22" rx="11" fill="#54FFD3"/>
+    <rect x="1280" y="228" width="68" height="20" rx="10" fill="#FF59D8"/>
+    <rect x="1368" y="254" width="60" height="18" rx="9" fill="#67FFE5"/>
+    <rect x="500" y="172" width="96" height="18" rx="9" fill="#54FFD3"/>
+    <rect x="1004" y="172" width="96" height="18" rx="9" fill="#FF59D8"/>
+  </g>
+
+  <polygon points="520,180 1080,180 1342,794 258,794" fill="url(#field)"/>
+  <polygon points="520,180 1080,180 1342,794 258,794" stroke="#48FF85" stroke-width="4" filter="url(#softGlow)"/>
+
+  <g opacity="0.45">
+    <polygon points="560,230 1040,230 1256,742 344,742" stroke="#9FFFB6" stroke-width="2"/>
+    <polygon points="600,324 1000,324 1174,654 426,654" stroke="#9FFFB6" stroke-width="2"/>
+    <polygon points="640,418 960,418 1096,573 504,573" stroke="#9FFFB6" stroke-width="2"/>
+    <polygon points="680,512 920,512 1018,490 582,490" stroke="#9FFFB6" stroke-width="2"/>
+  </g>
+
+  <g opacity="0.7" filter="url(#softGlow)">
+    <polygon points="540,228 1060,228 1276,740 324,740" fill="none" stroke="#35FF73" stroke-width="8"/>
+    <polygon points="594,346 1006,346 1158,636 442,636" fill="none" stroke="#1DCC56" stroke-width="6"/>
+    <polygon points="650,470 950,470 1040,545 560,545" fill="none" stroke="#26E861" stroke-width="5"/>
+  </g>
+
+  <g opacity="0.95" filter="url(#hardGlow)">
+    <polygon points="558,270 1042,270 1048,285 552,285" fill="#B9FFD0"/>
+    <polygon points="612,396 988,396 992,408 608,408" fill="#B9FFD0"/>
+    <polygon points="666,523 934,523 938,533 662,533" fill="#B9FFD0"/>
+    <polygon points="720,649 880,649 884,657 716,657" fill="#B9FFD0"/>
+  </g>
+
+  <g opacity="0.5">
+    <polygon points="682,178 700,178 896,794 876,794" fill="#0C2D16"/>
+    <polygon points="800,178 818,178 934,794 916,794" fill="#0F391A"/>
+    <polygon points="920,178 938,178 1014,794 994,794" fill="#0C2D16"/>
+  </g>
+
+  <g filter="url(#hardGlow)">
+    <rect x="792" y="164" width="16" height="132" rx="8" fill="url(#goalGlow)"/>
+    <rect x="622" y="284" width="356" height="14" rx="7" fill="url(#goalGlow)"/>
+    <rect x="622" y="120" width="14" height="178" rx="7" fill="url(#goalGlow)"/>
+    <rect x="964" y="120" width="14" height="178" rx="7" fill="url(#goalGlow)"/>
+  </g>
+
+  <g opacity="0.45" filter="url(#softGlow)">
+    <ellipse cx="800" cy="306" rx="212" ry="26" fill="#FFE97D"/>
+    <ellipse cx="800" cy="316" rx="260" ry="38" fill="#58FF8E"/>
+  </g>
+
+  <g filter="url(#softGlow)">
+    <path d="M612 230L988 230" stroke="#6CFF99" stroke-width="7" stroke-linecap="round"/>
+    <path d="M624 250L976 250" stroke="#6CFF99" stroke-width="2" opacity="0.6"/>
+    <path d="M636 270L964 270" stroke="#6CFF99" stroke-width="2" opacity="0.35"/>
+  </g>
+
+  <g opacity="0.9">
+    <g transform="translate(594 444)">
+      <ellipse cx="0" cy="112" rx="44" ry="10" fill="#021A11"/>
+      <rect x="-16" y="26" width="32" height="72" rx="12" fill="#0E1721"/>
+      <rect x="-28" y="32" width="12" height="64" rx="6" transform="rotate(-14 -28 32)" fill="#78FFD8"/>
+      <rect x="16" y="32" width="12" height="64" rx="6" transform="rotate(16 16 32)" fill="#FF5ED6"/>
+      <rect x="-11" y="98" width="10" height="36" rx="5" fill="#0E1721"/>
+      <rect x="1" y="98" width="10" height="36" rx="5" fill="#0E1721"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#A5FFF1"/>
+      <rect x="-14" y="44" width="28" height="20" rx="8" fill="#37FF7C"/>
+    </g>
+    <g transform="translate(702 430)">
+      <ellipse cx="0" cy="128" rx="46" ry="11" fill="#021A11"/>
+      <rect x="-17" y="28" width="34" height="76" rx="12" fill="#111A24"/>
+      <rect x="-31" y="34" width="12" height="66" rx="6" transform="rotate(-8 -31 34)" fill="#78FFD8"/>
+      <rect x="19" y="34" width="12" height="66" rx="6" transform="rotate(10 19 34)" fill="#FF5ED6"/>
+      <rect x="-12" y="104" width="10" height="40" rx="5" fill="#111A24"/>
+      <rect x="2" y="104" width="10" height="40" rx="5" fill="#111A24"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#A5FFF1"/>
+      <rect x="-14" y="46" width="28" height="20" rx="8" fill="#FF5ED6"/>
+    </g>
+    <g transform="translate(812 424)">
+      <ellipse cx="0" cy="136" rx="48" ry="11" fill="#021A11"/>
+      <rect x="-18" y="30" width="36" height="80" rx="12" fill="#111A24"/>
+      <rect x="-33" y="35" width="12" height="70" rx="6" transform="rotate(-4 -33 35)" fill="#78FFD8"/>
+      <rect x="21" y="35" width="12" height="70" rx="6" transform="rotate(4 21 35)" fill="#FF5ED6"/>
+      <rect x="-13" y="110" width="10" height="42" rx="5" fill="#111A24"/>
+      <rect x="3" y="110" width="10" height="42" rx="5" fill="#111A24"/>
+      <ellipse cx="0" cy="9" rx="20" ry="22" fill="#A5FFF1"/>
+      <rect x="-15" y="48" width="30" height="20" rx="8" fill="#37FF7C"/>
+    </g>
+    <g transform="translate(926 432)">
+      <ellipse cx="0" cy="128" rx="46" ry="11" fill="#021A11"/>
+      <rect x="-17" y="28" width="34" height="76" rx="12" fill="#111A24"/>
+      <rect x="-31" y="34" width="12" height="66" rx="6" transform="rotate(8 -31 34)" fill="#78FFD8"/>
+      <rect x="19" y="34" width="12" height="66" rx="6" transform="rotate(-10 19 34)" fill="#FF5ED6"/>
+      <rect x="-12" y="104" width="10" height="40" rx="5" fill="#111A24"/>
+      <rect x="2" y="104" width="10" height="40" rx="5" fill="#111A24"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#A5FFF1"/>
+      <rect x="-14" y="46" width="28" height="20" rx="8" fill="#FF5ED6"/>
+    </g>
+    <g transform="translate(1032 446)">
+      <ellipse cx="0" cy="112" rx="44" ry="10" fill="#021A11"/>
+      <rect x="-16" y="26" width="32" height="72" rx="12" fill="#0E1721"/>
+      <rect x="-28" y="32" width="12" height="64" rx="6" transform="rotate(14 -28 32)" fill="#78FFD8"/>
+      <rect x="16" y="32" width="12" height="64" rx="6" transform="rotate(-16 16 32)" fill="#FF5ED6"/>
+      <rect x="-11" y="98" width="10" height="36" rx="5" fill="#0E1721"/>
+      <rect x="1" y="98" width="10" height="36" rx="5" fill="#0E1721"/>
+      <ellipse cx="0" cy="8" rx="20" ry="22" fill="#A5FFF1"/>
+      <rect x="-14" y="44" width="28" height="20" rx="8" fill="#37FF7C"/>
+    </g>
+  </g>
+
+  <g opacity="0.96">
+    <ellipse cx="800" cy="738" rx="120" ry="20" fill="#02120B"/>
+    <path d="M800 642L770 736H830L800 642Z" fill="#0A1520"/>
+    <rect x="782" y="560" width="36" height="104" rx="18" fill="#111C28"/>
+    <rect x="746" y="584" width="24" height="100" rx="12" transform="rotate(18 746 584)" fill="#A7FFF0"/>
+    <rect x="830" y="584" width="24" height="100" rx="12" transform="rotate(-18 830 584)" fill="#FF62DE"/>
+    <rect x="784" y="664" width="12" height="66" rx="6" fill="#111C28"/>
+    <rect x="804" y="664" width="12" height="66" rx="6" fill="#111C28"/>
+    <ellipse cx="800" cy="538" rx="30" ry="34" fill="#B6FFF2"/>
+    <rect x="776" y="594" width="48" height="32" rx="10" fill="#39FF7D"/>
+    <rect x="786" y="632" width="28" height="24" rx="8" fill="#FF62DE"/>
+  </g>
+
+  <g filter="url(#hardGlow)">
+    <ellipse cx="800" cy="523" rx="20" ry="13" fill="#39FF7D"/>
+    <path d="M800 516C830 462 820 394 812 332" stroke="#C1FFD2" stroke-width="7" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.8">
+    <path d="M792 520C816 470 809 404 802 354" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="10 12" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#softGlow)" opacity="0.85">
+    <rect x="96" y="70" width="328" height="122" rx="24" fill="#071A1B" stroke="#49FF84" stroke-width="3"/>
+    <text x="128" y="118" fill="#B9FFD0" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">NEON FIELDGOAL</text>
+    <text x="128" y="154" fill="#68FFD0" font-family="Arial, Helvetica, sans-serif" font-size="22">3D neon turf, sliding blockers, moving uprights</text>
+  </g>
+
+  <g filter="url(#softGlow)" opacity="0.95">
+    <rect x="1188" y="92" width="286" height="148" rx="24" fill="#121420" stroke="#FF57D8" stroke-width="3"/>
+    <text x="1222" y="136" fill="#FFB2F0" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700">ARCADE RUN</text>
+    <text x="1222" y="174" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">SCORE: 31</text>
+    <text x="1222" y="208" fill="#8EFFF0" font-family="Arial, Helvetica, sans-serif" font-size="22">LONGEST: 55 YD</text>
+  </g>
+
+  <g filter="url(#softGlow)" opacity="0.9">
+    <rect x="108" y="760" width="368" height="84" rx="22" fill="#101A23" stroke="#49FF84" stroke-width="3"/>
+    <text x="144" y="812" fill="#C2FFD4" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">20 YD START</text>
+    <text x="310" y="812" fill="#7AFFDA" font-family="Arial, Helvetica, sans-serif" font-size="24">+5 yards after every make</text>
+  </g>
+
+  <g filter="url(#softGlow)" opacity="0.92">
+    <rect x="1104" y="720" width="352" height="108" rx="22" fill="#141822" stroke="#FFD45D" stroke-width="3"/>
+    <text x="1134" y="766" fill="#FFF1B8" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700">50 YD BANGER ZONE</text>
+    <text x="1134" y="802" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="22">Worth 5 points. Goal starts sliding.</text>
+  </g>
+</svg>

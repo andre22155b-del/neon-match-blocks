@@ -22,6 +22,12 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
     private float defaultFixedDeltaTime;
     private float noiseSeed;
     private bool baseStateCached;
+    private FieldGoalLoopState loopState = FieldGoalLoopState.Menu;
+    private FootballProjectile followedBall;
+    private float followBlend;
+    private float distancePressure;
+    private float windPressure;
+    private float forwardImpulse;
 
     private void Awake()
     {
@@ -79,6 +85,31 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
         }
     }
 
+    public void SetLoopState(FieldGoalLoopState nextState)
+    {
+        loopState = nextState;
+    }
+
+    public void SetPressure(int yardLine, float windStrength01)
+    {
+        distancePressure = FieldGoalWindMath.GetDistancePressure01(config, yardLine);
+        windPressure = Mathf.Clamp01(windStrength01);
+    }
+
+    public void BeginBallFollow(FootballProjectile ball)
+    {
+        followedBall = ball;
+        if (ball != null)
+        {
+            followBlend = Mathf.Max(followBlend, 0.08f);
+        }
+    }
+
+    public void ClearBallFollow()
+    {
+        followedBall = null;
+    }
+
     public void PlayKick(float power, bool perfectKick)
     {
         AddTrauma(FieldGoalCameraMath.ComputeKickTrauma(config, power, perfectKick));
@@ -88,6 +119,7 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
         float shapedPower = Mathf.Clamp01(power);
 
         kickback = Mathf.Max(kickback, kickbackDistance * Mathf.Lerp(0.45f, 1f, shapedPower) * (perfectKick ? 1.12f : 1f));
+        forwardImpulse = Mathf.Max(forwardImpulse, kickbackDistance * Mathf.Lerp(0.12f, 0.48f, shapedPower) * (perfectKick ? 1.08f : 1f));
         verticalLift = Mathf.Max(verticalLift, 0.03f + shapedPower * 0.05f);
         zoomBoost = Mathf.Max(zoomBoost, kickFovBoost * Mathf.Lerp(0.35f, 1f, shapedPower) * (perfectKick ? 1.08f : 1f));
 
@@ -114,6 +146,13 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
         zoomBoost = Mathf.Max(zoomBoost, (config != null ? config.cameraKickFovBoost : 1.35f) * 0.42f);
     }
 
+    public void PlayNearMiss(bool longBombLine, bool clutchActive)
+    {
+        AddTrauma((config != null ? config.cameraMissShake : 0.1f) * (longBombLine ? 1.15f : 0.82f));
+        zoomBoost = Mathf.Max(zoomBoost, (config != null ? config.cameraKickFovBoost : 1.35f) * (longBombLine ? 0.7f : 0.46f));
+        TriggerSlowMotion(FieldGoalCameraMath.GetNearMissSlowMotion(config, longBombLine, clutchActive));
+    }
+
     public void PlayFinalDrive()
     {
         AddTrauma(config != null ? config.cameraFinalDriveShake : 0.16f);
@@ -126,6 +165,9 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
         kickback = 0f;
         verticalLift = 0f;
         zoomBoost = 0f;
+        forwardImpulse = 0f;
+        followBlend = 0f;
+        followedBall = null;
         slowMotionTimer = 0f;
         slowMotionScale = 1f;
         RestoreTimeScale();
@@ -148,8 +190,15 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
         clutchBlend = Mathf.MoveTowards(clutchBlend, clutchActive ? 1f : 0f, deltaTime * 2.4f);
         trauma = Mathf.MoveTowards(trauma, 0f, deltaTime * (config != null ? config.cameraShakeDecay : 2.8f));
         kickback = Mathf.MoveTowards(kickback, 0f, deltaTime * (config != null ? config.cameraPositionSharpness : 11f));
+        forwardImpulse = Mathf.MoveTowards(forwardImpulse, 0f, deltaTime * (config != null ? config.cameraPositionSharpness : 11f) * 1.8f);
         verticalLift = Mathf.MoveTowards(verticalLift, 0f, deltaTime * (config != null ? config.cameraPositionSharpness : 11f) * 1.25f);
         zoomBoost = Mathf.MoveTowards(zoomBoost, 0f, deltaTime * (config != null ? config.cameraFovSharpness : 8f) * 1.1f);
+        float followSharpness = config != null ? Mathf.Max(0.1f, config.cameraBallFollowSharpness) : 4.8f;
+        followBlend = Mathf.MoveTowards(followBlend, ShouldFollowBall() ? 1f : 0f, deltaTime * followSharpness);
+        if (followedBall != null && !followedBall.gameObject.activeInHierarchy && followBlend <= 0.001f)
+        {
+            followedBall = null;
+        }
 
         UpdateSlowMotion(deltaTime);
         ApplyCamera(deltaTime);
@@ -179,23 +228,49 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
         float shakeAngle = config != null ? config.cameraShakeAngle : 1.65f;
         float shakeDistance = config != null ? config.cameraShakeDistance : 0.12f;
         float clutchPulse = clutchBlend > 0f ? Mathf.Sin(Time.unscaledTime * clutchPulseSpeed) * clutchBlend : 0f;
+        float idleSwayBlend = loopState == FieldGoalLoopState.Aim || loopState == FieldGoalLoopState.ChargingPower ? 1f : 0f;
+        float idleTime = Time.unscaledTime * (config != null ? Mathf.Max(0f, config.cameraIdleSwaySpeed) : 1.45f);
+        float idleDistance = config != null ? Mathf.Max(0f, config.cameraIdleSwayDistance) : 0.018f;
+        float idleRollAngle = config != null ? Mathf.Max(0f, config.cameraIdleRollAngle) : 0.3f;
+
+        Vector3 idleOffset = new Vector3(
+            Mathf.Sin(idleTime * 0.88f) * idleDistance,
+            Mathf.Sin(idleTime * 1.62f + 0.35f) * idleDistance * 0.62f,
+            0f) * idleSwayBlend;
+        Vector3 idleRotation = new Vector3(
+            Mathf.Sin(idleTime * 1.12f + 0.14f) * 0.28f,
+            Mathf.Sin(idleTime * 0.74f) * 0.22f,
+            Mathf.Sin(idleTime * 0.94f) * idleRollAngle) * idleSwayBlend;
 
         Vector3 noiseOffset = new Vector3(
             GetNoise(0.11f),
             GetNoise(0.39f) * 0.7f,
             0f) * shakeDistance * shakeAmount;
-        Vector3 targetPosition = baseLocalPosition + noiseOffset + new Vector3(0f, verticalLift + clutchPulse * 0.018f, -kickback);
+        Vector3 desiredLocalPosition = baseLocalPosition + idleOffset + new Vector3(0f, verticalLift + clutchPulse * 0.018f, forwardImpulse - kickback);
+        Quaternion desiredLocalRotation = baseLocalRotation * Quaternion.Euler(
+            idleRotation.x,
+            idleRotation.y,
+            idleRotation.z + clutchPulse * (config != null ? config.cameraClutchRollAngle : 0.7f));
+        float pressureFovBoost = FieldGoalCameraMath.GetPressureFovBoost(config, distancePressure, windPressure);
+        float desiredFov = baseFieldOfView +
+            zoomBoost +
+            clutchBlend * (config != null ? config.cameraClutchFovBoost : 1.6f) +
+            Mathf.Abs(clutchPulse) * 0.35f +
+            pressureFovBoost;
 
+        if (followBlend > 0.001f && TryGetBallFollowPose(out Vector3 followLocalPosition, out Quaternion followLocalRotation))
+        {
+            desiredLocalPosition = Vector3.Lerp(desiredLocalPosition, followLocalPosition, followBlend);
+            desiredLocalRotation = Quaternion.Slerp(desiredLocalRotation, followLocalRotation, followBlend);
+            desiredFov = Mathf.Lerp(desiredFov, baseFieldOfView + pressureFovBoost * 0.55f + 1.15f + zoomBoost * 0.3f, followBlend);
+        }
+
+        Vector3 targetPosition = desiredLocalPosition + noiseOffset;
         Vector3 rotationOffset = new Vector3(
             GetNoise(0.63f) * shakeAngle * shakeAmount - verticalLift * 20f,
             GetNoise(0.87f) * shakeAngle * 0.3f * shakeAmount,
-            GetNoise(0.21f) * shakeAngle * shakeAmount + clutchPulse * (config != null ? config.cameraClutchRollAngle : 0.7f));
-        Quaternion targetRotation = baseLocalRotation * Quaternion.Euler(rotationOffset);
-
-        float targetFov = baseFieldOfView +
-            zoomBoost +
-            clutchBlend * (config != null ? config.cameraClutchFovBoost : 1.6f) +
-            Mathf.Abs(clutchPulse) * 0.35f;
+            GetNoise(0.21f) * shakeAngle * shakeAmount);
+        Quaternion targetRotation = desiredLocalRotation * Quaternion.Euler(rotationOffset);
 
         float positionLerp = Damp(config != null ? config.cameraPositionSharpness : 11f, deltaTime);
         float rotationLerp = Damp(config != null ? config.cameraRotationSharpness : 9f, deltaTime);
@@ -203,7 +278,7 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, positionLerp);
         transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, rotationLerp);
-        targetCamera.fieldOfView = Mathf.Lerp(targetCamera.fieldOfView, targetFov, fovLerp);
+        targetCamera.fieldOfView = Mathf.Lerp(targetCamera.fieldOfView, desiredFov, fovLerp);
     }
 
     private void UpdateSlowMotion(float deltaTime)
@@ -279,6 +354,73 @@ public class FieldGoalCameraJuiceController : MonoBehaviour
     private float GetNoise(float offset)
     {
         return (Mathf.PerlinNoise(noiseSeed + offset, Time.unscaledTime * noiseFrequency + offset) - 0.5f) * 2f;
+    }
+
+    private bool ShouldFollowBall()
+    {
+        return followedBall != null &&
+               followedBall.gameObject.activeInHierarchy &&
+               (loopState == FieldGoalLoopState.BallInAir || loopState == FieldGoalLoopState.Result);
+    }
+
+    private bool TryGetBallFollowPose(out Vector3 localPosition, out Quaternion localRotation)
+    {
+        localPosition = baseLocalPosition;
+        localRotation = baseLocalRotation;
+        if (followedBall == null || !followedBall.gameObject.activeInHierarchy)
+        {
+            return false;
+        }
+
+        Vector3 velocity = GetBallVelocity(followedBall.Body);
+        Vector3 followForward = velocity.sqrMagnitude > 0.04f ? velocity.normalized : Vector3.forward;
+        followForward.y = Mathf.Clamp(followForward.y, -0.16f, 0.32f);
+        followForward = followForward.sqrMagnitude > 0.0001f ? followForward.normalized : Vector3.forward;
+
+        float followDistance = config != null ? Mathf.Max(0f, config.cameraBallFollowDistance) : 5.2f;
+        float followHeight = config != null ? Mathf.Max(0f, config.cameraBallFollowHeight) : 1.85f;
+        float followLookAhead = config != null ? Mathf.Max(0f, config.cameraBallFollowLookAhead) : 1.45f;
+        Vector3 ballPosition = followedBall.transform.position;
+        Vector3 desiredWorldPosition = ballPosition - followForward * followDistance + Vector3.up * followHeight;
+        Vector3 lookTarget = ballPosition + followForward * followLookAhead + Vector3.up * 0.45f;
+
+        Transform parent = transform.parent;
+        if (parent != null)
+        {
+            localPosition = parent.InverseTransformPoint(desiredWorldPosition);
+            Vector3 localForward = parent.InverseTransformDirection(lookTarget - desiredWorldPosition);
+            if (localForward.sqrMagnitude <= 0.0001f)
+            {
+                localForward = Vector3.forward;
+            }
+
+            localRotation = Quaternion.LookRotation(localForward.normalized, Vector3.up);
+            return true;
+        }
+
+        localPosition = desiredWorldPosition;
+        Vector3 worldForward = lookTarget - desiredWorldPosition;
+        if (worldForward.sqrMagnitude <= 0.0001f)
+        {
+            worldForward = Vector3.forward;
+        }
+
+        localRotation = Quaternion.LookRotation(worldForward.normalized, Vector3.up);
+        return true;
+    }
+
+    private static Vector3 GetBallVelocity(Rigidbody ballBody)
+    {
+        if (ballBody == null)
+        {
+            return Vector3.zero;
+        }
+
+#if UNITY_6000_0_OR_NEWER
+        return ballBody.linearVelocity;
+#else
+        return ballBody.velocity;
+#endif
     }
 
     private static float Damp(float sharpness, float deltaTime)

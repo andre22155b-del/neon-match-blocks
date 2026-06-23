@@ -48,7 +48,7 @@ const colorChoices = [
   { id: 'inferno', name: 'INFERNO', color: '#ff3333', glow: 'rgba(255,51,51,0.7)' },
 ];
 
-const WORD_REVEAL_MS = 950;
+const WORD_REVEAL_MS = 1800;
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, undefined, () => initialState('classic'));
@@ -270,13 +270,13 @@ export default function App() {
     const phrase = choices[Math.floor(Math.random() * choices.length)] ?? phrasePool[0];
     lastPhraseRef.current = phrase;
     setWordPhrase(phrase);
-    const timer = window.setTimeout(() => dispatch({ type: 'CLEAR_FEEDBACK' }), 1900);
+    const timer = window.setTimeout(() => dispatch({ type: 'CLEAR_FEEDBACK' }), 3000);
     return () => window.clearTimeout(timer);
   }, [state.feedback]);
 
   useEffect(() => {
     if (!wordPhrase) return;
-    const timer = window.setTimeout(() => setWordPhrase(null), 2200);
+    const timer = window.setTimeout(() => setWordPhrase(null), 2800);
     return () => window.clearTimeout(timer);
   }, [wordPhrase]);
 
@@ -810,6 +810,7 @@ function GameScreen({ state, onDrop, dispatch, turn, isAnimating, muted, onToggl
           )}
         </div>
       </div>
+      <WordsSpelledBox wordsFound={state.wordsFound} feedback={state.feedback} />
       <ComboPanel combo={state.combo} streak={state.streak} fill={comboFill} pendingSpecial={state.pendingSpecial} />
       {state.vs && state.objective && <ObjectivePanel state={state} />}
       <StatusPanel state={state} />
@@ -1049,7 +1050,6 @@ function PreviewQueue({ tiles, board, disabled, dragging, setDragging, setHoverC
             onTouchCancel={clearDrag}
           >
             <span>{tile.letter}</span>
-            <span>{tile.value}</span>
             {index === 0 && !disabled && <small>DRAG</small>}
           </div>
         ))}
@@ -1061,7 +1061,6 @@ function PreviewQueue({ tiles, board, disabled, dragging, setDragging, setHoverC
           aria-hidden="true"
         >
           <span>{tiles[0].letter}</span>
-          <span>{tiles[0].value}</span>
         </div>
       )}
     </div>
@@ -1204,6 +1203,28 @@ function GoalStrip({ state }) {
         </div>
       ))}
     </div>
+  );
+}
+
+function WordsSpelledBox({ wordsFound, feedback }) {
+  const recentWords = Array.isArray(wordsFound)
+    ? wordsFound.slice(-6).reverse().map((entry) => (typeof entry === 'string' ? entry : entry.word))
+    : [];
+  const activeWords = feedback?.words ?? [];
+
+  return (
+    <aside className="words-spelled-box">
+      <div className="words-spelled-head">
+        <span>WORDS SPELLED</span>
+        <strong>{Array.isArray(wordsFound) ? wordsFound.length : 0}</strong>
+      </div>
+      <div className="words-spelled-current">
+        {activeWords.length ? activeWords.join(' + ') : recentWords[0] ? `Last word: ${recentWords[0]}` : 'Spell your first word'}
+      </div>
+      <div className="words-spelled-list">
+        {recentWords.length ? recentWords.map((word, index) => <span key={`${word}-${index}`}>{word}</span>) : <span>Waiting for a word</span>}
+      </div>
+    </aside>
   );
 }
 
@@ -1833,20 +1854,49 @@ function createAudioEngine() {
       if (!canPlay()) return;
       const ctx = getContext();
       const t = now();
-      const pitchMap = { purple: 100, cyan: 140, magenta: 120, gold: 160, red: 90, green: 130 };
-      const osc = ctx.createOscillator();
-      const gain = gainNode(0.6);
-      const filter = ctx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.value = 200;
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(pitchMap[color] || 100, t);
-      osc.frequency.exponentialRampToValueAtTime(60, t + 0.15);
-      exponentialToZero(gain.gain, t, 0.2);
-      osc.connect(filter);
-      filter.connect(gain);
-      osc.start(t);
-      osc.stop(t + 0.22);
+      const pitchMap = { purple: 118, cyan: 152, magenta: 132, gold: 176, red: 96, green: 144 };
+      const basePitch = pitchMap[color] || 118;
+
+      const thud = ctx.createOscillator();
+      const thudGain = gainNode(0);
+      const thudFilter = ctx.createBiquadFilter();
+      thudFilter.type = 'lowpass';
+      thudFilter.frequency.setValueAtTime(260, t);
+      thudFilter.frequency.exponentialRampToValueAtTime(95, t + 0.18);
+      thud.type = 'sine';
+      thud.frequency.setValueAtTime(basePitch, t);
+      thud.frequency.exponentialRampToValueAtTime(54, t + 0.18);
+      thudGain.gain.setValueAtTime(0.0001, t);
+      thudGain.gain.exponentialRampToValueAtTime(0.62, t + 0.012);
+      exponentialToZero(thudGain.gain, t, 0.24);
+      thud.connect(thudFilter);
+      thudFilter.connect(thudGain);
+      thud.start(t);
+      thud.stop(t + 0.26);
+
+      const tick = ctx.createOscillator();
+      const tickGain = gainNode(0);
+      const tickFilter = ctx.createBiquadFilter();
+      tickFilter.type = 'bandpass';
+      tickFilter.frequency.value = 1800;
+      tickFilter.Q.value = 7;
+      tick.type = 'triangle';
+      tick.frequency.setValueAtTime(basePitch * 6, t + 0.018);
+      tick.frequency.exponentialRampToValueAtTime(basePitch * 9, t + 0.13);
+      tickGain.gain.setValueAtTime(0.0001, t + 0.018);
+      tickGain.gain.exponentialRampToValueAtTime(0.16, t + 0.035);
+      exponentialToZero(tickGain.gain, t + 0.035, 0.18);
+      tick.connect(tickFilter);
+      tickFilter.connect(tickGain);
+      tick.start(t + 0.018);
+      tick.stop(t + 0.24);
+
+      const sparkleDelay = ctx.createDelay();
+      sparkleDelay.delayTime.value = 0.055;
+      const sparkleFeedback = gainNode(0.18, sparkleDelay);
+      const sparkleOut = gainNode(0.14);
+      sparkleDelay.connect(sparkleOut);
+      tickGain.connect(sparkleFeedback);
     },
     word(length) {
       if (!canPlay()) return;

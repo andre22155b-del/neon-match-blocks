@@ -1,0 +1,12 @@
+[     330ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8769/balsense-icon-192.png:0
+[     330ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8769/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8769/:0
+[    8057ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8769/balsense-icon-192.png:0
+[    8058ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8769/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8769/:0
+[    8928ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8769/balsense-icon-192.png:0
+[    8929ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8769/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8769/:0
+[    9637ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8769/balsense-icon-192.png:0
+[    9637ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8769/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8769/:0
+[   10389ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8769/balsense-icon-192.png:0
+[   10390ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8769/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8769/:0
+[   16958ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8769/balsense-icon-192.png:0
+[   16964ms] [WARNING] Error while trying to use the following icon from the Manifest: http://127.0.0.1:8769/balsense-icon-192.png (Download error or resource isn't a valid image) @ http://127.0.0.1:8769/:0

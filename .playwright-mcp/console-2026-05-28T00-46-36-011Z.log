@@ -1,0 +1,30 @@
+[     401ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[     879ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/moves?header-check=1:0
+[   36448ms] [ERROR] Warning: %s: `ref` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://reactjs.org/link/special-props)%s [object Object] 
+    at PopChild (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8046:21)
+    at PresenceChild (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8096:24)
+    at AnimatePresence (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8173:26)
+    at InlineDateEditor (http://127.0.0.1:4174/src/components/InlineDateEditor.tsx:25:3)
+    at div
+    at div
+    at section
+    at div
+    at aside
+    at MotionDOMComponent (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8880:40)
+    at PopChildMeasure (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8019:23)
+    at PopChild (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8046:21)
+    at PresenceChild (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8096:24)
+    at AnimatePresence (http://127.0.0.1:4174/node_modules/.vite/deps/framer-motion.js?v=140ed0b4:8173:26)
+    at BalSenseSettingsDrawer (http://127.0.0.1:4174/src/components/balsense/BalSenseSettingsDrawer.tsx:60:3)
+    at section
+    at BalSenseDashboard (http://127.0.0.1:4174/src/components/BalSenseDashboard.tsx?t=1779914365064:136:3)
+    at div
+    at AppShell (http://127.0.0.1:4174/src/App.tsx?t=1779914367086:158:20)
+    at RenderedRoute (http://127.0.0.1:4174/node_modules/.vite/deps/react-router-dom.js?v=140ed0b4:4129:5)
+    at Routes (http://127.0.0.1:4174/node_modules/.vite/deps/react-router-dom.js?v=140ed0b4:4599:5)
+    at App
+    at Router (http://127.0.0.1:4174/node_modules/.vite/deps/react-router-dom.js?v=140ed0b4:4542:15)
+    at BrowserRouter (http://127.0.0.1:4174/node_modules/.vite/deps/react-router-dom.js?v=140ed0b4:5288:5) @ http://127.0.0.1:4174/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=140ed0b4:61
+[  697250ms] [LOG] [vite] server connection lost. Polling for restart... @ http://127.0.0.1:4174/@vite/client:559
+[  698289ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:4174/node_modules/.vite/deps/chunk-PQUBWG3Q.js?v=140ed0b4:21548
+[  698911ms] [INFO] Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner. @ http://127.0.0.1:4174/pulse:0

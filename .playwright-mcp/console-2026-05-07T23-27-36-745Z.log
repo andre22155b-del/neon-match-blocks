@@ -1,0 +1,12 @@
+[ 9014985ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[13225049ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[13825515ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[16828703ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[17428859ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[18029182ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[19831369ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[21032960ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[36593664ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[45846412ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[46447034ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://accounts.google.com/RotateCookies:0
+[133701036ms] [ERROR] Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ https://www.youtube.com/generate_204:0

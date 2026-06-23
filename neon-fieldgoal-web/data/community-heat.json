@@ -1,66 +1,158 @@
 {
   "scoreAttack": [
     {
-      "handle": "GRID01",
-      "score": 108,
-      "goals": 24,
-      "longestKick": 60,
-      "maxStreak": 8,
-      "stamp": "2026-03-16T22:14:00.000Z",
-      "source": "remote",
-      "modeKey": "scoreAttack"
-    },
-    {
-      "handle": "NEONQB",
-      "score": 101,
-      "goals": 22,
+      "handle": "GRIDFOX",
+      "score": 84,
+      "goals": 12,
       "longestKick": 55,
-      "maxStreak": 7,
-      "stamp": "2026-03-16T21:18:00.000Z",
+      "maxStreak": 5,
+      "stamp": "2026-03-23T08:26:46.286Z",
       "source": "remote",
       "modeKey": "scoreAttack"
     },
     {
-      "handle": "ARC4DE",
-      "score": 96,
-      "goals": 21,
+      "handle": "LASERLIL",
+      "score": 72,
+      "goals": 10,
       "longestKick": 50,
-      "maxStreak": 7,
-      "stamp": "2026-03-16T19:42:00.000Z",
+      "maxStreak": 5,
+      "stamp": "2026-03-23T08:07:13.103Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    },
+    {
+      "handle": "WINDKID",
+      "score": 61,
+      "goals": 9,
+      "longestKick": 45,
+      "maxStreak": 4,
+      "stamp": "2026-03-23T08:27:52.511Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    },
+    {
+      "handle": "GRID01",
+      "score": 50,
+      "goals": 8,
+      "longestKick": 55,
+      "maxStreak": 4,
+      "stamp": "2026-04-30T04:38:03.970Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    },
+    {
+      "handle": "CYANACE",
+      "score": 48,
+      "goals": 8,
+      "longestKick": 40,
+      "maxStreak": 4,
+      "stamp": "2026-03-23T08:03:34.318Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    },
+    {
+      "handle": "ARCBYTE",
+      "score": 36,
+      "goals": 6,
+      "longestKick": 35,
+      "maxStreak": 3,
+      "stamp": "2026-03-23T07:44:24.177Z",
+      "source": "remote",
+      "modeKey": "scoreAttack"
+    },
+    {
+      "handle": "GRID01",
+      "score": 28,
+      "goals": 1,
+      "longestKick": 20,
+      "maxStreak": 1,
+      "stamp": "2026-03-24T17:56:55.897Z",
       "source": "remote",
       "modeKey": "scoreAttack"
     }
   ],
   "longBomb": [
     {
-      "handle": "BANGER",
-      "score": 72,
-      "goals": 12,
-      "longestKick": 65,
-      "maxStreak": 5,
-      "stamp": "2026-03-16T23:03:00.000Z",
-      "source": "remote",
-      "modeKey": "longBomb"
-    },
-    {
-      "handle": "SWAY99",
-      "score": 66,
-      "goals": 11,
+      "handle": "BANGERBOY",
+      "score": 42,
+      "goals": 7,
       "longestKick": 65,
       "maxStreak": 4,
-      "stamp": "2026-03-16T20:45:00.000Z",
+      "stamp": "2026-03-23T08:14:20.280Z",
       "source": "remote",
       "modeKey": "longBomb"
     },
     {
-      "handle": "WINDUP",
-      "score": 60,
-      "goals": 10,
+      "handle": "PINKSNAP",
+      "score": 36,
+      "goals": 6,
       "longestKick": 60,
       "maxStreak": 4,
-      "stamp": "2026-03-16T18:10:00.000Z",
+      "stamp": "2026-03-23T08:15:14.058Z",
       "source": "remote",
       "modeKey": "longBomb"
+    },
+    {
+      "handle": "DOINKDOC",
+      "score": 30,
+      "goals": 5,
+      "longestKick": 60,
+      "maxStreak": 3,
+      "stamp": "2026-03-23T08:16:20.008Z",
+      "source": "remote",
+      "modeKey": "longBomb"
+    },
+    {
+      "handle": "POSTGHOST",
+      "score": 24,
+      "goals": 4,
+      "longestKick": 55,
+      "maxStreak": 3,
+      "stamp": "2026-03-23T08:17:20.008Z",
+      "source": "remote",
+      "modeKey": "longBomb"
+    },
+    {
+      "handle": "HEATCUT",
+      "score": 18,
+      "goals": 3,
+      "longestKick": 50,
+      "maxStreak": 2,
+      "stamp": "2026-03-23T08:18:20.008Z",
+      "source": "remote",
+      "modeKey": "longBomb"
+    }
+  ],
+  "suddenDeath": [
+    {
+      "handle": "LASTLIFE",
+      "score": 28,
+      "goals": 5,
+      "longestKick": 50,
+      "maxStreak": 4,
+      "stamp": "2026-03-23T08:20:00.000Z",
+      "source": "remote",
+      "modeKey": "suddenDeath"
+    },
+    {
+      "handle": "ONEKICK",
+      "score": 24,
+      "goals": 4,
+      "longestKick": 47,
+      "maxStreak": 4,
+      "stamp": "2026-03-23T08:21:00.000Z",
+      "source": "remote",
+      "modeKey": "suddenDeath"
+    },
+    {
+      "handle": "CLUTCHUP",
+      "score": 20,
+      "goals": 4,
+      "longestKick": 45,
+      "maxStreak": 3,
+      "stamp": "2026-03-23T08:22:00.000Z",
+      "source": "remote",
+      "modeKey": "suddenDeath"
     }
   ]
 }

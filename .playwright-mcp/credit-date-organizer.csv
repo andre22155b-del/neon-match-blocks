@@ -1,0 +1,9 @@
+nickname,due_day,statement_day,last_report_date,report_interval_days,autopay_day,reminder_lead,notes
+Skyline Visa,3,28,2026-04-09,30,1,5,"Dispute pending, keep utilization under 9%."
+Harbor Rewards,11,5,2026-04-16,30,9,7,MOV requested during the last report review.
+Northline Card,26,30,2026-04-05,31,,3,Use for balance transfer tracking only.
+Studio Store,9,14,2026-04-22,30,8,10,CFPB case reference captured in paper file.
+Atlas Amex,21,24,2026-04-07,30,,5,Pay twice per cycle for utilization control.
+Union Line,2,6,2026-04-14,29,,7,
+Flex Card,17,22,2026-04-10,32,15,5,Autopay covers minimum only.
+Peak Platinum,13,18,2026-04-18,30,,3,Review bureau remarks after next statement close.

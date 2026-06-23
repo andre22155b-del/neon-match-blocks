@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NeonFieldGoalTests
 {
@@ -165,6 +166,36 @@ public class NeonFieldGoalTests
         float nearMissDuck = FieldGoalAudioIdentity.GetCueDuckIntensity(FieldGoalAudioCue.NearMiss);
 
         Assert.Greater(longBombDuck, nearMissDuck);
+    }
+
+    [Test]
+    public void CameraMathPlacesFirstPersonRigBehindBallAtEyeLevel()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.cameraFirstPersonEyeHeight = 1.76f;
+        config.cameraFirstPersonBackOffset = 1.4f;
+
+        Vector3 localPosition = FieldGoalCameraMath.GetFirstPersonLocalPosition(config, new Vector3(0.2f, 0.58f, 0.52f));
+
+        Assert.AreEqual(0.2f, localPosition.x, 0.0001f);
+        Assert.AreEqual(1.76f, localPosition.y, 0.0001f);
+        Assert.AreEqual(-0.88f, localPosition.z, 0.0001f);
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void CameraMathAddsMoreFovBoostUnderHeavierPressure()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.cameraDistanceFovBoost = 4.2f;
+
+        float lightPressure = FieldGoalCameraMath.GetPressureFovBoost(config, 0.1f, 0f);
+        float heavyPressure = FieldGoalCameraMath.GetPressureFovBoost(config, 0.9f, 0.7f);
+
+        Assert.Greater(heavyPressure, lightPressure);
+
+        Object.DestroyImmediate(config);
     }
 
     [Test]
@@ -448,6 +479,218 @@ public class NeonFieldGoalTests
         Assert.AreEqual(0.34f, FieldGoalScoring.GetMovingGoalAmplitude(config, 50), 0.0001f);
         Assert.Greater(FieldGoalScoring.GetMovingGoalAmplitude(config, 65), FieldGoalScoring.GetMovingGoalAmplitude(config, 50));
         Assert.Greater(FieldGoalScoring.GetMovingGoalSpeed(config, 65), FieldGoalScoring.GetMovingGoalSpeed(config, 50));
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void DefenseBlockerCountRampsFromThreeToFive()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.defenseBaseBlockerCount = 3;
+        config.defenseMaxBlockerCount = 5;
+        config.defenseExtraBlockerStartYardLine = 35;
+        config.defenseMaxBlockerYardLine = 50;
+
+        Assert.AreEqual(3, FieldGoalDefenseController.GetActiveBlockerCount(config, 20));
+        Assert.AreEqual(4, FieldGoalDefenseController.GetActiveBlockerCount(config, 40));
+        Assert.AreEqual(5, FieldGoalDefenseController.GetActiveBlockerCount(config, 50));
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void DefenseChallengeGetsHarderOnLongerKicks()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.defenseExtraBlockerStartYardLine = 35;
+        config.defenseMaxBlockerYardLine = 50;
+
+        Assert.AreEqual(0f, FieldGoalDefenseController.GetChallenge01(config, 20), 0.0001f);
+        Assert.Greater(FieldGoalDefenseController.GetChallenge01(config, 45), 0f);
+        Assert.AreEqual(1f, FieldGoalDefenseController.GetChallenge01(config, 55), 0.0001f);
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void DefenseHitboxFallsBackToIndexedName()
+    {
+        GameObject go = new GameObject("DefenseHitbox");
+        FieldGoalDefenseHitbox hitbox = go.AddComponent<FieldGoalDefenseHitbox>();
+        hitbox.blockerIndex = 2;
+        hitbox.blockerLabel = string.Empty;
+
+        Assert.AreEqual("BLOCKER 3", hitbox.GetDisplayName());
+
+        Object.DestroyImmediate(go);
+    }
+
+    [Test]
+    public void WindStrengthStartsAtActivationLineAndRampsUp()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.windStartYardLine = 35;
+        config.windMaxYardLine = 60;
+
+        Assert.AreEqual(0f, FieldGoalWindMath.GetWindStrength01(config, 30), 0.0001f);
+        Assert.Greater(FieldGoalWindMath.GetWindStrength01(config, 35), 0f);
+        Assert.Greater(FieldGoalWindMath.GetWindStrength01(config, 45), 0f);
+        Assert.AreEqual(1f, FieldGoalWindMath.GetWindStrength01(config, 60), 0.0001f);
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void PerfectKickReducesWindAcceleration()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.windStartYardLine = 35;
+        config.windMaxYardLine = 60;
+        config.windBaseAcceleration = 0.42f;
+        config.windExtraAcceleration = 1.02f;
+        config.perfectKickWindResistance = 0.18f;
+
+        Vector3 normalWind = FieldGoalWindMath.GetWindAcceleration(config, 50, 1f, false);
+        Vector3 perfectWind = FieldGoalWindMath.GetWindAcceleration(config, 50, 1f, true);
+
+        Assert.Greater(normalWind.x, 0f);
+        Assert.Less(perfectWind.x, normalWind.x);
+
+        Object.DestroyImmediate(config);
+    }
+
+    [Test]
+    public void WindHudLabelReflectsDirectionAndCalmState()
+    {
+        Assert.AreEqual("WIND CALM", FieldGoalWindMath.GetHudLabel(0f, 0f));
+        Assert.AreEqual("WIND <<< HEAVY", FieldGoalWindMath.GetHudLabel(-0.9f, 0.9f));
+        Assert.AreEqual("WIND >> LIGHT", FieldGoalWindMath.GetHudLabel(0.4f, 0.2f));
+    }
+
+    [Test]
+    public void KickInputDebounceBlocksImmediateDoubleRelease()
+    {
+        GameObject eventSystemGo = new GameObject("EventSystem");
+        EventSystem eventSystem = eventSystemGo.AddComponent<EventSystem>();
+
+        GameObject go = new GameObject("KickInput");
+        KickInputController controller = go.AddComponent<KickInputController>();
+        controller.maxVerticalPixels = 100f;
+        controller.maxHorizontalPixels = 100f;
+        controller.minimumKickPower = 0.1f;
+        controller.releaseDebounceSeconds = 0.1f;
+
+        int releaseCount = 0;
+        controller.KickReleased += (power, aim) => releaseCount++;
+
+        PointerEventData press = new PointerEventData(eventSystem)
+        {
+            pointerId = 1,
+            position = Vector2.zero
+        };
+        PointerEventData release = new PointerEventData(eventSystem)
+        {
+            pointerId = 1,
+            position = new Vector2(0f, 100f)
+        };
+
+        controller.OnPointerDown(press);
+        controller.OnPointerUp(release);
+        controller.OnPointerDown(press);
+        controller.OnPointerUp(release);
+
+        Assert.AreEqual(1, releaseCount);
+
+        Object.DestroyImmediate(go);
+        Object.DestroyImmediate(eventSystemGo);
+    }
+
+    [Test]
+    public void KickInputIgnoresWrongPointerUp()
+    {
+        GameObject eventSystemGo = new GameObject("EventSystem");
+        EventSystem eventSystem = eventSystemGo.AddComponent<EventSystem>();
+
+        GameObject go = new GameObject("KickInput");
+        KickInputController controller = go.AddComponent<KickInputController>();
+        controller.maxVerticalPixels = 100f;
+        controller.maxHorizontalPixels = 100f;
+        controller.minimumKickPower = 0.1f;
+
+        int releaseCount = 0;
+        controller.KickReleased += (power, aim) => releaseCount++;
+
+        controller.OnPointerDown(new PointerEventData(eventSystem)
+        {
+            pointerId = 7,
+            position = Vector2.zero
+        });
+        controller.OnPointerUp(new PointerEventData(eventSystem)
+        {
+            pointerId = 9,
+            position = new Vector2(0f, 100f)
+        });
+        controller.OnPointerUp(new PointerEventData(eventSystem)
+        {
+            pointerId = 7,
+            position = new Vector2(0f, 100f)
+        });
+
+        Assert.AreEqual(1, releaseCount);
+
+        Object.DestroyImmediate(go);
+        Object.DestroyImmediate(eventSystemGo);
+    }
+
+    [Test]
+    public void ProgressionUnlocksHeatHandAfterEnoughGoals()
+    {
+        FieldGoalProgressionProfile profile = new FieldGoalProgressionProfile
+        {
+            lifetimeGoals = 16
+        };
+
+        FieldGoalRewardProfile reward = FieldGoalProgression.BuildRewardProfile(profile);
+
+        Assert.AreEqual("HEAT HAND", reward.Title);
+        Assert.Greater(reward.PerfectWindowBonus, 0f);
+    }
+
+    [Test]
+    public void ProgressionStoresRunOnLocalBoardInScoreOrder()
+    {
+        FieldGoalProgressionProfile profile = new FieldGoalProgressionProfile();
+        FieldGoalProgression.RecordRun(
+            profile,
+            FieldGoalProgression.CreateRunRecord(FieldGoalMode.ArcadeRush, 40, 8, 45, 3, 4),
+            perfectGoals: 2,
+            longBombGoals: 0);
+        int placement = FieldGoalProgression.RecordRun(
+            profile,
+            FieldGoalProgression.CreateRunRecord(FieldGoalMode.ClutchBlitz, 68, 9, 55, 4, 5),
+            perfectGoals: 3,
+            longBombGoals: 2);
+
+        Assert.AreEqual(1, placement);
+        Assert.AreEqual(68, profile.topRuns[0].score);
+        Assert.AreEqual(2, profile.totalRuns);
+    }
+
+    [Test]
+    public void WindMathReducesPerfectKickDriftWithRewardBonus()
+    {
+        NeonFieldGoalConfig config = ScriptableObject.CreateInstance<NeonFieldGoalConfig>();
+        config.windStartYardLine = 35;
+        config.windMaxYardLine = 60;
+        config.windBaseAcceleration = 0.42f;
+        config.windExtraAcceleration = 1.02f;
+        config.perfectKickWindResistance = 0.18f;
+
+        float normalMagnitude = FieldGoalWindMath.GetWindAcceleration(config, 50, 1f, true, 0f).magnitude;
+        float rewardedMagnitude = FieldGoalWindMath.GetWindAcceleration(config, 50, 1f, true, 0.1f).magnitude;
+
+        Assert.Less(rewardedMagnitude, normalMagnitude);
 
         Object.DestroyImmediate(config);
     }

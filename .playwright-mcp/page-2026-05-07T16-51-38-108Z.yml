@@ -1,0 +1,84 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]: May 7, 2026
+      - generic [ref=e12]: Next event today
+      - generic "Health indicator with 6 attention flags" [ref=e13]
+    - generic [ref=e14]:
+      - generic [ref=e15]: Command
+      - generic [ref=e16]: 🔴 Studio Store due in 2 days
+      - generic [ref=e18]: May 7, 2026
+    - tabpanel "Dashboard" [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e27]:
+            - paragraph [ref=e28]: Best play
+            - heading "Use this card" [level=3] [ref=e29]
+            - heading "Skyline Visa" [level=2] [ref=e30]
+            - generic [ref=e31]:
+              - generic [ref=e35]: 27 days left. Low usage. Safe to use.
+              - generic [ref=e36]: Good confidence
+          - paragraph [ref=e38]: Studio Store minimum due in 2 days — $25.
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - paragraph [ref=e44]: BalScore
+              - generic [ref=e45]:
+                - generic [ref=e46]: "4"
+                - paragraph [ref=e47]: Watch your moves
+            - button "See breakdown" [ref=e48] [cursor=pointer]
+          - paragraph [ref=e54]: Available credit $29,830 across 8 cards.
+        - button "See workspace tools" [ref=e56] [cursor=pointer]
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - heading "Skyline Visa" [level=3] [ref=e62]
+          - generic [ref=e67]: 27 days left. Low usage. Safe to use.
+        - button "Confirm your due date. Studio Store payment should be due around May 9. Confirm when you see it." [ref=e69] [cursor=pointer]:
+          - img [ref=e70]
+          - generic [ref=e73]:
+            - generic [ref=e74]: Confirm your due date.
+            - generic [ref=e75]: Studio Store payment should be due around May 9. Confirm when you see it.
+        - generic [ref=e76]:
+          - button "Credit report checklist" [ref=e78] [cursor=pointer]:
+            - generic [ref=e80]: Credit report checklist
+            - img [ref=e81]
+          - generic [ref=e83]:
+            - button "CSV Format Review the import structure inline." [ref=e84] [cursor=pointer]:
+              - generic [ref=e85]:
+                - generic [ref=e86]: CSV Format
+                - generic [ref=e87]: Review the import structure inline.
+              - img [ref=e88]
+            - generic [ref=e90]:
+              - list [ref=e91]:
+                - listitem [ref=e92]: Account nickname
+                - listitem [ref=e93]: Masked account number
+                - listitem [ref=e94]: Account type
+                - listitem [ref=e95]: Current balance
+                - listitem [ref=e96]: Credit limit
+                - listitem [ref=e97]: High balance
+                - listitem [ref=e98]: Payment status
+                - listitem [ref=e99]: Amount past due
+                - listitem [ref=e100]: Date opened
+                - listitem [ref=e101]: Last payment date
+                - listitem [ref=e102]: Last report date
+                - listitem [ref=e103]: Statement closing day
+                - listitem [ref=e104]: Due day
+                - listitem [ref=e105]: Autopay day
+                - listitem [ref=e106]: Payment history notes
+                - listitem [ref=e107]: Dispute, CFPB, or MOV notes
+              - button "Open full format" [ref=e108] [cursor=pointer]
+  - generic [ref=e110]:
+    - button "Dashboard" [ref=e111] [cursor=pointer]:
+      - img [ref=e112]
+      - generic [ref=e117]: Dashboard
+    - button "Cards" [ref=e118] [cursor=pointer]:
+      - img [ref=e119]
+      - generic [ref=e121]: Cards
+    - button "Strategy" [ref=e122] [cursor=pointer]:
+      - img [ref=e123]
+      - generic [ref=e125]: Strategy
+    - button "Insights" [ref=e126] [cursor=pointer]:
+      - img [ref=e127]
+      - generic [ref=e128]: Insights
+    - button "Settings" [ref=e129] [cursor=pointer]:
+      - img [ref=e130]
+      - generic [ref=e133]: Settings

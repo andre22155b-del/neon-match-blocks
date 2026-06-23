@@ -1,0 +1,186 @@
+- generic [ref=e4]:
+  - generic [ref=e6]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]: May 7, 2026
+        - generic [ref=e12]: Next event today
+        - generic "Health indicator with 6 attention flags" [ref=e13]
+      - generic [ref=e14]:
+        - generic [ref=e15]: Moves
+        - generic [ref=e16]: 🔴 Studio Store due in 2 days
+      - button "Open full calendar" [ref=e18] [cursor=pointer]:
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - button "Show earlier dates" [ref=e21]:
+              - img [ref=e22]
+            - generic [ref=e24]: May 7 - May 20
+            - button "Show later dates" [ref=e25]:
+              - img [ref=e26]
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - generic [ref=e30]: "7"
+              - generic [ref=e31]: Thu
+              - generic [ref=e34]: Atlas Am
+            - generic [ref=e35]:
+              - generic [ref=e36]: "8"
+              - generic [ref=e37]: Fri
+            - generic [ref=e39]:
+              - generic [ref=e40]: "9"
+              - generic [ref=e41]: Sat
+              - generic [ref=e42]:
+                - generic [ref=e44]: Skyline
+                - generic [ref=e46]: Studio S
+            - generic [ref=e47]:
+              - generic [ref=e48]: "10"
+              - generic [ref=e49]: Sun
+            - generic [ref=e51]:
+              - generic [ref=e52]: "11"
+              - generic [ref=e53]: Mon
+              - generic [ref=e56]: Harbor R
+            - generic [ref=e57]:
+              - generic [ref=e58]: "12"
+              - generic [ref=e59]: Tue
+              - generic [ref=e62]: Flex Car
+            - generic [ref=e63]:
+              - generic [ref=e64]: "13"
+              - generic [ref=e65]: Wed
+              - generic [ref=e66]:
+                - generic [ref=e68]: Union Li
+                - generic [ref=e70]: Peak Pla
+            - generic [ref=e71]:
+              - generic [ref=e72]: "14"
+              - generic [ref=e73]: Thu
+              - generic [ref=e76]: Studio S
+            - generic [ref=e77]:
+              - generic [ref=e78]: "15"
+              - generic [ref=e79]: Fri
+            - generic [ref=e81]:
+              - generic [ref=e82]: "16"
+              - generic [ref=e83]: Sat
+              - generic [ref=e86]: Harbor R
+            - generic [ref=e87]:
+              - generic [ref=e88]: "17"
+              - generic [ref=e89]: Sun
+              - generic [ref=e92]: Flex Car
+            - generic [ref=e93]:
+              - generic [ref=e94]: "18"
+              - generic [ref=e95]: Mon
+              - generic [ref=e96]:
+                - generic [ref=e98]: Peak Pla
+                - generic [ref=e100]: Peak Pla
+            - generic [ref=e101]:
+              - generic [ref=e102]: "19"
+              - generic [ref=e103]: Tue
+            - generic [ref=e105]:
+              - generic [ref=e106]: "20"
+              - generic [ref=e107]: Wed
+      - tabpanel "Cards has urgent activity" [ref=e110]:
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - button "Top Pick Skyline Visa Due ~Jun 3 · Closes ~May 28 Next statement ~May 28" [ref=e117]:
+              - generic [ref=e119]: Top Pick
+              - generic [ref=e121]:
+                - generic [ref=e122]:
+                  - heading "Skyline Visa" [level=4] [ref=e123]
+                  - paragraph [ref=e124]: Due ~Jun 3 · Closes ~May 28
+                - paragraph [ref=e126]: Next statement ~May 28
+            - button "Blocked Harbor Rewards Due ~May 11 Next statement ~Jun 5" [ref=e131] [cursor=pointer]:
+              - generic [ref=e133]: Blocked
+              - generic [ref=e135]:
+                - generic [ref=e136]:
+                  - heading "Harbor Rewards" [level=4] [ref=e137]
+                  - paragraph [ref=e138]: Due ~May 11
+                - paragraph [ref=e140]: Next statement ~Jun 5
+            - button "Clear Northline Card Due ~May 26 Next statement ~May 30" [ref=e145] [cursor=pointer]:
+              - generic [ref=e147]: Clear
+              - generic [ref=e149]:
+                - generic [ref=e150]:
+                  - heading "Northline Card" [level=4] [ref=e151]
+                  - paragraph [ref=e152]: Due ~May 26
+                - paragraph [ref=e154]: Next statement ~May 30
+            - button "Blocked Studio Store Due ~May 9 Next statement ~May 14" [ref=e159] [cursor=pointer]:
+              - generic [ref=e161]: Blocked
+              - generic [ref=e163]:
+                - generic [ref=e164]:
+                  - heading "Studio Store" [level=4] [ref=e165]
+                  - paragraph [ref=e166]: Due ~May 9
+                - paragraph [ref=e168]: Next statement ~May 14
+            - button "Clear Atlas Amex Due ~May 21 Next statement ~May 24" [ref=e173] [cursor=pointer]:
+              - generic [ref=e175]: Clear
+              - generic [ref=e177]:
+                - generic [ref=e178]:
+                  - heading "Atlas Amex" [level=4] [ref=e179]
+                  - paragraph [ref=e180]: Due ~May 21
+                - paragraph [ref=e182]: Next statement ~May 24
+            - button "Clear Union Line Due ~Jun 2 Next statement ~Jun 6" [ref=e187] [cursor=pointer]:
+              - generic [ref=e189]: Clear
+              - generic [ref=e191]:
+                - generic [ref=e192]:
+                  - heading "Union Line" [level=4] [ref=e193]
+                  - paragraph [ref=e194]: Due ~Jun 2
+                - paragraph [ref=e196]: Next statement ~Jun 6
+            - button "Clear Flex Card Due ~May 17 Next statement ~May 22" [ref=e201] [cursor=pointer]:
+              - generic [ref=e203]: Clear
+              - generic [ref=e205]:
+                - generic [ref=e206]:
+                  - heading "Flex Card" [level=4] [ref=e207]
+                  - paragraph [ref=e208]: Due ~May 17
+                - paragraph [ref=e210]: Next statement ~May 22
+            - button "Clear Peak Platinum Due ~May 13 Next statement ~May 18" [ref=e215] [cursor=pointer]:
+              - generic [ref=e217]: Clear
+              - generic [ref=e219]:
+                - generic [ref=e220]:
+                  - heading "Peak Platinum" [level=4] [ref=e221]
+                  - paragraph [ref=e222]: Due ~May 13
+                - paragraph [ref=e224]: Next statement ~May 18
+          - generic [ref=e227]:
+            - generic [ref=e228]:
+              - paragraph [ref=e229]: Quick add
+              - paragraph [ref=e230]: Log a posted charge to catch statement-date drift early.
+            - generic [ref=e231]:
+              - generic [ref=e232]:
+                - generic [ref=e233]: Card
+                - generic [ref=e234]:
+                  - button "Skyline Visa" [ref=e235] [cursor=pointer]
+                  - button "Harbor Rewards" [ref=e236] [cursor=pointer]
+                  - button "Northline Card" [ref=e237] [cursor=pointer]
+                  - button "Studio Store" [ref=e238] [cursor=pointer]
+                  - button "Atlas Amex" [ref=e239] [cursor=pointer]
+                  - button "Union Line" [ref=e240] [cursor=pointer]
+                  - button "Flex Card" [ref=e241] [cursor=pointer]
+                  - button "Peak Platinum" [ref=e242] [cursor=pointer]
+              - generic [ref=e243]:
+                - generic [ref=e244]: Amount
+                - spinbutton "Amount" [ref=e245]
+              - generic [ref=e246]:
+                - generic [ref=e247]: Posted date
+                - textbox "Posted date" [ref=e248]: 2026-05-07
+              - button "Log transaction" [ref=e250] [cursor=pointer]
+        - generic [ref=e254]:
+          - generic [ref=e255]:
+            - paragraph [ref=e256]: Best play
+            - heading "Skyline Visa" [level=3] [ref=e257]
+            - paragraph [ref=e258]: 27 days left. Low usage. Safe to use.
+          - button "Confirm your due date. Studio Store payment should be due around May 9. Confirm when you see it." [ref=e260] [cursor=pointer]:
+            - img [ref=e261]
+            - generic [ref=e264]:
+              - generic [ref=e265]: Confirm your due date.
+              - generic [ref=e266]: Studio Store payment should be due around May 9. Confirm when you see it.
+    - button "Add account" [ref=e267] [cursor=pointer]:
+      - img [ref=e268]
+  - generic [ref=e270]:
+    - button "Dashboard" [ref=e271] [cursor=pointer]:
+      - img [ref=e272]
+      - generic [ref=e277]: Dashboard
+    - button "Cards" [ref=e278] [cursor=pointer]:
+      - img [ref=e279]
+      - generic [ref=e281]: Cards
+    - button "Strategy" [ref=e282] [cursor=pointer]:
+      - img [ref=e283]
+      - generic [ref=e285]: Strategy
+    - button "Insights" [ref=e286] [cursor=pointer]:
+      - img [ref=e287]
+      - generic [ref=e288]: Insights
+    - button "Settings" [ref=e289] [cursor=pointer]:
+      - img [ref=e290]
+      - generic [ref=e293]: Settings

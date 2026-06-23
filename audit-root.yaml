@@ -1,0 +1,73 @@
+- generic [ref=e4] [box=0,0,430,932]:
+  - generic [ref=e5] [box=0,0,430,932]:
+    - generic [ref=e8] [box=0,0,430,888]:
+      - generic [ref=e9] [box=0,0,430,64]:
+        - generic [ref=e10] [box=16,10,155,44]:
+          - img "BalSense logo" [ref=e11] [box=16,10,44,44]
+          - generic [ref=e12] [box=70,16,101,33]:
+            - generic [ref=e13] [box=70,16,91,22]: BalSense
+            - generic [box=70,40,101,9]: by Tobar Mix Creations
+        - generic [ref=e14] [box=303,27,111,11]:
+          - generic [ref=e15] [box=303,27,93,11]: Next event today
+          - generic "Health indicator with 5 attention flags" [ref=e16] [box=404,27,10,10]
+      - generic [ref=e18] [box=36,86,64,20]: Command
+      - generic [ref=e20] [box=20,128,390,56]:
+        - img [ref=e22] [box=45,149,15,15]
+        - paragraph [ref=e25] [box=80,147,229,18]: Flex Card minimum due in 3 days — $40.
+      - tabpanel "Dashboard" [ref=e27] [box=20,204,390,966]:
+        - generic [ref=e28] [box=20,204,390,942]:
+          - generic [ref=e33] [box=44,228,342,458]:
+            - generic [ref=e35] [box=44,228,342,107]:
+              - paragraph [ref=e36] [box=44,228,342,12]: Best play
+              - heading "Peak Platinum" [level=2] [ref=e37] [box=44,252,342,45]
+            - generic [ref=e38] [box=44,355,342,331]:
+              - generic [ref=e39] [box=44,355,342,83]:
+                - paragraph [ref=e40] [box=60,367,310,13]: Why now
+                - paragraph [ref=e41] [box=60,386,310,40]: 30 days until due, 4 days until statement, and 6% utilization keeps this move safe.
+              - generic [ref=e42] [box=44,450,342,63]:
+                - paragraph [ref=e43] [box=60,462,310,13]: What to avoid
+                - paragraph [ref=e44] [box=60,481,310,20]: Avoid Flex Card — Due in 3 days or less.
+              - generic [ref=e45] [box=44,525,342,71]:
+                - paragraph [ref=e46] [box=60,537,310,13]: Confidence
+                - generic [ref=e48] [box=60,558,133,26]: Good confidence
+              - button "Use This Card" [ref=e50] [cursor=pointer] [box=44,608,342,49]
+              - button "See full reasoning" [ref=e51] [cursor=pointer] [box=44,669,106,16]
+          - generic [ref=e55] [box=41,747,348,155]:
+            - generic [ref=e56] [box=41,747,348,89]:
+              - generic [ref=e57] [box=41,747,348,63]:
+                - paragraph [ref=e58] [box=41,747,348,12]: Stack score
+                - generic [ref=e59] [box=41,766,348,43]
+              - button "See breakdown" [ref=e62] [cursor=pointer] [box=41,821,83,14]
+            - generic [ref=e67] [box=41,874,348,28]:
+              - generic [ref=e68] [box=41,888,61,12]: Headroom
+              - generic [ref=e69] [box=267,886,122,16]: $31,180 · 8 cards
+          - generic [ref=e72] [box=20,939,390,207]:
+            - paragraph [ref=e73] [box=37,956,356,12]: Coming up
+            - generic [ref=e74] [box=37,983,356,146]:
+              - generic [ref=e75] [box=37,983,356,33]:
+                - generic [ref=e76] [box=37,983,99,33]
+                - generic [ref=e79] [box=353,992,40,15]: May 14
+              - generic [ref=e80] [box=37,1028,356,45]:
+                - generic [ref=e81] [box=37,1040,53,33]
+                - generic [ref=e84] [box=353,1049,40,15]: May 15
+              - generic [ref=e85] [box=37,1084,356,45]:
+                - generic [ref=e86] [box=37,1096,99,33]
+                - generic [ref=e89] [box=353,1105,40,15]: May 16
+    - generic [box=-34,926,68,44]:
+      - generic [box=-25,953,50,8]: •••• 4521
+  - generic [ref=e91] [box=0,868,430,64]:
+    - button "Dashboard" [ref=e92] [cursor=pointer] [box=0,868,86,64]:
+      - img [ref=e94] [box=33,882,20,20]
+      - generic [ref=e99] [box=16,910,54,13]: Dashboard
+    - button "Cards" [ref=e100] [cursor=pointer] [box=86,868,86,64]:
+      - img [ref=e102] [box=120,883,18,18]
+      - generic [ref=e104] [box=115,910,28,13]: Cards
+    - button "Strategy" [ref=e105] [cursor=pointer] [box=172,868,86,64]:
+      - img [ref=e107] [box=206,883,18,18]
+      - generic [ref=e109] [box=193,910,44,13]: Strategy
+    - button "Insights" [ref=e110] [cursor=pointer] [box=258,868,86,64]:
+      - img [ref=e112] [box=292,883,18,18]
+      - generic [ref=e113] [box=281,910,40,13]: Insights
+    - button "Settings" [ref=e114] [cursor=pointer] [box=344,868,86,64]:
+      - img [ref=e116] [box=378,883,18,18]
+      - generic [ref=e119] [box=366,910,41,13]: Settings

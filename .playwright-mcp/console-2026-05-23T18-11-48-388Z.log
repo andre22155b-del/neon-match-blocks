@@ -1,0 +1,45 @@
+[    3268ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:215
+[    3274ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:215
+[    3274ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:215
+[    3274ms] [WARNING] The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:215
+[    3326ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/select.520de4846a3a565227c1a255a9c12df7.caf:0
+[    3326ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3327ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/move.f8bd2c8e093275aee9f83481e6578a6f.caf:0
+[    3327ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3327ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/capture.55e23d2ec5b20816208918b81a36bf3f.caf:0
+[    3327ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3327ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/crown_forge.d7aa41a0f227c13e7446fa984cfdf554.caf:0
+[    3327ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3328ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/king.d6bf21f007028df21a182e0a22429d5e.caf:0
+[    3328ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3328ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/win.32fcb3fcccd35f4d6c0c81020355672a.caf:0
+[    3328ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3378ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/flip.f482222aa764e257520e38799750ffd6.caf:0
+[    3378ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3378ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/invalid.7524f3a959473b263784118a625eb383.caf:0
+[    3378ms] [WARNING] expo-audio: Failed to download asset, falling back to original source: TypeError: Failed to fetch
+    at e.resolveSourceWithDownload (http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:283:324)
+    at async http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:259:842 @ http://127.0.0.1:4178/_expo/static/js/web/AppEntry-fe7c97092faed26424a569a9b05c3911.js:282
+[    3421ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/favicon.ico:0
+[    3453ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/capture.55e23d2ec5b20816208918b81a36bf3f.caf:0
+[    3458ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/select.520de4846a3a565227c1a255a9c12df7.caf:0
+[    3458ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/move.f8bd2c8e093275aee9f83481e6578a6f.caf:0
+[    3458ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/crown_forge.d7aa41a0f227c13e7446fa984cfdf554.caf:0
+[    3458ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/king.d6bf21f007028df21a182e0a22429d5e.caf:0
+[    3458ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/win.32fcb3fcccd35f4d6c0c81020355672a.caf:0
+[    3459ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/flip.f482222aa764e257520e38799750ffd6.caf:0
+[    3478ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:4178/assets/assets/audio/invalid.7524f3a959473b263784118a625eb383.caf:0

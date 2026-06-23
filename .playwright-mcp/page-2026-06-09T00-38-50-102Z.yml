@@ -1,0 +1,53 @@
+- generic [ref=e2]:
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - generic [ref=e10]:
+        - generic [ref=e11]: FIRST RUN
+        - generic [ref=e12]: CROWN RUSH
+        - generic [ref=e13]: ROYAL
+      - generic [ref=e14]:
+        - generic [ref=e15]: WELCOME
+        - generic [ref=e16]: WELCOME
+        - generic [ref=e17]: WELCOME
+      - generic [ref=e18]:
+        - generic [ref=e19]: TO THE ARENA
+        - generic [ref=e20]: TO THE ARENA
+        - generic [ref=e21]: TO THE ARENA
+      - generic [ref=e22]: "Neon Checkers is a fast cyber-sport board game: short matches, premium stadium energy, forged-king win conditions, and hype-reel replays."
+      - generic [ref=e23]:
+        - generic [ref=e24]: "BEST FIRST RUN: VS A.I."
+        - generic [ref=e25]: 2-5 MIN MATCHES
+    - generic [ref=e26]:
+      - generic [ref=e29]: SIGNATURE MODE
+      - generic [ref=e30]: CROWN RUSH
+      - generic [ref=e31]: Crown Rush is the default lane. The first side to forge two kings wins instantly, so promotions matter every turn.
+    - generic [ref=e32]:
+      - generic [ref=e35]: STYLE LOADOUTS
+      - generic [ref=e36]: ROYAL GLITCH
+      - generic [ref=e37]: Swap crowns, field glow, and move trails. Rename both end zones and make the board feel like your own stadium.
+    - generic [ref=e38]:
+      - generic [ref=e41]: RUN IT BACK
+      - generic [ref=e42]: HYPE REELS
+      - generic [ref=e43]: Every finished match can save a replay timeline so clutch king moments and multi-captures stay one tap away.
+    - generic [ref=e45] [cursor=pointer]:
+      - generic [ref=e49]:
+        - generic [ref=e51]: GO
+        - generic [ref=e52]: START FIRST MATCH
+        - generic [ref=e53]: jump straight into a medium-difficulty AI match and learn the flow in motion
+      - generic [ref=e54]:
+        - generic [ref=e55]: GO
+        - generic [ref=e56]: ›
+    - generic [ref=e59] [cursor=pointer]:
+      - generic [ref=e63]:
+        - generic [ref=e65]: MENU
+        - generic [ref=e66]: OPEN LOBBY
+        - generic [ref=e67]: browse modes, rules, settings, and your last hype reel before playing
+      - generic [ref=e68]:
+        - generic [ref=e69]: MENU
+        - generic [ref=e70]: ›
+    - generic [ref=e71]:
+      - generic [ref=e73] [cursor=pointer]: PLAYBOOK
+      - generic [ref=e75] [cursor=pointer]: CONTROL ROOM
+    - generic [ref=e76]: You can replay this intro from Settings any time.
+  - generic:
+    - img

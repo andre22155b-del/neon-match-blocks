@@ -1,0 +1,242 @@
+<svg width="1400" height="2200" viewBox="0 0 1400 2200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="700" y1="0" x2="700" y2="2200" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#071122"/>
+      <stop offset="0.5" stop-color="#03130C"/>
+      <stop offset="1" stop-color="#050811"/>
+    </linearGradient>
+    <linearGradient id="fieldBase" x1="180" y1="220" x2="1220" y2="1980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B4120"/>
+      <stop offset="0.55" stop-color="#0E5F2B"/>
+      <stop offset="1" stop-color="#083A1D"/>
+    </linearGradient>
+    <linearGradient id="stripeA" x1="200" y1="220" x2="1200" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E6B2F"/>
+      <stop offset="1" stop-color="#0A5428"/>
+    </linearGradient>
+    <linearGradient id="stripeB" x1="200" y1="220" x2="1200" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A5227"/>
+      <stop offset="1" stop-color="#0C692D"/>
+    </linearGradient>
+    <linearGradient id="endzone" x1="200" y1="180" x2="1200" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#113B24"/>
+      <stop offset="1" stop-color="#0E7E36"/>
+    </linearGradient>
+    <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.20 0 0 0 0 0.98 0 0 0 0 1.00 0 0 0 1 0"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glowPink" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 1.00 0 0 0 0 0.25 0 0 0 0 0.78 0 0 0 1 0"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="arrowCyan" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto">
+      <path d="M0 0L12 6L0 12L3 6L0 0Z" fill="#49F6FF"/>
+    </marker>
+    <marker id="arrowPink" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto">
+      <path d="M0 0L12 6L0 12L3 6L0 0Z" fill="#FF4FD0"/>
+    </marker>
+    <style>
+      .title { font: 700 64px 'Arial', sans-serif; letter-spacing: 8px; fill: #F2FF7A; }
+      .subtitle { font: 600 22px 'Arial', sans-serif; letter-spacing: 3px; fill: #8FFBFF; }
+      .label { font: 700 26px 'Arial', sans-serif; letter-spacing: 2px; fill: #D7FFF0; }
+      .small { font: 600 20px 'Arial', sans-serif; letter-spacing: 1px; fill: #C3FDED; }
+      .tiny { font: 700 18px 'Arial', sans-serif; letter-spacing: 2px; fill: #A6FFF1; }
+      .yard { font: 700 22px 'Arial', sans-serif; letter-spacing: 2px; fill: #D9FFF7; }
+      .measure { font: 700 24px 'Arial', sans-serif; letter-spacing: 3px; fill: #49F6FF; }
+      .note { font: 700 22px 'Arial', sans-serif; letter-spacing: 2px; fill: #FF91E7; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="2200" fill="url(#bg)"/>
+
+  <g opacity="0.22">
+    <circle cx="180" cy="240" r="220" fill="#1AFF84"/>
+    <circle cx="1210" cy="460" r="260" fill="#1CD5FF"/>
+    <circle cx="1180" cy="1880" r="260" fill="#FF4FD0"/>
+  </g>
+
+  <text x="700" y="110" text-anchor="middle" class="title" filter="url(#glowGreen)">NEON FOOTBALL FIELD</text>
+  <text x="700" y="155" text-anchor="middle" class="subtitle">TOP-DOWN GLOW LAYOUT WITH REAL FIELD MEASURES + GAMEPLAY CHECKPOINTS</text>
+
+  <g transform="translate(200 220)">
+    <rect x="-22" y="-22" width="1044" height="1764" rx="26" stroke="#20FF9A" stroke-width="6" opacity="0.85" filter="url(#glowGreen)"/>
+    <rect x="0" y="0" width="1000" height="1720" rx="18" fill="url(#fieldBase)" stroke="#7CFFCB" stroke-width="3"/>
+
+    <rect x="0" y="0" width="1000" height="145" fill="url(#endzone)" opacity="0.98"/>
+    <rect x="0" y="1575" width="1000" height="145" fill="url(#endzone)" opacity="0.98"/>
+
+    <g opacity="0.95">
+      <rect x="0" y="145" width="1000" height="143" fill="url(#stripeA)"/>
+      <rect x="0" y="288" width="1000" height="143" fill="url(#stripeB)"/>
+      <rect x="0" y="431" width="1000" height="143" fill="url(#stripeA)"/>
+      <rect x="0" y="574" width="1000" height="143" fill="url(#stripeB)"/>
+      <rect x="0" y="717" width="1000" height="143" fill="url(#stripeA)"/>
+      <rect x="0" y="860" width="1000" height="143" fill="url(#stripeB)"/>
+      <rect x="0" y="1003" width="1000" height="143" fill="url(#stripeA)"/>
+      <rect x="0" y="1146" width="1000" height="143" fill="url(#stripeB)"/>
+      <rect x="0" y="1289" width="1000" height="143" fill="url(#stripeA)"/>
+      <rect x="0" y="1432" width="1000" height="143" fill="url(#stripeB)"/>
+    </g>
+
+    <g stroke="#B6FFF0" stroke-width="4" opacity="0.95" filter="url(#glowGreen)">
+      <line x1="0" y1="145" x2="1000" y2="145"/>
+      <line x1="0" y1="288" x2="1000" y2="288"/>
+      <line x1="0" y1="431" x2="1000" y2="431"/>
+      <line x1="0" y1="574" x2="1000" y2="574"/>
+      <line x1="0" y1="717" x2="1000" y2="717"/>
+      <line x1="0" y1="860" x2="1000" y2="860"/>
+      <line x1="0" y1="1003" x2="1000" y2="1003"/>
+      <line x1="0" y1="1146" x2="1000" y2="1146"/>
+      <line x1="0" y1="1289" x2="1000" y2="1289"/>
+      <line x1="0" y1="1432" x2="1000" y2="1432"/>
+      <line x1="0" y1="1575" x2="1000" y2="1575"/>
+      <line x1="500" y1="145" x2="500" y2="1575" stroke="#49F6FF" stroke-width="5"/>
+    </g>
+
+    <g stroke="#8FFFE4" stroke-width="3" opacity="0.92">
+      <line x1="315" y1="145" x2="315" y2="1575"/>
+      <line x1="685" y1="145" x2="685" y2="1575"/>
+    </g>
+
+    <g fill="#C8FFF7" filter="url(#glowGreen)">
+      <rect x="164" y="139" width="18" height="12" rx="4"/>
+      <rect x="164" y="282" width="18" height="12" rx="4"/>
+      <rect x="164" y="425" width="18" height="12" rx="4"/>
+      <rect x="164" y="568" width="18" height="12" rx="4"/>
+      <rect x="164" y="711" width="18" height="12" rx="4"/>
+      <rect x="164" y="854" width="18" height="12" rx="4"/>
+      <rect x="164" y="997" width="18" height="12" rx="4"/>
+      <rect x="164" y="1140" width="18" height="12" rx="4"/>
+      <rect x="164" y="1283" width="18" height="12" rx="4"/>
+      <rect x="164" y="1426" width="18" height="12" rx="4"/>
+      <rect x="818" y="139" width="18" height="12" rx="4"/>
+      <rect x="818" y="282" width="18" height="12" rx="4"/>
+      <rect x="818" y="425" width="18" height="12" rx="4"/>
+      <rect x="818" y="568" width="18" height="12" rx="4"/>
+      <rect x="818" y="711" width="18" height="12" rx="4"/>
+      <rect x="818" y="854" width="18" height="12" rx="4"/>
+      <rect x="818" y="997" width="18" height="12" rx="4"/>
+      <rect x="818" y="1140" width="18" height="12" rx="4"/>
+      <rect x="818" y="1283" width="18" height="12" rx="4"/>
+      <rect x="818" y="1426" width="18" height="12" rx="4"/>
+    </g>
+
+    <g class="yard" text-anchor="middle" opacity="0.95">
+      <text x="500" y="186">10</text>
+      <text x="500" y="329">20</text>
+      <text x="500" y="472">30</text>
+      <text x="500" y="615">40</text>
+      <text x="500" y="758">50</text>
+      <text x="500" y="901">50</text>
+      <text x="500" y="1044">40</text>
+      <text x="500" y="1187">30</text>
+      <text x="500" y="1330">20</text>
+      <text x="500" y="1473">10</text>
+    </g>
+
+    <g filter="url(#glowCyan)">
+      <rect x="440" y="145" width="120" height="1430" rx="18" fill="#36F9FF" opacity="0.10" stroke="#36F9FF" stroke-width="3"/>
+    </g>
+
+    <g filter="url(#glowPink)">
+      <rect x="22" y="146" width="18" height="1428" fill="#FF4FD0" opacity="0.9"/>
+      <rect x="960" y="146" width="18" height="1428" fill="#FF4FD0" opacity="0.9"/>
+    </g>
+
+    <g transform="translate(500 86)" filter="url(#glowGreen)">
+      <rect x="-180" y="-24" width="360" height="48" rx="18" fill="#12391E" stroke="#F8FF75" stroke-width="4"/>
+      <text x="0" y="9" text-anchor="middle" class="label" fill="#F8FF75">TOP END ZONE 10 YD</text>
+    </g>
+
+    <g transform="translate(500 1637)" filter="url(#glowGreen)">
+      <rect x="-202" y="-24" width="404" height="48" rx="18" fill="#12391E" stroke="#F8FF75" stroke-width="4"/>
+      <text x="0" y="9" text-anchor="middle" class="label" fill="#F8FF75">BOTTOM END ZONE 10 YD</text>
+    </g>
+
+    <g transform="translate(500 1740)">
+      <line x1="-60" y1="-20" x2="-60" y2="-140" stroke="#49F6FF" stroke-width="4" marker-start="url(#arrowCyan)" marker-end="url(#arrowCyan)"/>
+      <line x1="60" y1="-20" x2="60" y2="-140" stroke="#49F6FF" stroke-width="4" marker-start="url(#arrowCyan)" marker-end="url(#arrowCyan)"/>
+      <line x1="-60" y1="-80" x2="60" y2="-80" stroke="#49F6FF" stroke-width="5"/>
+      <text x="0" y="-152" text-anchor="middle" class="measure">GOAL OPENING 18 FT 6 IN</text>
+      <text x="0" y="-176" text-anchor="middle" class="small">NFL upright width shown as target reference</text>
+    </g>
+
+    <g filter="url(#glowGreen)">
+      <rect x="440" y="1285" width="120" height="44" rx="18" fill="#11311A" stroke="#F7FF79" stroke-width="4"/>
+      <text x="500" y="1314" text-anchor="middle" class="label" fill="#F7FF79">20 YD START</text>
+
+      <rect x="440" y="993" width="120" height="44" rx="18" fill="#102E1A" stroke="#49F6FF" stroke-width="4"/>
+      <text x="500" y="1022" text-anchor="middle" class="label" fill="#49F6FF">40</text>
+
+      <rect x="408" y="850" width="184" height="50" rx="18" fill="#2A1620" stroke="#FF4FD0" stroke-width="4"/>
+      <text x="500" y="880" text-anchor="middle" class="note">50 YD BANGER ZONE</text>
+
+      <rect x="406" y="707" width="188" height="50" rx="18" fill="#152835" stroke="#49F6FF" stroke-width="4"/>
+      <text x="500" y="737" text-anchor="middle" class="measure">MOVING GOAL STARTS</text>
+    </g>
+
+    <g class="tiny" fill="#B8FFF0">
+      <text x="500" y="1458" text-anchor="middle">PLAYER PROGRESSION: 20 → 25 → 30 → 35 → 40 → 45 → 50+</text>
+    </g>
+  </g>
+
+  <g>
+    <line x1="145" y1="220" x2="145" y2="1940" stroke="#49F6FF" stroke-width="5" marker-start="url(#arrowCyan)" marker-end="url(#arrowCyan)" filter="url(#glowCyan)"/>
+    <text x="98" y="1085" transform="rotate(-90 98 1085)" text-anchor="middle" class="measure">120 YARDS TOTAL LENGTH</text>
+
+    <line x1="200" y1="2045" x2="1200" y2="2045" stroke="#49F6FF" stroke-width="5" marker-start="url(#arrowCyan)" marker-end="url(#arrowCyan)" filter="url(#glowCyan)"/>
+    <text x="700" y="2090" text-anchor="middle" class="measure">53.3 YARDS WIDE</text>
+
+    <line x1="1245" y1="365" x2="1245" y2="1795" stroke="#49F6FF" stroke-width="4" marker-start="url(#arrowCyan)" marker-end="url(#arrowCyan)"/>
+    <text x="1290" y="1080" transform="rotate(90 1290 1080)" text-anchor="middle" class="measure">100 YARD PLAYING FIELD</text>
+
+    <line x1="1265" y1="220" x2="1265" y2="365" stroke="#FF4FD0" stroke-width="4" marker-start="url(#arrowPink)" marker-end="url(#arrowPink)" filter="url(#glowPink)"/>
+    <text x="1310" y="298" transform="rotate(90 1310 298)" text-anchor="middle" class="note">10 YD END ZONE</text>
+
+    <line x1="1265" y1="1795" x2="1265" y2="1940" stroke="#FF4FD0" stroke-width="4" marker-start="url(#arrowPink)" marker-end="url(#arrowPink)" filter="url(#glowPink)"/>
+    <text x="1310" y="1868" transform="rotate(90 1310 1868)" text-anchor="middle" class="note">10 YD END ZONE</text>
+  </g>
+
+  <g transform="translate(102 244)">
+    <rect x="0" y="0" width="280" height="276" rx="22" fill="#081A19" stroke="#49F6FF" stroke-width="3" filter="url(#glowCyan)"/>
+    <text x="28" y="42" class="label" fill="#49F6FF">FIELD MEASURES</text>
+    <text x="28" y="86" class="small">• Total length: 120 yd</text>
+    <text x="28" y="122" class="small">• Playing field: 100 yd</text>
+    <text x="28" y="158" class="small">• Width: 53.3 yd</text>
+    <text x="28" y="194" class="small">• End zones: 10 yd each</text>
+    <text x="28" y="230" class="small">• Goal opening: 18' 6"</text>
+  </g>
+
+  <g transform="translate(1018 244)">
+    <rect x="0" y="0" width="280" height="320" rx="22" fill="#1A0B18" stroke="#FF4FD0" stroke-width="3" filter="url(#glowPink)"/>
+    <text x="28" y="42" class="label" fill="#FF91E7">GAMEPLAY NOTES</text>
+    <text x="28" y="86" class="small">• Start at the 20-yard line</text>
+    <text x="28" y="122" class="small">• Every make moves back 5 yd</text>
+    <text x="28" y="158" class="small">• 50+ yd kicks = 5 points</text>
+    <text x="28" y="194" class="small">• Goal slides left/right at 50+</text>
+    <text x="28" y="230" class="small">• Misses keep the same spot</text>
+    <text x="28" y="266" class="small">• Longest made kick gets tracked</text>
+  </g>
+
+  <g transform="translate(100 1995)">
+    <rect x="0" y="0" width="1200" height="120" rx="22" fill="#07161A" stroke="#20FF9A" stroke-width="3" filter="url(#glowGreen)"/>
+    <text x="600" y="46" text-anchor="middle" class="label" fill="#F2FF7A">VISUAL TARGET</text>
+    <text x="600" y="84" text-anchor="middle" class="small">Neon green turf, cyan center-lane glow, pink sidelines, bright field markings, and street-arcade signage around the kicking lane.</text>
+  </g>
+</svg>

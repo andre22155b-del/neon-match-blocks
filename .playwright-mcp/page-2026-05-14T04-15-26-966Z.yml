@@ -1,0 +1,86 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - generic [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - img "BalSense logo" [ref=e11]
+          - generic [ref=e12]:
+            - generic [ref=e13]: BalSense
+            - generic: by Tobar Mix Creations
+        - generic [ref=e14]:
+          - generic [ref=e15]: Next event today
+          - generic "Health indicator with 6 attention flags" [ref=e16]
+      - generic [ref=e18]: Command
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - img [ref=e22]
+          - paragraph [ref=e25]: Peak Platinum minimum due in 0 days — $30.
+        - generic [ref=e26]:
+          - text: Stack
+          - strong [ref=e27]: $31,180
+          - text: · Used 12%
+      - tabpanel "Dashboard has urgent activity" [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e35]:
+            - generic [ref=e37]:
+              - paragraph [ref=e38]: Best play
+              - heading "Studio Store" [level=2] [ref=e39]
+            - generic [ref=e40]:
+              - generic [ref=e41]:
+                - paragraph [ref=e42]: Why now
+                - paragraph [ref=e43]: 27 days until due, 1 day until statement, and 8% utilization keeps this move safe.
+              - generic [ref=e44]:
+                - paragraph [ref=e45]: What to avoid
+                - paragraph [ref=e46]: Avoid Flex Card — Due in 3 days or less + 1 more card.
+              - generic [ref=e47]:
+                - paragraph [ref=e48]: Confidence
+                - generic [ref=e50]: Good confidence
+              - button "Use This Card" [ref=e52] [cursor=pointer]
+              - button "See full reasoning" [ref=e53] [cursor=pointer]
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - generic [ref=e59]:
+                - paragraph [ref=e60]: Stack score
+                - generic [ref=e61]:
+                  - generic [ref=e62]: "55"
+                  - paragraph [ref=e63]: Watch your moves
+              - button "See breakdown" [ref=e64] [cursor=pointer]
+            - generic [ref=e69]:
+              - generic [ref=e70]: Stack
+              - generic [ref=e71]: $31,180 · Used 12%
+          - generic [ref=e74]:
+            - paragraph [ref=e75]: Coming up
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - generic [ref=e78]:
+                  - paragraph [ref=e79]: Peak Platinum
+                  - paragraph [ref=e80]: Due Date
+                - generic [ref=e81]: May 13
+              - generic [ref=e82]:
+                - generic [ref=e83]:
+                  - paragraph [ref=e84]: Studio Store
+                  - paragraph [ref=e85]: Statement Close
+                - generic [ref=e86]: May 14
+              - generic [ref=e87]:
+                - generic [ref=e88]:
+                  - paragraph [ref=e89]: Northline Card
+                  - paragraph [ref=e90]: Expected Report
+                - generic [ref=e91]: May 15
+    - generic:
+      - generic: •••• 4521
+  - generic [ref=e93]:
+    - button "Dashboard" [ref=e94] [cursor=pointer]:
+      - img [ref=e96]
+      - generic [ref=e101]: Dashboard
+    - button "Cards" [ref=e102] [cursor=pointer]:
+      - img [ref=e104]
+      - generic [ref=e106]: Cards
+    - button "Strategy" [ref=e107] [cursor=pointer]:
+      - img [ref=e109]
+      - generic [ref=e111]: Strategy
+    - button "Insights" [ref=e112] [cursor=pointer]:
+      - img [ref=e114]
+      - generic [ref=e115]: Insights
+    - button "Settings" [ref=e116] [cursor=pointer]:
+      - img [ref=e118]
+      - generic [ref=e121]: Settings

@@ -1,0 +1,105 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - img "BalSense logo" [ref=e11]
+        - generic [ref=e12]: BalSense
+        - generic [ref=e13]: by Tobar Mix Creations
+      - generic [ref=e14]:
+        - generic [ref=e15]: In 5 days
+        - generic "Health indicator with 0 attention flags" [ref=e16]
+    - generic [ref=e18]: Calendar
+    - tabpanel "Calendar" [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - paragraph [ref=e24]: Calendar
+            - heading "May 27 - Jun 2" [level=3] [ref=e25]
+            - paragraph [ref=e26]: Use Week for near-term timing, Month for planning, and Day for exact action.
+          - generic [ref=e27]:
+            - button "Today" [ref=e28] [cursor=pointer]
+            - button "Previous period" [ref=e29] [cursor=pointer]:
+              - img [ref=e30]
+            - button "Next period" [ref=e32] [cursor=pointer]:
+              - img [ref=e33]
+        - generic [ref=e35]:
+          - tablist "Calendar modes" [ref=e36]:
+            - button "Week" [ref=e37] [cursor=pointer]
+            - button "Month" [ref=e38] [cursor=pointer]
+            - button "Day" [ref=e39] [cursor=pointer]
+            - button "Year" [ref=e40] [cursor=pointer]
+          - generic [ref=e41]:
+            - button "All" [ref=e42] [cursor=pointer]
+            - button "Due" [ref=e43] [cursor=pointer]
+            - button "Statement" [ref=e44] [cursor=pointer]
+            - button "Autopay" [ref=e45] [cursor=pointer]
+            - button "Reports" [ref=e46] [cursor=pointer]
+        - generic [ref=e47]:
+          - button "Wed 27 No events" [ref=e48] [cursor=pointer]:
+            - generic [ref=e49]:
+              - generic [ref=e50]: Wed
+              - strong [ref=e51]:
+                - generic [ref=e52]: "27"
+            - generic [ref=e54]: No events
+          - button "Thu 28 No events" [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]:
+              - generic [ref=e57]: Thu
+              - strong [ref=e58]:
+                - generic [ref=e59]: "28"
+            - generic [ref=e61]: No events
+          - button "Fri 29 No events" [ref=e62] [cursor=pointer]:
+            - generic [ref=e63]:
+              - generic [ref=e64]: Fri
+              - strong [ref=e65]:
+                - generic [ref=e66]: "29"
+            - generic [ref=e68]: No events
+          - button "Sat 30 No events" [ref=e69] [cursor=pointer]:
+            - generic [ref=e70]:
+              - generic [ref=e71]: Sat
+              - strong [ref=e72]:
+                - generic [ref=e73]: "30"
+            - generic [ref=e75]: No events
+          - button "Sun 31 No events" [ref=e76] [cursor=pointer]:
+            - generic [ref=e77]:
+              - generic [ref=e78]: Sun
+              - strong [ref=e79]:
+                - generic [ref=e80]: "31"
+            - generic [ref=e82]: No events
+          - button "Mon 1 Avant · Due" [ref=e83] [cursor=pointer]:
+            - generic [ref=e84]:
+              - generic [ref=e85]: Mon
+              - strong [ref=e86]:
+                - generic [ref=e87]: "1"
+            - generic [ref=e91]: Avant · Due
+          - button "Tue 2 No events" [ref=e92] [cursor=pointer]:
+            - generic [ref=e93]:
+              - generic [ref=e94]: Tue
+              - strong [ref=e95]:
+                - generic [ref=e96]: "2"
+            - generic [ref=e98]: No events
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: Selected day
+              - heading "Wednesday, May 27, 2026" [level=4] [ref=e103]
+            - button "Open Day" [ref=e104] [cursor=pointer]
+          - generic [ref=e106]:
+            - paragraph [ref=e107]: No timing events land here.
+            - generic [ref=e108]: Try another date or switch filters.
+        - generic [ref=e109]: "Tip: Start in Week for tactical timing, then widen to Month or Year only when you need planning context."
+  - generic [ref=e111]:
+    - button "Dashboard" [ref=e112] [cursor=pointer]:
+      - img [ref=e114]
+      - generic [ref=e119]: Dashboard
+    - button "Cards" [ref=e120] [cursor=pointer]:
+      - img [ref=e122]
+      - generic [ref=e124]: Cards
+    - button "Strategy" [ref=e125] [cursor=pointer]:
+      - img [ref=e127]
+      - generic [ref=e129]: Strategy
+    - button "Insights" [ref=e130] [cursor=pointer]:
+      - img [ref=e132]
+      - generic [ref=e133]: Insights
+    - button "Settings" [ref=e134] [cursor=pointer]:
+      - img [ref=e136]
+      - generic [ref=e139]: Settings

@@ -1,0 +1,618 @@
+- generic [ref=e5]:
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - img "BalSense logo" [ref=e13]
+      - paragraph [ref=e14]: BalSense
+      - paragraph [ref=e15]: Budget + Credit Management
+    - generic [ref=e16]:
+      - heading "Control center" [level=2] [ref=e17]
+      - paragraph [ref=e18]: One view at a time. Fast switches. Less clutter.
+    - tablist "BalSense sections" [ref=e19]:
+      - tab "Dashboard Balances and next move." [selected] [ref=e20] [cursor=pointer]:
+        - generic [ref=e21]:
+          - paragraph [ref=e22]: Dashboard
+          - paragraph [ref=e23]: Balances and next move.
+      - tab "Cards Edit card inputs fast." [ref=e24] [cursor=pointer]:
+        - generic [ref=e25]:
+          - paragraph [ref=e26]: Cards
+          - paragraph [ref=e27]: Edit card inputs fast.
+      - tab "Strategy Clear decision view." [ref=e28] [cursor=pointer]:
+        - generic [ref=e29]:
+          - paragraph [ref=e30]: Strategy
+          - paragraph [ref=e31]: Clear decision view.
+      - tab "Insights Simple metrics and trends." [ref=e32] [cursor=pointer]:
+        - generic [ref=e33]:
+          - paragraph [ref=e34]: Insights
+          - paragraph [ref=e35]: Simple metrics and trends.
+    - generic [ref=e37]:
+      - paragraph [ref=e38]: Live pick
+      - strong [ref=e39]: Aurora Rewards
+      - generic [ref=e41]: Available
+      - paragraph [ref=e43]: 0 of 0 cards are currently eligible to use.
+  - generic [ref=e46]:
+    - generic [ref=e47]:
+      - generic [ref=e48]: May 4, 2026
+      - generic [ref=e50]: Next event in 0 days
+      - generic [ref=e52]: Utilization 1%
+      - generic "Health indicator with 6 attention flags" [ref=e54]
+    - generic [ref=e59]:
+      - generic [ref=e61]:
+        - generic [ref=e62]: "4"
+        - generic [ref=e63]: Mon
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - generic [ref=e66]: "5"
+          - generic [ref=e67]: Tue
+        - generic [ref=e68]:
+          - generic "Harbor Rewards Statement Close" [ref=e69]: Harbor Rew
+          - generic "Northline Card Expected Report" [ref=e70]: Northline
+      - generic [ref=e71]:
+        - generic [ref=e72]:
+          - generic [ref=e73]: "6"
+          - generic [ref=e74]: Wed
+        - generic [ref=e75]:
+          - generic "Atlas Amex Expected Report" [ref=e76]: Atlas Amex
+          - generic "Union Line Statement Close" [ref=e77]: Union Line
+      - generic [ref=e79]:
+        - generic [ref=e80]: "7"
+        - generic [ref=e81]: Thu
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]: "8"
+          - generic [ref=e85]: Fri
+        - generic "Skyline Visa Expected Report" [ref=e87]: Skyline Vi
+      - generic [ref=e88]:
+        - generic [ref=e89]:
+          - generic [ref=e90]: "9"
+          - generic [ref=e91]: Sat
+        - generic "Studio Store Due" [ref=e93]: Studio Sto
+      - generic [ref=e95]:
+        - generic [ref=e96]: "10"
+        - generic [ref=e97]: Sun
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e100]: "11"
+          - generic [ref=e101]: Mon
+        - generic [ref=e102]:
+          - generic "Harbor Rewards Due" [ref=e103]: Harbor Rew
+          - generic "Flex Card Expected Report" [ref=e104]: Flex Card
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - generic [ref=e107]: "12"
+          - generic [ref=e108]: Tue
+        - generic "Union Line Expected Report" [ref=e110]: Union Line
+      - generic [ref=e111]:
+        - generic [ref=e112]:
+          - generic [ref=e113]: "13"
+          - generic [ref=e114]: Wed
+        - generic "Peak Platinum Due" [ref=e116]: Peak Plati
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - generic [ref=e119]: "14"
+          - generic [ref=e120]: Thu
+        - generic [ref=e121]:
+          - generic "Studio Store Statement Close" [ref=e122]: Studio Sto
+          - generic "Audit Test 904 Due" [ref=e123]: Audit Test
+      - generic [ref=e124]:
+        - generic [ref=e125]:
+          - generic [ref=e126]: "15"
+          - generic [ref=e127]: Fri
+        - generic "Harbor Rewards Expected Report" [ref=e129]: Harbor Rew
+      - generic [ref=e131]:
+        - generic [ref=e132]: "16"
+        - generic [ref=e133]: Sat
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic [ref=e136]: "17"
+          - generic [ref=e137]: Sun
+        - generic [ref=e138]:
+          - generic "Flex Card Due" [ref=e139]: Flex Card
+          - generic "Peak Platinum Expected Report" [ref=e140]: Peak Plati
+    - generic [ref=e141]:
+      - generic [ref=e143]:
+        - paragraph [ref=e144]: Focused workspace
+        - heading "Dashboard" [level=2] [ref=e145]
+        - paragraph [ref=e146]: Balances and next move.
+      - tabpanel "Dashboard Balances and next move." [ref=e147]:
+        - generic [ref=e148]:
+          - generic [ref=e149]:
+            - generic [ref=e150]:
+              - paragraph [ref=e151]: Local-first credit organizer
+              - heading "Track due dates, statement closes, and reporting windows in one place." [level=1] [ref=e152]
+              - paragraph [ref=e153]: Built for quick monthly check-ins from desktop or iPhone, with no login and no paid services. Everything stays in browser storage on this device unless you export it.
+              - generic [ref=e154]:
+                - button "Add account" [ref=e155] [cursor=pointer]
+                - button "Export CSV" [ref=e156] [cursor=pointer]
+                - button "Reset sample data" [ref=e157] [cursor=pointer]
+            - complementary [ref=e158]:
+              - generic [ref=e159]:
+                - generic [ref=e160]: Accounts tracked
+                - strong [ref=e161]:
+                  - generic [ref=e163]: "9"
+              - generic [ref=e164]:
+                - generic [ref=e165]: Attention flags
+                - strong [ref=e166]:
+                  - generic [ref=e168]: "6"
+              - generic [ref=e169]:
+                - generic [ref=e170]: Most recent report
+                - strong [ref=e171]:
+                  - generic [ref=e173]: Apr 21, 2026
+          - generic [ref=e174]:
+            - article [ref=e175]:
+              - paragraph [ref=e176]: Next due date
+              - strong [ref=e177]: Studio Store
+              - generic [ref=e179]: May 9, 2026
+            - article [ref=e180]:
+              - paragraph [ref=e181]: Next statement close
+              - strong [ref=e182]: Harbor Rewards
+              - generic [ref=e184]: May 5, 2026
+            - article [ref=e185]:
+              - paragraph [ref=e186]: Next report date
+              - strong [ref=e187]: Northline Card
+              - generic [ref=e189]: May 5, 2026
+            - article [ref=e190]:
+              - paragraph [ref=e191]: Next 14-day window
+              - strong [ref=e192]:
+                - generic [ref=e193]: 6 upcoming events
+              - generic [ref=e194]: Harbor Rewards statement close
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e197]:
+                - tablist "Views" [ref=e198]:
+                  - button "List" [ref=e199] [cursor=pointer]
+                  - button "Calendar" [ref=e200] [cursor=pointer]
+                  - button "Alerts" [ref=e201] [cursor=pointer]
+                - generic [ref=e202]:
+                  - generic [ref=e203]:
+                    - text: Sort by
+                    - combobox "Sort by" [ref=e204]:
+                      - option "Next due date" [selected]
+                      - option "Next statement close"
+                      - option "Next report date"
+                  - generic [ref=e205]:
+                    - text: Filter
+                    - combobox "Filter" [ref=e206]:
+                      - option "All accounts" [selected]
+                      - option "Due in 30 days"
+                      - option "Statement close in 30 days"
+                      - option "Report in 30 days"
+              - generic [ref=e207]:
+                - generic [ref=e208]:
+                  - heading "Ready for monthly review" [level=2] [ref=e209]
+                  - paragraph [ref=e210]:
+                    - generic [ref=e211]: Open the list when you want account details, the calendar when you want date clustering, and alerts when you want the next 7, 14, or 30 days called out.
+                - button "Add another account" [ref=e212] [cursor=pointer]
+              - generic [ref=e214]:
+                - generic [ref=e215]:
+                  - generic [ref=e216]:
+                    - generic [ref=e217]:
+                      - heading "Studio Store" [level=3] [ref=e218]
+                      - paragraph [ref=e219]:
+                        - text: "Last reported:"
+                        - generic [ref=e220]: Apr 21, 2026
+                    - generic [ref=e221]:
+                      - button "Edit" [ref=e222] [cursor=pointer]
+                      - button "Delete" [ref=e223] [cursor=pointer]
+                  - generic [ref=e224]:
+                    - generic [ref=e225]:
+                      - generic [ref=e226]: Next due
+                      - strong [ref=e227]:
+                        - generic [ref=e229]: May 9, 2026
+                    - generic [ref=e230]:
+                      - generic [ref=e231]: Next statement
+                      - strong [ref=e232]:
+                        - generic [ref=e234]: May 14, 2026
+                    - generic [ref=e235]:
+                      - generic [ref=e236]: Expected report
+                      - strong [ref=e237]:
+                        - generic [ref=e239]: May 21, 2026
+                    - generic [ref=e240]:
+                      - generic [ref=e241]: Autopay
+                      - strong [ref=e242]:
+                        - generic [ref=e244]: May 8, 2026
+                    - generic [ref=e245]:
+                      - generic [ref=e246]: Reminder lead
+                      - strong [ref=e247]:
+                        - generic [ref=e248]:
+                          - generic [ref=e249]: "10"
+                          - text: days
+                    - generic [ref=e250]:
+                      - generic [ref=e251]: Report interval
+                      - strong [ref=e252]:
+                        - generic [ref=e253]:
+                          - generic [ref=e254]: "30"
+                          - text: days
+                  - generic [ref=e255]:
+                    - generic [ref=e256]: Past due risk
+                    - generic [ref=e257]: Statement closing soon
+                  - paragraph [ref=e258]: CFPB case reference captured in paper file.
+                - generic [ref=e259]:
+                  - generic [ref=e260]:
+                    - generic [ref=e261]:
+                      - heading "Harbor Rewards" [level=3] [ref=e262]
+                      - paragraph [ref=e263]:
+                        - text: "Last reported:"
+                        - generic [ref=e264]: Apr 15, 2026
+                    - generic [ref=e265]:
+                      - button "Edit" [ref=e266] [cursor=pointer]
+                      - button "Delete" [ref=e267] [cursor=pointer]
+                  - generic [ref=e268]:
+                    - generic [ref=e269]:
+                      - generic [ref=e270]: Next due
+                      - strong [ref=e271]:
+                        - generic [ref=e273]: May 11, 2026
+                    - generic [ref=e274]:
+                      - generic [ref=e275]: Next statement
+                      - strong [ref=e276]:
+                        - generic [ref=e278]: May 5, 2026
+                    - generic [ref=e279]:
+                      - generic [ref=e280]: Expected report
+                      - strong [ref=e281]:
+                        - generic [ref=e283]: May 15, 2026
+                    - generic [ref=e284]:
+                      - generic [ref=e285]: Autopay
+                      - strong [ref=e286]:
+                        - generic [ref=e288]: May 9, 2026
+                    - generic [ref=e289]:
+                      - generic [ref=e290]: Reminder lead
+                      - strong [ref=e291]:
+                        - generic [ref=e292]:
+                          - generic [ref=e293]: "7"
+                          - text: days
+                    - generic [ref=e294]:
+                      - generic [ref=e295]: Report interval
+                      - strong [ref=e296]:
+                        - generic [ref=e297]:
+                          - generic [ref=e298]: "30"
+                          - text: days
+                  - generic [ref=e299]:
+                    - generic [ref=e300]: Past due risk
+                    - generic [ref=e301]: Statement closing soon
+                  - paragraph [ref=e302]: MOV requested during the last report review.
+                - generic [ref=e303]:
+                  - generic [ref=e304]:
+                    - generic [ref=e305]:
+                      - heading "Peak Platinum" [level=3] [ref=e306]
+                      - paragraph [ref=e307]:
+                        - text: "Last reported:"
+                        - generic [ref=e308]: Apr 17, 2026
+                    - generic [ref=e309]:
+                      - button "Edit" [ref=e310] [cursor=pointer]
+                      - button "Delete" [ref=e311] [cursor=pointer]
+                  - generic [ref=e312]:
+                    - generic [ref=e313]:
+                      - generic [ref=e314]: Next due
+                      - strong [ref=e315]:
+                        - generic [ref=e317]: May 13, 2026
+                    - generic [ref=e318]:
+                      - generic [ref=e319]: Next statement
+                      - strong [ref=e320]:
+                        - generic [ref=e322]: May 18, 2026
+                    - generic [ref=e323]:
+                      - generic [ref=e324]: Expected report
+                      - strong [ref=e325]:
+                        - generic [ref=e327]: May 17, 2026
+                    - generic [ref=e328]:
+                      - generic [ref=e329]: Autopay
+                      - strong [ref=e330]: Not set
+                    - generic [ref=e331]:
+                      - generic [ref=e332]: Reminder lead
+                      - strong [ref=e333]:
+                        - generic [ref=e334]:
+                          - generic [ref=e335]: "3"
+                          - text: days
+                    - generic [ref=e336]:
+                      - generic [ref=e337]: Report interval
+                      - strong [ref=e338]:
+                        - generic [ref=e339]:
+                          - generic [ref=e340]: "30"
+                          - text: days
+                  - generic [ref=e342]: Current
+                  - paragraph [ref=e343]: Review bureau remarks after next statement close.
+                - generic [ref=e344]:
+                  - generic [ref=e345]:
+                    - generic [ref=e346]:
+                      - heading "Audit Test 904" [level=3] [ref=e347]
+                      - paragraph [ref=e348]:
+                        - text: "Last reported:"
+                        - generic [ref=e349]: Apr 20, 2026
+                    - generic [ref=e350]:
+                      - button "Edit" [ref=e351] [cursor=pointer]
+                      - button "Delete" [ref=e352] [cursor=pointer]
+                  - generic [ref=e353]:
+                    - generic [ref=e354]:
+                      - generic [ref=e355]: Next due
+                      - strong [ref=e356]:
+                        - generic [ref=e358]: May 14, 2026
+                    - generic [ref=e359]:
+                      - generic [ref=e360]: Next statement
+                      - strong [ref=e361]:
+                        - generic [ref=e363]: May 19, 2026
+                    - generic [ref=e364]:
+                      - generic [ref=e365]: Expected report
+                      - strong [ref=e366]:
+                        - generic [ref=e368]: May 20, 2026
+                    - generic [ref=e369]:
+                      - generic [ref=e370]: Autopay
+                      - strong [ref=e371]: Not set
+                    - generic [ref=e372]:
+                      - generic [ref=e373]: Reminder lead
+                      - strong [ref=e374]:
+                        - generic [ref=e375]:
+                          - generic [ref=e376]: "5"
+                          - text: days
+                    - generic [ref=e377]:
+                      - generic [ref=e378]: Report interval
+                      - strong [ref=e379]:
+                        - generic [ref=e380]:
+                          - generic [ref=e381]: "30"
+                          - text: days
+                  - generic [ref=e383]: Current
+                  - paragraph [ref=e384]: audit persistence check
+                - generic [ref=e385]:
+                  - generic [ref=e386]:
+                    - generic [ref=e387]:
+                      - heading "Flex Card" [level=3] [ref=e388]
+                      - paragraph [ref=e389]:
+                        - text: "Last reported:"
+                        - generic [ref=e390]: Apr 9, 2026
+                    - generic [ref=e391]:
+                      - button "Edit" [ref=e392] [cursor=pointer]
+                      - button "Delete" [ref=e393] [cursor=pointer]
+                  - generic [ref=e394]:
+                    - generic [ref=e395]:
+                      - generic [ref=e396]: Next due
+                      - strong [ref=e397]:
+                        - generic [ref=e399]: May 17, 2026
+                    - generic [ref=e400]:
+                      - generic [ref=e401]: Next statement
+                      - strong [ref=e402]:
+                        - generic [ref=e404]: May 22, 2026
+                    - generic [ref=e405]:
+                      - generic [ref=e406]: Expected report
+                      - strong [ref=e407]:
+                        - generic [ref=e409]: May 11, 2026
+                    - generic [ref=e410]:
+                      - generic [ref=e411]: Autopay
+                      - strong [ref=e412]:
+                        - generic [ref=e414]: May 15, 2026
+                    - generic [ref=e415]:
+                      - generic [ref=e416]: Reminder lead
+                      - strong [ref=e417]:
+                        - generic [ref=e418]:
+                          - generic [ref=e419]: "5"
+                          - text: days
+                    - generic [ref=e420]:
+                      - generic [ref=e421]: Report interval
+                      - strong [ref=e422]:
+                        - generic [ref=e423]:
+                          - generic [ref=e424]: "32"
+                          - text: days
+                  - generic [ref=e426]: Current
+                  - paragraph [ref=e427]: Autopay covers minimum only.
+                - generic [ref=e428]:
+                  - generic [ref=e429]:
+                    - generic [ref=e430]:
+                      - heading "Atlas Amex" [level=3] [ref=e431]
+                      - paragraph [ref=e432]:
+                        - text: "Last reported:"
+                        - generic [ref=e433]: Apr 6, 2026
+                    - generic [ref=e434]:
+                      - button "Edit" [ref=e435] [cursor=pointer]
+                      - button "Delete" [ref=e436] [cursor=pointer]
+                  - generic [ref=e437]:
+                    - generic [ref=e438]:
+                      - generic [ref=e439]: Next due
+                      - strong [ref=e440]:
+                        - generic [ref=e442]: May 21, 2026
+                    - generic [ref=e443]:
+                      - generic [ref=e444]: Next statement
+                      - strong [ref=e445]:
+                        - generic [ref=e447]: May 24, 2026
+                    - generic [ref=e448]:
+                      - generic [ref=e449]: Expected report
+                      - strong [ref=e450]:
+                        - generic [ref=e452]: May 6, 2026
+                    - generic [ref=e453]:
+                      - generic [ref=e454]: Autopay
+                      - strong [ref=e455]: Not set
+                    - generic [ref=e456]:
+                      - generic [ref=e457]: Reminder lead
+                      - strong [ref=e458]:
+                        - generic [ref=e459]:
+                          - generic [ref=e460]: "5"
+                          - text: days
+                    - generic [ref=e461]:
+                      - generic [ref=e462]: Report interval
+                      - strong [ref=e463]:
+                        - generic [ref=e464]:
+                          - generic [ref=e465]: "30"
+                          - text: days
+                  - generic [ref=e467]: Reporting window soon
+                  - paragraph [ref=e468]: Pay twice per cycle for utilization control.
+                - generic [ref=e469]:
+                  - generic [ref=e470]:
+                    - generic [ref=e471]:
+                      - heading "Northline Card" [level=3] [ref=e472]
+                      - paragraph [ref=e473]:
+                        - text: "Last reported:"
+                        - generic [ref=e474]: Apr 4, 2026
+                    - generic [ref=e475]:
+                      - button "Edit" [ref=e476] [cursor=pointer]
+                      - button "Delete" [ref=e477] [cursor=pointer]
+                  - generic [ref=e478]:
+                    - generic [ref=e479]:
+                      - generic [ref=e480]: Next due
+                      - strong [ref=e481]:
+                        - generic [ref=e483]: May 26, 2026
+                    - generic [ref=e484]:
+                      - generic [ref=e485]: Next statement
+                      - strong [ref=e486]:
+                        - generic [ref=e488]: May 30, 2026
+                    - generic [ref=e489]:
+                      - generic [ref=e490]: Expected report
+                      - strong [ref=e491]:
+                        - generic [ref=e493]: May 5, 2026
+                    - generic [ref=e494]:
+                      - generic [ref=e495]: Autopay
+                      - strong [ref=e496]: Not set
+                    - generic [ref=e497]:
+                      - generic [ref=e498]: Reminder lead
+                      - strong [ref=e499]:
+                        - generic [ref=e500]:
+                          - generic [ref=e501]: "3"
+                          - text: days
+                    - generic [ref=e502]:
+                      - generic [ref=e503]: Report interval
+                      - strong [ref=e504]:
+                        - generic [ref=e505]:
+                          - generic [ref=e506]: "31"
+                          - text: days
+                  - generic [ref=e508]: Reporting window soon
+                  - paragraph [ref=e509]: Use for balance transfer tracking only.
+                - generic [ref=e510]:
+                  - generic [ref=e511]:
+                    - generic [ref=e512]:
+                      - heading "Union Line" [level=3] [ref=e513]
+                      - paragraph [ref=e514]:
+                        - text: "Last reported:"
+                        - generic [ref=e515]: Apr 13, 2026
+                    - generic [ref=e516]:
+                      - button "Edit" [ref=e517] [cursor=pointer]
+                      - button "Delete" [ref=e518] [cursor=pointer]
+                  - generic [ref=e519]:
+                    - generic [ref=e520]:
+                      - generic [ref=e521]: Next due
+                      - strong [ref=e522]:
+                        - generic [ref=e524]: Jun 2, 2026
+                    - generic [ref=e525]:
+                      - generic [ref=e526]: Next statement
+                      - strong [ref=e527]:
+                        - generic [ref=e529]: May 6, 2026
+                    - generic [ref=e530]:
+                      - generic [ref=e531]: Expected report
+                      - strong [ref=e532]:
+                        - generic [ref=e534]: May 12, 2026
+                    - generic [ref=e535]:
+                      - generic [ref=e536]: Autopay
+                      - strong [ref=e537]: Not set
+                    - generic [ref=e538]:
+                      - generic [ref=e539]: Reminder lead
+                      - strong [ref=e540]:
+                        - generic [ref=e541]:
+                          - generic [ref=e542]: "7"
+                          - text: days
+                    - generic [ref=e543]:
+                      - generic [ref=e544]: Report interval
+                      - strong [ref=e545]:
+                        - generic [ref=e546]:
+                          - generic [ref=e547]: "29"
+                          - text: days
+                  - generic [ref=e549]: Statement closing soon
+                - generic [ref=e550]:
+                  - generic [ref=e551]:
+                    - generic [ref=e552]:
+                      - heading "Skyline Visa" [level=3] [ref=e553]
+                      - paragraph [ref=e554]:
+                        - text: "Last reported:"
+                        - generic [ref=e555]: Apr 8, 2026
+                    - generic [ref=e556]:
+                      - button "Edit" [ref=e557] [cursor=pointer]
+                      - button "Delete" [ref=e558] [cursor=pointer]
+                  - generic [ref=e559]:
+                    - generic [ref=e560]:
+                      - generic [ref=e561]: Next due
+                      - strong [ref=e562]:
+                        - generic [ref=e564]: Jun 3, 2026
+                    - generic [ref=e565]:
+                      - generic [ref=e566]: Next statement
+                      - strong [ref=e567]:
+                        - generic [ref=e569]: May 28, 2026
+                    - generic [ref=e570]:
+                      - generic [ref=e571]: Expected report
+                      - strong [ref=e572]:
+                        - generic [ref=e574]: May 8, 2026
+                    - generic [ref=e575]:
+                      - generic [ref=e576]: Autopay
+                      - strong [ref=e577]:
+                        - generic [ref=e579]: Jun 1, 2026
+                    - generic [ref=e580]:
+                      - generic [ref=e581]: Reminder lead
+                      - strong [ref=e582]:
+                        - generic [ref=e583]:
+                          - generic [ref=e584]: "5"
+                          - text: days
+                    - generic [ref=e585]:
+                      - generic [ref=e586]: Report interval
+                      - strong [ref=e587]:
+                        - generic [ref=e588]:
+                          - generic [ref=e589]: "30"
+                          - text: days
+                  - generic [ref=e591]: Reporting window soon
+                  - paragraph [ref=e592]:
+                    - generic [ref=e593]: Dispute pending, keep utilization under 9%.
+            - complementary [ref=e594]:
+              - generic [ref=e595]:
+                - heading "Credit report checklist" [level=2] [ref=e596]
+                - paragraph [ref=e597]: Capture these fields from Experian, Equifax, and TransUnion reports.
+                - list [ref=e598]:
+                  - listitem [ref=e599]: Account nickname
+                  - listitem [ref=e600]: Masked account number
+                  - listitem [ref=e601]: Account type
+                  - listitem [ref=e602]: Current balance
+                  - listitem [ref=e603]: Credit limit
+                  - listitem [ref=e604]: High balance
+                  - listitem [ref=e605]: Payment status
+                  - listitem [ref=e606]: Amount past due
+                  - listitem [ref=e607]: Date opened
+                  - listitem [ref=e608]: Last payment date
+                  - listitem [ref=e609]: Last report date
+                  - listitem [ref=e610]: Statement closing day
+                  - listitem [ref=e611]: Due day
+                  - listitem [ref=e612]: Autopay day
+                  - listitem [ref=e613]: Payment history notes
+                  - listitem [ref=e614]: Dispute, CFPB, or MOV notes
+              - generic [ref=e615]:
+                - heading "CSV import header" [level=2] [ref=e616]
+                - paragraph [ref=e617]: This matches the export format so Prompt 2 can add column mapping and duplicate detection cleanly.
+                - code [ref=e618]: nickname,due_day,statement_day,last_report_date,report_interval_days,autopay_day,reminder_lead,notes
+          - generic [ref=e619]:
+            - generic [ref=e622]:
+              - generic [ref=e623]:
+                - generic [ref=e624]:
+                  - generic [ref=e625]: Dashboard
+                  - generic [ref=e626]: Available
+                - generic [ref=e628]:
+                  - text: Tracked revolving balance
+                  - paragraph [ref=e629]: Total balance
+                  - heading "$65" [level=2] [ref=e630]
+                - generic [ref=e633]: Next move
+                - generic [ref=e634]:
+                  - paragraph [ref=e635]: Recommendation summary
+                  - generic [ref=e640]: 19 days left. Low usage. Safe to use.
+                  - generic [ref=e641]:
+                    - generic [ref=e642]: Use Aurora Rewards
+                    - generic [ref=e644]:
+                      - generic [ref=e646]: "0"
+                      - text: avoid now
+              - generic [ref=e647]:
+                - generic [ref=e648]:
+                  - generic [ref=e650]: "0"
+                  - text: cards tracked
+                - generic [ref=e651]:
+                  - generic [ref=e653]: "0"
+                  - text: ready to use
+            - generic [ref=e654]:
+              - generic [ref=e655]:
+                - paragraph [ref=e656]: Bank reserve
+                - strong [ref=e657]: $235
+                - paragraph [ref=e658]: Cash ready before the next due window.
+              - generic [ref=e659]:
+                - paragraph [ref=e660]: Credit available
+                - strong [ref=e661]: $281
+                - paragraph [ref=e662]: Open headroom across current limits.
+              - generic [ref=e663]:
+                - paragraph [ref=e664]: Utilization
+                - generic [ref=e665]:
+                  - strong [ref=e666]: 1%
+                  - generic [ref=e667]: Keep this low for better flexibility

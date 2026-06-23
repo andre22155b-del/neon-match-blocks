@@ -1,0 +1,101 @@
+- generic [ref=e4]:
+  - generic [ref=e8]:
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - img "BalSense logo" [ref=e13]
+          - generic [ref=e14]: BalSense
+          - generic [ref=e15]: by Tobar Mix Creations
+        - button "Open next event details" [ref=e17] [cursor=pointer]:
+          - generic [ref=e18]: Next event today
+          - generic "Health indicator with 2 attention flags" [ref=e19]
+      - generic [ref=e21]:
+        - generic [ref=e22]: Command
+        - generic [ref=e24]: Jun 1, 2026
+    - generic [ref=e26]:
+      - img [ref=e28]
+      - paragraph [ref=e31]: Avant minimum due in 0 days — $25.
+    - tabpanel "Command" [ref=e33]:
+      - generic [ref=e34]:
+        - button "Ask BalSense" [ref=e36] [cursor=pointer]:
+          - img [ref=e38]
+          - generic [ref=e41]: Ask BalSense
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - paragraph [ref=e49]: Best play
+              - heading "Indigo" [level=2] [ref=e50]
+            - generic [ref=e53]:
+              - generic [ref=e54]: Indigo
+              - img [ref=e55]
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - paragraph [ref=e59]: Why now
+              - paragraph [ref=e60]: Indigo has the most room — 55% available. Statement closes day 19. Safest card in the set.
+            - generic [ref=e61]:
+              - paragraph [ref=e62]: What to avoid
+              - paragraph [ref=e63]: Destiny (98%) and Capital One Platinum (86%) are critical. Capital One SavorOne (84%) is close behind.
+            - generic [ref=e64]:
+              - paragraph [ref=e65]: Confidence
+              - generic [ref=e67]: Cautious
+            - button "Use This Card" [ref=e69] [cursor=pointer]
+            - button "See full reasoning" [ref=e70] [cursor=pointer]
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - generic [ref=e76]:
+              - generic [ref=e80]: "33"
+              - generic [ref=e81]:
+                - paragraph [ref=e82]: Stack score
+                - paragraph [ref=e83]: Take action now
+                - paragraph [ref=e84]: Score reflects pressure, timing, and runway.
+            - button "See breakdown" [ref=e85] [cursor=pointer]
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - text: Stack
+                - paragraph [ref=e93]: Stack at Risk
+              - generic [ref=e94]: $918.82 left
+            - generic [ref=e95]:
+              - generic [ref=e96]:
+                - generic [ref=e97]: Spent
+                - generic [ref=e98]: $2,449.82
+              - generic [ref=e99]:
+                - generic [ref=e100]: Limit
+                - generic [ref=e101]: $3,368.64
+              - generic [ref=e102]:
+                - generic [ref=e103]: Used
+                - generic [ref=e104]: 72.7% · 6 cards
+        - generic [ref=e107]:
+          - paragraph [ref=e108]: Coming up
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - paragraph [ref=e112]: Avant
+                - paragraph [ref=e113]: Due Date
+              - generic [ref=e114]: Jun 1
+            - generic [ref=e115]:
+              - generic [ref=e116]:
+                - paragraph [ref=e117]: Destiny
+                - paragraph [ref=e118]: Due Date
+              - generic [ref=e119]: Jun 3
+            - generic [ref=e120]:
+              - generic [ref=e121]:
+                - paragraph [ref=e122]: Destiny
+                - paragraph [ref=e123]: Statement Close
+              - generic [ref=e124]: Jun 4
+  - generic [ref=e126]:
+    - button "Dashboard" [ref=e127] [cursor=pointer]:
+      - img [ref=e129]
+      - generic [ref=e134]: Dashboard
+    - button "Cards" [ref=e135] [cursor=pointer]:
+      - img [ref=e137]
+      - generic [ref=e139]: Cards
+    - button "Strategy" [ref=e140] [cursor=pointer]:
+      - img [ref=e142]
+      - generic [ref=e144]: Strategy
+    - button "Insights" [ref=e145] [cursor=pointer]:
+      - img [ref=e147]
+      - generic [ref=e148]: Insights
+    - button "Settings" [ref=e149] [cursor=pointer]:
+      - img [ref=e151]
+      - generic [ref=e154]: Settings

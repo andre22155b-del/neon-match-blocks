@@ -5,9 +5,10 @@ public class KickerLaneMover : MonoBehaviour
     public NeonFieldGoalConfig config;
     public Transform moverRoot;
 
-    private float baseX;
+    private Vector3 basePosition;
     private float currentSpeed;
     private float currentLean;
+    private float depthOffset;
     private Quaternion baseLocalRotation;
     private bool controlsEnabled = true;
     private bool leftPressed;
@@ -20,7 +21,7 @@ public class KickerLaneMover : MonoBehaviour
             moverRoot = transform;
         }
 
-        baseX = moverRoot.position.x;
+        basePosition = moverRoot.position;
         baseLocalRotation = moverRoot.localRotation;
     }
 
@@ -56,12 +57,26 @@ public class KickerLaneMover : MonoBehaviour
             return;
         }
 
-        moverRoot.position = new Vector3(baseX, moverRoot.position.y, moverRoot.position.z);
+        moverRoot.position = new Vector3(basePosition.x, basePosition.y, basePosition.z + depthOffset);
         currentSpeed = 0f;
         currentLean = 0f;
         moverRoot.localRotation = baseLocalRotation;
         leftPressed = false;
         rightPressed = false;
+    }
+
+    public void SetDepthOffset(float offset)
+    {
+        depthOffset = offset;
+        if (moverRoot == null)
+        {
+            return;
+        }
+
+        Vector3 position = moverRoot.position;
+        position.y = basePosition.y;
+        position.z = basePosition.z + depthOffset;
+        moverRoot.position = position;
     }
 
     private void Update()
@@ -101,7 +116,9 @@ public class KickerLaneMover : MonoBehaviour
 
         Vector3 pos = moverRoot.position;
         pos.x += currentSpeed * Time.deltaTime;
-        pos.x = Mathf.Clamp(pos.x, baseX - config.laneHalfWidth, baseX + config.laneHalfWidth);
+        pos.x = Mathf.Clamp(pos.x, basePosition.x - config.laneHalfWidth, basePosition.x + config.laneHalfWidth);
+        pos.y = basePosition.y;
+        pos.z = basePosition.z + depthOffset;
         moverRoot.position = pos;
 
         float targetLean = config.moverSpeed > 0.01f
@@ -111,7 +128,7 @@ public class KickerLaneMover : MonoBehaviour
         currentLean = Mathf.Lerp(currentLean, targetLean, leanLerp);
         moverRoot.localRotation = baseLocalRotation * Quaternion.Euler(0f, 0f, currentLean);
 
-        if (Mathf.Approximately(pos.x, baseX - config.laneHalfWidth) || Mathf.Approximately(pos.x, baseX + config.laneHalfWidth))
+        if (Mathf.Approximately(pos.x, basePosition.x - config.laneHalfWidth) || Mathf.Approximately(pos.x, basePosition.x + config.laneHalfWidth))
         {
             currentSpeed = 0f;
         }
