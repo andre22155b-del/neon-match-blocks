@@ -255,6 +255,13 @@ button {
   animation: gameOverFlash 800ms ease-in forwards;
 }
 
+.flash-boardBurn {
+  background:
+    linear-gradient(180deg, transparent 0%, transparent 54%, rgba(255, 30, 30, 0.22) 70%, rgba(255, 214, 10, 0.18) 100%),
+    radial-gradient(circle at 50% 88%, rgba(255, 214, 10, 0.22), transparent 44%);
+  animation: flashHot 650ms ease-out;
+}
+
 .achievement-banner {
   position: absolute;
   top: 86px;

@@ -1191,6 +1191,8 @@ export function reducer(state, action) {
       return markClearing(state, action.matches);
     case 'CLEAR_AND_GRAVITY':
       return clearAndGravity(state, action.matches);
+    case 'BOTTOM_ROW_BURN':
+      return bottomRowBurn(state);
     case 'CLEAR_FEEDBACK':
       return { ...state, feedback: null };
     case 'CLEAR_FLASH':
@@ -1411,6 +1413,22 @@ function clearAndGravity(state, matches) {
     lastActionAt: Date.now(),
     lastWordAt: now,
     message: prestigeWords.length ? `PRESTIGE WORD 💎 ${prestigeWords.join(' + ')}` : intersection ? 'CROSSWORD COMBO — bussin fr' : scoringMatches.length ? `${[...new Set(scoringMatches.map((match) => match.word))].join(' + ')} x${combo}` : 'No same-color word',
+  };
+}
+
+function bottomRowBurn(state) {
+  if (state.screen !== 'game' || state.phase !== 'idle' || state.gameOver || state.vs || state.mode === 'puzzle') return state;
+  const rows = state.board.length;
+  const board = cloneBoard(state.board);
+  for (let row = Math.max(0, rows - 2); row < rows; row += 1) {
+    board[row] = Array(COLS).fill(null);
+  }
+  return {
+    ...state,
+    board: applyGravity(board),
+    flash: makeFlash('boardBurn'),
+    message: 'BOTTOM ROW BURN',
+    lastActionAt: Date.now(),
   };
 }
 

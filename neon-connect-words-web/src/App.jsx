@@ -247,8 +247,8 @@ export default function App() {
         const timer = window.setTimeout(() => dispatch({ type: 'RESULTS', message: 'Puzzle cleared' }), 350);
         return () => window.clearTimeout(timer);
       }
-      if (state.mode === 'classic' && state.board[0].some(Boolean)) {
-        const timer = window.setTimeout(() => dispatch({ type: 'RESULTS', message: 'Board topped out' }), 350);
+      if (!state.vs && state.mode !== 'puzzle' && state.board[0].some(Boolean)) {
+        const timer = window.setTimeout(() => dispatch({ type: 'BOTTOM_ROW_BURN' }), 350);
         return () => window.clearTimeout(timer);
       }
       if (state.mode === 'puzzle' && state.dropsLeft <= 0) {
@@ -1269,6 +1269,7 @@ function StatusPanel({ state }) {
 
 function getFriendlyStatus(state) {
   if (state.phase !== 'idle') return state.message;
+  if (state.message === 'BOTTOM ROW BURN') return 'Bottom rows burned. Keep playing.';
   if (state.feedback) return 'Nice word. Watch the board settle.';
   const wordsFound = Array.isArray(state.wordsFound) ? state.wordsFound : [];
   if (wordsFound.length === 0) return 'Drop letters. Build your first word.';
